@@ -16,7 +16,7 @@ $(document).ready(function(){
 <body>
 <!--  일반로그인 -->
 <form action="login" method="post">
-	<input type="text" name="id" id ="id" autocomplete="off"><br>
+	<input type="text" name="userid" id ="userid" autocomplete="off"><br>
 	<input type="password" name="pw" id="pw" autocomplete="off"><br>
 	<input type="submit" id="btn" value="login"><br>
 	<a href = "register">
