@@ -40,7 +40,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String login(String userid, String password, HttpServletRequest request) {
+	public String login(String userid, String pw, HttpServletRequest request) {
 		List<MemberDTO> list = memserv.onemember(userid);
 		if(list.size()== 0) {
 			System.out.println("아이디 없음");
@@ -49,7 +49,7 @@ public class MemberController {
 		else {
 			String dbpassword = list.get(0).getPw();
 			System.out.println(dbpassword);
-			if(dbpassword.equals(password)) {
+			if(dbpassword.equals(pw)) {
 				session.setAttribute("sessionid", userid);
 				System.out.println(session.getAttribute("sessionid"));
 				return  "redirect:/";				
