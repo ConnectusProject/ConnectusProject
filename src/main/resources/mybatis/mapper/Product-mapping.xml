@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="connectus.product.ProductDAO">
+
+	<select id="allBoard" resultType="productdto">
+		select * from product order by createdAt desc
+	</select>
+
+	<select id="oneBoard" resultType="productdto">
+		select * from product where id = #{id}
+	</select>
+	
+	<insert id="insertBoard">
+		insert into product (userid, title, contents, boardRegion, createdAt, img) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img})
+	</insert>
+	
+	
+	<select id="allReservation" resultType="reservationdto" >
+		select * from reservation where boardid=#{boardId} 
+	</select>
+	
+	
+	<delete id="deleteBoard">
+		delete from product where id=#{boardId}
+	</delete>
+
+
+	<update id="updateBoard">
+		update product set title=#{title}, contents=#{contents},
+		img=#{img}
+		where id = #{id}
+	</update>
+	
+	
+	<!-- 검색 -->
+	<select id="searchList" resultType="productdto" parameterType="hashMap">
+	 	select * from product where ${item} like concat('%', #{search}, '%') 
+	 	order by createdAt desc 
+	 </select>
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>

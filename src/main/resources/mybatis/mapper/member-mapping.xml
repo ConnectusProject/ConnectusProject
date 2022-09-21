@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="connectus.member" >
+	
+<select id="memberlist" resultType="memberdto" >
+	select * from members 
+</select>
+
+<select id="onemember" resultType="memberdto" parameterType="String" >
+    select * from members where id=#{id}
+</select>
+
+<select id="onemember_phone" resultType="memberdto" parameterType="String" >
+    select * from members where phone=#{phone}
+</select>
+
+<select id="login" resultType="memberdto"  parameterType="java.util.Map"  >
+			select * from members
+			 where id=#{id}
+			 and pw=#{pw}			
+</select>
+
+<insert id="insertmember" parameterType="memberdto" >
+ insert into members(id,pw,name,phone,email,address) values(#{id},#{pw},#{name},#{phone},#{email},#{address}) 
+</insert>
+
+</mapper>

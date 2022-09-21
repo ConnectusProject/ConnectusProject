@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="connectus.reservation.ReservationDAO">
+
+
+	<!-- 전체게시물 조회 (페이징) -->
+	<insert id="insertReservation" >
+		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
+		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
+	</insert>
+
+	
+</mapper>

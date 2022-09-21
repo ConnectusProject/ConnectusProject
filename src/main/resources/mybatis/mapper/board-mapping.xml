@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="connectus.board.BoardDAO" >
+	<insert id="insertBoard" parameterType="boarddto">
+		insert into board(title, contents, writer, pw, viewcount, writingtime, img)
+		values(#{title} , #{contents}, #{writer}, #{pw}, 0, now(), #{img})
+	</insert>
+	
+	<insert id="insertboardHis" parameterType="boarddto">
+		insert into boardHis(title, contents, writer, pw, viewcount, writingtime,updatingtime, deletingtime )
+		values(#{title} , #{contents}, #{writer}, #{pw}, 0, now(),now(),now())
+	</insert>
+		
+	<select id="boardcount" resultType="int">
+		select count(1) from board
+	</select>
+	
+	<select id="getTitleCount" parameterType="String" resultType="int">
+		select count(1) from board order by seq desc
+	</select>
+	
+	<select id="getWriterCount" parameterType="String" resultType="int">
+		select count(1) from board order by seq desc
+	</select>
+	
+	<select id="getTotalBoard2" resultType="int" parameterType="String">
+		select count(1) from board where contents = #{contents}
+	</select>
+	
+	<select id="getTotalTitleBoard2" resultType="int" parameterType="String">
+		select count(1) from board where title = #{title}
+	</select>
+	
+	<select id="getTotalWriterBoard2" resultType="int" parameterType="String">
+		select count(1) from board where writer = #{writer}
+	</select>
+	
+	
+	<select id="pagingList" resultType="boarddto"  >
+	select * from board order by writingtime desc limit 
+	<foreach collection="array" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+	
+	<select id="pagingTitleList" resultType="boarddto"  >
+	select * from board order by title asc, writingtime desc limit 
+	<foreach collection="array" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+	
+	<select id="pagingWriterList" resultType="boarddto"  >
+	select * from board order by writer asc, writingtime desc limit 
+	<foreach collection="array" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+	
+	<update id="updateSeq" parameterType="int">
+		update board set viewcount = viewcount + 1 where seq = #{seq}
+	</update>
+	
+	<select id="getBoardSeqLst" parameterType="int" resultType="boarddto">
+		select * from board where seq = #{seq}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where seq = #{seq}
+	</delete>
+	
+	<update id="updateBoard" parameterType="boarddto">
+		update board 
+		   set title    = #{title}
+		      ,contents = #{contents}
+		where seq = #{seq}
+	</update>
+	
+	
+	<select id="pagingList2" resultType="boarddto" parameterType="Map" >
+	select * from board where contents=#{param2} order by writingtime desc limit 
+	<foreach collection="param1" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+	
+	<select id="pagingTitleList2" resultType="boarddto" parameterType="Map" >
+	select * from board where title=#{param2} order by writingtime desc limit 
+	<foreach collection="param1" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+	
+	<select id="pagingWriterlist2" resultType="boarddto" parameterType="Map" >
+	select * from board where writer=#{param2} order by writingtime desc limit 
+	<foreach collection="param1" item="num" separator=",">
+	#{num}
+	</foreach>
+	</select>
+</mapper>
