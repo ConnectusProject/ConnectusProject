@@ -18,7 +18,7 @@ $(document).ready(function(){
 <div>
 	<form name="form" action="register" method="post">
 		<div>
-			<input type=text name="id" id="id" placeholder="아이디를 입력하세요" required>
+			<input type=text name="userid" id="userid" placeholder="아이디를 입력하세요" required>
 			<input type="button" id="id-btn" value="id체크" onclick="idcheck()" >
 		</div>
 		<div id="id_check"></div>
@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 
 <script>
-let id = $('#id');
+let userid = $('#userid');
 let pw = $('#pw');
 let pw2 = $('#pw2');
 let phone = $('#phone');
@@ -81,9 +81,9 @@ let name_check=false;
 
 
 function idcheck(){
-	var id = $('#id').val();
+	var userid = $('#userid').val();
 	var regId = /^[A-Za-z0-9]{6,20}$/;
-	if(id==''){
+	if(userid==''){
 		$('#id_check').text("아이디를 입력해주세요");
 		$('#id_check').css("color","red");
 		id_check=false;		
@@ -92,7 +92,7 @@ function idcheck(){
 		$.ajax({
 			url:"idCheck",
 			type:'post',
-			data:{id:id},
+			data:{userid:userid},
 			success:function(data){
 				if(data=='true'){
 					$('#id_check').text("이미 가입된 아이디입니다");
@@ -100,7 +100,7 @@ function idcheck(){
 					id_check=false;			
 					$('#btn').attr('disabled',true);					
 				}else{
-					if(!regId.test(id)){
+					if(!regId.test(userid)){
 						$('#id_check').text("영문과 숫자 6~20자 이내로 입력하세요");
 						$('#id_check').css("color","red");
 						id_check=false;
@@ -225,6 +225,7 @@ function emailcheck(){
 	}
 	
 }
+
 
 function namecheck(){
 	var name = $('#name').val();
