@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="connectus.boardupload.BoardUploadDAO" >
+	
+<insert id="insertUpload" parameterType="boarduploaddto" >
+ insert into boardupload values
+ (#{name}, #{description}, #{filename1}, now())
+</insert>
+
+<select id="selectUpload" parameterType="String" resultType="boarduploaddto">
+select name, description, file1 as filename1, uploadtime
+ from boardupload where name=#{name}
+</select>
+</mapper>
+

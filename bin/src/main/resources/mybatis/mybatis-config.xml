@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!-- mybatis db 연결정보 세팅 파일 -->
+<configuration>
+<!-- mybatis.MemberDTO  : memberdto -->
+<typeAliases>
+	<typeAlias type="connectus.product.ProductDTO" alias="productdto"/>
+	<typeAlias type="connectus.reservation.ReservationDTO" alias="reservationdto"/>
+	<typeAlias type="connectus.member.MemberDTO" alias="memberdto"/>
+	
+	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
+	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
+</typeAliases>
+
+
+</configuration>
+
+
+
+
