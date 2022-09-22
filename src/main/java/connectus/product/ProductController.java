@@ -3,9 +3,12 @@ package connectus.product;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import connectus.ApiClient;
@@ -46,9 +50,22 @@ public class ProductController {
 	
 	// 물품 상세페이지 
 	@GetMapping("/product/{productid}")
-	public String oneProduct(@PathVariable("productid")int boardid, Model model) {
+	public String oneProduct(@PathVariable("productid")int boardid, Model model, HttpSession session) throws Exception {
+		
+		String sessionid = (String)session.getAttribute("sessionid");
+		
 		
 		ProductDTO targetBoard = productDAO.oneBoard(boardid);
+		
+		
+		Object zzimcheck = productDAO.zzimCount(boardid, sessionid);
+		
+		int zzim = 0 ; 
+		if(zzimcheck!=null) {
+			zzim = 1; 
+		}
+		
+		targetBoard.setZzim(zzim);
 		
 		List<ReservationDTO> reservList = productDAO.allReservation(boardid);
 		
@@ -165,6 +182,29 @@ public class ProductController {
 		model.addAttribute("searchList", searchList);
 		return "product/searchList";
 	}
+	
+	
+	// 찜 
+		@ResponseBody
+		@PostMapping("/product/zzim")
+		public String updatezzim(int productseq, String memberid) throws Exception {
+			
+
+			int zzim = 0; 
+			int zzimCheck = productDAO.zzimCheck(productseq, memberid);
+			if (zzimCheck == 0) {
+				productDAO.insertZzim(productseq, memberid);
+				productDAO.updateZzim(productseq, memberid);
+				zzim = 1;
+			} else if (zzimCheck == 1) {
+				productDAO.updateZzimCancel(productseq, memberid);
+				productDAO.deleteZzim(productseq, memberid);
+			}
+			
+
+			return "{\"result\" : \"" + zzimCheck + "\", \"result2\" : \"" + zzim + "\" }";
+		}
+
 	
 	
 	

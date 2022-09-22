@@ -11,16 +11,69 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
+
 <script>
 $(document).ready(function(){
+let sessionId = '${sessionScope.sessionid}';
+let productseq = '${oneBoard.id}';
+let userId = '${oneBoard.userId}';
+	
+
+// 세션과 일치할 시, 수정 삭제 버튼 생성 
+	$("#update").append(
+	(sessionId == userId ? "<input id='updateBTN' type='submit' value='수정'>" : "")
+	); 
+	$("#delete").append( 
+	(sessionId == userId ? "<input id='deleteBTN' type='submit' value='삭제'>" : "")
+	);
+	
+// 세션 아이디 없으면 예약 막기 	
+	$("#reserve").on("click", function(e){
+		if(sessionId==""){e.preventDefault();
+		alert("로그인이 필요합니다.");
+		}
+	}); // onclick 예약
 	
 	
-	$("#delete").on("click", function(e) {
+	
+	
+	
+	$("#deleteBTN").on("click", function(e) {
 		 if(!confirm("게시물을 삭제하시겠습니까?")){
 				e.preventDefault();
 			} else{alert("게시물 삭제가 완료되었습니다.")}
-	}); // onclick
+	}); // onclick 삭제 
+	
+	
+	
 
+	// 찜 
+	$("#zzimBTN").on("click", function(e){
+	     $.ajax({
+	            type : "POST",  
+	            url : "/product/zzim",
+	            dataType : "json",   
+	            data : {'productseq' : productseq, 'memberid' : sessionId },
+
+	            success : function(resp) {
+	            if(resp.result == 0){
+                	alert("찜!");
+                	$("#zzimBTN").val("찜취소")
+                }
+                else if (resp.result == 1){
+                 alert("찜 취소!");
+             	$("#zzimBTN").val("찜")
+                }
+
+	            $("#zzimtd").html(resp.result2);
+	            
+		     } 
+	     }); // ajax 
+	}); // onclick
+	
+	
+	
+	
 	
 	
 	
@@ -30,6 +83,11 @@ $(document).ready(function(){
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp" />
+
+
+
+<a href="http://localhost:8090/allproduct">물품리스트</a>
 <h1> ConnectUS 상세 품목</h1>
 
 
@@ -40,6 +98,15 @@ $(document).ready(function(){
 <fmt:parseDate value="${currentForm}" var="now" pattern="yyyy-MM-dd" />
 
 <fmt:parseNumber value = "${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true" var="dateDiff"></fmt:parseNumber>
+<c:set var="dateDiffShow" value="${dateDiff}일전" />
+
+<c:if test="${dateDiffShow == '0일전'}"> 
+<c:set var="dateDiffShow" value="오늘" />
+</c:if>
+
+
+
+
 <Br>
 
 
@@ -55,6 +122,7 @@ $(document).ready(function(){
 				    <th>동네</th>
 				    <th>빌려주는분</th>
 				    <th>올린날짜</th>
+				    <th>찜</th>
 				  </tr>
 				</thead>				
 <tbody>
@@ -64,7 +132,10 @@ $(document).ready(function(){
 <td>${oneBoard.contents}</td>
 <td>${oneBoard.boardRegion}</td>
 <td>${oneBoard.userId}</td>
-<td>${dateDiff}일전</td>
+<td>${dateDiffShow} (${oneBoard.createdAt})</td>
+<td id="zzimtd">${oneBoard.zzim}</td>
+
+
 </tr>
 </tbody>
 
@@ -72,25 +143,29 @@ $(document).ready(function(){
 
 
 
+<input id="zzimBTN" type="button" value="찜">
+
+<div id="zzimdiv">
+
+</div>
 
 <br>
 <br>
 
 <form action="http://localhost:8090/product/${oneBoard.id}/reservationinput" method="post">
 <input type="hidden" value="${oneBoard.userId}" name="userId">
-<input type="submit" value="예약하기">
+<input id="reserve"  type="submit" value="예약하기">
 </form>
 
 <br>
 
-<form action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
-<input type="submit" value="삭제하기" id="delete">
+<form id="update" action="http://localhost:8090/product/${oneBoard.id}/update" >
+</form>
+<Br>
+
+<form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
 </form>
 <br>
-
-<form action="http://localhost:8090/product/${oneBoard.id}/update">
-<input type="submit" value="수정하기" id="update">
-</form>
 
 
 

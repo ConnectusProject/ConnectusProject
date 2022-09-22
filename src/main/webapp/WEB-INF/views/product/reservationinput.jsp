@@ -25,7 +25,7 @@ $(document).ready(function(){
 <th>번호 : <input type="text" name="boardId" value="${boardId}" readonly></th>
 </tr>
 <tr>
-<th>렌터 : <input type="text" name="buyerId" value="렌터세션ID" readonly></th> 
+<th>렌터 : <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
 </tr>
 <tr>
 <th>오너 : <input type="text" name="sellerId" value="${param.userId}" readonly></th> 
