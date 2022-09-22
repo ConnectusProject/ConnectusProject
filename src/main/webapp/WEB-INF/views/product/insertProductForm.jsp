@@ -25,7 +25,7 @@ $(document).ready(function(){
 <tr><th>물품</th><td><input type="text" name="title" > </td></tr>
 <tr><th>내용</th><td><textarea name="contents" rows="30" cols="60"> </textarea> </td></tr>
 <tr><th>동네</th><td><input type="text" name="boardRegion" value="API동" readonly > </td></tr>
-<tr><th>오너</th><td><input type="text" name="userId" value="오너세션ID" readonly > </td></tr>
+<tr><th>오너</th><td><input type="text" name="userId" value="${sessionScope.sessionid }" readonly > </td></tr>
 </table>
 
 <br>

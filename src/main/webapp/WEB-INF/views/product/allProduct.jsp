@@ -13,15 +13,34 @@
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
+	let sessionId = '${sessionScope.sessionid}';
+	$("#register").on("click", function(e){
+		if(sessionId==""){e.preventDefault();
+		alert("로그인이 필요합니다.");
+		}
+	}); // onclick 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 });
 </script>
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp" />
+
 <h1> ConnectUS 전체 품목 </h1>
 
-<a href="http://localhost:8090/registerProduct">물품등록</a>
+
+<a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 <br>
 	<!-- 검색기능 -->
 			<form action="searchproduct">
@@ -48,6 +67,7 @@ $(document).ready(function(){
 				<th>동네</th>
 				<th>빌려주는분</th>
 				<th>올린날짜</th>
+				<th>찜</th>
 			</tr>
 		</thead>				
 	<tbody>
@@ -60,6 +80,11 @@ $(document).ready(function(){
 
 <fmt:parseNumber value = "${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true" var="dateDiff"></fmt:parseNumber>
 
+<c:set var="dateDiffShow" value="${dateDiff}일전" />
+
+<c:if test="${dateDiffShow == '0일전'}"> 
+<c:set var="dateDiffShow" value="오늘" />
+</c:if>
 
 
 	<tr>
@@ -71,7 +96,8 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td>${dateDiff}일전</td>
+   <td>${dateDiffShow}</td>
+   <td>${board.zzim} </td>
    </tr>
  
 </c:forEach>

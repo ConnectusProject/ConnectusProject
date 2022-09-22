@@ -1,32 +1,24 @@
 package connectus.member;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+@Mapper
 @Repository
-public class MemberDAO {
-	@Autowired
-	SqlSession session;
+public interface MemberDAO {
+	//Login
+	public List<MemberDTO> memberlist();
 	
-	public List<MemberDTO> getList(){
-		return session.selectList("memberlist");
-	}
+	public List<MemberDTO> onemember(String userid);
 	
-	public List<MemberDTO> oneMember(String id){
-		return session.selectList("onemember", id);
-	}
+	//Join
+	public int insertMember(MemberDTO dto);	
 	
-	public List<MemberDTO> oneMember_phone(String phone){
-		return session.selectList("onemember_phone", phone);
-	}
+	boolean idCheck(String userid) throws Exception;
 	
-	public int insertMember(MemberDTO dto) {
-		return session.insert("insertmember", dto);
-	}
-		
+	boolean phoneCheck(String phone) throws Exception;
+	
+	public List<MemberDTO> onemember_phone(String phone);	
 }

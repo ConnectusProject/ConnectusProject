@@ -19,6 +19,8 @@ $(document).ready(function(){
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp" />
+
 <h1> ConnectUS 찾으시는 물품 </h1>
 
 <div id="here">
@@ -59,6 +61,12 @@ $(document).ready(function(){
 <fmt:parseDate value="${currentForm}" var="now" pattern="yyyy-MM-dd" />
 
 <fmt:parseNumber value = "${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true" var="dateDiff"></fmt:parseNumber>
+<c:set var="dateDiffShow" value="${dateDiff}일전" />
+
+<c:if test="${dateDiffShow == '0일전'}"> 
+<c:set var="dateDiffShow" value="오늘" />
+</c:if>
+
 
 
 	<tr>
@@ -70,7 +78,7 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td>${dateDiff}일전</td>
+   <td>${dateDiffShow}</td>
    </tr>
 
 
