@@ -9,7 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
+<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">  
+<link rel="stylesheet" href="../../../../resources/static/css/product.css">   
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
@@ -140,10 +141,21 @@ $(document).ready(function(){
 <c:set var="zzim" value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
+<div class="content-box-goods">
+    <div>
+        <div class="picture-box">
+            <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img}">
+        </div>
+        <p class="goods-title"><a href ="/product/${board.id}">${board.title}</p>
+        <p class="goods-status">${board.id}</p>
+        <p class="goods-address">${board.boardRegion}</p>
+        <p class="goods-owner">${board.userId}</p>
+        <button class="goods-pick"><span id="zzimSpan${vs.index}">${zzim}</span> </button>
+    </div>
 
 
 
-	<tr>
+	<!-- <tr>
    <th id="boardid${vs.index}">${board.id}</th>
    <th>
    <a href ="/product/${board.id}">${board.title} <br>
@@ -155,7 +167,7 @@ $(document).ready(function(){
    <td>${dateDiffShow}</td>
    <td><span id="zzimSpan${vs.index}">${zzim}</span> </td>
    </tr>
- 
+  -->
 </c:forEach>
 </tbody>
 
