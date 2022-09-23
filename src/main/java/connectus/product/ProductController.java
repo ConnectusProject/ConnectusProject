@@ -226,6 +226,27 @@ public class ProductController {
 
 	
 	
+		
+		
+		@ResponseBody
+		@PostMapping(value ="/ajaxUpload", produces= {"application/json; charset=utf-8"})
+		public String uploadajax(MultipartFile file1) throws IOException {
+			
+			String savePath = "c:/upload/";
+
+			String originalname1 = file1.getOriginalFilename();
+			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
+			String extname = originalname1.substring(originalname1.indexOf("."));
+			String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
+			File serverfile1 = new File(savePath + newname);
+			file1.transferTo(serverfile1);
+
+			return "{\"result\" : \"" + newname + "\" }";
+
+			
+			
+		}
+
 	
 	
 	
