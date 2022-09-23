@@ -66,20 +66,20 @@ let userId = '${oneBoard.userId}';
 	            success : function(resp) {
 	            if(resp.result == 0){
                 	alert("찜!");
-                	$("#zzimSpan").html("<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
                 else if (resp.result == 1){
                  alert("찜 취소!");
-             	$("#zzimSpan").html("<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+             	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
 	            
 	            
 	            
 	            if(resp.result2 == 0){
-	            	var result2 = "<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            	var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
 	            }
 	            else if(resp.result2 == 1){
-	            	var result2 = "<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            	var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
 	            }
 
 	            $("#zzimSpan").html(result2);
@@ -123,11 +123,11 @@ let userId = '${oneBoard.userId}';
 
 
 <c:if test="${oneBoard.zzim == '0'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
 <c:if test="${oneBoard.zzim == '1'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
 
