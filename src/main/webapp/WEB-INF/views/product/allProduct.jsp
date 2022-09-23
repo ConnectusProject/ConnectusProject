@@ -48,20 +48,20 @@ $(document).ready(function(){
 	            success : function(resp) {
 	            if(resp.result == 0){
                 	alert("찜!");
-                	$("#zzimSpan"+i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
                 else if (resp.result == 1){
                  alert("찜 취소!");
-             	$("#zzimSpan"+i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+             	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
 	            
 	            
 	            
 	            if(resp.result2 == 0){
-	            	var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            	var result2 = "<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
 	            }
 	            else if(resp.result2 == 1){
-	            	var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            	var result2 = "<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>";
 	            }
 
 	            $("#zzimSpan"+i).html(result2);
@@ -87,10 +87,10 @@ $(document).ready(function(){
 <h1> ConnectUS 전체 품목 </h1>
 
 
-<a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+<!-- <a id="register" href="http://localhost:8090/registerProduct">물품등록</a> -->
 <br>
 	<!-- 검색기능 -->
-			<form action="searchproduct">
+			<!-- <form action="searchproduct">
 				<select name="item" style="width:80px;height: 30px; text-align: center;">
 					<option value="title">제목</option>
 					<option value="boardRegion">지역</option>
@@ -100,13 +100,13 @@ $(document).ready(function(){
 			
 			  <input type="text" name="search" style="width: 250px;height: 30px; margin: 5px">
 				<input type="submit" value="검색" style="width: 80px;height: 35px;  margin: 5px">
-			</form>
+			</form> -->
 <br>
 
 
 
 
-	<table border=5>
+	<!-- <table border=5>
 		<thead>
 			<tr>
 				<th>번호</th>			
@@ -117,7 +117,7 @@ $(document).ready(function(){
 				<th>찜</th>
 			</tr>
 		</thead>				
-	<tbody>
+	<tbody> -->
 <c:forEach items="${allboard}" var="board" varStatus="vs" >
 <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd"/>
 
@@ -134,11 +134,11 @@ $(document).ready(function(){
 </c:if>
 
 <c:if test="${board.zzim == '0'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
 <c:if test="${board.zzim == '1'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
 <div class="content-box-goods">
@@ -154,8 +154,8 @@ $(document).ready(function(){
     </div>
 
 
-
-	<!-- <tr>
+<!-- 
+	<tr>
    <th id="boardid${vs.index}">${board.id}</th>
    <th>
    <a href ="/product/${board.id}">${board.title} <br>
@@ -169,14 +169,14 @@ $(document).ready(function(){
    </tr>
   -->
 </c:forEach>
-</tbody>
+<!-- </tbody> -->
 
-</table>
+<!-- </table> -->
 <br>
 
 
 <br>
-<a href="http://localhost:8090/">홈으로</a>
+<!-- <a href="http://localhost:8090/">홈으로</a> -->
 
 
 
