@@ -9,8 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" type="text/css" href="${path}/css/writing.css"> -->   
-<link rel="stylesheet" href="${path}/css/product.css">   
+<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
@@ -48,20 +47,20 @@ $(document).ready(function(){
 	            success : function(resp) {
 	            if(resp.result == 0){
                 	alert("찜!");
-                	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                	$("#zzimSpan"+i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
                 else if (resp.result == 1){
                  alert("찜 취소!");
-             	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+             	$("#zzimSpan"+i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
 	            
 	            
 	            
 	            if(resp.result2 == 0){
-	            	var result2 = "<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            	var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
 	            }
 	            else if(resp.result2 == 1){
-	            	var result2 = "<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            	var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
 	            }
 
 	            $("#zzimSpan"+i).html(result2);
@@ -134,14 +133,12 @@ $(document).ready(function(){
 </c:if>
 
 <c:if test="${board.zzim == '0'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
 <c:if test="${board.zzim == '1'}"> 
-<c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+<c:set var="zzim" value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
-
-
 
 
 	<tr>
@@ -155,7 +152,7 @@ $(document).ready(function(){
    <td>${board.userId}</td>
    <td>${dateDiffShow}</td>
    <td><span id="zzimSpan${vs.index}">${zzim}</span> </td>
-   </tr>
+    </tr>
  
 </c:forEach>
 </tbody>
