@@ -40,10 +40,29 @@ public class ProductController {
 
 	// 전체 물품 조회
 	@GetMapping("/allproduct")
-	public String allProduct(Model model) {
+	public String allProduct(Model model, HttpSession session) throws Exception {
+		String sessionid = (String)session.getAttribute("sessionid");
 		
 		List<ProductDTO> list = productDAO.allBoard();
+		
+		
+		// 찜 set 
+		for (ProductDTO dto : list) {
+			int productseq = (int)dto.getId();
+			
+			int zzim = 0; 
+			Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+			if(zzimcheck!=null) {
+				zzim = 1; 
+			}
+			
+			dto.setZzim(zzim);
+		}
+		
+		int boardlength = list.size();
+		
 	
+		model.addAttribute("boardlength", boardlength);
 		model.addAttribute("allboard", list);
 		return "product/allProduct";
 	}

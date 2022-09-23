@@ -14,19 +14,65 @@
 <script>
 $(document).ready(function(){
 	let sessionId = '${sessionScope.sessionid}';
+	let boardlength = '${boardlength}'; 
+	
 	$("#register").on("click", function(e){
 		if(sessionId==""){e.preventDefault();
 		alert("로그인이 필요합니다.");
 		}
-	}); // onclick 
+	}); // 물품등록 onclick 
+
+	
+	// 찜 
+	
+	for (var i = 0; i < boardlength; i++) {
+		let eachBoardId = $("#boardid"+i).html();
+		let intBoardId = parseInt(eachBoardId);
+			
+		
+	$("#zzimSpan"+i).on("click", function(e){
+		
+		if(sessionId==""){
+		alert("로그인이 필요합니다.");
+		return false; 
+		}
+		
+		
+	     $.ajax({
+	            type : "POST",  
+	            url : "/product/zzim",
+	            dataType : "json",   
+	            data : {'productseq' : intBoardId, 'memberid' : sessionId },
+
+	            success : function(resp) {
+	            if(resp.result == 0){
+                	alert("찜!");
+                	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                }
+                else if (resp.result == 1){
+                 alert("찜 취소!");
+             	$("#zzimSpan"+i).html("<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                }
+	            
+	            
+	            
+	            if(resp.result2 == 0){
+	            	var result2 = "<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            }
+	            else if(resp.result2 == 1){
+	            	var result2 = "<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            }
+
+	            $("#zzimSpan"+i).html(result2);
+	            
+	            location.reload();
+	            
+		     } 
+	     }); // ajax 
+	}); // 찜 onclick
 	
 	
-	
-	
-	
-	
-	
-	
+	} // for 
 	
 	
 
@@ -71,7 +117,7 @@ $(document).ready(function(){
 			</tr>
 		</thead>				
 	<tbody>
-<c:forEach items="${allboard}" var="board" >
+<c:forEach items="${allboard}" var="board" varStatus="vs" >
 <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd"/>
 
 <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -86,9 +132,19 @@ $(document).ready(function(){
 <c:set var="dateDiffShow" value="오늘" />
 </c:if>
 
+<c:if test="${board.zzim == '0'}"> 
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+</c:if>
+
+<c:if test="${board.zzim == '1'}"> 
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+</c:if>
+
+
+
 
 	<tr>
-   <th id="boardid">${board.id}</th>
+   <th id="boardid${vs.index}">${board.id}</th>
    <th>
    <a href ="/product/${board.id}">${board.title} <br>
    <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img}"> <br>
@@ -97,7 +153,7 @@ $(document).ready(function(){
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
    <td>${dateDiffShow}</td>
-   <td>${board.zzim} </td>
+   <td><span id="zzimSpan${vs.index}">${zzim}</span> </td>
    </tr>
  
 </c:forEach>

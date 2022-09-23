@@ -8,27 +8,7 @@
 <title>커뮤니티</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function(){
-	$("#deletebtn").on('click', function(ev){
-		var pw = prompt("암호를 입력하세요");
-		
-		if(pw == ${seqList.pw } ){
-			location.href="boarddelete?seq="+${seqList.seq};
-		}else{
-			alert("글쓰기 암호가 일치하지 않습니다.");
-		}
-	}); // #deletebtn
-	
-	$("#updatebtn").on('click', function(ev){
-		var pw = prompt("암호를 입력하세요");
-		if( pw == ${seqList.pw } ){
-			location.href="boardupdate?seq="+${seqList.seq};
-		}else{
-			alert("글쓰기 암호가 일치하지 않거나 로그인하지 않았습니다. 확인하세요.");
-		}
-	}); // #deletebtn
-	
-});
+
 </script>
 </head>
 <body>
@@ -39,26 +19,31 @@ $(document).ready(function(){
 	<div class="detail-box">
 		<table style="font-family: 'Gowun Dodum'" border=5>
 			<tr style="height : 5%;">
-				<td class="detail-title">${seqList.title }</td>
+				<td class="detail-title">${seqList.title}</td>
 			<tr style="height : 5%;">
-				<td class="detail-subtitle">${seqList.seq } | ${seqList.writingtime }</td>
-				<td class="detail-subtitle">${seqList.writer }</td>
+				<td class="detail-subtitle">${seqList.seq} | ${seqList.writingtime }</td>
+				<td class="detail-subtitle">${seqList.writer}</td>
 				<td class="detail-subtitle">조회수 ${seqList.viewcount }</td>
-			<tr style="height : 80%;" colspan=2>
-				<td class="detail-text" >${seqList.contents }</td><br>
-				<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8083/upload/${seqList.img }"><br>
+			<tr style="height : 80%;" >
+				<td class="detail-text" >${seqList.contents }</td>
 				
 			</tr>                
 			<tr>
 				<td class="detail-button" colspan=2>
-					<input type="submit" value="수정" id="updatebtn"
+				<form action="boardupdate/${seqList.seq}">
+					<input type="submit" value="수정" id="updatebtn" 
 						style=" width: 80px; height: 30px;">&nbsp;
+				</form>
+				<form action="boarddelete">
+				<input type="hidden" name="seq" value="${seqList.seq}" >
 					<input type="submit" value="삭제" id="deletebtn" style="width: 80px; height: 30px;">
+					</form>
 				</td>			
 		</table>
 	</div>
 	</div>
-
+	<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${seqList.img }"> <br>
+			
 	
 
 </body>

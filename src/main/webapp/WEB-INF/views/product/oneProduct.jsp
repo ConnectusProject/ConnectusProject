@@ -48,7 +48,15 @@ let userId = '${oneBoard.userId}';
 	
 
 	// 찜 
-	$("#zzimBTN").on("click", function(e){
+	$("#zzimSpan").on("click", function(e){
+		
+		if(sessionId==""){
+		alert("로그인이 필요합니다.");
+		return false;
+		
+		}
+		
+		
 	     $.ajax({
 	            type : "POST",  
 	            url : "/product/zzim",
@@ -58,14 +66,23 @@ let userId = '${oneBoard.userId}';
 	            success : function(resp) {
 	            if(resp.result == 0){
                 	alert("찜!");
-                	$("#zzimBTN").val("찜취소")
+                	$("#zzimSpan").html("<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
                 else if (resp.result == 1){
                  alert("찜 취소!");
-             	$("#zzimBTN").val("찜")
+             	$("#zzimSpan").html("<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>")
                 }
+	            
+	            
+	            
+	            if(resp.result2 == 0){
+	            	var result2 = "<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            }
+	            else if(resp.result2 == 1){
+	            	var result2 = "<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            }
 
-	            $("#zzimtd").html(resp.result2);
+	            $("#zzimSpan").html(result2);
 	            
 		     } 
 	     }); // ajax 
@@ -105,6 +122,14 @@ let userId = '${oneBoard.userId}';
 </c:if>
 
 
+<c:if test="${oneBoard.zzim == '0'}"> 
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+</c:if>
+
+<c:if test="${oneBoard.zzim == '1'}"> 
+<c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+</c:if>
+
 
 
 <Br>
@@ -133,7 +158,7 @@ let userId = '${oneBoard.userId}';
 <td>${oneBoard.boardRegion}</td>
 <td>${oneBoard.userId}</td>
 <td>${dateDiffShow} (${oneBoard.createdAt})</td>
-<td id="zzimtd">${oneBoard.zzim}</td>
+<td id="zzimtd"><span id="zzimSpan">${zzim}</span></td>
 
 
 </tr>
@@ -143,7 +168,7 @@ let userId = '${oneBoard.userId}';
 
 
 
-<input id="zzimBTN" type="button" value="찜">
+
 
 <div id="zzimdiv">
 
@@ -197,8 +222,6 @@ let userId = '${oneBoard.userId}';
 <br>
 
 <a href="http://localhost:8090/">홈으로</a>
-
-
 
 
 </body>

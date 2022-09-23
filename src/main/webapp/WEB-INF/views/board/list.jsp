@@ -43,9 +43,15 @@
                     ">작성자</td>
                 </tr>
                 <c:forEach items="${boardlst }" var="board">
+                
                     <tr class="list-list">
+                        
                         <!-- <td>${board.seq }</td> -->
-                        <td style="padding-left : 3%;"><a href="boarddetail?seq=${board.seq }">${board.title }</a></td>
+                        <td style="padding-left : 3%;"><a href="boarddetail?seq=${board.seq }">
+                        <img src="http://localhost:8090/upload/${board.img }" height=200 width=200> <br>
+                        ${board.title }
+                        </a></td>
+                        
                         <td style="text-align: center;">${board.writer }</td>
                     </tr>
                 </c:forEach>
