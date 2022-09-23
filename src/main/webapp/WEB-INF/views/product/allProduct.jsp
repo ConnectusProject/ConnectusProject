@@ -87,10 +87,10 @@ $(document).ready(function(){
 <h1> ConnectUS 전체 품목 </h1>
 
 
-<!-- <a id="register" href="http://localhost:8090/registerProduct">물품등록</a> -->
+<a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 <br>
-	<!-- 검색기능 -->
-			<!-- <form action="searchproduct">
+	검색기능 
+			 <form action="searchproduct">
 				<select name="item" style="width:80px;height: 30px; text-align: center;">
 					<option value="title">제목</option>
 					<option value="boardRegion">지역</option>
@@ -100,13 +100,13 @@ $(document).ready(function(){
 			
 			  <input type="text" name="search" style="width: 250px;height: 30px; margin: 5px">
 				<input type="submit" value="검색" style="width: 80px;height: 35px;  margin: 5px">
-			</form> -->
+			</form>
 <br>
 
 
 
 
-	<!-- <table border=5>
+	<table border=5>
 		<thead>
 			<tr>
 				<th>번호</th>			
@@ -117,7 +117,7 @@ $(document).ready(function(){
 				<th>찜</th>
 			</tr>
 		</thead>				
-	<tbody> -->
+	<tbody>
 <c:forEach items="${allboard}" var="board" varStatus="vs" >
 <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd"/>
 
@@ -141,20 +141,9 @@ $(document).ready(function(){
 <c:set var="zzim" value="<img src='http://localhost:8090/upload/zzim.png' width=50 height=50 style='cursor:pointer'>" />
 </c:if>
 
-<div class="content-box-goods">
-    <div>
-        <div class="picture-box">
-            <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img}">
-        </div>
-        <p class="goods-title"><a href ="/product/${board.id}">${board.title}</p>
-        <p class="goods-status">${board.id}</p>
-        <p class="goods-address">${board.boardRegion}</p>
-        <p class="goods-owner">${board.userId}</p>
-        <button class="goods-pick"><span id="zzimSpan${vs.index}">${zzim}</span> </button>
-    </div>
 
 
-<!-- 
+
 	<tr>
    <th id="boardid${vs.index}">${board.id}</th>
    <th>
@@ -167,16 +156,16 @@ $(document).ready(function(){
    <td>${dateDiffShow}</td>
    <td><span id="zzimSpan${vs.index}">${zzim}</span> </td>
    </tr>
-  -->
+ 
 </c:forEach>
-<!-- </tbody> -->
+</tbody>
 
-<!-- </table> -->
+</table>
 <br>
 
 
 <br>
-<!-- <a href="http://localhost:8090/">홈으로</a> -->
+<a href="http://localhost:8090/">홈으로</a>
 
 
 
