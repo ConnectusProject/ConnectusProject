@@ -9,6 +9,7 @@ public class ProductDTO {
 	private String boardRegion; 
 	private String createdAt;
 	private String img; 
+	private int zzim; 
 	
 	
 	@Override
@@ -18,7 +19,7 @@ public class ProductDTO {
 	}
 	
 	public ProductDTO() {}
-	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img) {
+	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img, int zzim) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -27,9 +28,21 @@ public class ProductDTO {
 		this.boardRegion = boardRegion;
 		this.createdAt = createdAt;
 		this.img = img;
+		this.zzim = zzim; 
 	}
 	
 	
+	
+	
+	
+	public int getZzim() {
+		return zzim;
+	}
+
+	public void setZzim(int zzim) {
+		this.zzim = zzim;
+	}
+
 	public String getImg() {
 		return img;
 	}

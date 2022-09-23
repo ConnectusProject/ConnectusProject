@@ -13,11 +13,12 @@
        
 		<!-- 본문 -->
        <div class="update-box">
-            <form action="boardupdate" method="post"
+            <form action="${updated_board.seq }" method="post" enctype="multipart/form-data"
                 style="display :flex; align-items :center  ;flex-direction:column; width : 100%; height : 100%;">
                 <input type=hidden name="seq" value=${updated_board.seq } readonly="readonly">
-                <input type="text" name="title" placeholder="제목" style="margin : 1%; width : 60%; height : 6%;">
-                <textarea type="text" name="contents" placeholder="내용" style="margin : 1%; width : 60%; height : 70%;"></textarea>
+                <input type="text" name="title" value=${updated_board.title } style="margin : 1%; width : 60%; height : 6%;">
+                <textarea name="contents" style="margin : 1%; width : 60%; height : 70%;">${updated_board.contents }</textarea>
+                <input type="file" name="file1">
                 <input type="submit" class="update-button" value="확인">
             </form>
         </div>

@@ -19,7 +19,7 @@ public class MemberController {
 	HttpSession session;
 	
 	@Autowired
-	MemberServiceImpl memserv;
+	MemberService memserv;
 	
 	//회원가입
 	@GetMapping("/register")
@@ -52,7 +52,7 @@ public class MemberController {
 			if(dbpassword.equals(pw)) {
 				session.setAttribute("sessionid", userid);
 				System.out.println(session.getAttribute("sessionid"));
-				return  "redirect:/";				
+				return  "/home";				
 			}
 			else {
 				System.out.println("비밀번호를 확인하세요");				
@@ -73,7 +73,7 @@ public class MemberController {
 	}
 	
 	
-	//회원가입 버튼 클릭시
+	//회원가입
 	@ResponseBody
 	@PostMapping(value="/idCheck")
 	public String idCheck(@RequestParam(value="userid",required=true)String userid) {		

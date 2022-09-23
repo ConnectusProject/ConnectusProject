@@ -14,13 +14,13 @@ import org.springframework.stereotype.Repository;
 
 
 @Mapper
-@Repository("boarddao")
+@Repository
 public interface BoardDAO {
 	
 	public int insertBoard(BoardDTO dto);
 
 	public int boardcount();
-
+	
 	  public List<BoardDTO> pagingList(int[] limit);
 	  
 	  public int updateSeq(int seq);

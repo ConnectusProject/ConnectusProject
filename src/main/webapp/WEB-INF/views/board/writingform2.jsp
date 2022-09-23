@@ -22,9 +22,6 @@
 			<textarea rows=10 cols=100 name="contents" placeholder="내용을 입력하세요."></textarea>
 			<br>물품사진 : <input type="file" name="file1"><br>
 			<input class="write-button" type=submit value="글쓰기">
-		</div>
-	</div>
-	</form>
 	</form>
 
 </body>

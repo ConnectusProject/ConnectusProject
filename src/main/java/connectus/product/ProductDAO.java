@@ -26,6 +26,26 @@ public interface ProductDAO {
 	public int updateBoard(ProductDTO dto);
 	
 	public List<ProductDTO> searchList(HashMap<String, String> searchType);
+	
+	
+		// 찜 조회 
+		public Object zzimCount(int productseq, String memberId) throws Exception;
+	
+		// 찜
+		public void updateZzim(int productseq, String memberId) throws Exception;
+
+		// 찜 취소 
+		public void updateZzimCancel(int productseq, String memberId) throws Exception;
+
+		// 추천 insert
+		public void insertZzim(int productseq,String memberId) throws Exception;
+
+		// 추천 delete
+		public void deleteZzim(int productseq,String memberId)throws Exception;
+
+		// 추천 중복 조회
+		public int zzimCheck(int productseq,String memberId) throws Exception;
+		
 
 	
 }
