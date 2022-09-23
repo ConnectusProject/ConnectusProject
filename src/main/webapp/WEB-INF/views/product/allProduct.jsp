@@ -9,8 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">  
-<link rel="stylesheet" href="../../../../resources/static/css/product.css">   
+<!-- <link rel="stylesheet" type="text/css" href="${path}/css/writing.css"> -->   
+<link rel="stylesheet" href="${path}/css/product.css">   
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
