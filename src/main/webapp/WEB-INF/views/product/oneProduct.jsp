@@ -136,7 +136,27 @@ let userId = '${oneBoard.userId}';
 
 
 
-<img alt="상품이미지가 없습니다." width=700 height=500 src="http://localhost:8090/upload/${oneBoard.img}">
+<c:if test="${!empty oneBoard.img1}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img1}">
+</c:if>
+<c:if test="${!empty oneBoard.img2}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img2}">
+</c:if>
+<c:if test="${!empty oneBoard.img3}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img3}">
+</c:if>
+<c:if test="${!empty oneBoard.img4}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img4}">
+</c:if>
+<c:if test="${!empty oneBoard.img5}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img5}">
+</c:if>
+<c:if test="${!empty oneBoard.img6}" >
+<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img6}">
+</c:if>
+
+
+
 
 	<table border=5>
 				<thead>

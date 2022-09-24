@@ -13,7 +13,7 @@
 <script>
 $(document).ready(function(){
 	  
-		$("#uploadBTN").on("click", function(e){
+		$("#imgFile").change(function(e) {
 		e.preventDefault();
 
 		var form = $("#uploadForm")[0];
@@ -32,7 +32,27 @@ $(document).ready(function(){
 		success : function(resp){ 
 			
 			$("#here").append("<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 >");
-			
+		 	
+		 	switch ("") {
+		 	case $("#file1").val():
+		 		 $("#file1").val(resp.result);
+		 	    break;
+		    case $("#file2").val():
+		 		 $("#file2").val(resp.result);
+		 	    break;
+		 	case $("#file3").val():
+		 		 $("#file3").val(resp.result);
+		 	    break;
+		 	case $("#file4").val():
+		 		 $("#file4").val(resp.result);
+		 	    break;
+		 	case $("#file5").val():
+		 		 $("#file5").val(resp.result);
+		 	    break;
+		 	case $("#file6").val():
+		 		 $("#file6").val(resp.result);
+		 	    break;
+		 	}
 			
 		} // success 
 	 
@@ -50,7 +70,7 @@ $(document).ready(function(){
 
 <div id="here"></div>
 
-<form action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
+<form  id="uploadForm" action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
 
 <table border=5>
 <tr><th>물품</th><td><input type="text" name="title" > </td></tr>
@@ -60,7 +80,14 @@ $(document).ready(function(){
 </table>
 
 <br>
-물품사진 : <input id="tester" type="file" name="file1"> <br> 
+물품사진 : <input id="imgFile" type="file" name="imgFile"><br>
+<input id="file1" type="text" style="display:none" name="file1">
+<input id="file2" type="text" style="display:none" name="file2">
+<input id="file3" type="text" style="display:none" name="file3">
+<input id="file4" type="text" style="display:none" name="file4">
+<input id="file5" type="text" style="display:none" name="file5">
+<input id="file6" type="text" style="display:none" name="file6">
+
 
 <br>
 
@@ -73,14 +100,6 @@ $(document).ready(function(){
 <br>
 <br>
 <hr>
-
-<form id="uploadForm"> 
-<input type="file" name="file1"> <br>
-<input id="uploadBTN" type="button" value="사진미리보기">
-</form>
-
-
-
 
 
 </body>

@@ -106,25 +106,28 @@ public class ProductController {
 	
 	// 글작성 
 	@PostMapping("/registerProduct")
-	public String registerProcess(ProductDTO dto, MultipartFile file1) throws Exception{
+	public String registerProcess(ProductDTO dto, UploadDTO uploaddto) throws Exception{
 		
-		String savePath = "c:/upload/"; 
-		
-		
-		// 이미지 이름 set 
-		if(!file1.isEmpty()) {
-			String originalname1 = file1.getOriginalFilename();
-			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
-			String extname = originalname1.substring(originalname1.indexOf("."));
-			String newname = onlyfilename + "(" + UUID.randomUUID().toString() + ")" + extname; 
-			File serverfile1 = new File(savePath + newname);
-			file1.transferTo(serverfile1);
-
-				dto.setImg(newname); 
-			}else {
-				dto.setImg("noimg.png");
-			}
-			
+		// 이미지 Set 
+		if(uploaddto.getFile1()!=null) {
+				dto.setImg1(uploaddto.getFile1());
+		}
+		if(uploaddto.getFile2()!=null) {
+			dto.setImg2(uploaddto.getFile2());
+		}
+		if(uploaddto.getFile3()!=null) {
+			dto.setImg3(uploaddto.getFile3());
+		}
+		if(uploaddto.getFile4()!=null) {
+			dto.setImg4(uploaddto.getFile4());
+		}
+		if(uploaddto.getFile5()!=null) {
+			dto.setImg5(uploaddto.getFile5());
+		}
+		if(uploaddto.getFile6()!=null) {
+			dto.setImg6(uploaddto.getFile6());
+		}
+				
 		// 지역 이름 set 	( 이거 동네는 매번 위치를 킬 수 없으니까 회원가입할 때, 혹은 기간에 한번씩만 인증하는식으로 받아서 DTO 에 넣어두고 사용하자 )
 			ApiClient apiClient = new ApiClient(geoapiignore.geoaccess, geoapiignore.geosecret);
 			
@@ -141,6 +144,26 @@ public class ProductController {
 			productDAO.insertBoard(dto);
 		return "redirect:/allproduct";
 	}
+	
+	// 이미지 미리보기 
+	@ResponseBody
+	@PostMapping(value ="/ajaxUpload", produces= {"application/json; charset=utf-8"})
+	public String uploadajax(MultipartFile imgFile) throws IOException {
+		
+		String savePath = "c:/upload/";
+
+		String originalname1 = imgFile.getOriginalFilename();
+		String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
+		String extname = originalname1.substring(originalname1.indexOf("."));
+		String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
+		File serverfile1 = new File(savePath + newname);
+		imgFile.transferTo(serverfile1);
+
+		return "{\"result\" : \"" + newname + "\" }";
+	}
+
+	
+	
 	
 	
 	// 글삭제 
@@ -159,26 +182,30 @@ public class ProductController {
 	}
 
 	@PostMapping("/product/{productid}/updateprocess")
-	public String updateProductProcess(@PathVariable("productid")int boardid,ProductDTO boardDTO, MultipartFile file1) throws IllegalStateException, IOException {
+	public String updateProductProcess(@PathVariable("productid")int boardid,ProductDTO boardDTO, UploadDTO uploaddto) throws IllegalStateException, IOException {
 		// update 할 아이디 set 
 		boardDTO.setId(boardid);
 		
 		// 이미지 다시 Set 
-		String savePath = "c:/upload/"; 
-		
-		if(!file1.isEmpty()) {
-			String originalname1 = file1.getOriginalFilename();
-			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
-			String extname = originalname1.substring(originalname1.indexOf("."));
-			
-			String newname = onlyfilename + "(" + UUID.randomUUID().toString() + ")" + extname; 
-			
-			File serverfile1 = new File(savePath + newname);
-			file1.transferTo(serverfile1);
-			boardDTO.setImg(newname); 
-			}else {
-				boardDTO.setImg("noimg.png");
-			}
+	if(uploaddto.getFile1()!=null) {
+		boardDTO.setImg1(uploaddto.getFile1());
+	}
+	if(uploaddto.getFile2()!=null) {
+		boardDTO.setImg2(uploaddto.getFile2());
+	}
+	if(uploaddto.getFile3()!=null) {
+		boardDTO.setImg3(uploaddto.getFile3());
+	}
+	if(uploaddto.getFile4()!=null) {
+		boardDTO.setImg4(uploaddto.getFile4());
+	}
+	if(uploaddto.getFile5()!=null) {
+		boardDTO.setImg5(uploaddto.getFile5());
+	}
+	if(uploaddto.getFile6()!=null) {
+		boardDTO.setImg6(uploaddto.getFile6());
+	}
+	
 		
 		// update 실행 
 		int updateResult = productDAO.updateBoard(boardDTO);
@@ -228,25 +255,7 @@ public class ProductController {
 	
 		
 		
-		@ResponseBody
-		@PostMapping(value ="/ajaxUpload", produces= {"application/json; charset=utf-8"})
-		public String uploadajax(MultipartFile file1) throws IOException {
-			
-			String savePath = "c:/upload/";
-
-			String originalname1 = file1.getOriginalFilename();
-			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
-			String extname = originalname1.substring(originalname1.indexOf("."));
-			String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
-			File serverfile1 = new File(savePath + newname);
-			file1.transferTo(serverfile1);
-
-			return "{\"result\" : \"" + newname + "\" }";
-
-			
-			
-		}
-
+		
 	
 	
 	
