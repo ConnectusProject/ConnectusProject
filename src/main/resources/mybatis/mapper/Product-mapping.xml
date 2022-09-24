@@ -14,8 +14,8 @@
 	</select>
 	
 	<insert id="insertBoard">
-		insert into product (userid, title, contents, boardRegion, createdAt, img) 
-		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img})
+		insert into product (userid, title, contents, boardRegion, createdAt, img1, img2, img3, img4, img5, img6) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6})
 	</insert>
 	
 	
@@ -31,7 +31,7 @@
 
 	<update id="updateBoard">
 		update product set title=#{title}, contents=#{contents},
-		img=#{img}
+		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6} 
 		where id = #{id}
 	</update>
 	

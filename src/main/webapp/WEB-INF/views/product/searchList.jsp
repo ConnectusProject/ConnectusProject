@@ -73,7 +73,7 @@ $(document).ready(function(){
    <th id="boardid">${board.id}</th>
    <th>
    <a href ="/product/${board.id}">${board.title} <br>
-   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img}"> <br>
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img1}"> <br>
    </a> 
    </th>
    <td>${board.boardRegion}</td>
