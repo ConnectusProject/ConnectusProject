@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -169,6 +170,11 @@ $(document).ready(function(){
    <c:if test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && !empty board.img6}">
    <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img6}"> <br>
    </c:if>
+   
+   <c:if test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && empty board.img6}">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/noimg.png"> <br>
+   </c:if>
+   
    
    
    

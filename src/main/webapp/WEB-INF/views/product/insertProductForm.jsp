@@ -66,7 +66,7 @@ $(document).ready(function(){
 	// 이미지 업로드 
 		$("#imgFile").change(function(e) {
 		e.preventDefault();
-		$("#cancleNoti").attr("style","display:inline");
+		$("#cancleNoti").attr("style","display:unset");
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -132,8 +132,10 @@ $(document).ready(function(){
 </head>
 <body>
 
-<h1>물품등록</h1><span id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span>
+<h1>물품등록</h1><div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
 
+<br>
+<br>
 
 <div id="here"></div>
 
