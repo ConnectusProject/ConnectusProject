@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>      
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,8 @@ $(document).ready(function(){
     <div class="login-container">
 
         <div class="container-left">
-<<<<<<< HEAD
-            <img src="pictures/login-bg.jpg">
-=======
             <img src="${path}/pictures/login-bg.jpg">
->>>>>>> 9552faef69b7753b257a11c9078558ba7050a36e
+
             <p>Connect Us</p>
         </div>
         <div class="container-right">
@@ -52,13 +51,8 @@ $(document).ready(function(){
                 <span  class="signup-button">비밀번호 찾기</span>
             </div>
             <div class="kakao-naver-login mt-5">
-<<<<<<< HEAD
-                <img src="pictures/Kakao_logo.jpg">
-                <img src="pictures/naver-logo.png">
-=======
                 <img src="${path}/pictures/Kakao_logo.jpg">
                 <img src="${path}/pictures/naver-logo.png">
->>>>>>> 9552faef69b7753b257a11c9078558ba7050a36e
             </div>
         </div>
 
