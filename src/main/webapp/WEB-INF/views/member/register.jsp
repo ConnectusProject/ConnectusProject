@@ -8,6 +8,7 @@
 <title>JOIN</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="${path}/css/register.css">
 <script>
 $(document).ready(function(){
 
@@ -15,7 +16,68 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div>
+    <div class="login-container">
+        <div class="container-left">
+            <img src="${path}/pictures/login-bg.jpg">
+            <p>Connect Us</p>
+        </div>
+
+        <form name="form" action="register" method="post" class="signup-container">
+            <div class="signup-box">
+            <p style="font-size : 3vw;">회원가입</p>
+            <div>
+                <p>아이디</p>
+                <input  type="text" name="userid" id="userid" placeholder="아이디를 입력하세요" required>
+                <button  class="check-address-button" type="button" id="id-btn" value="id체크" onclick="idcheck()" >중복확인</button>
+                <div id="id_check"></div>
+            </div>
+            <div>
+                <p>비밀번호</p>
+                <input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required oninput="pwcheck()">
+                <div id="pw_check"></div>
+                <input type=password name="pw2" id="pw2" placeholder="비밀번호를 한번 더 입력하세요" required oninput="pw2check()">
+                <div id="pw2_check"></div>
+            </div>
+            <div>
+                <p>이름</p>
+                <input type=text name="name" placeholder="이름을 입력하세요" required oninput="namecheck()">
+            </div>
+            <div>
+                <p>이메일</p>
+                <input type=text name="email" placeholder="이메일을 입력하세요" required oninput="emailcheck()">
+            </div>
+            <div>
+                <p>전화번호</p>
+                <input type=text name="phone" id="phone" placeholder="전화번호를 (-)제외하고 입력하세요" required oninput="phonecheck()">
+                <div id="phone_check"></div>
+            </div>
+            <div>
+                <div>
+                    <p>주소</p>
+                    <input type="text" id="sample6_postcode" placeholder="우편번호">
+                    <button class="check-address-button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">주소찾기</button>
+                </div>
+                <div>
+                    <input type="text" id="sample6_address" placeholder="주소">
+                    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                </div>
+                <div>
+                    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="hidden" id="address" name="address" value="">	
+                </div>
+            </div>
+            <button class="signup-container-button" type="submit" id="btn" value="회원가입" onclick="check()" disabled>회원가입</button>
+        </div>
+        </form>
+    
+        </div>
+
+    </div>
+
+
+
+
+<!-- <div>
 	<form name="form" action="register" method="post">
 		<div>
 			<input type=text name="userid" id="userid" placeholder="아이디를 입력하세요" required>
@@ -39,7 +101,7 @@ $(document).ready(function(){
 
 		<br>
 		<input type="text" id="sample6_postcode" placeholder="우편번호">
-		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input class="check-address-button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" id="sample6_address" placeholder="주소"><br>
 		<input type="text" id="sample6_detailAddress" placeholder="상세주소">
 		<input type="text" id="sample6_extraAddress" placeholder="참고항목">
@@ -57,7 +119,7 @@ $(document).ready(function(){
 	</form>
 	
 	
-</div>
+</div> -->
 
 
 

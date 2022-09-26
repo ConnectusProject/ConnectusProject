@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>LOGIN</title>
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="${path}/css/login.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -29,7 +29,11 @@ $(document).ready(function(){
     <div class="login-container">
 
         <div class="container-left">
+<<<<<<< HEAD
             <img src="pictures/login-bg.jpg">
+=======
+            <img src="${path}/pictures/login-bg.jpg">
+>>>>>>> 9552faef69b7753b257a11c9078558ba7050a36e
             <p>Connect Us</p>
         </div>
         <div class="container-right">
@@ -45,11 +49,16 @@ $(document).ready(function(){
 				<a href = "register">
 					<button class="signup-button" id="btn" type="button">회원가입</button>
 				</a>
-                <span>비밀번호 찾기</span>
+                <span  class="signup-button">비밀번호 찾기</span>
             </div>
             <div class="kakao-naver-login mt-5">
+<<<<<<< HEAD
                 <img src="pictures/Kakao_logo.jpg">
                 <img src="pictures/naver-logo.png">
+=======
+                <img src="${path}/pictures/Kakao_logo.jpg">
+                <img src="${path}/pictures/naver-logo.png">
+>>>>>>> 9552faef69b7753b257a11c9078558ba7050a36e
             </div>
         </div>
 
