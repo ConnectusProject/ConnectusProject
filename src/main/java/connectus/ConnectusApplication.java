@@ -12,7 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "connectus.board")
 @ComponentScan(basePackages = "connectus.product")
 @ComponentScan(basePackages = "connectus.reservation")
+@ComponentScan(basePackages = "connectus.comment")
 
+@MapperScan(basePackages = "connectus.comment")
 @MapperScan(basePackages = "connectus.member")
 @MapperScan(basePackages = "connectus.board")
 @MapperScan(basePackages = "connectus.product")

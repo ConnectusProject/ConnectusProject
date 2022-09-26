@@ -46,7 +46,7 @@ $(document).ready(function(){
 				<td class="detail-subtitle">조회수 ${seqList.viewcount }</td>
 			<tr style="height : 80%;" colspan=2>
 				<td class="detail-text" >${seqList.contents }</td><br>
-				<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8083/upload/${seqList.img }"><br>
+				<img alt="" width=200 height=200 src="http://localhost:8083/upload/${seqList.img }"><br>
 				
 			</tr>                
 			<tr>

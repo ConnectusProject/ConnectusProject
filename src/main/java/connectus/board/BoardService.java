@@ -7,44 +7,45 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("boardservice")
+@Service("service")
 public class BoardService {
 	@Autowired
-	BoardDAO dao;
+	BoardDAO boarddao;
 	
 	public int registerBoard(BoardDTO dto) {
-		return dao.insertBoard(dto);
+		return boarddao.insertBoard(dto);
 			
 	}
 	
 	public int getTotalBoard() {
-		return dao.boardcount();
+		return boarddao.boardcount();
 	}
 	
 	public List<BoardDTO> paginglist(int[] limit) {
-		return dao.pagingList(limit);
+		return boarddao.pagingList(limit);
 	}
 	
+
 	
-	  public int updateSeq(int seq) { return dao.updateSeq(seq); }
+	  public int updateSeq(int seq) { return boarddao.updateSeq(seq); }
 	  
-	  public BoardDTO getBoardSeqLst(int seq) { return dao.getBoardSeqLst(seq); }
+	  public BoardDTO getBoardSeqLst(int seq) { return boarddao.getBoardSeqLst(seq); }
 	  
 	  
-	  public int deleteBoard(int seq) { return dao.deleteBoard(seq); }
+	  public int deleteBoard(int seq) { return boarddao.deleteBoard(seq); }
 	  
-	  public int updateBoard(BoardDTO dto) { return dao.updateBoard(dto); }
+	  public int updateBoard(BoardDTO dto) { return boarddao.updateBoard(dto); }
 	  
-	  public int getTotalTitleBoard() { return dao.getTitleCount(); }
+	  public int getTotalTitleBoard() { return boarddao.getTitleCount(); }
 	  
 	  public List<BoardDTO> pagingTitlelist(int[] limit) { 
-		  return dao.pagingTitleList(limit); }
+		  return boarddao.pagingTitleList(limit); }
 	  
-	  public int getTotalWriterBoard() { return dao.getWriterCount(); }
+	  public int getTotalWriterBoard() { return boarddao.getWriterCount(); }
 	  
 	  
 	  public List<BoardDTO> pagingWriterlist(int[] limit) { 
-		  return dao.pagingWriterList(limit); }
+		  return boarddao.pagingWriterList(limit); }
 	  
 	  
 	  public List<BoardDTO> paginglist2(int[] limit, String searchVal) {
@@ -52,22 +53,22 @@ public class BoardService {
 		  paramMap.put("param1", limit);
 	  paramMap.put("param2", searchVal); 
 		  
-		  return dao.pagingList2(paramMap); }
+		  return boarddao.pagingList2(paramMap); }
 	  
 	  
 	  public int getTotalBoard2(String searchVal) { 
-		  return dao.getTotalBoard2(searchVal); }
+		  return boarddao.getTotalBoard2(searchVal); }
 	  
 	  public List<BoardDTO> pagingTitlelist2(int[] is, String searchVal) {
 		  Map paramMap = new HashMap(); 
 		  paramMap.put("param1", is); 
 		  paramMap.put("param2", searchVal); 
 		  
-		  return dao.pagingTitleList2(paramMap); }
+		  return boarddao.pagingTitleList2(paramMap); }
 	  
 	  
 	  public int getTotalTitleBoard2(String searchVal) { 
-		  return dao.getTotalTitleBoard2(searchVal); }
+		  return boarddao.getTotalTitleBoard2(searchVal); }
 	  
 	  
 	  public List<BoardDTO> pagingWriterlist2(int[] is, String searchVal) {
@@ -75,10 +76,12 @@ public class BoardService {
 		  paramMap.put("param1", is); 
 		  paramMap.put("param2", searchVal); 
 		  
-		  return dao.pagingWriterlist2(paramMap); }
+		  return boarddao.pagingWriterlist2(paramMap); }
 	  
 	  
 	  public int getTotalWriterBoard2(String searchVal) { 
-		  return dao.getTotalWriterBoard2(searchVal); }
+		  return boarddao.getTotalWriterBoard2(searchVal); }
+
+	
 	 
 }
