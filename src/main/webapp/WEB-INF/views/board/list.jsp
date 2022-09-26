@@ -41,11 +41,13 @@
                     ">제목</td>
                     <td style="text-align: center; font-family: 'Gowun Dodum', sans-serif;
                     ">작성자</td>
+                    
                 </tr>
                 <c:forEach items="${boardlst }" var="board">
                     <tr class="list-list">
                         <!-- <td>${board.seq }</td> -->
-                        <td style="padding-left : 3%;"><a href="boarddetail?seq=${board.seq }">${board.title }</a></td>
+                        <td style="padding-left : 30%;"><a href="boarddetail?seq=${board.seq }">${board.title }</a>
+                        <img alt="상품이미지가없습니다." width=100 height=100 src="http://localhost:8090/upload/${board.img }"></td>
                         <td style="text-align: center;">${board.writer }</td>
                     </tr>
                 </c:forEach>
