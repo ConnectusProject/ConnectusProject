@@ -51,6 +51,7 @@ public class BoardController {
 	@PostMapping("/boardwrite")
 	public ModelAndView writingprocess(@RequestParam
 			(value="page", required = false, defaultValue = "1") int page, BoardDTO dto, MultipartFile file1) throws IOException {
+<<<<<<< HEAD
 
 		System.out.println(dto.toString());
 
@@ -58,6 +59,12 @@ public class BoardController {
 		
 		String savePath = "/Users/youngban/upload/";
 
+=======
+	
+		
+		
+		String savePath = "/Users/youngban/upload/";
+>>>>>>> board
 		String newname = null;
 //		System.out.println(file1);
 		if(!file1.isEmpty()) {
@@ -73,10 +80,14 @@ public class BoardController {
 			dto.setImg("noimage.png");
 		}
 		
+<<<<<<< HEAD
 
 
 		System.out.println(dto.toString());
 
+=======
+		System.out.println(dto.toString());
+>>>>>>> board
 		int totalboard = boardService.getTotalBoard();
 		
 		List<BoardDTO> boardlst = boardService.paginglist(new int[] {(page-1)*3, 3});
@@ -213,9 +224,13 @@ public class BoardController {
 	@PostMapping("/boardupdate/{boardid}")
 	String updateBoardprocess(@PathVariable("boardid")int seq, BoardDTO dto, MultipartFile file1 ) throws IllegalStateException, IOException {
 		
+<<<<<<< HEAD
 
 		String savePath = "/Users/youngban/upload/";
 
+=======
+		String savePath = "/Users/youngban/upload/";
+>>>>>>> board
 		String newname = null;
 //		System.out.println(file1);
 		if(!file1.isEmpty()) {

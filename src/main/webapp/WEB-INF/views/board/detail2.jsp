@@ -181,10 +181,10 @@ $(document).ready(function(){
 	</div>
 	</div>
 	<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${seqList.img }"> <br>
-<<<<<<< HEAD
-			
-=======
 
+
+	
+				
 	
 	<!-- Comments Form -->
 	<title>Connectus comment</title>
@@ -210,7 +210,7 @@ $(document).ready(function(){
     	<ul id="comment"></ul>
 	</div>
 				
->>>>>>> board
+
 	
 
 </body>
