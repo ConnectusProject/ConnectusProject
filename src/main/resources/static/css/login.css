@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
   font-family: "배민체";
-  src: url(${path}/fonts/BMYEONSUNG_ttf.ttf);
+  src: url(../fonts/BMYEONSUNG_ttf.ttf);
 }
 body {
   margin: 0;
