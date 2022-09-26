@@ -11,8 +11,7 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<link rel="stylesheet" href="${path}/css/community.css">
-<link rel="stylesheet" href="${path}/public/goods.css">
+<link rel="stylesheet" href="${path}/css/product.css">
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/navbar.js"></script>
@@ -26,10 +25,10 @@ let userId = '${oneBoard.userId}';
 
 // 세션과 일치할 시, 수정 삭제 버튼 생성 
 	$("#update").append(
-	(sessionId == userId ? "<button id='updateBTN' type='submit' value='수정'>수정하기</button>" : "")
+	(sessionId == userId ? "<input id='updateBTN' type='submit' value='수정'>" : "")
 	); 
 	$("#delete").append( 
-	(sessionId == userId ? "<button id='deleteBTN' type='submit' value='삭제'>삭제하기</button>" : "")
+	(sessionId == userId ? "<input id='deleteBTN' type='submit' value='삭제'>" : "")
 	);
 	
 // 세션 아이디 없으면 예약 막기 	
@@ -145,7 +144,7 @@ let userId = '${oneBoard.userId}';
 
 
 
-<!-- <c:if test="${!empty oneBoard.img1}" >
+<c:if test="${!empty oneBoard.img1}" >
 <img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img1}">
 </c:if>
 <c:if test="${!empty oneBoard.img2}" >
@@ -162,7 +161,7 @@ let userId = '${oneBoard.userId}';
 </c:if>
 <c:if test="${!empty oneBoard.img6}" >
 <img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img6}">
-</c:if> -->
+</c:if>
 
 <div class="goods-container-content-box">
     <div class="goods-detail-container">
@@ -321,10 +320,7 @@ let userId = '${oneBoard.userId}';
 
 
 
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
      
 <!DOCTYPE html>
