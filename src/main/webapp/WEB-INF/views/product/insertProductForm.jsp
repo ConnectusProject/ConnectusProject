@@ -61,7 +61,9 @@ function delImg(_this){
 
 
 $(document).ready(function(){
-	  
+	var Imgcount = 0; 
+
+	// 이미지 업로드 
 		$("#imgFile").change(function(e) {
 		e.preventDefault();
 		$("#cancleNoti").attr("style","display:inline");
@@ -80,7 +82,12 @@ $(document).ready(function(){
 		contentType : false,  
 
 		success : function(resp){ 
-//			$("#here").append("<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' >");
+			
+			if(Imgcount>=6){
+				alert("사진은 6개 까지만 등록 가능합니다.")
+				return false;
+			}
+			
 			var str = '<span>';
 			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' onclick='delImg(this)' >";
             str += '</span>';
@@ -110,6 +117,8 @@ $(document).ready(function(){
 		 	    break;
 		 	}
 			
+		 	Imgcount++;
+		 	
 		} // success 
 	 
 		}); // ajax 

@@ -58,6 +58,8 @@ function delImg(_this){
 
 
 $(document).ready(function(){
+  // 기존 이미지 개수 
+  var Imgcount = $("#count").html(); 
 
   $("#updatebtn").on("click", function (e){
     if(!confirm("게시글을 수정하시겠습니까?")){
@@ -65,8 +67,6 @@ $(document).ready(function(){
     }else {alert("수정이 완료되었습니다.")}
   }); //on updatebutton
 
-  // 기존 이미지 개수 
-  var imgNum = $("#count").html(); 
  
   var img1 = '${updateBoard.img1}'; 
   var img2 = '${updateBoard.img2}'; 
@@ -107,6 +107,12 @@ $(document).ready(function(){
 		contentType : false,  
 
 		success : function(resp){ 
+			
+			if(Imgcount>=6){
+				alert("사진은 6개 까지만 등록 가능합니다.")
+				return false;
+			}
+			
 			var str = '<span>';
 			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' onclick='delImg(this)' >";
             str += '</span>';
@@ -136,20 +142,11 @@ $(document).ready(function(){
 		 	    break;
 		 	}
 			
-		} // success 
-	 
-		}); // ajax 
-		
+		 	Imgcount++;
+			
+				} // success 
+			}); // ajax 
 		}); // change 
-	
-
-  
-  
-  
-  
-  
-  
-
 });  // onload
 </script>
 
