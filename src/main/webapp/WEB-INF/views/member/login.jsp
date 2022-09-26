@@ -45,7 +45,7 @@ $(document).ready(function(){
 				<a href = "register">
 					<button class="signup-button" id="btn" type="button">회원가입</button>
 				</a>
-                <span>비밀번호 찾기</span>
+                <span  class="signup-button">비밀번호 찾기</span>
             </div>
             <div class="kakao-naver-login mt-5">
                 <img src="${path}/pictures/Kakao_logo.jpg">

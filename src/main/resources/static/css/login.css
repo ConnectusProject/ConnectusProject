@@ -87,6 +87,7 @@ div {
   font-size: 1.8vw;
   color: white;
   margin-top: 1vh;
+  cursor: pointer;
 }
 
 .kakao-naver-login > img {
@@ -116,9 +117,12 @@ div {
     font-family: 배민체;
     font-size: 1.2vw;
     margin-left: 2vw;
+    cursor: pointer;
 }
 
-
+.signup-button:hover {
+  color:  rgb(45, 133, 37);
+}
 
 .signup-container {
   margin-top: 5%;
@@ -130,15 +134,6 @@ div {
   border: rgb(45, 133, 37) solid 4px;
   border-radius: 10px;
   position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 1.5%;
-  right: 1.5%;
-  font-size: 2vw;
-  border: none;
-  background: none;
 }
 
 .signup-container input {
