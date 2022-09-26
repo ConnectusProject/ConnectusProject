@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>LOGIN</title>
-<link rel="stylesheet" href="../../../../resources/static/css/login.css">
+<link rel="stylesheet" href="${path}/css/login.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -29,7 +29,7 @@ $(document).ready(function(){
     <div class="login-container">
 
         <div class="container-left">
-            <img src="../../../../resources/static/pictures/login-bg.jpg">
+            <img src="${path}/pictures/login-bg.jpg">
             <p>Connect Us</p>
         </div>
         <div class="container-right">
@@ -48,8 +48,8 @@ $(document).ready(function(){
                 <span>비밀번호 찾기</span>
             </div>
             <div class="kakao-naver-login mt-5">
-                <img src="../../../../resources/static/pictures/Kakao_logo.jpg">
-                <img src="../../../../resources/static/pictures/naver-logo.png">
+                <img src="${path}/pictures/Kakao_logo.jpg">
+                <img src="${path}/pictures/naver-logo.png">
             </div>
         </div>
 
