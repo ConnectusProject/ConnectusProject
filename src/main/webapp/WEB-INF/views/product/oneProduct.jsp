@@ -25,10 +25,10 @@ let userId = '${oneBoard.userId}';
 
 // 세션과 일치할 시, 수정 삭제 버튼 생성 
 	$("#update").append(
-	(sessionId == userId ? "<input id='updateBTN' type='submit' value='수정'>" : "")
+	(sessionId == userId ? "<input class='update-delete-button' id='updateBTN' type='submit' value='수정'>" : "")
 	); 
 	$("#delete").append( 
-	(sessionId == userId ? "<input id='deleteBTN' type='submit' value='삭제'>" : "")
+	(sessionId == userId ? "<input class='update-delete-button' id='deleteBTN' type='submit' value='삭제'>" : "")
 	);
 	
 // 세션 아이디 없으면 예약 막기 	

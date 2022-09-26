@@ -271,6 +271,17 @@ div {
   height: 3rem;
 }
 
+.update-delete-button {
+  border: none;
+  width: 20%;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  margin: 1rem;
+}
+
+
 .goods-detail-button-box button {
   border: none;
   width: 20%;
