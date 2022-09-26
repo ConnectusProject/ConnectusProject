@@ -10,6 +10,53 @@
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script>
+// 사진 삭제 
+function delImg(_this){
+	 if(!confirm("이 사진을 지울까요?")){
+		 return false; 
+		} else{  $(_this).parent('span').remove(); 
+		
+		
+		switch ($(_this).attr('src').substring(29)) {
+	 	case $("#file1").val():
+	 		 $("#file1").val("");
+	 		// 순서 땡기기 
+	 		$("#file1").val($("#file2").val());
+	 		$("#file2").val($("#file3").val());
+	 		$("#file3").val($("#file4").val());
+	 		$("#file4").val($("#file5").val());
+	 		$("#file5").val($("#file6").val());
+	 	    break;
+	    case $("#file2").val():
+	 		 $("#file2").val("");
+	    	 $("#file2").val($("#file3").val());
+ 			 $("#file3").val($("#file4").val());
+ 			 $("#file4").val($("#file5").val());
+ 			 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file3").val():
+	 		 $("#file3").val("");
+			 $("#file3").val($("#file4").val());
+		 	 $("#file4").val($("#file5").val());
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file4").val():
+	 		 $("#file4").val("");
+		 	 $("#file4").val($("#file5").val());
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file5").val():
+	 		 $("#file5").val("");
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file6").val():
+	 		 $("#file6").val("");
+	 	    break;
+		 	}//switch
+		} //if
+	} //delImg
+
+
 $(document).ready(function(){
 
   $("#updatebtn").on("click", function (e){
@@ -27,9 +74,6 @@ $(document).ready(function(){
   var img4 = '${updateBoard.img4}'; 
   var img5 = '${updateBoard.img5}'; 
   var img6 = '${updateBoard.img6}'; 
-  
-  
-  
   
   // 기존 이미지 file 에 등록 
   if( img1 != ""){
@@ -63,9 +107,13 @@ $(document).ready(function(){
 		contentType : false,  
 
 		success : function(resp){ 
+			var str = '<span>';
+			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' onclick='delImg(this)' >";
+            str += '</span>';
+
+            $(str).appendTo('#here');
 			
-			$("#here").append("<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 >");
-		 	
+			
 			// ajax 로 받아온걸 file에 순서대로 집어 넣음 
 		 	switch ("") {
 		 	case $("#file1").val():
@@ -107,32 +155,44 @@ $(document).ready(function(){
 
 </head>
 <body>
-		<h1 class="title"> 게시물 수정 </h1>
+		<h1 class="title"> 게시물 수정</h1> <span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
 
 <!-- 기존 이미지 파일들 불러오기 -->		
 <div id="here">
 <c:if test="${!empty updateBoard.img1}" >
-<img id="img1" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img1}">
+<span>
+<img id="img1" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img1}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
 <c:set var="count" value="1"/>
 </c:if>
 <c:if test="${!empty updateBoard.img2}" >
-<img id="img2" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img2}">
+<span>
+<img id="img2" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img2}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
 <c:set var="count" value="2"/>
 </c:if>
 <c:if test="${!empty updateBoard.img3}" >
-<img id="img3" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img3}">
+<span>
+<img id="img3" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img3}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
 <c:set var="count" value="3"/>
 </c:if>
 <c:if test="${!empty updateBoard.img4}" >
-<img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img4}">
-<c:set var="count" value="4"/>
+<span>
+<img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img4}" style='cursor:pointer' onclick='delImg(this)'>
+</span><
+c:set var="count" value="4"/>
 </c:if>
 <c:if test="${!empty updateBoard.img5}" >
-<img id="img5" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img5}">
+<span>
+<img id="img5" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img5}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
 <c:set var="count" value="5"/>
 </c:if>
 <c:if test="${!empty updateBoard.img6}" >
-<img id="img6" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img6}">
+<span>
+<img id="img6" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img6}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
 <c:set var="count" value="6"/>
 </c:if>
 </div>

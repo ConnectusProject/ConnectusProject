@@ -145,7 +145,33 @@ $(document).ready(function(){
    <th id="boardid${vs.index}">${board.id}</th>
    <th>
    <a href ="/product/${board.id}">${board.title} <br>
+   
+   <c:if test="${!empty board.img1}">
    <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img1}"> <br>
+   </c:if>
+   
+   <c:if test="${empty board.img1 && !empty board.img2}">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img2}"> <br>
+   </c:if>
+   
+   <c:if test="${empty board.img1 && empty board.img2 && !empty board.img3}">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img3}"> <br>
+   </c:if>
+   
+   <c:if test="${empty board.img1 && empty board.img2 && empty board.img3 && !empty board.img4}">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img4}"> <br>
+   </c:if>
+   
+   <c:if test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && !empty board.img5 }">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img5}"> <br>
+   </c:if>
+   
+   <c:if test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && !empty board.img6}">
+   <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img6}"> <br>
+   </c:if>
+   
+   
+   
    </a> 
    </th>
    <td>${board.boardRegion}</td>

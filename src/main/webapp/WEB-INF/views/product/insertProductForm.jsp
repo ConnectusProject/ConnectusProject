@@ -11,10 +11,59 @@
 <script src="js/jquery-3.6.0.min.js" ></script>
 
 <script>
+
+function delImg(_this){
+	 if(!confirm("이 사진을 지울까요?")){
+		 return false; 
+		} else{  $(_this).parent('span').remove(); 
+		
+		
+		switch ($(_this).attr('src').substring(29)) {
+	 	case $("#file1").val():
+	 		 $("#file1").val("");
+	 		// 순서 땡기기 
+	 		$("#file1").val($("#file2").val());
+	 		$("#file2").val($("#file3").val());
+	 		$("#file3").val($("#file4").val());
+	 		$("#file4").val($("#file5").val());
+	 		$("#file5").val($("#file6").val());
+	 	    break;
+	    case $("#file2").val():
+	 		 $("#file2").val("");
+	    	 $("#file2").val($("#file3").val());
+ 			 $("#file3").val($("#file4").val());
+ 			 $("#file4").val($("#file5").val());
+ 			 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file3").val():
+	 		 $("#file3").val("");
+			 $("#file3").val($("#file4").val());
+		 	 $("#file4").val($("#file5").val());
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file4").val():
+	 		 $("#file4").val("");
+		 	 $("#file4").val($("#file5").val());
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file5").val():
+	 		 $("#file5").val("");
+		 	 $("#file5").val($("#file6").val());	
+	 	    break;
+	 	case $("#file6").val():
+	 		 $("#file6").val("");
+	 	    break;
+		 	}//switch
+
+		} //if
+	} //delImg
+
+
 $(document).ready(function(){
 	  
 		$("#imgFile").change(function(e) {
 		e.preventDefault();
+		$("#cancleNoti").attr("style","display:inline");
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -30,8 +79,14 @@ $(document).ready(function(){
 		contentType : false,  
 
 		success : function(resp){ 
+//			$("#here").append("<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' >");
+			var str = '<span>';
+			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' onclick='delImg(this)' >";
+            str += '</span>';
+
+            $(str).appendTo('#here');
 			
-			$("#here").append("<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 >");
+			
 		 	
 		 	switch ("") {
 		 	case $("#file1").val():
@@ -66,6 +121,8 @@ $(document).ready(function(){
 
 </head>
 <body>
+
+<h1>물품등록</h1><span id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span>
 
 
 <div id="here"></div>
