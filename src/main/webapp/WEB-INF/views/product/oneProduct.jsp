@@ -188,10 +188,8 @@ let userId = '${oneBoard.userId}';
             <button class="reserve-button" id="reserve"  type="submit" value="예약하기">예약하기</button>
             </form>
          <form id="update" action="http://localhost:8090/product/${oneBoard.id}/update" >
-            <input type="text">
         </form>
         <form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
-            <input type="">
         </form>
      </div>
     </div>               
