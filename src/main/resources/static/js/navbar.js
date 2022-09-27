@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="main-container-title">
-            <span><img src="${path}/pictures/connectus.png"></span>
+            <span><img src="/pictures/connectus.png"></span>
             <span>Connect Us</span>
         </div>
         <nav class="nav-container">
