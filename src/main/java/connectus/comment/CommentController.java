@@ -20,28 +20,30 @@ public class CommentController {
 	public Object getAllComment(@PathVariable("boardSeq") int seq) {
 		List<CommentDTO> commentList = commentDAO.getAllComment(seq);
 		
-		return commentList;
+		return "board/boarddetail";
 	}
 	
 	
 	@ResponseBody
-	@GetMapping("/boarddetail/{boardSeq}/insertComment")
+	@PostMapping("/boarddetail/{boardSeq}/insertComment")
 
-	public CommentDTO inserComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
+	public String insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
 		commentDAO.insertComment(dto);
-		return commentDAO.getComment(dto.getComment_seq());
+		commentDAO.getComment(dto.getComment_seq());
+		return "board/boarddetail";
 	}
 	
 	@ResponseBody
 	@PostMapping("/boarddetail{boardSeq}/updateComment")
-	public CommentDTO updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
+	public String updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
 		int commentSeqInt = Integer.parseInt(commentSeq);
 		dto.setContents(updateContents);
 		dto.setSecret(updateSecret);
 		dto.setComment_seq(commentSeqInt);
 		
 		commentDAO.updateComment(dto);
-		return commentDAO.getComment(commentSeqInt);
+		commentDAO.getComment(commentSeqInt);
+		return "board/boarddetail";
 	}
 	
 	@ResponseBody

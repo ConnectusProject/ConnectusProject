@@ -10,7 +10,7 @@
 <script>
 
 $(function() {
-	let sessionId = '<%= session.getAttribute("id") %>';
+	let sessionId = '<%= session.getAttribute("sessionid") %>';
 	let list = [];
 	
 	$.ajax({
@@ -50,7 +50,7 @@ $(function() {
 $(document).ready(function(){
 	$("#submitBtn").on("click", function() {
 		let secret;
-		let sessionId = '<%= session.getAttribute("id") %>';
+		let sessionId = '<%= session.getAttribute("sessionid") %>';
 		let seq = '<%= request.getParameter("seq") %>';
 
 		if($("#contents").val() != '') {
@@ -110,7 +110,7 @@ $(document).ready(function(){
 			if($("#secretUpdateBtn").is(":checked") == true) { updateSecret = 1 } else { updateSecret = 0 };
 			
 			$.ajax({
-				url: ${param.seq} + '/updateComment',
+				url:${param.seq} + '/updateComment',
 				data: {updateContents: $("#updateContents").val(), updateSecret: updateSecret, commentSeq: $(".commentSeq").val() },
 				type: 'post',
 				dataType:'json',
@@ -193,8 +193,8 @@ $(document).ready(function(){
 	<div class="commentBox">
 		<div id="commentNum">댓글 0</div>
 			
-		<form action="${param.seq}" method="post">
-			<% if(session.getAttribute("id") != null) { %>
+		<form action="${param.seq }" method="post">
+		 	<% if(session.getAttribute("sessionid") != null) { %> 
 				<textarea placeholder="댓글을 작성해주세요." width="300px" id="contents" name="contents"></textarea>
 	            <div class="commentBtn">
 			        <input id="submitBtn" type="button" value="댓글달기">
@@ -202,9 +202,9 @@ $(document).ready(function(){
 	    			<input id="boardSeq" type="hidden" name="boardSeq" value="${param.seq}">
 	    			<input id="writer" type="hidden" name="writer" value="${param.writer}">
 	    		</div>
-    		<% } else { %>
+    		 <% } else { %>
 				<textarea placeholder="로그인 후 작성해주세요." width="300px" readonly></textarea>
-    		<% } %> 
+    		<% } %>  
     	</form>
 
     	<ul id="comment"></ul>
