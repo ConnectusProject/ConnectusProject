@@ -15,6 +15,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/navbar.js"></script>
 
+
 <script>
 $(document).ready(function(){
 let sessionId = '${sessionScope.sessionid}';
@@ -66,23 +67,23 @@ let userId = '${oneBoard.userId}';
 	            dataType : "json",   
 	            data : {'productseq' : productseq, 'memberid' : sessionId },
 
-	            success : function(resp) {
+	            success : function(resp) {0
 	            if(resp.result == 0){
                 	alert("찜!");
-                	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/zzim.png' width=100% height=100%  style='cursor:pointer'>")
                 }
                 else if (resp.result == 1){
                  alert("찜 취소!");
-             	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+             	$("#zzimSpan").html("<img src='http://localhost:8090/pictures/nozzim.png' width=100% height=100%  style='cursor:pointer'>")
                 }
 	            
 	            
 	            
 	            if(resp.result2 == 0){
-	            	var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>"; 
+	            	var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=100% height=100%  style='cursor:pointer'>"; 
 	            }
 	            else if(resp.result2 == 1){
-	            	var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+	            	var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=100% height=100%  style='cursor:pointer'>";
 	            }
 
 	            $("#zzimSpan").html(result2);
@@ -111,7 +112,7 @@ let userId = '${oneBoard.userId}';
 
 
 
-<a href="http://localhost:8090/allproduct">물품리스트</a>
+
 <h1> ConnectUS 상세 품목</h1>
 
 
@@ -175,53 +176,34 @@ let userId = '${oneBoard.userId}';
          <span class="detail-title-owner">${oneBoard.userId}</span>
      </div>
      <div  class="goods-detail-content">
-         <textarea name="" id="" cols="30" rows="10" readonly>${oneBoard.contents}</textarea>
+         <div class="goods-detail-text">${oneBoard.contents}</div>
          <div class="goods-detail-chatbutton">
              <div>💬</div>
-             <div id="zzimtd"><span id="zzimSpan">${zzim}</span></div>
+             <div id="zzimtd"><span id="zzimSpan" class="zzim-button">${zzim}</span></div>
          </div>
      </div>
      <div  class="goods-detail-button-box">
         <form action="http://localhost:8090/product/${oneBoard.id}/reservationinput" method="post">
             <input type="hidden" value="${oneBoard.userId}" name="userId">
-            <button id="reserve"  type="submit" value="예약하기">예약하기</button>
+            <button class="reserve-button" id="reserve"  type="submit" value="예약하기">예약하기</button>
             </form>
          <form id="update" action="http://localhost:8090/product/${oneBoard.id}/update" >
+            <input type="text">
         </form>
         <form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
+            <input type="">
         </form>
      </div>
     </div>               
  </div>
 
 
-<div id="zzimdiv">
-
-</div>
-
-<br>
-<br>
-
-<form action="http://localhost:8090/product/${oneBoard.id}/reservationinput" method="post">
-<input type="hidden" value="${oneBoard.userId}" name="userId">
-<button id="reserve"  type="submit" value="예약하기"></button>
-</form>
-
-<br>
-
-<form id="update" action="http://localhost:8090/product/${oneBoard.id}/update" >
-</form>
-<Br>
-
-<form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
-</form>
-<br>
 
 
-
-<br>
+<div class="reserved-connect-container">
 <h4>신청된 Connects</h4>
-<table border=5>
+<table class="reserved-connect">
+
 <tr>
 <th>번호</th>
 <th>커넥트 시작</th>
@@ -231,22 +213,30 @@ let userId = '${oneBoard.userId}';
 </tr>
 <c:forEach items="${reservationList}" var="reserv">
 <tr>
-<th>${reserv.id}</th>
-<th>${reserv.startRental}</th>
-<th>${reserv.endRental}</th>
-<th>${reserv.price}원</th>
-<th>${reserv.buyerId}</th>
+<td>${reserv.id}</td>
+<td>${reserv.startRental}</td>
+<td>${reserv.endRental}</td>
+<td>${reserv.price}원</td>
+<td>${reserv.buyerId}</td>
 </tr>
 </c:forEach>
+<tr>
+    <td>
+        <a href="http://localhost:8090/allproduct">물품리스트</a>
+        <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
+    </td>
+</tr>
+
 </table>
+<div>
+    
+    
+</div>
+</div>
 
 
 
 
-<br>
-<br>
-
-<a href="http://localhost:8090/">홈으로</a>
 
 </div>
 

@@ -223,12 +223,6 @@ div {
   top: 1%;
 }
 
-.detail-title-status {
-  position: absolute;
-  left: 1%;
-  bottom: 0%;
-}
-
 .detail-title-hour {
   position: absolute;
   left: 1%;
@@ -237,7 +231,7 @@ div {
 
 .detail-title-location {
   position: absolute;
-  right: 15%;
+  right: 18%;
   bottom: 1%;
 }
 
@@ -252,7 +246,7 @@ div {
   border-bottom: solid 3px rgb(45, 133, 37);
 }
 
-.goods-detail-content textarea {
+.goods-detail-text {
   width: 100%;
   border: none;
   background: none;
@@ -269,11 +263,22 @@ div {
 .goods-detail-button-box {
   width: 100%;
   height: 3rem;
+  display :flex;
+  justify-content: space-between;
+}
+.reserve-button {
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  margin: 1rem;
 }
 
 .update-delete-button {
   border: none;
-  width: 20%;
+  width: 100%;
   height: 100%;
   border-radius: 10px;
   color: white;
@@ -281,13 +286,38 @@ div {
   margin: 1rem;
 }
 
+.reserved-connect-container {
+  margin-top : 4rem;
+  width : 70rem;
+  display : flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+  position : relative;
+}
 
-.goods-detail-button-box button {
-  border: none;
-  width: 20%;
-  height: 100%;
-  border-radius: 10px;
-  color: white;
-  background-color: rgb(98, 167, 98);
-  margin: 1rem;
-}/*# sourceMappingURL=goods.css.map */
+.reserved-connect {
+  margin-top: 1rem;
+  position : absolute;
+  width : 60rem;
+  top : 2rem;
+  text-align: center;
+}
+
+.reserved-connect th {
+  border-top :rgb(45, 133, 37) solid 3px;
+  border-bottom :rgb(179, 238, 174) solid 1px;
+  height : 3rem;
+}
+
+.reserved-connect td {
+
+  height : 2rem;
+}
+
+
+
+
+
+
+/*# sourceMappingURL=goods.css.map */
