@@ -73,20 +73,20 @@
                         0
                         if (resp.result == 0) {
                             alert("찜!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png' style='cursor:pointer; width=100%; height=100%'>")
+                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
                             alert("찜 취소!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart2.png'style='cursor:pointer; width=100%; height=100%'>")
+                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
 
 
 
                         if (resp.result2 == 0) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart2.png' style='cursor:pointer; width=100%; height=100%'>";
+                            var result2 = "<img src='http://localhost:8090/pictures/heart.png' style=cursor:pointer; width=30; height=30'>";
                         }
                         else if (resp.result2 == 1) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart.png' style='cursor:pointer; width=100%; height=100%'>";
+                            var result2 = "<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>";
                         }
 
                         $("#zzimSpan").html(result2);
@@ -137,12 +137,12 @@
 
             <c:if test="${oneBoard.zzim == '0'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                    value="<img src='http://localhost:8090/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
             </c:if>
 
             <c:if test="${oneBoard.zzim == '1'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+                    value="<img src='http://localhost:8090/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
             </c:if>
 
 
@@ -177,42 +177,42 @@
                     <div class="goods-detail-img">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
-                                <div class="carousel-item active">
                                     <c:if test="${!empty oneBoard.img1}">
+                                <div class="carousel-item active">
                                         <img alt="상품이미지가 없습니다."
                                             src="http://localhost:8090/upload/${oneBoard.img1}">
-                                    </c:if>
                                 </div>
-                                <div class="carousel-item">
+                                    </c:if>
                                     <c:if test="${!empty oneBoard.img2}">
+                                <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
                                             src="http://localhost:8090/upload/${oneBoard.img2}">
-                                    </c:if>
                                 </div>
-                                <div class="carousel-item">
+                                    </c:if>
                                     <c:if test="${!empty oneBoard.img3}">
+                                <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다." 
                                             src="http://localhost:8090/upload/${oneBoard.img3}">
-                                    </c:if>
                                 </div>
-                                <div class="carousel-item">
+                                    </c:if>
                                     <c:if test="${!empty oneBoard.img4}">
+                                <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
                                             src="http://localhost:8090/upload/${oneBoard.img4}">
-                                    </c:if>
                                 </div>
-                                <div class="carousel-item">
+                                    </c:if>
                                     <c:if test="${!empty oneBoard.img5}">
+                                <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
                                             src="http://localhost:8090/upload/${oneBoard.img5}">
-                                    </c:if>
                                 </div>
-                                <div class="carousel-item">
+                                    </c:if>
                                     <c:if test="${!empty oneBoard.img6}">
+                                <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다." 
                                             src="http://localhost:8090/upload/${oneBoard.img6}">
-                                    </c:if>
                                 </div>
+                                    </c:if>
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
