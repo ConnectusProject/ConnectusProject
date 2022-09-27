@@ -10,11 +10,18 @@
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script>
-// 사진 삭제 
+//사진 업로드 취소
 function delImg(_this){
+	//기존 이미지 개수 
+	var Imgcount = $("#count").html();
+
 	 if(!confirm("이 사진을 지울까요?")){
 		 return false; 
-		} else{  $(_this).parent('span').remove(); 
+		} else{  
+			$(_this).parent('span').remove();
+			Imgcount--;
+			$("#count").html(Imgcount);
+
 		
 		
 		switch ($(_this).attr('src').substring(29)) {
@@ -26,28 +33,34 @@ function delImg(_this){
 	 		$("#file3").val($("#file4").val());
 	 		$("#file4").val($("#file5").val());
 	 		$("#file5").val($("#file6").val());
+	 		$("#file6").val("");
+	 		
 	 	    break;
 	    case $("#file2").val():
 	 		 $("#file2").val("");
 	    	 $("#file2").val($("#file3").val());
  			 $("#file3").val($("#file4").val());
  			 $("#file4").val($("#file5").val());
- 			 $("#file5").val($("#file6").val());	
+ 			 $("#file5").val($("#file6").val());
+ 		   	 $("#file6").val("");
 	 	    break;
 	 	case $("#file3").val():
 	 		 $("#file3").val("");
 			 $("#file3").val($("#file4").val());
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file4").val():
 	 		 $("#file4").val("");
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file5").val():
 	 		 $("#file5").val("");
 		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file6").val():
 	 		 $("#file6").val("");
@@ -57,10 +70,8 @@ function delImg(_this){
 	} //delImg
 
 
-$(document).ready(function(){
-  // 기존 이미지 개수 
-  var Imgcount = $("#count").html(); 
-
+$(document).ready(function(){	   
+// 수정 확인 
   $("#updatebtn").on("click", function (e){
     if(!confirm("게시글을 수정하시겠습니까?")){
       e.preventDefault();
@@ -89,9 +100,13 @@ $(document).ready(function(){
   if( img6 != ""){
 	  $("#file6").val(img6); }
   
-  
+  // 이미지 파일 업로드 
   $("#imgFile").change(function(e) {
 		e.preventDefault();
+		var Imgcount = $("#count").html();
+	 	Imgcount++;
+	 	$("#count").html(Imgcount);
+
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -108,7 +123,7 @@ $(document).ready(function(){
 
 		success : function(resp){ 
 			
-			if(Imgcount>=6){
+			if(Imgcount>6){
 				alert("사진은 6개 까지만 등록 가능합니다.")
 				return false;
 			}
@@ -141,16 +156,13 @@ $(document).ready(function(){
 		 		 $("#file6").val(resp.result);
 		 	    break;
 		 	}
-			
-		 	Imgcount++;
-			
 				} // success 
 			}); // ajax 
 		}); // change 
 });  // onload
 </script>
-
 </head>
+
 <body>
 		<h1 class="title"> 게시물 수정</h1> <span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
 
@@ -177,8 +189,8 @@ $(document).ready(function(){
 <c:if test="${!empty updateBoard.img4}" >
 <span>
 <img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img4}" style='cursor:pointer' onclick='delImg(this)'>
-</span><
-c:set var="count" value="4"/>
+</span>
+<c:set var="count" value="4"/>
 </c:if>
 <c:if test="${!empty updateBoard.img5}" >
 <span>

@@ -12,12 +12,14 @@
 <script src="js/jquery-3.6.0.min.js" ></script>
 
 <script>
-
+var Imgcount = 0; 
+//이미지 파일 업로드 취소 
 function delImg(_this){
 	 if(!confirm("이 사진을 지울까요?")){
 		 return false; 
-		} else{  $(_this).parent('span').remove(); 
-		
+		} else{  
+			$(_this).parent('span').remove(); 
+			Imgcount--; 
 		
 		switch ($(_this).attr('src').substring(29)) {
 	 	case $("#file1").val():
@@ -28,41 +30,43 @@ function delImg(_this){
 	 		$("#file3").val($("#file4").val());
 	 		$("#file4").val($("#file5").val());
 	 		$("#file5").val($("#file6").val());
+	 		$("#file6").val("");
+	 		
 	 	    break;
 	    case $("#file2").val():
 	 		 $("#file2").val("");
 	    	 $("#file2").val($("#file3").val());
  			 $("#file3").val($("#file4").val());
  			 $("#file4").val($("#file5").val());
- 			 $("#file5").val($("#file6").val());	
+ 			 $("#file5").val($("#file6").val());
+ 		   	 $("#file6").val("");
 	 	    break;
 	 	case $("#file3").val():
 	 		 $("#file3").val("");
 			 $("#file3").val($("#file4").val());
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file4").val():
 	 		 $("#file4").val("");
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file5").val():
 	 		 $("#file5").val("");
 		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file6").val():
 	 		 $("#file6").val("");
 	 	    break;
 		 	}//switch
-
 		} //if
 	} //delImg
 
-
 $(document).ready(function(){
-	var Imgcount = 0; 
-
 	// 이미지 업로드 
 		$("#imgFile").change(function(e) {
 		e.preventDefault();
@@ -93,9 +97,8 @@ $(document).ready(function(){
             str += '</span>';
 
             $(str).appendTo('#here');
-			
-			
-		 	
+
+            
 		 	switch ("") {
 		 	case $("#file1").val():
 		 		 $("#file1").val(resp.result);
@@ -116,27 +119,21 @@ $(document).ready(function(){
 		 		 $("#file6").val(resp.result);
 		 	    break;
 		 	}
-			
+		 	
 		 	Imgcount++;
 		 	
-		} // success 
-	 
-		}); // ajax 
-		
+				} // success 
+			}); // ajax 
 		}); // onclick
 	
 }); // onload 
-
 </script>
-
 </head>
+
 <body>
-
 <h1>물품등록</h1><div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
-
 <br>
 <br>
-
 <div id="here"></div>
 
 <form  id="uploadForm" action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
@@ -156,20 +153,13 @@ $(document).ready(function(){
 <input id="file4" type="text" style="display:none" name="file4">
 <input id="file5" type="text" style="display:none" name="file5">
 <input id="file6" type="text" style="display:none" name="file6">
-
-
 <br>
-
 <Br>
-
 <input type="submit" value="물품등록">
-
 </form>
-
 <br>
 <br>
 <hr>
-
 
 </body>
 </html>
