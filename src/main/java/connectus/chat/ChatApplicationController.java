@@ -34,11 +34,16 @@ public class ChatApplicationController {
     //채팅으로 거래하기(productInfo 화면)
     @RequestMapping(value="/chatMessage", method=RequestMethod.GET)
     public String getWebSocketWithSockJs(ChatRoom chatRoom, Model model, HttpSession session ) throws IOException {
-        
         //productInfo화면에서 Chat화면에 전달해줄 parameter
         
 //        String buyerId = (String) session.getAttribute("sessionid");
 //        chatRoom.setBuyerId(buyerId);
+    	
+    	if(chatRoom.getSellerId().equals(chatRoom.getBuyerId())) {
+    		if(chatRoom.getBuyerId().equals("backcoder")) {
+    			chatRoom.setBuyerId("tester2");}
+    	}
+   
         
         //이미 chatRoom이 만들어져있는지 확인
         if (chatRoomService.countByChatId(chatRoom.getPr_id(), chatRoom.getBuyerId()) > 0) {
@@ -60,6 +65,8 @@ public class ChatApplicationController {
             //chatRoom Add 시 생성될 chatId
             chatRoom.setId(chatRoomService.getId(chatRoom.getPr_id(), chatRoom.getBuyerId()));
             
+            System.out.println("모델 : "+chatRoom.toString());
+
             //chatRoom 객체 Model에 저장해 view로 전달
             model.addAttribute("chatRoomInfo", chatRoom);
         
@@ -70,7 +77,7 @@ public class ChatApplicationController {
     @MessageMapping("/broadcast")
     public void send(ChatRoom chatRoom) throws IOException {
  
-    	System.out.println(chatRoom.toString());
+    	System.out.println("메세지 맵핑 : " + chatRoom.toString()); // content 만 받아와진 상태 
         chatRoom.setSendTime(TimeUtils.getCurrentTimeStamp());
         //append message to txtFile
         chatRoomService.appendMessage(chatRoom);

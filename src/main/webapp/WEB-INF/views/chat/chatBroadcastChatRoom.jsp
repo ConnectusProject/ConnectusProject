@@ -17,11 +17,16 @@
 <script>
 
 var stompClient = null;
-var buyerId = $('#buyerId').val();
-var sellerId = $('#sellerId').val();    
-var senderId = $('#buyerId').val();
-var pr_id = $('#pr_id').val();
-var id = $('#id').val();
+var buyerId = "${chatRoomInfo.buyerId}";
+var sellerId = "${chatRoomInfo.sellerId}";    
+var senderId = "${chatRoomInfo.buyerId}";
+var pr_id = "${chatRoomInfo.pr_id}";
+var id = "${chatRoomInfo.id}";
+
+alert(id);
+
+
+
 
 $(document).ready(function(){
     connect();
@@ -60,6 +65,7 @@ $(document).ready(function(){
     <%-- 보내기 버튼 클릭시 실행되는 메서드--%>
     function send() {
         var content = $('#message').val();
+        
         sendBroadcast({
             'id': id,
             'content': content,
@@ -135,7 +141,7 @@ $(document).ready(function(){
                         <input type="text" placeholder="Message" id="message" class="form_control"/>
                         <div class="input_group_append">
                             <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
-                            <input id="buyerId" type="hidden" value="${sessionid}" />
+                            <input id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
                             <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
                             <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
                             <input id="id" type="hidden" value="${chatRoomInfo.id}" />                        
