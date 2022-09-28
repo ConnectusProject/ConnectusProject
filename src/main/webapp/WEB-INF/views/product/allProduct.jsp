@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -10,7 +9,7 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">
+  <!--    <link rel="stylesheet" type="text/css" href="${path}/css/writing.css"> --> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/product.css">
@@ -102,7 +101,7 @@ pageEncoding="UTF-8"%>
             <div class="allproduct-container">
                 <!-- 검색기능  -->
                 <form class="allproduct-search-box" action="searchproduct">
-                    <select>
+                    <select name="item">
                         <option value="title">제목</option>
                         <option value="boardRegion">지역</option>
                         <option value="userId">오너이름</option>
@@ -116,9 +115,9 @@ pageEncoding="UTF-8"%>
 
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
-                    <div class="product-box-item">
 
                         <c:forEach items="${allboard}" var="board" varStatus="vs">
+                    <div class="product-box-item">
                             <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
                             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -196,29 +195,22 @@ pageEncoding="UTF-8"%>
                             <c:if
                                 test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && empty board.img6}">
                                 <img alt="사진이 없어요" width=90% height=95%
-                                    src="http://localhost:8090/upload/${board.img7}">
+                                    src="http://localhost:8090/upload/noimg.png">
                             </c:if>
 
 
                             <div class="product-item-title"><a href="/product/${board.id}">${board.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
-                            <!-- <div class="product-item-num" id="boardid${vs.index}">${board.id}</div> -->
+                            <div class="product-item-num" id="boardid${vs.index}" style="display:none">${board.id}</div>
                             <div class="product-item-location">${board.boardRegion}</div>
                             <div class="product-item-owner">${board.userId}</div>
 
-                            <div class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</div>
+                            <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
 
 
+                    </div>
                         </c:forEach>
-                    </div>
-                    <div class="product-box-item">
-                    </div>
-                    <div class="product-box-item">
-                    </div>
-                    <div class="product-box-item">
-                    </div>
-                    <div class="product-box-item">
-                    </div>
+                    
                 </div>
             </div>
             <br>
