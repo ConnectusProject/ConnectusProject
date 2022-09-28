@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
   font-family: "배민체";
-  src: url(/src/fonts/BMYEONSUNG_ttf.ttf);
+  src: url(../fonts/BMYEONSUNG_ttf.ttf);
 }
 body {
   margin: 0;
@@ -177,7 +177,6 @@ div {
 }
 
 .goods-detail-container {
-  margin-top: 5%;
   width: 50%;
   display: flex;
   justify-content: center;
@@ -188,12 +187,19 @@ div {
 .goods-detail-img {
   width: 100%;
   height: 20rem;
+  position : relative;
 }
 
-.goods-detail-img img {
-  width: 100%;
-  height: 100%;
+.detail-carousel > div {
+  height : 35rem;
+  height : 100%;
 }
+
+.detail-carousel > div img {
+  width : 35rem;
+  height : 20rem;
+}
+
 
 .goods-detail-title {
   width: 100%;
@@ -223,12 +229,6 @@ div {
   top: 1%;
 }
 
-.detail-title-status {
-  position: absolute;
-  left: 1%;
-  bottom: 0%;
-}
-
 .detail-title-hour {
   position: absolute;
   left: 1%;
@@ -237,7 +237,7 @@ div {
 
 .detail-title-location {
   position: absolute;
-  right: 15%;
+  right: 18%;
   bottom: 1%;
 }
 
@@ -252,7 +252,7 @@ div {
   border-bottom: solid 3px rgb(45, 133, 37);
 }
 
-.goods-detail-content textarea {
+.goods-detail-text {
   width: 100%;
   border: none;
   background: none;
@@ -266,14 +266,35 @@ div {
   font-size: 1.5rem;
 }
 
+.goods-detail-chatbutton > div {
+  width: 8%;
+  height: 2rem;
+}
+
+.zzim-button {
+  width : 100%;
+  height : 100%;
+}
+
 .goods-detail-button-box {
   width: 100%;
   height: 3rem;
+  display :flex;
+  justify-content: space-between;
+}
+.reserve-button {
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  margin: 1rem;
 }
 
 .update-delete-button {
   border: none;
-  width: 20%;
+  width: 100%;
   height: 100%;
   border-radius: 10px;
   color: white;
@@ -281,13 +302,147 @@ div {
   margin: 1rem;
 }
 
+.reserved-connect-container {
+  margin-top : 4rem;
+  width : 70rem;
+  display : flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+  position : relative;
+}
 
-.goods-detail-button-box button {
+.reserved-connect {
+  margin-top: 1rem;
+  position : absolute;
+  width : 60rem;
+  top : 2rem;
+  text-align: center;
+}
+
+.reserved-connect th {
+  border-top :rgb(45, 133, 37) solid 3px;
+  border-bottom :rgb(179, 238, 174) solid 1px;
+  height : 3rem;
+}
+
+.reserved-connect td {
+  height : 2rem;
+}
+
+.product-insert-table {
+  display : flex;
+  flex-direction: column;
+}
+
+.product-insert-table input {
+  margin-top : 1rem;
+  margin-bottom : 1rem;
+  width : 100%;
+  height : 3rem;
+  border :rgb(179, 238, 174) 2px solid;
+  border-radius: 10px;
+}
+
+.product-insert-table textarea {
+  border :rgb(179, 238, 174) 2px solid;
+  border-radius: 10px;
+}
+
+.product-insert-button {
   border: none;
-  width: 20%;
-  height: 100%;
+  width: 100%;
+  height : 3rem;
   border-radius: 10px;
   color: white;
   background-color: rgb(98, 167, 98);
-  margin: 1rem;
-}/*# sourceMappingURL=goods.css.map */
+  font-size: 1.5rem;
+}
+
+.allproduct-container {
+  width : 75rem;
+  position : relative;
+}
+
+.allproduct-search-box {
+  text-align: right;
+  padding-right : 3.6rem;
+}
+
+.allproduct-search-box select {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  border-radius: 10px;
+}
+
+.search-box-search-input {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  width : 20%;
+  border-radius: 10px;
+}
+
+.search-box-search-button {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  width : 5%;
+  border-radius: 10px;
+  background-color: rgb(78, 233, 78);
+  color : white;
+}
+
+.allproduct-product-box {
+  width : 100%;
+  display : flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.product-box-item {
+  width : 25%;
+  height : 27rem;
+  margin : 3rem;
+  position : relative;
+  font-size : 1rem;
+}
+
+.product-item-img {
+  text-align: center;
+  border-bottom :rgb(134, 209, 127) 5px solid;
+  height : 58%;
+}
+
+.product-item-title {
+  width : 100%;
+  position : absolute;
+  bottom : 32%;
+  left : 3%;
+}
+
+.product-item-date {
+  position : absolute;
+  left : 3%;
+  bottom : 23%;
+}
+
+.product-item-location {
+  position : absolute;
+  left : 3%;
+  bottom : 13%;
+}
+
+.product-item-owner {
+  position : absolute;
+  left : 3%;
+  bottom : 3%;
+}
+
+.product-item-zzim {
+  position : absolute;
+  bottom : 3%;
+  right : 3%;
+}
+
+
+
+/*# sourceMappingURL=goods.css.map */
