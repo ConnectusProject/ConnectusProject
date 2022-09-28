@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -20,30 +20,30 @@ public class CommentController {
 	public Object getAllComment(@PathVariable("boardSeq") int seq) {
 		List<CommentDTO> commentList = commentDAO.getAllComment(seq);
 		
-		return "board/boarddetail";
+		return commentList;
 	}
 	
 	
 	@ResponseBody
-	@PostMapping("/boarddetail/{boardSeq}/insertComment")
+	@RequestMapping("/boarddetail/{boardSeq}/insertComment")
 
-	public String insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
+	public CommentDTO insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
 		commentDAO.insertComment(dto);
-		commentDAO.getComment(dto.getComment_seq());
-		return "board/boarddetail";
+		return commentDAO.getComment(dto.getComment_seq());
+		
 	}
 	
 	@ResponseBody
 	@PostMapping("/boarddetail{boardSeq}/updateComment")
-	public String updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
+	public CommentDTO updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
 		int commentSeqInt = Integer.parseInt(commentSeq);
 		dto.setContents(updateContents);
 		dto.setSecret(updateSecret);
 		dto.setComment_seq(commentSeqInt);
 		
 		commentDAO.updateComment(dto);
-		commentDAO.getComment(commentSeqInt);
-		return "board/boarddetail";
+		return commentDAO.getComment(commentSeqInt);
+		
 	}
 	
 	@ResponseBody

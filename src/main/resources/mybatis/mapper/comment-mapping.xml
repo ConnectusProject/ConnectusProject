@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="connectus.comment.CommentDAO" >
-	
-<insert id="insertComment" parameterType="commentDTO" useGeneratedKeys="true" keyProperty="comment_seq" >
-		insert into comment (seq, contents, writer, secret, writingtime) 
+	<!-- useGeneratedKeys="true"  -->
+<insert id="insertComment" parameterType="commentDTO"  >
+		insert into boardcomment (seq, contents,  writer, secret, writingtime) 
 		values (#{seq}, #{contents}, #{writer}, #{secret}, now());
 	</insert>
 	
 	<select id="getComment" resultType="commentDTO" parameterType="int">
-		select * from comment where comment_seq = #{comment_seq};
+		select * from boardcomment where comment_seq = #{comment_seq};
 	</select>
 
 	<select id="getAllComment" resultType="commentDTO" parameterType="int">
-		select * from comment where seq = #{seq};
+		select * from boardcomment where seq = #{seq};
 	</select>
 	
 	<update id="updateComment" parameterType="commentDTO">
-		update comment set contents=#{contents}, secret=#{secret} where comment_seq = #{comment_seq}
+		update boardcomment set contents=#{contents}, secret=#{secret} where comment_seq = #{comment_seq}
 	</update>
 
 	<delete id="deleteComment" parameterType="int">
-		delete from comment where comment_seq = #{comment_seq}
+		delete from boardcomment where comment_seq = #{comment_seq}
 	</delete>
 </mapper>
 
