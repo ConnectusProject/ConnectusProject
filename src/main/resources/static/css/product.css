@@ -359,4 +359,90 @@ div {
   font-size: 1.5rem;
 }
 
+.allproduct-container {
+  width : 75rem;
+  position : relative;
+}
+
+.allproduct-search-box {
+  text-align: right;
+  padding-right : 3.6rem;
+}
+
+.allproduct-search-box select {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  border-radius: 10px;
+}
+
+.search-box-search-input {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  width : 20%;
+  border-radius: 10px;
+}
+
+.search-box-search-button {
+  border :rgb(134, 209, 127) 3px solid;
+  height : 2rem;
+  width : 5%;
+  border-radius: 10px;
+  background-color: rgb(78, 233, 78);
+  color : white;
+}
+
+.allproduct-product-box {
+  width : 100%;
+  display : flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.product-box-item {
+  width : 25%;
+  height : 27rem;
+  margin : 3rem;
+  position : relative;
+  font-size : 1rem;
+}
+
+.product-item-img {
+  text-align: center;
+  border-bottom :rgb(134, 209, 127) 5px solid;
+  height : 58%;
+}
+
+.product-item-title {
+  width : 100%;
+  position : absolute;
+  bottom : 32%;
+  left : 3%;
+}
+
+.product-item-date {
+  position : absolute;
+  left : 3%;
+  bottom : 23%;
+}
+
+.product-item-location {
+  position : absolute;
+  left : 3%;
+  bottom : 13%;
+}
+
+.product-item-owner {
+  position : absolute;
+  left : 3%;
+  bottom : 3%;
+}
+
+.product-item-zzim {
+  position : absolute;
+  bottom : 3%;
+  right : 3%;
+}
+
+
+
 /*# sourceMappingURL=goods.css.map */
