@@ -330,6 +330,33 @@ div {
   height : 2rem;
 }
 
+.product-insert-table {
+  display : flex;
+  flex-direction: column;
+}
 
+.product-insert-table input {
+  margin-top : 1rem;
+  margin-bottom : 1rem;
+  width : 100%;
+  height : 3rem;
+  border :rgb(179, 238, 174) 2px solid;
+  border-radius: 10px;
+}
+
+.product-insert-table textarea {
+  border :rgb(179, 238, 174) 2px solid;
+  border-radius: 10px;
+}
+
+.product-insert-button {
+  border: none;
+  width: 100%;
+  height : 3rem;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  font-size: 1.5rem;
+}
 
 /*# sourceMappingURL=goods.css.map */
