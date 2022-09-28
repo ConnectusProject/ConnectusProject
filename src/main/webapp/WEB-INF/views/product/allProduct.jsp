@@ -9,7 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-  <!--    <link rel="stylesheet" type="text/css" href="${path}/css/writing.css"> --> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/product.css">
@@ -20,23 +19,21 @@
             let sessionId = '${sessionScope.sessionid}';
             let boardlength = '${boardlength}';
 
+            // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
                 if (sessionId == "") {
                     e.preventDefault();
                     alert("로그인이 필요합니다.");
                 }
-            }); // 물품등록 onclick 
+            });  
 
 
-            // 찜 
-
+            // 찜 기능
             for (var i = 0; i < boardlength; i++) {
                 let eachBoardId = $("#boardid" + i).html();
                 let intBoardId = parseInt(eachBoardId);
 
-
                 $("#zzimSpan" + i).on("click", function (e) {
-
                     if (sessionId == "") {
                         alert("로그인이 필요합니다.");
                         return false;
@@ -60,7 +57,6 @@
                             }
 
 
-
                             if (resp.result2 == 0) {
                                 var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
                             }
@@ -71,19 +67,12 @@
                             $("#zzimSpan" + i).html(result2);
 
                             location.reload();
-
-                        }
+                        } // success 
                     }); // ajax 
                 }); // 찜 onclick
-
-
             } // for 
-
-
-
-        });
+        }); // onload 
     </script>
-
 </head>
 
 <body>
@@ -91,10 +80,7 @@
         <div class="main-container">
             <custom-navbar></custom-navbar>
 
-            <!-- <jsp:include page="/WEB-INF/views/header.jsp" /> -->
-
             <h1 class="mt-5"> ConnectUS 전체 품목 </h1>
-
 
             <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
@@ -118,6 +104,8 @@
 
                         <c:forEach items="${allboard}" var="board" varStatus="vs">
                     <div class="product-box-item">
+                 
+                    <!-- 날짜 몇일 전으로 변환 -->
                             <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
                             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -133,6 +121,7 @@
                                 <c:set var="dateDiffShow" value="오늘" />
                             </c:if>
 
+					<!-- 찜 표시 -->
                             <c:if test="${board.zzim == '0'}">
                                 <c:set var="zzim"
                                     value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
@@ -143,71 +132,28 @@
                                     value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
                             </c:if>
 
-
-                            <!-- item 시작 -->
-
+                     <!-- 대표 이미지 -->
                             <c:if test="${!empty board.img1}">
                                 <div class="product-item-img">
                                     <img alt="사진이 없어요" width=90% height=95%
                                         src="http://localhost:8090/upload/${board.img1}">
                                 </div>
                             </c:if>
-
-                            <c:if test="${empty board.img1 && !empty board.img2}">
+                            
+                            <c:if test="${empty board.img1}">
                                 <div class="product-item-img">
                                     <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${board.img2}">
-                                </div>
-
-                            </c:if>
-
-                            <c:if test="${empty board.img1 && empty board.img2 && !empty board.img3}">
-                                <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${board.img3}">
+                                        src="http://localhost:8090/upload/noimg.png">
                                 </div>
                             </c:if>
-
-                            <c:if
-                                test="${empty board.img1 && empty board.img2 && empty board.img3 && !empty board.img4}">
-                                <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${board.img4}">
-                                </div>
-                            </c:if>
-
-                            <c:if
-                                test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && !empty board.img5 }">
-                                <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${board.img5}">
-                                </div>
-                            </c:if>
-
-                            <c:if
-                                test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && !empty board.img6}">
-                                <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${board.img6}">
-                                </div>
-                            </c:if>
-
-                            <c:if
-                                test="${empty board.img1 && empty board.img2 && empty board.img3 && empty board.img4 && empty board.img5 && empty board.img6}">
-                                <img alt="사진이 없어요" width=90% height=95%
-                                    src="http://localhost:8090/upload/noimg.png">
-                            </c:if>
-
+                            
 
                             <div class="product-item-title"><a href="/product/${board.id}">${board.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="boardid${vs.index}" style="display:none">${board.id}</div>
                             <div class="product-item-location">${board.boardRegion}</div>
                             <div class="product-item-owner">${board.userId}</div>
-
                             <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
-
-
                     </div>
                         </c:forEach>
                     
