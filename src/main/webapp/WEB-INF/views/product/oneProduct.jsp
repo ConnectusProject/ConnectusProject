@@ -94,32 +94,23 @@
                     }
                 }); // ajax 
             }); // onclick
-
-
-
-
-
-
-
-
         });   // onload
     </script>
 
 </head>
 
 <body>
-    <!-- <jsp:include page="/WEB-INF/views/header.jsp" /> -->
-
     <div class="container-box">
         <div class="main-container">
             <custom-navbar></custom-navbar>
 
 
-
+<a href="http://localhost:8090/allproduct">물품리스트</a>
+<a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
 
             <h1 class="mt-5"> ConnectUS 상세 품목</h1>
 
-
+<!-- 날짜 몇일전으로 변환 -->
             <fmt:parseDate value="${oneBoard.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -134,7 +125,7 @@
                 <c:set var="dateDiffShow" value="오늘" />
             </c:if>
 
-
+<!-- 찜 상태에 따라 이미지 -->
             <c:if test="${oneBoard.zzim == '0'}">
                 <c:set var="zzim"
                     value="<img src='http://localhost:8090/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
@@ -145,33 +136,9 @@
                     value="<img src='http://localhost:8090/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
             </c:if>
 
-
-
             <Br>
 
-            <!-- 
-
-<c:if test="${!empty oneBoard.img1}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img1}">
-</c:if>
-<c:if test="${!empty oneBoard.img2}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img2}">
-</c:if>
-<c:if test="${!empty oneBoard.img3}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img3}">
-</c:if>
-<c:if test="${!empty oneBoard.img4}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img4}">
-</c:if>
-<c:if test="${!empty oneBoard.img5}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img5}">
-</c:if>
-<c:if test="${!empty oneBoard.img6}" >
-<img alt="상품이미지가 없습니다." width=500 height=300 src="http://localhost:8090/upload/${oneBoard.img6}">
-</c:if>
-
--->
-
+<!-- 이미지 carousel 로 띄우기 -->
             <div class="goods-container-content-box">
                 <div class="goods-detail-container">
                     <div class="goods-detail-img">
@@ -226,6 +193,8 @@
                             </button>
                         </div>
                     </div>
+                    
+<!-- 상세페이지 내용 -->
                     <div class="goods-detail-title">
                         <span class="detail-title-num">${oneBoard.id}</span>
                         <span class="detail-title-title">${oneBoard.title}</span>
@@ -235,16 +204,23 @@
                     </div>
                     <div class="goods-detail-content">
                         <div class="goods-detail-text">${oneBoard.contents}</div>
+<!-- 채팅버튼 -->                        
                         <div class="goods-detail-chatbutton">
                             <div>💬</div>
+                        
+<!-- 찜 버튼 -->                        
                             <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span></div>
                         </div>
                     </div>
+                    
+<!-- 예약 버튼 -->                    
                     <div class="goods-detail-button-box">
                         <form action="http://localhost:8090/product/${oneBoard.id}/reservationinput" method="post">
                             <input type="hidden" value="${oneBoard.userId}" name="userId">
                             <button class="reserve-button" id="reserve" type="submit" value="예약하기">예약하기</button>
                         </form>
+                        
+<!-- 수정, 삭제 버튼 -->                        
                         <form id="update" action="http://localhost:8090/product/${oneBoard.id}/update">
                         </form>
                         <form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
@@ -255,7 +231,7 @@
 
 
 
-
+<!-- 예약내역 테이블 -->
             <div class="reserved-connect-container">
                 <h4>신청된 Connects</h4>
                 <table class="reserved-connect">
@@ -267,6 +243,7 @@
                         <th>희망 비용</th>
                         <th>렌터</th>
                     </tr>
+                    
                     <c:forEach items="${reservationList}" var="reserv">
                         <tr>
                             <td>${reserv.id}</td>
@@ -276,27 +253,12 @@
                             <td>${reserv.buyerId}</td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td>
-                            <a href="http://localhost:8090/allproduct">물품리스트</a>
-                            <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
-                        </td>
-                    </tr>
-
+                              
                 </table>
-                <div>
-
-
                 </div>
-            </div>
+		</div>
+</div>
 
-
-
-
-
-        </div>
-
-    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
