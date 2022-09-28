@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.member.MemberDTO;
+import connectus.product.ProductDTO;
 
 
 @Repository
@@ -20,4 +21,5 @@ public interface MypageDAO {
 	public ModelAndView modifyMember(String userid);
 	public void memberModify(MemberDTO memberdto);
 
+	public List<ProductDTO> allMyBoard(String userid);
 }

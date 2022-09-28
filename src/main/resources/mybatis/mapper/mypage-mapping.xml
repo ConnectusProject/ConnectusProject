@@ -25,4 +25,12 @@
 	delete from members where userid=#{userid}
 </delete>
 
+
+<select id="myBoard" resultType="productdto">
+	select * from product where userid=#{userid}
+</select>
+
+<select id="allMyBoard" resultType="productdto">
+		select * from product where userid=#{userid} order by createdAt desc
+</select>
 </mapper>

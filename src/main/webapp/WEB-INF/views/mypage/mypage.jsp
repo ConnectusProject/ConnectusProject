@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
-<div >내 정보</div>
+<div>
+	<div >내 정보</div>
 			<table>		
 					<tr>
 						<td>아이디</td><td>: ${member.userid }</td>
@@ -44,8 +45,36 @@ $(document).ready(function(){
 					</td>
 				</tr>
 			</table>
+</div>
 
-				
+<hr>
+
+<form name="myproduct" action="myProduct" method="get">
+<div>
+	<h2>내가 올린 물건</h2>
+	<table border=5>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>날짜</th>
+			</tr>
+		</thead>
+		<tbody>
+<c:forEach items="${allmyboard}" var="board" varStatus="vs" >
+<fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd"/>
+			<tr>
+				<th id="boardid${vs.index}">${board.id}</th>
+				<th><a href ="/product/${board.id}">${board.title}</th>
+				<th>${board.createdAt}</th>		
+			</tr>
+		</c:forEach>
+		</tbody>	
+	</table>
+
+</div>
+</form>	
+			
 <script>
 	function back(){
 		history.back();

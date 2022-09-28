@@ -22,6 +22,10 @@ $(document).ready(function(){
 <a href="http://localhost:8090/login">로그인페이지 이동</a>
 
 <br>
+
+<a href="http://localhost:8090/mypage">마이페이지</a>
+
+<br>
 <br>
 
 <a href="http://localhost:8090/allproduct">물품 페이지 이동</a>

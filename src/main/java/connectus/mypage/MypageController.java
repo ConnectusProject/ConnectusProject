@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import connectus.board.BoardService;
 import connectus.member.MemberDTO;
 import connectus.member.MemberService;
+import connectus.product.ProductDAO;
+import connectus.product.ProductDTO;
 
 @Controller
 public class MypageController {
 	@Autowired
-	MypageService myserv;
-	
+	MypageService myserv;	
+		
 	@Autowired
 	HttpSession session;
 	
@@ -30,13 +34,20 @@ public class MypageController {
 	
 	//마이페이지
 	@GetMapping("/mypage")
-	public ModelAndView mypage() {
+	public ModelAndView mypage(Model model) {
 		mav = new ModelAndView("mypage/mypage");
 		String userid = (String)session.getAttribute("sessionid");
+		
+		//물품
+		List<ProductDTO> list = myserv.allMyBoard(userid);		
+		int boardlength = list.size();
+		
+		model.addAttribute("boardlength", boardlength);
+		model.addAttribute("allmyboard",list);
+		
 		try {
 			MemberDTO member = myserv.memberDetail(userid);
 			if(member == null) {
-				System.out.println(member);
 				mav.setViewName("member/login");
 			}
 			mav.addObject("member",member);
@@ -49,6 +60,22 @@ public class MypageController {
 		
 	}
 	
+	/*내가 올린 제품
+	@GetMapping("/myProduct")
+	public String myProduct(String userid, Model model) throws Exception{
+		String sessionid = (String)session.getAttribute("sessionid");
+		
+		List<ProductDTO> list = myserv.allMyBoard(sessionid);
+		
+		int boardlength = list.size();
+		
+		model.addAttribute("boardlength", boardlength);
+		model.addAttribute("allmyboard",list);
+		System.out.println("myproduct");
+		
+		return "mypage/mypage";
+	}
+	*/
 	
 	//회원탈퇴
 	@GetMapping("/delete")
@@ -91,4 +118,6 @@ public class MypageController {
 		return mav;
 	}
 	
+	
+
 }

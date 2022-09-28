@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.member.MemberDTO;
+import connectus.product.ProductDTO;
 
 
 @Service
@@ -44,6 +45,11 @@ public class MypageService {
 	public void memberModify(MemberDTO memberdto) throws Exception {
 		dao.memberModify(memberdto);
 		return;		
+	}
+	
+	//내가 올린 제품
+	public List<ProductDTO> allMyBoard(String userid) {
+		return dao.allMyBoard(userid);
 	}
 	
 }
