@@ -71,7 +71,7 @@ $(document).ready(function(){
             'buyerId': buyerId, 
             'sellerId': sellerId,
             'pr_id': pr_id,
-            'senderId': senderId
+            'senderId': sellerId
             });
         $('#message').val("");
     }
