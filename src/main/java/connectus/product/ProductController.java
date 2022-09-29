@@ -43,7 +43,7 @@ public class ProductController {
 	public String allProduct(Model model, HttpSession session) throws Exception {
 		String sessionid = (String)session.getAttribute("sessionid");
 		
-		List<ProductDTO> list = productDAO.allBoard();
+		List<ProductDTO> list = productDAO.allProduct();
 		
 		
 		// 찜 set 
@@ -59,11 +59,11 @@ public class ProductController {
 			dto.setZzim(zzim);
 		}
 		
-		int boardlength = list.size();
+		int productlength = list.size();
 		
 	
-		model.addAttribute("boardlength", boardlength);
-		model.addAttribute("allboard", list);
+		model.addAttribute("productlength", productlength);
+		model.addAttribute("allproduct", list);
 		return "product/allProduct";
 	}
 	
@@ -93,9 +93,9 @@ public class ProductController {
 					dto.setZzim(zzim);
 				}
 				
-				int boardlength = searchList.size();
+				int productlength = searchList.size();
 		
-		model.addAttribute("boardlength", boardlength);
+		model.addAttribute("productlength", productlength);
 		model.addAttribute("searchList", searchList);
 		return "product/searchList";
 	}
@@ -105,28 +105,28 @@ public class ProductController {
 	
 	// 물품 상세페이지 
 	@GetMapping("/product/{productid}")
-	public String oneProduct(@PathVariable("productid")int boardid, Model model, HttpSession session) throws Exception {
+	public String oneProduct(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
 		
 		String sessionid = (String)session.getAttribute("sessionid");
 		
 		
-		ProductDTO targetBoard = productDAO.oneBoard(boardid);
+		ProductDTO targetProduct = productDAO.oneProduct(productid);
 		
 		
-		Object zzimcheck = productDAO.zzimCount(boardid, sessionid);
+		Object zzimcheck = productDAO.zzimCount(productid, sessionid);
 		
 		int zzim = 0 ; 
 		if(zzimcheck!=null) {
 			zzim = 1; 
 		}
 		
-		targetBoard.setZzim(zzim);
+		targetProduct.setZzim(zzim);
 		
-		List<ReservationDTO> reservList = productDAO.allReservation(boardid);
+		List<ReservationDTO> reservList = productDAO.allReservation(productid);
 		
 		
 		model.addAttribute("reservationList", reservList);
-		model.addAttribute("oneBoard", targetBoard);
+		model.addAttribute("oneProduct", targetProduct);
 
 		return "product/oneProduct";
 	}
@@ -177,7 +177,7 @@ public class ProductController {
 			
 			dto.setBoardRegion(region); 
 			
-			productDAO.insertBoard(dto);
+			productDAO.insertProduct(dto);
 		return "redirect:/allproduct";
 	}
 	
@@ -204,47 +204,47 @@ public class ProductController {
 	
 	// 글삭제 
 	@PostMapping("/product/{productid}/delete")
-	public String deleteProduct(@PathVariable("productid")int boardid) {
-		productDAO.deleteBoard(boardid);
+	public String deleteProduct(@PathVariable("productid")int productid) {
+		productDAO.deleteProduct(productid);
 		return "redirect:/allproduct";
 	}
 	
 	
 	// 글수정
 	@GetMapping("/product/{productid}/update")
-	public String updateProduct(@PathVariable("productid")int boardid, Model model) {
-		model.addAttribute("updateBoard", productDAO.oneBoard(boardid));
+	public String updateProduct(@PathVariable("productid")int productid, Model model) {
+		model.addAttribute("updateProduct", productDAO.oneProduct(productid));
 		return "product/updateProductForm";
 	}
 
 	@PostMapping("/product/{productid}/updateprocess")
-	public String updateProductProcess(@PathVariable("productid")int boardid,ProductDTO boardDTO, UploadDTO uploaddto) throws IllegalStateException, IOException {
+	public String updateProductProcess(@PathVariable("productid")int productid,ProductDTO productDTO, UploadDTO uploaddto) throws IllegalStateException, IOException {
 		// update 할 아이디 set 
-		boardDTO.setId(boardid);
+		productDTO.setId(productid);
 		
 		// 이미지 다시 Set 
 	if(uploaddto.getFile1()!=null) {
-		boardDTO.setImg1(uploaddto.getFile1());
+		productDTO.setImg1(uploaddto.getFile1());
 	}
 	if(uploaddto.getFile2()!=null) {
-		boardDTO.setImg2(uploaddto.getFile2());
+		productDTO.setImg2(uploaddto.getFile2());
 	}
 	if(uploaddto.getFile3()!=null) {
-		boardDTO.setImg3(uploaddto.getFile3());
+		productDTO.setImg3(uploaddto.getFile3());
 	}
 	if(uploaddto.getFile4()!=null) {
-		boardDTO.setImg4(uploaddto.getFile4());
+		productDTO.setImg4(uploaddto.getFile4());
 	}
 	if(uploaddto.getFile5()!=null) {
-		boardDTO.setImg5(uploaddto.getFile5());
+		productDTO.setImg5(uploaddto.getFile5());
 	}
 	if(uploaddto.getFile6()!=null) {
-		boardDTO.setImg6(uploaddto.getFile6());
+		productDTO.setImg6(uploaddto.getFile6());
 	}
 	
 		
 		// update 실행 
-		int updateResult = productDAO.updateBoard(boardDTO);
+		int updateResult = productDAO.updateProduct(productDTO);
 		
 		return "redirect:/allproduct";
 	}

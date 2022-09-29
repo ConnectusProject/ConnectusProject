@@ -18,7 +18,7 @@
     <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
-            let boardlength = '${boardlength}';
+            let productlength = '${productlength}';
 
             // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
@@ -29,9 +29,9 @@
             });  
 
             // 찜 기능
-            for (var i = 0; i < boardlength; i++) {
-                let eachBoardId = $("#boardid" + i).html();
-                let intBoardId = parseInt(eachBoardId);
+            for (var i = 0; i < productlength; i++) {
+                let eachProductId = $("#productid" + i).html();
+                let intProductId = parseInt(eachProductId);
 
                 $("#zzimSpan" + i).on("click", function (e) {
                     if (sessionId == "") {
@@ -43,7 +43,7 @@
                         type: "POST",
                         url: "/product/zzim",
                         dataType: "json",
-                        data: { 'productseq': intBoardId, 'memberid': sessionId },
+                        data: { 'productseq': intProductId, 'memberid': sessionId },
 
                         success: function (resp) {
                             if (resp.result == 0) {
@@ -101,11 +101,11 @@
                 <div class="allproduct-product-box">
                 
 	<!-- 검색결과 -->
-                    <c:forEach items="${searchList}" var="board" varStatus="vs">
+                    <c:forEach items="${searchList}" var="product" varStatus="vs">
                         <div class="product-box-item">
 
 	<!-- 날짜 몇일전으로 변경 -->                        
-                            <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
+                            <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
                             <c:set var="current" value="<%=new java.util.Date()%>" />
                             <fmt:formatDate value="${current}" pattern="yyyy-MM-dd" var="currentForm" />
@@ -121,24 +121,24 @@
 
 
 	<!-- 찜 표시 -->
-                            <c:if test="${board.zzim == '0'}">
+                            <c:if test="${product.zzim == '0'}">
                                 <c:set var="zzim"
                                     value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
                             </c:if>
 
-                            <c:if test="${board.zzim == '1'}">
+                            <c:if test="${product.zzim == '1'}">
                                 <c:set var="zzim"
                                     value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
                             </c:if>
 
 	<!-- 검색 결과 물품리스트 -->                            
                             <div class="product-item-img">
-                                <img alt="사진이 없어요" width=90% height=95% src="http://localhost:8090/upload/${board.img1}">
+                                <img alt="사진이 없어요" width=90% height=95% src="http://localhost:8090/upload/${product.img1}">
                             </div>
-                            <div class="product-item-num" id="boardid${vs.index}" style="display:none">${board.id}</div>
-                            <div class="product-item-title"><a href="/product/${board.id}">${board.title}</a></div>
-                            <div class="product-item-location">${board.boardRegion}</div>
-                            <div class="product-item-owner">${board.userId}</div>
+                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
+                            <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
+                            <div class="product-item-location">${product.boardRegion}</div>
+                            <div class="product-item-owner">${product.userId}</div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
                         </div>
