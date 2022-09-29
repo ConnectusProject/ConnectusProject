@@ -17,14 +17,64 @@
     <script src="${path}/js/navbar.js"></script>
     <script>
         $(document).ready(function () {
+            let sessionId = '${sessionScope.sessionid}';
+            let boardlength = '${boardlength}';
 
-        });
+            // 물품등록시 로그인 필요
+            $("#register").on("click", function (e) {
+                if (sessionId == "") {
+                    e.preventDefault();
+                    alert("로그인이 필요합니다.");
+                }
+            });  
+
+            // 찜 기능
+            for (var i = 0; i < boardlength; i++) {
+                let eachBoardId = $("#boardid" + i).html();
+                let intBoardId = parseInt(eachBoardId);
+
+                $("#zzimSpan" + i).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/zzim",
+                        dataType: "json",
+                        data: { 'productseq': intBoardId, 'memberid': sessionId },
+
+                        success: function (resp) {
+                            if (resp.result == 0) {
+                                alert("찜!");
+                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                            }
+                            else if (resp.result == 1) {
+                                alert("찜 취소!");
+                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                            }
+
+
+                            if (resp.result2 == 0) {
+                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+                            }
+                            else if (resp.result2 == 1) {
+                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+                            }
+
+                            $("#zzimSpan" + i).html(result2);
+
+                            location.reload();
+                        } // success 
+                    }); // ajax 
+                }); // 찜 onclick
+            } // for 
+        }); // onload 
     </script>
-
 </head>
 
 <body>
-    <!-- <jsp:include page="/WEB-INF/views/header.jsp" /> -->
     <div class="container-box">
         <div class="main-container">
             <custom-navbar></custom-navbar>
@@ -34,7 +84,7 @@
             <a href="http://localhost:8090/registerProduct">물품등록</a>
             <br>
             <div class="allproduct-container">
-                <!-- 검색기능 -->
+	<!-- 검색기능 -->
                 <form class="allproduct-search-box" action="searchproduct">
                     <select name="item">
                         <option value="title">제목</option>
@@ -49,9 +99,12 @@
 
 
                 <div class="allproduct-product-box">
-
-                    <c:forEach items="${searchList}" var="board">
+                
+	<!-- 검색결과 -->
+                    <c:forEach items="${searchList}" var="board" varStatus="vs">
                         <div class="product-box-item">
+
+	<!-- 날짜 몇일전으로 변경 -->                        
                             <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
                             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -67,8 +120,18 @@
                             </c:if>
 
 
+	<!-- 찜 표시 -->
+                            <c:if test="${board.zzim == '0'}">
+                                <c:set var="zzim"
+                                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                            </c:if>
 
-                            
+                            <c:if test="${board.zzim == '1'}">
+                                <c:set var="zzim"
+                                    value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+                            </c:if>
+
+	<!-- 검색 결과 물품리스트 -->                            
                             <div class="product-item-img">
                                 <img alt="사진이 없어요" width=90% height=95% src="http://localhost:8090/upload/${board.img1}">
                             </div>
@@ -77,11 +140,9 @@
                             <div class="product-item-location">${board.boardRegion}</div>
                             <div class="product-item-owner">${board.userId}</div>
                             <div class="product-item-date">${dateDiffShow}</div>
-
-
-
-
+                            <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
                         </div>
+                        
                     </c:forEach>
                 </div>
                 <br>
