@@ -17,7 +17,7 @@ alert(sessionid);
 
 //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
 function addChatDivImg(idx, pr_id, buyerId ) {
-        $(document.body).append('<div class= chatMessageInfo' + idx + '><div class="wrapPr_img"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId + '">채팅방입장</a></div><div class="wrapSellerTitle' +
+        $(document.body).append('<div class= chatMessageInfo' + idx + '><div class="wrapPr_img"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId + '">'+pr_id+'번 채팅방입장</a></div><div class="wrapSellerTitle' +
                 idx +
                 '"></div></div>');
 }
