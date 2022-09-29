@@ -95,9 +95,9 @@ public class ChatRoomService {
     
     
     
-	public List<ChatList> findByUserId(String email) {
+	public List<ChatList> findByUserId(String UserId) {
 		
-		return chatRoomMapper.findByUserId(email);
+		return chatRoomMapper.findByUserId(UserId);
 	}
 
 	public int countByChatId(int pr_id, String buyerId) {

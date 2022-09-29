@@ -67,6 +67,42 @@ public class ProductController {
 		return "product/allProduct";
 	}
 	
+	
+	// 검색
+	@GetMapping("/searchproduct")
+	public String searchList(String item, String search, HttpSession session ,Model model) throws Exception {
+		
+		String sessionid = (String)session.getAttribute("sessionid");
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("item", item);
+		map.put("search", search);
+
+		List<ProductDTO> searchList = productDAO.searchList(map);
+		
+		// 찜 set 
+				for (ProductDTO dto : searchList) {
+					int productseq = (int)dto.getId();
+					
+					int zzim = 0; 
+					Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+					if(zzimcheck!=null) {
+						zzim = 1; 
+					}
+					
+					dto.setZzim(zzim);
+				}
+				
+				int boardlength = searchList.size();
+		
+		model.addAttribute("boardlength", boardlength);
+		model.addAttribute("searchList", searchList);
+		return "product/searchList";
+	}
+	
+	
+	
+	
 	// 물품 상세페이지 
 	@GetMapping("/product/{productid}")
 	public String oneProduct(@PathVariable("productid")int boardid, Model model, HttpSession session) throws Exception {
@@ -214,22 +250,6 @@ public class ProductController {
 	}
 
 	
-	
-	// 검색
-	@GetMapping("/searchproduct")
-	public String searchList(String item, String search, Model model) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("item", item);
-		map.put("search", search);
-
-		List<ProductDTO> searchList = productDAO.searchList(map);
-		
-		model.addAttribute("searchList", searchList);
-		return "product/searchList";
-	}
-	
-	
 	// 찜 
 		@ResponseBody
 		@PostMapping("/product/zzim")
@@ -251,10 +271,6 @@ public class ProductController {
 			return "{\"result\" : \"" + zzimCheck + "\", \"result2\" : \"" + zzim + "\" }";
 		}
 
-	
-	
-		
-		
 		
 	
 	
