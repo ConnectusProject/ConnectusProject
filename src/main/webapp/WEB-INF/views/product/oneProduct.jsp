@@ -212,7 +212,6 @@
                         <div class="goods-detail-text">${oneBoard.contents}</div>
 <!-- 채팅버튼 -->                        
                         <div class="goods-detail-chatbutton">
-                            <div>💬 
             
             <form id="chatSubmit_form" action="/chatMessage" method="GET" >
 			<a href="javascript:{}" onclick="chatSubmit()">
@@ -220,12 +219,9 @@
 				<input type="hidden" name="sellerId" value="${oneBoard.userId}"/>
 				<input type="hidden" name="pr_id" value="${oneBoard.id}"/>
 				<input type="hidden" name="pr_title" value="${oneBoard.title}"/>
-				<button id="btn_chat">
-					채팅
-				</button>
+				<button id="btn_chat">💬채팅</button>
 			</a>
 		   </form>
-                            </div>
                         
 <!-- 찜 버튼 -->                        
                             <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span></div>
