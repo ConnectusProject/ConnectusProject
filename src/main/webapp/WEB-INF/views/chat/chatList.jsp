@@ -16,8 +16,8 @@ var sessionid = '${sessionid}';
 alert(sessionid);
 
 //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
-function addChatDivImg(idx, pr_id, buyerId ) {
-        $(document.body).append('<div class= chatMessageInfo' + idx + '><div class="wrapPr_img"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId + '">'+pr_id+'번 채팅방입장</a></div><div class="wrapSellerTitle' +
+function addChatDivImg(idx, pr_id, buyerId, pr_title ) {
+        $(document.body).append('<div class= chatMessageInfo' + idx + '><div class="wrapPr_img"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId + '">'+pr_title+'채팅방입장</a></div><div class="wrapSellerTitle' +
                 idx +
                 '"></div></div>');
 }
@@ -41,7 +41,7 @@ function getChatList() {
              var length = parsed.chatList.length;
              for (var i = 0; i < length; i++) {
                  //채팅방 갯수만큼 반복문을 돌면서 채팅방 틀(div, img 태그)를 만들어줌 
-                 addChatDivImg(i, parsed.chatList[i].pr_id, parsed.chatList[i].buyerId );
+                 addChatDivImg(i, parsed.chatList[i].pr_id, parsed.chatList[i].buyerId, parsed.chatList[i].pr_title );
              }
         }
     });
