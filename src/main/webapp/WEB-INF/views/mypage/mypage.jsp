@@ -15,6 +15,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp" />
+<jsp:include page="/WEB-INF/views/mypage/delete.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
 <div>
 	<div >내 정보</div>
 			<table>		
