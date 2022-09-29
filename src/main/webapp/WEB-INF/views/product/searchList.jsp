@@ -68,7 +68,10 @@
 
 
 
-                            <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img1}">
+                            
+                            <div class="product-item-img">
+                                <img alt="사진이 없어요" width=90% height=95% src="http://localhost:8090/upload/${board.img1}">
+                            </div>
                             <div class="product-item-num" id="boardid${vs.index}" style="display:none">${board.id}</div>
                             <div class="product-item-title"><a href="/product/${board.id}">${board.title}</a></div>
                             <div class="product-item-location">${board.boardRegion}</div>
