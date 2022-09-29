@@ -79,12 +79,12 @@ $(document).ready(function(){
   }); //on updatebutton
 
  
-  var img1 = '${updateBoard.img1}'; 
-  var img2 = '${updateBoard.img2}'; 
-  var img3 = '${updateBoard.img3}'; 
-  var img4 = '${updateBoard.img4}'; 
-  var img5 = '${updateBoard.img5}'; 
-  var img6 = '${updateBoard.img6}'; 
+  var img1 = '${updateProduct.img1}'; 
+  var img2 = '${updateProduct.img2}'; 
+  var img3 = '${updateProduct.img3}'; 
+  var img4 = '${updateProduct.img4}'; 
+  var img5 = '${updateProduct.img5}'; 
+  var img6 = '${updateProduct.img6}'; 
   
   // 기존 이미지 file 에 등록 
   if( img1 != ""){
@@ -168,39 +168,39 @@ $(document).ready(function(){
 
 <!-- 기존 이미지 파일들 불러오기 -->		
 <div id="here">
-<c:if test="${!empty updateBoard.img1}" >
+<c:if test="${!empty updateProduct.img1}" >
 <span>
-<img id="img1" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img1}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img1" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="1"/>
 </c:if>
-<c:if test="${!empty updateBoard.img2}" >
+<c:if test="${!empty updateProduct.img2}" >
 <span>
-<img id="img2" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img2}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img2" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="2"/>
 </c:if>
-<c:if test="${!empty updateBoard.img3}" >
+<c:if test="${!empty updateProduct.img3}" >
 <span>
-<img id="img3" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img3}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img3" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="3"/>
 </c:if>
-<c:if test="${!empty updateBoard.img4}" >
+<c:if test="${!empty updateProduct.img4}" >
 <span>
-<img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img4}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="4"/>
 </c:if>
-<c:if test="${!empty updateBoard.img5}" >
+<c:if test="${!empty updateProduct.img5}" >
 <span>
-<img id="img5" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img5}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img5" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="5"/>
 </c:if>
-<c:if test="${!empty updateBoard.img6}" >
+<c:if test="${!empty updateProduct.img6}" >
 <span>
-<img id="img6" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateBoard.img6}" style='cursor:pointer' onclick='delImg(this)'>
+<img id="img6" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
 </span>
 <c:set var="count" value="6"/>
 </c:if>
@@ -208,12 +208,12 @@ $(document).ready(function(){
 
 <div id="count">${count}</div>
 
-<form id="uploadForm" action="/product/${updateBoard.id}/updateprocess" method="post" enctype="multipart/form-data">
+<form id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
  <table border=5>
-<tr><th>물품</th><td><input type="text" name="title" value="${updateBoard.title}" > </td></tr>
-<tr><th>내용</th><td><textarea name="contents" rows="30" cols="60">${updateBoard.contents}</textarea> </td></tr>
-<tr><th>동네</th><td><input type="text" name="boardRegion" value="${updateBoard.boardRegion}" readonly > </td></tr>
-<tr><th>오너</th><td><input type="text" name="userId" value="${updateBoard.userId}" readonly > </td></tr>
+<tr><th>물품</th><td><input type="text" name="title" value="${updateProduct.title}" > </td></tr>
+<tr><th>내용</th><td><textarea name="contents" rows="30" cols="60">${updateProduct.contents}</textarea> </td></tr>
+<tr><th>동네</th><td><input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > </td></tr>
+<tr><th>오너</th><td><input type="text" name="userId" value="${updateProduct.userId}" readonly > </td></tr>
 </table>
 
 <br>
