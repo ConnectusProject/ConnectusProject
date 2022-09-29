@@ -21,11 +21,27 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 			location.href = "boardContent";
 	});
 </script>
+<script>
+//글쓰기 권한 설정
+$(document).ready(function(){
+	let sessionId = '${sessionScope.sessionid}';
+	
+	$("#register").on('click', function(){
+		if(sessionid == null){e.preventDefault();
+		alert("로그인 먼저 하세요.")
+		}
+		
+	});
+});
+</script>
+
+
 
 </head>
 <body>
     <div class="container-box">
         <div class="main-container">
+        <jsp:include page="/WEB-INF/views/boardheader.jsp" />
             <custom-navbar></custom-navbar>
 
   
@@ -54,10 +70,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                     <tr class="list-list">
                         
                         <!-- <td>${board.seq }</td> -->
-<<<<<<< HEAD
 
-=======
->>>>>>> board
                         <td style="padding-left : 30%;"><a href="boarddetail?seq=${board.seq }">${board.title }</a>
                         <img alt="상품이미지가없습니다." width=100 height=100 src="http://localhost:8090/upload/${board.img }"></td>
                         <td style="text-align: center;">${board.writer }</td>
@@ -77,7 +90,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                     <input class="search" style="margin-left:2%;" type="text" placeholder="🔍" name="boardsearch"
                         id="boardsearch">
                     <input class="search-button" type="submit" value="검색">
-                 <button onclick="writeLink()"><a href="boardwrite">글쓰기</a></button>
+                 <button id="register" onclick="writeLink()"><a href="boardwrite">글쓰기</a></button>
                 </form>
             </footer>
         	</div>
@@ -133,4 +146,3 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
         crossorigin="anonymous"></script>
 </body>
 </html>
-

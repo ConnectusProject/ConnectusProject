@@ -9,15 +9,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
-<script src="js/jquery-3.6.0.min.js" ></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/product.css">
+<script src="${path}/js/jquery-3.6.0.min.js"></script>
+<script src="${path}/js/navbar.js"></script>
 
 <script>
-
+var Imgcount = 0; 
+//이미지 파일 업로드 취소 
 function delImg(_this){
 	 if(!confirm("이 사진을 지울까요?")){
 		 return false; 
-		} else{  $(_this).parent('span').remove(); 
-		
+		} else{  
+			$(_this).parent('span').remove(); 
+			Imgcount--; 
 		
 		switch ($(_this).attr('src').substring(29)) {
 	 	case $("#file1").val():
@@ -28,41 +34,43 @@ function delImg(_this){
 	 		$("#file3").val($("#file4").val());
 	 		$("#file4").val($("#file5").val());
 	 		$("#file5").val($("#file6").val());
+	 		$("#file6").val("");
+	 		
 	 	    break;
 	    case $("#file2").val():
 	 		 $("#file2").val("");
 	    	 $("#file2").val($("#file3").val());
  			 $("#file3").val($("#file4").val());
  			 $("#file4").val($("#file5").val());
- 			 $("#file5").val($("#file6").val());	
+ 			 $("#file5").val($("#file6").val());
+ 		   	 $("#file6").val("");
 	 	    break;
 	 	case $("#file3").val():
 	 		 $("#file3").val("");
 			 $("#file3").val($("#file4").val());
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file4").val():
 	 		 $("#file4").val("");
 		 	 $("#file4").val($("#file5").val());
-		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file5").val($("#file6").val());
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file5").val():
 	 		 $("#file5").val("");
 		 	 $("#file5").val($("#file6").val());	
+		 	 $("#file6").val("");
 	 	    break;
 	 	case $("#file6").val():
 	 		 $("#file6").val("");
 	 	    break;
 		 	}//switch
-
 		} //if
 	} //delImg
 
-
 $(document).ready(function(){
-	var Imgcount = 0; 
-
 	// 이미지 업로드 
 		$("#imgFile").change(function(e) {
 		e.preventDefault();
@@ -93,9 +101,8 @@ $(document).ready(function(){
             str += '</span>';
 
             $(str).appendTo('#here');
-			
-			
-		 	
+
+            
 		 	switch ("") {
 		 	case $("#file1").val():
 		 		 $("#file1").val(resp.result);
@@ -116,39 +123,36 @@ $(document).ready(function(){
 		 		 $("#file6").val(resp.result);
 		 	    break;
 		 	}
-			
+		 	
 		 	Imgcount++;
 		 	
-		} // success 
-	 
-		}); // ajax 
-		
+				} // success 
+			}); // ajax 
 		}); // onclick
 	
 }); // onload 
-
 </script>
-
 </head>
+
 <body>
+    <div class="container-box">
+        <div class="main-container">
+            <custom-navbar></custom-navbar>
 
-<h1>물품등록</h1><div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
 
-<br>
-<br>
-
+<h1 class="mt-5">물품등록</h1><div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
 <div id="here"></div>
 
 <form  id="uploadForm" action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
 
-<table border=5>
-<tr><th>물품</th><td><input type="text" name="title" > </td></tr>
-<tr><th>내용</th><td><textarea id="contents" name="contents" rows="30" cols="60"> </textarea> </td></tr>
-<tr><th>동네</th><td><input type="text" name="boardRegion" value="API동" readonly > </td></tr>
-<tr><th>오너</th><td><input type="text" name="userId" value="${sessionScope.sessionid }" readonly > </td></tr>
-</table>
+<div class="product-insert-table">
+<input type="text" name="title" placeholder="제목">
+<textarea id="contents" name="contents" rows="20" cols="60" placeholder="내용"></textarea>
+<input type="text" name="boardRegion" value="API동" placeholder="사는 곳" readonly  >
+<input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly >
+</div>
 
-<br>
+
 물품사진 : <input id="imgFile" type="file" name="imgFile"><br>
 <input id="file1" type="text" style="display:none" name="file1">
 <input id="file2" type="text" style="display:none" name="file2">
@@ -156,20 +160,20 @@ $(document).ready(function(){
 <input id="file4" type="text" style="display:none" name="file4">
 <input id="file5" type="text" style="display:none" name="file5">
 <input id="file6" type="text" style="display:none" name="file6">
-
-
-<br>
-
 <Br>
-
-<input type="submit" value="물품등록">
-
+<input type="submit" value="물품등록" class="product-insert-button">
 </form>
-
-<br>
-<br>
 <hr>
 
+</div>
+</div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+crossorigin="anonymous"></script>
 </body>
 </html>

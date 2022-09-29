@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <script src="js/jquery-3.6.0.min.js" ></script>
+
+<script>
+	
+
+</script>
+
 </head>
 <body>  	  
 	<!-- 본문 -->
@@ -21,7 +27,8 @@
 			</div>
 			<textarea rows=10 cols=100 name="contents" placeholder="내용을 입력하세요."></textarea>
 			<br>물품사진 : <input type="file" name="file1"><br>
-			<input class="write-button" type=submit value="글쓰기">
+			<h3>사진은 *.png, *.jpeg만 가능합니다</h3>
+			<input id="register" class="write-button" type=submit value="글쓰기">
 	</form>
 
 </body>

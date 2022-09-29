@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +10,11 @@
 <script>
 
 $(function() {
-	let sessionId = '<%= session.getAttribute("id") %>';
+	let sessionId = '<%=session.getAttribute("sessionid")%>';
 	let list = [];
 	
 	$.ajax({
-		url: ${param.seq} + "/getAllComment",
+		url: "boarddetail/" + ${param.seq} + "/getAllComment",
 		data: {seq: ${param.seq}},
 		type: 'post',
 		dataType:'json',
@@ -48,22 +48,25 @@ $(function() {
 
 
 $(document).ready(function(){
+
 	$("#submitBtn").on("click", function() {
 		let secret;
-		let sessionId = '<%= session.getAttribute("id") %>';
-		let seq = '<%= request.getParameter("seq") %>';
+		let sessionId = '<%=session.getAttribute("sessionid")%>';
+		let seq = '<%=request.getParameter("seq")%>';
 
 		if($("#contents").val() != '') {
 			if($("#secretCheckBtn").is(":checked") == true) { secret = 1 } else { secret = 0 };
 
 
 			$.ajax({
-				url: ${param.seq}  + '/insertComment',
+				url: "boarddetail/" + ${param.seq} + "/insertComment",
 				data: {writer: sessionId, contents: $("#contents").val(), secret: secret, seq: seq},
 				type: 'post',
 				dataType:'json',
 				success: function(res) {
-					$("#comment").append("<li></li>");
+					alert("check");
+					$("#comment").append("<li></li>"); 
+					
 					let listNum = document.querySelectorAll("#comment li").length;
 					
 					$("#comment li:last-child").addClass("commentList" + listNum);
@@ -110,7 +113,7 @@ $(document).ready(function(){
 			if($("#secretUpdateBtn").is(":checked") == true) { updateSecret = 1 } else { updateSecret = 0 };
 			
 			$.ajax({
-				url: ${param.seq} + '/updateComment',
+				url: "boarddetail/" + ${param.seq} + "/updateComment",
 				data: {updateContents: $("#updateContents").val(), updateSecret: updateSecret, commentSeq: $(".commentSeq").val() },
 				type: 'post',
 				dataType:'json',
@@ -132,7 +135,7 @@ $(document).ready(function(){
 			let commentSeq = $(e.target).prevAll(".commentSeq").val();
 	
 			$.ajax({
-				url: ${param.seq} + '/deleteComment',
+				url: "boarddetail/" + ${param.seq} + "/deleteComment",
 				data: {commentSeq: commentSeq },
 				type: 'post',
 				success: function(res) {
@@ -152,66 +155,81 @@ $(document).ready(function(){
 <body>
 	<div class="container">
 
-  
 
-	<div class="detail-box">
-		<table style="font-family: 'Gowun Dodum'" border=5>
-			<tr style="height : 5%;">
-				<td class="detail-title">${seqList.title}</td>
-			<tr style="height : 5%;">
-				<td class="detail-subtitle">${seqList.seq} | ${seqList.writingtime }</td>
-				<td class="detail-subtitle">${seqList.writer}</td>
-				<td class="detail-subtitle">조회수 ${seqList.viewcount }</td>
-			<tr style="height : 80%;" >
-				<td class="detail-text" >${seqList.contents }</td>
-				
-			</tr>                
-			<tr>
-				<td class="detail-button" colspan=2>
-				<form action="boardupdate/${seqList.seq}">
-					<input type="submit" value="수정" id="updatebtn" 
-						style=" width: 80px; height: 30px;">&nbsp;
-				</form>
-				<form action="boarddelete">
-				<input type="hidden" name="seq" value="${seqList.seq}" >
-					<input type="submit" value="삭제" id="deletebtn" style="width: 80px; height: 30px;">
-					</form>
-				</td>			
-		</table>
+
+		<div class="detail-box">
+			<table style="font-family: 'Gowun Dodum'" border=5>
+				<tr style="height: 5%;">
+					<td class="detail-title">${seqList.title}</td>
+				<tr style="height: 5%;">
+					<td class="detail-subtitle">${seqList.seq}|
+						${seqList.writingtime }</td>
+					<td class="detail-subtitle">${seqList.writer}</td>
+					<td class="detail-subtitle">조회수 ${seqList.viewcount }</td>
+				<tr style="height: 80%;">
+					<td class="detail-text">${seqList.contents }</td>
+
+				</tr>
+				<tr>
+					<td class="detail-button" colspan=2>
+						<form action="boardupdate/${seqList.seq}">
+							<input type="submit" value="수정" id="updatebtn"
+								style="width: 80px; height: 30px;">&nbsp;
+						</form>
+						<form action="boarddelete">
+							<input type="hidden" name="seq" value="${seqList.seq}">
+							<input type="submit" value="삭제" id="deletebtn"
+								style="width: 80px; height: 30px;">
+						</form>
+					</td>
+			</table>
+		</div>
 	</div>
-	</div>
-	<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${seqList.img }"> <br>
+	<img alt="사진이 없어요" width=200 height=200
+		src="http://localhost:8090/upload/${seqList.img }">
+	<br>
 
 
-	
-				
-	
+
+
+
 	<!-- Comments Form -->
 	<title>Connectus comment</title>
 </head>
 <body>
 	<div class="commentBox">
 		<div id="commentNum">댓글 0</div>
-			
-		<form action="${param.seq}" method="post">
-			<% if(session.getAttribute("id") != null) { %>
-				<textarea placeholder="댓글을 작성해주세요." width="300px" id="contents" name="contents"></textarea>
-	            <div class="commentBtn">
-			        <input id="submitBtn" type="button" value="댓글달기">
-	            	<div class="secret"><span>비밀글 </span><input id="secretCheckBtn" type="checkbox" name="secret"></div>
-	    			<input id="boardSeq" type="hidden" name="boardSeq" value="${param.seq}">
-	    			<input id="writer" type="hidden" name="writer" value="${param.writer}">
-	    		</div>
-    		<% } else { %>
-				<textarea placeholder="로그인 후 작성해주세요." width="300px" readonly></textarea>
-    		<% } %> 
-    	</form>
 
-    	<ul id="comment"></ul>
+		<form action="${param.seq }" method="post">
+			<%
+			if (session.getAttribute("sessionid") != null) {
+			%>
+			<textarea placeholder="댓글을 작성해주세요." width="300px" id="contents"
+				name="contents"></textarea>
+			<div class="commentBtn">
+				<input id="submitBtn" type="button" value="댓글달기">
+				<div class="secret">
+					<span>비밀글 </span><input id="secretCheckBtn" type="checkbox"
+						name="secret">
+				</div>
+				<input id="boardSeq" type="hidden" name="boardSeq"
+					value="${param.seq}"> <input id="writer" type="hidden"
+					name="writer" value="${param.writer}">
+			</div>
+			<%
+			} else {
+			%>
+			<textarea placeholder="로그인 후 작성해주세요." width="300px" readonly></textarea>
+			<%
+			}
+			%>
+		</form>
+
+		<ul id="comment"></ul>
 	</div>
-				
 
-	
+
+
 
 </body>
 </html>

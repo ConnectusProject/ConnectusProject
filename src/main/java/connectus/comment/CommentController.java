@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -25,11 +25,12 @@ public class CommentController {
 	
 	
 	@ResponseBody
-	@GetMapping("/boarddetail/{boardSeq}/insertComment")
+	@RequestMapping("/boarddetail/{boardSeq}/insertComment")
 
-	public CommentDTO inserComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
+	public CommentDTO insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
 		commentDAO.insertComment(dto);
 		return commentDAO.getComment(dto.getComment_seq());
+		
 	}
 	
 	@ResponseBody
@@ -42,6 +43,7 @@ public class CommentController {
 		
 		commentDAO.updateComment(dto);
 		return commentDAO.getComment(commentSeqInt);
+		
 	}
 	
 	@ResponseBody
