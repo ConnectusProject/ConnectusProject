@@ -26,7 +26,7 @@
                     alert("로그인이 필요합니다.");
                 }
             });
-            0
+            
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
@@ -170,6 +170,7 @@
 
         </div>
     </div>
+    
 
 
 

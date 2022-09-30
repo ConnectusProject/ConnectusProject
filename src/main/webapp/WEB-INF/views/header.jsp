@@ -41,7 +41,7 @@
 				<!--Header-->
 				<header class="header-box">
 					<div class="header-menu-logo-box">
-						<span><img src="../../../resources/static/pictures/menu-icon.png"
+						<span><img src="../../../pictures/menu-icon.png"
 								class="header-menu-button"></span>
 						<span>Connect Us</span>
 					</div>
@@ -66,20 +66,35 @@
 					<% if(session.getAttribute("sessionid") == null) { %>
 					<div class="basic-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/product.png"
+							<span class="menu-icon"><img src="../../../pictures/product.png"
 									alt=""></span>
 							<span class="menu-title">전체 물품</span>
 						</div>
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/community.png"
+							<span class="menu-icon"><img src="../../../pictures/community.png"
 									alt=""></span>
 							<span class="menu-title">커뮤니티</span>
 						</div>
 					</div>
 					<% } else { %>
+						<div class="basic-menu-box">
+						<div class="nav-menu-box">
+							<span class="menu-icon"><img src="../../../pictures/product.png"
+									alt=""></span>
+							<span class="menu-title">전체 물품</span>
+						</div>
+						<div class="nav-menu-box">
+							<span class="menu-icon"><img src="../../../pictures/community.png"
+									alt=""></span>
+							<span class="menu-title">커뮤니티</span>
+						</div>
+					</div>
+					
+					
+					
 					<div class="after-login-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/chat.png"
+							<span class="menu-icon"><img src="../../../pictures/chat.png"
 									alt=""></span>
 							<span class="menu-title">채팅리스트</span>
 						</div>
