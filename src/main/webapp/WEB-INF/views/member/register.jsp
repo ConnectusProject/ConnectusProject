@@ -65,7 +65,7 @@ $(document).ready(function(){
                     <input type="text" id="sample6_detailAddress" placeholder="상세주소">
                 </div>
                 <div>
-                    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="text" id="sample6_extraAddress" name="region" placeholder="참고항목">
                     <input type="hidden" id="address" name="address" value="">	
                 </div>
             </div>

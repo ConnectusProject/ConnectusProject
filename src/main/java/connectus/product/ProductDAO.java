@@ -27,7 +27,6 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> searchList(HashMap<String, String> searchType);
 	
-	
 		// 찜 조회 
 		public Object zzimCount(int productseq, String memberId) throws Exception;
 	

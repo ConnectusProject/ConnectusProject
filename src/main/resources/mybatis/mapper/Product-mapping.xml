@@ -41,12 +41,5 @@
 	 	select * from product where ${item} like concat('%', #{search}, '%') 
 	 	order by createdAt desc 
 	 </select>
-	
-	
-	
-	
-	
-	
-	
 
 </mapper>

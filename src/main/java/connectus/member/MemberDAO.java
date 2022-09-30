@@ -27,5 +27,7 @@ public interface MemberDAO {
 	MemberDTO findId(@Param(value="name")String name, @Param(value="phone")String phone) throws Exception;
 
 	public void updatePassword(@Param(value="userid")String userid,@Param(value="pw")String pw);
+	
+	public String getRegion(String userid);
 
 }
