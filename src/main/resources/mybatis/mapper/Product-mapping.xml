@@ -41,5 +41,15 @@
 	 	select * from product where ${item} like concat('%', #{search}, '%') 
 	 	order by createdAt desc 
 	 </select>
+	 
+	 
+	 <!-- 이웃 검색 -->
+	<select id="neighborList" resultType="productdto">
+	 	select * from product where boardRegion = #{boardRegion}
+	 	order by createdAt desc 
+	 </select>
+	 
+	 
+	 
 
 </mapper>
