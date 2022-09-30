@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,11 +38,11 @@ public class CommentController {
 	@PostMapping("/boarddetail/{boardSeq}/updateComment")
 	public CommentDTO updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
 		int commentSeqInt = Integer.parseInt(commentSeq);
-		System.out.println(commentSeqInt);
+//		System.out.println(commentSeqInt);
 		dto.setContents(updateContents);
 		dto.setSecret(updateSecret);
 		dto.setComment_seq(commentSeqInt);
-		
+		System.out.println(dto.toString());
 		commentDAO.updateComment(dto);
 		return commentDAO.getComment(commentSeqInt);
 		
