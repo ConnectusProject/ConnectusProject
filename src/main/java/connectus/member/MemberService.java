@@ -62,9 +62,14 @@ public class MemberService  {
 	}
 	
 	public boolean emailCheck(String userid,String email) {
-		MemberDTO member = (MemberDTO) memberDAO.onemember(userid);
-		if(member!=null && member.getName().equals(userid)) {
+		MemberDTO member = (MemberDTO) memberDAO.onemember_check(userid);
+		if(member!=null && member.getUserid().equals(userid)) {
+			if(member.getEmail().equals(email)) {
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
 			return false;
