@@ -1,184 +1,192 @@
-@charset "UTF-8";
-@font-face {
-  font-family: "배민체";
-  src: url(../fonts/BMYEONSUNG_ttf.ttf);
-}
-body {
-  margin: 0;
-  font-family: "배민체";
-  background-color: rgb(239, 253, 247);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-div {
-  box-sizing: border-box;
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .login-container {
+  position: absolute;
+  top: 0%;
   width: 100vw;
-  position: relative;
-}
-
-.container-left {
-  position: absolute;
-  width: 40%;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
 }
 
-.container-left > img {
+.login-box {
+  background-color: white;
+  width: 25rem;
+  height: 25rem;
+  border-radius: 10px;
+}
+
+.login-box-title {
   width: 100%;
-  height: 100%;
-}
-
-.container-left > p {
-  position: absolute;
-  font-size: 5vw;
-  top: 20%;
-  color: rgb(45, 133, 37);
-}
-
-.container-right {
-  position: absolute;
-  width: 60%;
-  height: 100vh;
-  right: 0;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
+  color: rgb(142, 191, 188);
+}
+
+.login-box-title span {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.login-box-sign-box {
+  width: 100%;
+  height: 13%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.right-title {
-  font-size: 4vw;
+.login-box-sign-box > div {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.right-id {
-  width: 30vw;
-  height: 9vh;
-  border: solid 6px rgb(222, 247, 223);
-  border-radius: 50px;
-  font-size: 2vw;
-  padding-left: 2vw;
+.login-box-signin-button {
+  height: 100%;
+  border-bottom: solid 3px rgb(142, 191, 188);
+  color: rgb(142, 191, 188);
 }
 
-.right-pw {
-  width: 30vw;
-  height: 9vh;
-  border: solid 6px rgb(222, 247, 223);
-  border-radius: 50px;
-  margin-top: 1vh;
-  font-size: 2vw;
-  padding-left: 2vw;
+.login-box-form {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  line-height: 0.5;
 }
 
-.right-login-btn {
-  width: 33vw;
-  height: 9vh;
-  border: solid 6px rgb(183, 250, 185);
-  border-radius: 50px;
-  background-color: rgb(45, 133, 37);
-  font-size: 1.8vw;
+.login-input {
+  width: 90%;
+  height: 3rem;
+  background-color: rgb(228, 227, 227);
+  border: none;
+  border-radius: 5px;
+  padding-left: 1rem;
+}
+
+.login-button {
+  width: 90%;
+  height: 3rem;
+  border: none;
+  background-color: rgb(142, 191, 188);
   color: white;
-  margin-top: 1vh;
-  cursor: pointer;
 }
 
-.kakao-naver-login > img {
-  width: 3vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  margin-top: 3vh;
+.login-box-find-box {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.right-findpw {
-  margin-left: 15vw;
-  margin-top: 2vh;
+.login-box-find-box button {
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: none;
+  background: none;
+  text-decoration: none;
 }
 
-.right-findpw > span {
-  font-size: 1.2vw;
-  margin-left: 2vw;
+.login-box-kakao-naver {
+  margin-top: 1rem;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.right-findpw > a {
-    text-decoration: none;
+.login-box-kakao-naver img {
+  width: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.signup-box {
+  background-color: white;
+  width: 28rem;
+  border-radius: 10px;
+}
+
+.signup-box-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(142, 191, 188);
+}
+
+.signup-box-title span {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.signup-box-sign-box {
+  width: 100%;
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box-sign-box > div {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box-signup-button {
+  height: 100%;
+  border-bottom: solid 3px rgb(142, 191, 188);
+}
+
+.signup-box-signup-button a {
+  color: rgb(142, 191, 188);
+}
+
+.signup-box input {
+  margin: 0.5rem;
+  background-color: rgb(228, 227, 227);
+  border: none;
+  border-radius: 5px;
+  padding-left: 0.5rem;
+}
+
+.signup-check-button {
+  margin: 0.5rem;
+  border-radius: 5px;
+  width: 20%;
+  border: none;
+  background-color: rgb(142, 191, 188);
+  color: white;
 }
 
 .signup-button {
-    border : none;
-    background: none;
-    font-family: 배민체;
-    font-size: 1.2vw;
-    margin-left: 2vw;
-    cursor: pointer;
-}
-
-.signup-button:hover {
-  color:  rgb(45, 133, 37);
-}
-
-.signup-container {
-  margin-top: 5%;
-  z-index: 1;
-  width: 40vw;
-  height: 85vh;
-  background-color: rgb(239, 253, 247);
-  padding-left: 2vw;
-  border: rgb(45, 133, 37) solid 4px;
-  border-radius: 10px;
-  position: relative;
-}
-
-.signup-container input {
-  width: 15vw;
-  height: 3vh;
-  margin: 0.2vw;
-  border: solid 3px rgb(45, 133, 37);
-  border-radius: 10px;
-  background-color: rgb(219, 243, 219);
-}
-
-.signup-container > div {
-  line-height: 0.1;
-}
-
-.signup-container p {
-  font-size: 1.2vw;
-  margin: 0;
-  margin-bottom: 1.5vh;
-  margin-top: 3vh;
-}
-
-.signup-container > div button {
-  height: 3.4vh;
-  margin-left: 0.2vw;
-  border: solid 3px rgb(45, 133, 37);
-  border-radius: 10px;
-  background-color: rgb(16, 80, 16);
+  margin: 0.5rem;
+  width: 95%;
+  height: 2.5rem;
+  border: none;
+  background-color: rgb(142, 191, 188);
   color: white;
-  font-size: 0.7vw;
+  border-radius: 5px;
 }
 
-.signup-container-button {
-  margin-left: 0.2vw;
-  border: solid 3px rgb(45, 133, 37);
-  border-radius: 10px;
-  background-color: rgb(16, 80, 16);
-  color: white;
-  font-size: 0.7vw;
-  width: 8vw;
-  height: 5vh;
-  font-size: 1vw;
-  margin-top: 1vh;
-}
-
-.close {
-  display: none;
-}/*# sourceMappingURL=sign.css.map */
+input:focus {
+  outline-style: solid;
+  outline-width: 3px;
+  outline-color: rgb(142, 191, 188);
+}/*# sourceMappingURL=login.css.map */

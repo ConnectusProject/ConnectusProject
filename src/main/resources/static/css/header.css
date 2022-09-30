@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+}
+
+.main-container {
+  width: 100vw;
+  background-color: rgb(253, 251, 251);
+  position: relative;
+  padding: 0.1;
+}
+
+.header-box {
+  position: fixed;
+  width: 100%;
+  height: 4.5rem;
+  background-color: rgb(236, 236, 236);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-menu-logo-box {
+  width: 18%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.header-menu-logo-box span {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.header-search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-search-box-inner {
+  width: 30rem;
+  margin: 0;
+}
+
+.header-sign-box {
+  width: 20%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.header-sign-box a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.nav-box {
+  position: fixed;
+  height: 100vh;
+  background-color: rgb(221, 221, 221);
+  z-index: 1;
+}
+
+.nav-box img {
+  width: 2rem;
+}
+
+.basic-menu-box {
+  padding-top: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: none;
+  align-items: center;
+  flex-direction: column;
+}
+
+.after-login-menu-box {
+  width: 100%;
+}
+
+.nav-menu-box {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 5rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon img {
+  width: 2rem;
+}
+
+.menu-title {
+  width: 8rem;
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.close {
+  display: none;
+}/*# sourceMappingURL=header.css.map */

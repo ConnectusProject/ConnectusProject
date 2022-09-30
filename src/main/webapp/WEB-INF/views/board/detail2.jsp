@@ -8,6 +8,7 @@
 <title>커뮤니티</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script>
+
 $(function() {
 	let sessionId = '<%=session.getAttribute("sessionid")%>';
 	let list = [];
@@ -29,10 +30,12 @@ $(function() {
 						"<span class='writer'>" + item.writer + "</span>"
 						+ "<span class='date'>" + item.writingtime + "</span>"
 						+ "<span class='isSecret'>" + (item.secret == 1 ? "비밀글입니다" : "") + "</span>"
+
 						+ (item.secret == 1 && sessionId == item.writer ? "<p class='contents'>" + item.contents + "</p>"
 								: (item.secret != 1 ? "<p class='contents'>" + item.contents + "</p>" : ""))
 						
 						+ "<input class='commentSeq' type='hidden' name='commentSeq' value=" + item.comment_seq +">"
+
 						/* + "<input class='updateContents type='hidden' name='updateContents' value=" + item.updateContents +">" */
 						+ (sessionId == item.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'><input type=hidden id=comment_seq value="+item.comment_seq+">" : "")
 				
@@ -42,6 +45,9 @@ $(function() {
 				
 				
 				
+
+						
+
 				); 
 			});
 		},
@@ -51,13 +57,19 @@ $(function() {
 		 }
 	})
 })
+
+
 $(document).ready(function(){
+
 	$("#submitBtn").on("click", function() {
 		let secret;
 		let sessionId = '<%=session.getAttribute("sessionid")%>';
 		let seq = '<%=request.getParameter("seq")%>';
+
 		if($("#contents").val() != '') {
 			if($("#secretCheckBtn").is(":checked") == true) { secret = 1 } else { secret = 0 };
+
+
 			$.ajax({
 				url: "boarddetail/" + ${param.seq} + "/insertComment",
 				data: {writer: sessionId, contents: $("#contents").val(), secret: secret, seq: seq},
@@ -137,7 +149,7 @@ $(document).ready(function(){
 	
 			$.ajax({
 				url: "boarddetail/" + ${param.seq} + "/deleteComment",
-				data: {commentSeq: $("#comment_seq").val()},
+				data: {commentSeq: commentSeq },
 				type: 'post',
 				success: function(res) {
 					$(e.target).parents("li").remove();
@@ -149,6 +161,8 @@ $(document).ready(function(){
 		} 
 	})
 });
+
+
 </script>
 </head>
 <body>

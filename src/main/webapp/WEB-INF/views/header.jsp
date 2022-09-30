@@ -1,147 +1,111 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<c:set var="path" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="${path}/js/jquery-3.6.0.min.js" ></script>
-<script>
-$(document).ready(function(){
-	$("#logoutchk").click(function(ev){
-		if(!confirm("로그아웃 하시겠습니까?")) {
-			ev.preventDefault();
-		}else {alert("로그아웃 되었습니다.")}
-	});
-	$("#deletechk").click(function(ev){
-		 if(!confirm("회원탈퇴 하시겠습니까?")) {
-			 ev.preventDefault();
-		 }else {alert("회원탈퇴가 완료되었습니다.")}
-	 });
-});
-</script>
-<title>ConnectUs</title>
-<style type="text/css">
-	* { 
-		margin: 0; 
-		padding:0; 
-	}
-	body {
-		padding-bottom: 50px;
-	}
-	a:hover {
-		opacity: 0.5;
-		transition: all 0.3s;	
-	}
-	li, ul, ol { list-style : none }
-	
-	
-	header { 
-		padding: 20px 0; 
-		margin-bottom: 30px;
-		background: skyblue;  
-	}  
-	
-	.homeBtn {
-		margin-bottom: 0;
-		padding: 20px 0;
-		text-align: center;
-	}
-	
-	.homeBtn>a {
-		font-size: 30px !important;
-		text-decoration: none;
-		color : blue;
-	}
-	
-	.user {
-		display: inline-block;
-		position: absolute;
-		left: 3%;
-		top: 25px;
-		font-size: 18px;
-		font-weight: bold; 
-	}
-	
-	.id {
-		color: orange;
-	}
-	
-	.loginBtn, .infoBtn {
-		position: absolute;
-		right: 35px;
-		top: 30px;
-		font-weight: bold;
-		font-size: 14px;
-		text-decoration: none;
-		color: #222;
-	}
-	
-	.infoBtn {
-		disply: flex;
-	}
+		<!DOCTYPE html>
+		<html>
 
-	.infoBtn a {
-		display: inline-block;
-		padding: 0 5px;
-		border-right: 1px solid gray;
-		font-weight: bold;
-		font-size: 14px;
-		text-decoration: none;
-		color: #222;
-	}
+		<head>
+			<meta charset="UTF-8">
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+				crossorigin="anonymous">
+			<script src="${path}/js/jquery-3.6.0.min.js"></script>
+			<link rel="stylesheet" href="${path}/css/header.css">
 
-	.infoBtn a:last-child {
-		padding-right: 0;
-		border-right: none;
-	}
-	
-	.nav {
-		background: #9f9f9f;  
-		background: #2186db;  
-	}
-	
-	.nav ul {
-		display: flex;
-		justify-content: center; 
-		max-width: 1000px; 
-		margin: 0 auto; 
-		padding: 0;
-	}
+			<script>
+				$(document).ready(function () {
+					$("#logoutchk").click(function (ev) {
+						if (!confirm("로그아웃 하시겠습니까?")) {
+							ev.preventDefault();
+						} else { alert("로그아웃 되었습니다.") }
+					});
+					$("#deletechk").click(function (ev) {
+						if (!confirm("회원탈퇴 하시겠습니까?")) {
+							ev.preventDefault();
+						} else { alert("회원탈퇴가 완료되었습니다.") }
+					});
+				});
+			</script>
+			<title>ConnectUs</title>
 
-	.nav li {
-		flex-basis: 30%;
-		padding: 10px 0;
-		text-align: center;
-	}
-	.nav a {
-		font-size: 16px;
-		text-decoration: none; 
-		color: #fff;
-		font-weight: bold;
-	}
-</style>
-<script>
-$(document).ready(function(){
-	
-});
-</script>
-</head>
-<body>
-<header>
-	<h1 class="homeBtn"><a href='/'>ConnectUs</a></h1>
-	<% if(session.getAttribute("sessionid") == null) { %>
-		<a class="loginBtn" href="../login">로그인</a>
-	<% } else { %>
-		<span class="user"><span class="id">${sessionScope.sessionid}</span>님 환영합니다!</span>
-		<div class='infoBtn'>
-			<a href="/memberupdate" class="mypage">마이페이지 </a>
-			<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
-		</div>
-	<% } %>
-	
-</header>
-</body>
-</html>
+			<script>
+				$(document).ready(function () {
+
+				});
+			</script>
+		</head>
+
+		<body>
+
+				<!--Header-->
+				<header class="header-box">
+					<div class="header-menu-logo-box">
+						<span><img src="../../../resources/static/pictures/menu-icon.png"
+								class="header-menu-button"></span>
+						<span>Connect Us</span>
+					</div>
+					<div class="header-search-box">
+						<div class="input-group header-search-box-inner">
+							<input type="text" class="form-control" placeholder="Recipient's username"
+								aria-label="Recipient's username" aria-describedby="button-addon2">
+							<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+						</div>
+					</div>
+					<div class="header-sign-box">
+						<% if(session.getAttribute("sessionid") == null) { %>
+						<a class="loginBtn" href="../login">로그인</a>
+						<% } else { %>
+						<a href="/memberupdate" class="mypage">마이페이지 </a>
+                <a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
+						<% } %>
+					</div>
+				</header>
+				<!--Navbar-->
+				<nav class="nav-box">
+					<% if(session.getAttribute("sessionid") == null) { %>
+						<div class="basic-menu-box">
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png" alt=""></span>
+								<div class="menu-title close"><a href="/">전체 물품</a></div>
+							</div>
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
+								<span class="menu-title close"><a href="/">커뮤니티</a></span>
+							</div>
+							</div>
+							<div class="after-login-menu-box">
+								<div class="nav-menu-box">
+									<span class="menu-icon"><img src="../../../../resources/static/pictures/chat.png" alt=""></span>
+									<span class="menu-title close"><a href="">채팅시스템</a></span>
+								</div>
+							</div>
+					<% } else { %>
+						<div class="basic-menu-box">
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png" alt=""></span>
+								<div class="menu-title close"><a href="/">전체 물품</a></div>
+							</div>
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
+								<span class="menu-title close"><a href="/">커뮤니티</a></span>
+							</div>
+							</div>
+							<div class="after-login-menu-box">
+								<div class="nav-menu-box">
+									<span class="menu-icon"><img src="../../../../resources/static/pictures/chat.png" alt=""></span>
+									<span class="menu-title close"><a href="">채팅시스템</a></span>
+								</div>
+							</div>
+					<% } %>
+				</nav>
+
+
+
+
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+				crossorigin="anonymous"></script>
+		</body>
+
+		</html>

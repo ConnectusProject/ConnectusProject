@@ -11,9 +11,9 @@
     <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="${path}/css/header.css">
     <link rel="stylesheet" href="${path}/css/product.css">
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
-    <script src="${path}/js/navbar.js"></script>
     <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -25,8 +25,8 @@
                     e.preventDefault();
                     alert("로그인이 필요합니다.");
                 }
-            });  
-
+            });
+            0
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
@@ -76,16 +76,13 @@
 </head>
 
 <body>
-    <div class="container-box">
-        <div class="main-container">
-            <custom-navbar></custom-navbar>
+    <div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
 
-            <h1 class="mt-5"> ConnectUS 전체 품목 </h1>
-            
-            
-            <a href="http://localhost:8090/chatList">채팅리스트</a>
 
-            <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
             <div class="allproduct-container">
                 <!-- 검색기능  -->
@@ -105,10 +102,10 @@
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 
-                        <c:forEach items="${allproduct}" var="product" varStatus="vs">
-                    <div class="product-box-item">
-                 
-                    <!-- 날짜 몇일 전으로 변환 -->
+                    <c:forEach items="${allproduct}" var="product" varStatus="vs">
+                        <div class="product-box-item">
+
+                            <!-- 날짜 몇일 전으로 변환 -->
                             <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
                             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -124,7 +121,7 @@
                                 <c:set var="dateDiffShow" value="오늘" />
                             </c:if>
 
-					<!-- 찜 표시 -->
+                            <!-- 찜 표시 -->
                             <c:if test="${product.zzim == '0'}">
                                 <c:set var="zzim"
                                     value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
@@ -135,37 +132,40 @@
                                     value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
                             </c:if>
 
-                     <!-- 대표 이미지 -->
+                            <!-- 대표 이미지 -->
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
                                     <img alt="사진이 없어요" width=90% height=95%
                                         src="http://localhost:8090/upload/${product.img1}">
                                 </div>
                             </c:if>
-                            
+
                             <c:if test="${empty product.img1}">
                                 <div class="product-item-img">
                                     <img alt="사진이 없어요" width=90% height=95%
                                         src="http://localhost:8090/upload/noimg.png">
                                 </div>
                             </c:if>
-                            
+
 
                             <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
-                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
+                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
+                            </div>
                             <div class="product-item-location">${product.boardRegion}</div>
                             <div class="product-item-owner">${product.userId}</div>
                             <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
-                    </div>
-                        </c:forEach>
-                    
-                </div>
-            </div>
-            <br>
+                        </div>
 
-            <br>
-            <a href="http://localhost:8090/">홈으로</a>
+                    </c:forEach>
+
+                </div>
+
+                <a href="http://localhost:8090/">홈으로</a>
+                <a href="http://localhost:8090/chatList">채팅리스트</a>
+                <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+            </div>
+
 
 
         </div>

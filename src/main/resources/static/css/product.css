@@ -1,448 +1,79 @@
-@charset "UTF-8";
-@font-face {
-  font-family: "배민체";
-  src: url(../fonts/BMYEONSUNG_ttf.ttf);
-}
-body {
-  margin: 0;
+.content-container {
+  position: absolute;
+  left: 10vw;
+  width: 1500px;
+  margin-top: 11rem;
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  font-family: "배민체";
-  position: relative;
-  background-color: rgb(239, 253, 247);
-}
-
-div {
-  box-sizing: border-box;
-}
-
-.container-box {
-  width: 100vw;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.main-container {
-  width: 80rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: center;
-}
-
-.main-container-top {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.main-logo {
-  margin: 1rem;
-  font-size: 2rem;
-}
-
-.main-login {
-  margin: 1rem;
-  margin-top: 1.5rem;
-  font-size: 1.2rem;
-  margin-right: 2rem;
-}
-
-.main-container-title {
-  width: 100%;
-  height: 10rem;
-  font-size: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-container {
-  border-top: 0.5px solid rgb(45, 133, 37);
-  box-shadow: 0 3px 5px rgb(45, 133, 37);
-  width: 100vw;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.main-navbar {
-  width: 80rem;
-  justify-content: space-between;
-}
-
-.main-navbar > a {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.main-navbar {
-  width: 80rem;
-  justify-content: space-between;
-}
-
-.main-navbar > a {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.goods-container-content-box {
-  width: 70rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.content-box-carousel {
-  width: 100%;
-  height: 25rem;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  font-size: 2rem;
-}
-
-.content-box-goods {
-  width: 80%;
-  display: flex;
-  justify-content: left;
-  flex-wrap: wrap;
-  padding-top: 3rem;
-}
-
-.content-box-goods > div {
-  margin: 2rem;
-  width: 26%;
-  height: 25rem;
-  position: relative;
-  border-radius: 10px;
-}
-
-.picture-box {
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  top: 0;
-  border-bottom: solid 3px rgb(178, 235, 178);
-}
-
-.goods-picture {
-  width: 100%;
-  height: 80%;
-  border-radius: 10px;
-}
-
-.goods-title {
-  width: 100%;
-  position: absolute;
-  top: 55%;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.goods-address {
-  position: absolute;
-  top: 71%;
-  font-size: 1.2rem;
-}
-
-.goods-owner {
-  position: absolute;
-  bottom: 3%;
-  font-size: 1.1rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.goods-pick {
-  position: absolute;
-  bottom: 7%;
-  right: 0%;
-  border: none;
-  background: none;
-  font-size: 1.2rem;
-}
-
-.goods-detail-container {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.goods-detail-img {
-  width: 100%;
-  height: 20rem;
-  position : relative;
-}
-
-.detail-carousel > div {
-  height : 35rem;
-  height : 100%;
-}
-
-.detail-carousel > div img {
-  width : 35rem;
-  height : 20rem;
-}
-
-
-.goods-detail-title {
-  width: 100%;
-  height: 3.5rem;
-  margin-top: 1rem;
-  position: relative;
-  border-top: solid 3px rgb(45, 133, 37);
-  border-bottom: solid 3px rgb(45, 133, 37);
-  padding: 0;
-}
-
-.detail-title-num {
-  position: absolute;
-  left: 1%;
-  top: 1%;
-}
-
-.detail-title-title {
-  position: absolute;
-  left: 15%;
-  top: 1%;
-}
-
-.detail-title-date {
-  position: absolute;
-  right: 3%;
-  top: 1%;
-}
-
-.detail-title-hour {
-  position: absolute;
-  left: 1%;
-  bottom: 1%;
-}
-
-.detail-title-location {
-  position: absolute;
-  right: 18%;
-  bottom: 1%;
-}
-
-.detail-title-owner {
-  position: absolute;
-  right: 3%;
-  bottom: 1%;
-}
-
-.goods-detail-content {
-  width: 100%;
-  border-bottom: solid 3px rgb(45, 133, 37);
-}
-
-.goods-detail-text {
-  width: 100%;
-  border: none;
-  background: none;
-}
-
-.goods-detail-chatbutton {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.5rem;
-}
-
-.goods-detail-chatbutton > div {
-  width: 8%;
-  height: 2rem;
-}
-
-.zzim-button {
-  width : 100%;
-  height : 100%;
-}
-
-.goods-detail-button-box {
-  width: 100%;
-  height: 3rem;
-  display :flex;
-  justify-content: space-between;
-}
-.reserve-button {
-  border: none;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  color: white;
-  background-color: rgb(98, 167, 98);
-  margin: 1rem;
-}
-
-.update-delete-button {
-  border: none;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  color: white;
-  background-color: rgb(98, 167, 98);
-  margin: 1rem;
-}
-
-.reserved-connect-container {
-  margin-top : 4rem;
-  width : 70rem;
-  display : flex;
-  justify-content:center;
-  flex-direction: column;
-  align-items: center;
-  position : relative;
-}
-
-.reserved-connect {
-  margin-top: 1rem;
-  position : absolute;
-  width : 60rem;
-  top : 2rem;
-  text-align: center;
-}
-
-.reserved-connect th {
-  border-top :rgb(45, 133, 37) solid 3px;
-  border-bottom :rgb(179, 238, 174) solid 1px;
-  height : 3rem;
-}
-
-.reserved-connect td {
-  height : 2rem;
-}
-
-.product-insert-table {
-  display : flex;
-  flex-direction: column;
-}
-
-.product-insert-table input {
-  margin-top : 1rem;
-  margin-bottom : 1rem;
-  width : 100%;
-  height : 3rem;
-  border :rgb(179, 238, 174) 2px solid;
-  border-radius: 10px;
-}
-
-.product-insert-table textarea {
-  border :rgb(179, 238, 174) 2px solid;
-  border-radius: 10px;
-}
-
-.product-insert-button {
-  border: none;
-  width: 100%;
-  height : 3rem;
-  border-radius: 10px;
-  color: white;
-  background-color: rgb(98, 167, 98);
-  font-size: 1.5rem;
 }
 
 .allproduct-container {
-  width : 75rem;
-  position : relative;
-}
-
-.allproduct-search-box {
-  text-align: right;
-  padding-right : 3.6rem;
-}
-
-.allproduct-search-box select {
-  border :rgb(134, 209, 127) 3px solid;
-  height : 2rem;
-  border-radius: 10px;
-}
-
-.search-box-search-input {
-  border :rgb(134, 209, 127) 3px solid;
-  height : 2rem;
-  width : 20%;
-  border-radius: 10px;
-}
-
-.search-box-search-button {
-  border :rgb(134, 209, 127) 3px solid;
-  height : 2rem;
-  width : 5%;
-  border-radius: 10px;
-  background-color: rgb(78, 233, 78);
-  color : white;
+  width: 100%;
+  display: flex;
+  justify-content: none;
+  align-items: center;
+  flex-direction: column;
 }
 
 .allproduct-product-box {
-  width : 100%;
-  display : flex;
+  width: 1500px;
+  display: flex;
   justify-content: left;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .product-box-item {
-  width : 25%;
-  height : 27rem;
-  margin : 3rem;
-  position : relative;
-  font-size : 1rem;
+  width: 17rem;
+  height: 22rem;
+  margin: 3rem;
+  position: relative;
+  background-color: red;
 }
 
 .product-item-img {
-  text-align: center;
-  border-bottom :rgb(134, 209, 127) 5px solid;
-  height : 58%;
+  width: 100%;
+  height: 65%;
+  border-bottom: solid 3px rgb(204, 200, 200);
 }
 
 .product-item-title {
-  width : 100%;
-  position : absolute;
-  bottom : 32%;
-  left : 3%;
-}
-
-.product-item-date {
-  position : absolute;
-  left : 3%;
-  bottom : 23%;
-}
-
-.product-item-location {
-  position : absolute;
-  left : 3%;
-  bottom : 13%;
+  position: absolute;
+  top: none;
+  right: none;
+  bottom: 26%;
+  left: 3%;
 }
 
 .product-item-owner {
-  position : absolute;
-  left : 3%;
-  bottom : 3%;
+  position: absolute;
+  top: none;
+  right: none;
+  bottom: 3%;
+  left: 3%;
+}
+
+.product-item-date {
+  position: absolute;
+  top: none;
+  right: none;
+  bottom: 17%;
+  left: 3%;
+}
+
+.product-item-location {
+  position: absolute;
+  top: none;
+  right: none;
+  bottom: 10%;
+  left: 3%;
 }
 
 .product-item-zzim {
-  position : absolute;
-  bottom : 3%;
-  right : 3%;
-}
-
-
-
-/*# sourceMappingURL=goods.css.map */
+  position: absolute;
+  top: none;
+  right: 3%;
+  bottom: 3%;
+  left: none;
+}/*# sourceMappingURL=product.css.map */
