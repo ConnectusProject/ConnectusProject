@@ -34,9 +34,10 @@ public class CommentController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/boarddetail{boardSeq}/updateComment")
+	@PostMapping("/boarddetail/{boardSeq}/updateComment")
 	public CommentDTO updateComment(CommentDTO dto, String updateContents, int updateSecret, String commentSeq) {
 		int commentSeqInt = Integer.parseInt(commentSeq);
+		System.out.println(commentSeqInt);
 		dto.setContents(updateContents);
 		dto.setSecret(updateSecret);
 		dto.setComment_seq(commentSeqInt);
@@ -47,8 +48,9 @@ public class CommentController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/boarddetail{boardSeq}/deleteComment")
+	@PostMapping("/boarddetail/{boardSeq}/deleteComment")
 	public void deleteComment(int commentSeq) {
+		System.out.println(commentSeq);
 		commentDAO.deleteComment(commentSeq);
 	}
 	
