@@ -14,6 +14,7 @@ public class MemberDTO {
 		this.email = email;
 		this.address = address;
 		this.region = region; 
+		
 	}
 	
 	
