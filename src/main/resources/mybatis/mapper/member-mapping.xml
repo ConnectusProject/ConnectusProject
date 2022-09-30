@@ -37,4 +37,5 @@
 	select region from members where userid=#{userid}
 </select>
 
+
 </mapper>
