@@ -10,6 +10,18 @@ public class MemberDTO {
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.region = region; 
+		
+	}
+	
+	
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getUserid() {
