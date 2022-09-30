@@ -1,0 +1,15 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.content-container {
+  position: absolute;
+  left: 10vw;
+  width: 1500px;
+  margin-top: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: none;
+  flex-direction: column;
+}/*# sourceMappingURL=list.css.map */
