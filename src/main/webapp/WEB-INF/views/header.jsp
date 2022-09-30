@@ -55,7 +55,7 @@
 					<% if(session.getAttribute("sessionid")==null) { %>
 						<a class="loginBtn" href="../login">로그인</a>
 						<% } else { %>
-							<a href="/memberupdate" class="mypage">마이페이지 </a>
+							<a href="/mypage" class="mypage">마이페이지 </a>
 							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 							<% } %>
 				</div>
