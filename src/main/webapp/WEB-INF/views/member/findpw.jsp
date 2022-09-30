@@ -29,14 +29,15 @@ $(document).ready(function(){
 			<button id="btn" type="button">임시 비밀번호 발급</button>
 		</div>
 
-</body>
+
 <script>
-let userid = $('#userid');
-let email = $('#email');
+let userid = $('#userid').val();
+let email = $('#email').val();
 let btn = $('#btn');
 
 
-$(btn).on('click', function(){
+btn.on('click', function(){
+	
 	  if($(userid).val() =="") {
 	        $(userid).next('label').addClass('warning');
 	        setTimeout(function() {
@@ -47,22 +48,24 @@ $(btn).on('click', function(){
 	        $(email).next('label').addClass('warning');
 	    }
 	    else{
+	    	alert(111);
 	    	$.ajax({
 	    		type:"GET",
-	    		url:"/findPw/check",
+	    		url:"/check/findPw",
 	    		data:{
-	    			"userid":userid,
-	    			"email":email,	    			
+	    			userid: $('#userid').val(),
+	    			email: $('#email').val()   			
 	    		},
 	    		success: function(res){
-	    			alert("success");
-	    			if(res['check']){
+	    			alert(112);
+	    			if(res.check){
+	    				alert("1");
 	    				$.ajax({
 	    					type:"POST",
-	    					url:"/findPw/sendEmail",
+	    					url:"/check/findPw/sendEmail",
 	    					data:{
-	    						"userid":userid,
-	    						"email":email,    						
+	    						"userid":$('#userid').val(),
+	    						"email":$('#email').val()    						
 	    					}
 	    				});
 	    				alert("메일을 통해 임시 비밀번호를 발급했습니다.")
@@ -77,5 +80,5 @@ $(btn).on('click', function(){
 });
 
 </script>
-
+</body>
 </html>
