@@ -13,17 +13,17 @@ import connectus.reservation.ReservationDTO;
 @Repository
 public interface ProductDAO {
 	
-	public List<ProductDTO> allBoard();
+	public List<ProductDTO> allProduct();
 	
-	public ProductDTO oneBoard(int boardid);
+	public ProductDTO oneProduct(int productid);
 	
-	public int insertBoard(ProductDTO dto);
+	public int insertProduct(ProductDTO dto);
 	
-	public List<ReservationDTO> allReservation(int boardid);
+	public List<ReservationDTO> allReservation(int productid);
 
-	public int deleteBoard(int boardid);
+	public int deleteProduct(int productid);
 	
-	public int updateBoard(ProductDTO dto);
+	public int updateProduct(ProductDTO dto);
 	
 	public List<ProductDTO> searchList(HashMap<String, String> searchType);
 	

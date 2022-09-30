@@ -1,10 +1,13 @@
 package connectus.member;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,7 +99,34 @@ public class MemberController {
 		return String.valueOf(check);
 	}
 	
+	@GetMapping(value="/findid")
+	public String findid() {
+		return "member/findid";
+	}
 	
+	@PostMapping(value="/findid")
+	public String findid_result(@RequestParam Map<String,String> info, Model model) {
+		String name = info.get("name");
+		String phone = info.get("phone");
+		
+		try {
+			MemberDTO member = memserv.findId(name,phone);
+			if(member!=null) {
+				model.addAttribute("member", member);
+				
+				return "member/findid_result";
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "member/findid_join";
+	}
+	
+	
+	@GetMapping(value="/findpw")
+	public String findpw() {
+		return "member/findpw";
+	}
 	
 	
 }

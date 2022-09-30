@@ -26,8 +26,8 @@
     
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
-            let productseq = '${oneBoard.id}';
-            let userId = '${oneBoard.userId}';
+            let productseq = '${oneProduct.id}';
+            let userId = '${oneProduct.userId}';
 
 
             // 세션과 일치할 시, 수정 삭제 버튼 생성 
@@ -117,7 +117,7 @@
             <h1 class="mt-5"> ConnectUS 상세 품목</h1>
 
 <!-- 날짜 몇일전으로 변환 -->
-            <fmt:parseDate value="${oneBoard.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
+            <fmt:parseDate value="${oneProduct.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
             <c:set var="current" value="<%=new java.util.Date()%>" />
             <fmt:formatDate value="${current}" pattern="yyyy-MM-dd" var="currentForm" />
@@ -132,12 +132,12 @@
             </c:if>
 
 <!-- 찜 상태에 따라 이미지 -->
-            <c:if test="${oneBoard.zzim == '0'}">
+            <c:if test="${oneProduct.zzim == '0'}">
                 <c:set var="zzim"
                     value="<img src='http://localhost:8090/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
             </c:if>
 
-            <c:if test="${oneBoard.zzim == '1'}">
+            <c:if test="${oneProduct.zzim == '1'}">
                 <c:set var="zzim"
                     value="<img src='http://localhost:8090/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
             </c:if>
@@ -150,40 +150,40 @@
                     <div class="goods-detail-img">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
-                                    <c:if test="${!empty oneBoard.img1}">
+                                    <c:if test="${!empty oneProduct.img1}">
                                 <div class="carousel-item active">
                                         <img alt="상품이미지가 없습니다."
-                                            src="http://localhost:8090/upload/${oneBoard.img1}">
+                                            src="http://localhost:8090/upload/${oneProduct.img1}">
                                 </div>
                                     </c:if>
-                                    <c:if test="${!empty oneBoard.img2}">
+                                    <c:if test="${!empty oneProduct.img2}">
                                 <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
-                                            src="http://localhost:8090/upload/${oneBoard.img2}">
+                                            src="http://localhost:8090/upload/${oneProduct.img2}">
                                 </div>
                                     </c:if>
-                                    <c:if test="${!empty oneBoard.img3}">
+                                    <c:if test="${!empty oneProduct.img3}">
                                 <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다." 
-                                            src="http://localhost:8090/upload/${oneBoard.img3}">
+                                            src="http://localhost:8090/upload/${oneProduct.img3}">
                                 </div>
                                     </c:if>
-                                    <c:if test="${!empty oneBoard.img4}">
+                                    <c:if test="${!empty oneProduct.img4}">
                                 <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
-                                            src="http://localhost:8090/upload/${oneBoard.img4}">
+                                            src="http://localhost:8090/upload/${oneProduct.img4}">
                                 </div>
                                     </c:if>
-                                    <c:if test="${!empty oneBoard.img5}">
+                                    <c:if test="${!empty oneProduct.img5}">
                                 <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다."
-                                            src="http://localhost:8090/upload/${oneBoard.img5}">
+                                            src="http://localhost:8090/upload/${oneProduct.img5}">
                                 </div>
                                     </c:if>
-                                    <c:if test="${!empty oneBoard.img6}">
+                                    <c:if test="${!empty oneProduct.img6}">
                                 <div class="carousel-item">
                                         <img alt="상품이미지가 없습니다." 
-                                            src="http://localhost:8090/upload/${oneBoard.img6}">
+                                            src="http://localhost:8090/upload/${oneProduct.img6}">
                                 </div>
                                     </c:if>
                             </div>
@@ -202,30 +202,26 @@
                     
 <!-- 상세페이지 내용 -->
                     <div class="goods-detail-title">
-                        <span class="detail-title-num">${oneBoard.id}</span>
-                        <span class="detail-title-title">${oneBoard.title}</span>
-                        <span class="detail-title-hour">${dateDiffShow} (${oneBoard.createdAt})</span>
-                        <span class="detail-title-location">${oneBoard.boardRegion}</span>
-                        <span class="detail-title-owner">${oneBoard.userId}</span>
+                        <span class="detail-title-num">${oneProduct.id}</span>
+                        <span class="detail-title-title">${oneProduct.title}</span>
+                        <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
+                        <span class="detail-title-location">${oneProduct.boardRegion}</span>
+                        <span class="detail-title-owner">${oneProduct.userId}</span>
                     </div>
                     <div class="goods-detail-content">
-                        <div class="goods-detail-text">${oneBoard.contents}</div>
+                        <div class="goods-detail-text">${oneProduct.contents}</div>
 <!-- 채팅버튼 -->                        
                         <div class="goods-detail-chatbutton">
-                            <div>💬 
             
             <form id="chatSubmit_form" action="/chatMessage" method="GET" >
 			<a href="javascript:{}" onclick="chatSubmit()">
 				<input type="hidden" name="buyerId" value="${sessionid}"/>
-				<input type="hidden" name="sellerId" value="${oneBoard.userId}"/>
-				<input type="hidden" name="pr_id" value="${oneBoard.id}"/>
-				<input type="hidden" name="pr_title" value="${oneBoard.title}"/>
-				<button id="btn_chat">
-					채팅
-				</button>
+				<input type="hidden" name="sellerId" value="${oneProduct.userId}"/>
+				<input type="hidden" name="pr_id" value="${oneProduct.id}"/>
+				<input type="hidden" name="pr_title" value="${oneProduct.title}"/>
+				<button id="btn_chat">💬채팅</button>
 			</a>
 		   </form>
-                            </div>
                         
 <!-- 찜 버튼 -->                        
                             <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span></div>
@@ -234,15 +230,15 @@
                     
 <!-- 예약 버튼 -->                    
                     <div class="goods-detail-button-box">
-                        <form action="http://localhost:8090/product/${oneBoard.id}/reservationinput" method="post">
-                            <input type="hidden" value="${oneBoard.userId}" name="userId">
+                        <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
+                            <input type="hidden" value="${oneProduct.userId}" name="userId">
                             <button class="reserve-button" id="reserve" type="submit" value="예약하기">예약하기</button>
                         </form>
                         
 <!-- 수정, 삭제 버튼 -->                        
-                        <form id="update" action="http://localhost:8090/product/${oneBoard.id}/update">
+                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
                         </form>
-                        <form id="delete" action="http://localhost:8090/product/${oneBoard.id}/delete" method="post">
+                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
                         </form>
                     </div>
                 </div>

@@ -13,14 +13,22 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "connectus.product")
 @ComponentScan(basePackages = "connectus.reservation")
 @ComponentScan(basePackages = "connectus.comment")
+
+@ComponentScan(basePackages = "connectus.mypage")
+
 @ComponentScan(basePackages = "connectus.chat")
+
 
 @MapperScan(basePackages = "connectus.comment")
 @MapperScan(basePackages = "connectus.member")
 @MapperScan(basePackages = "connectus.board")
 @MapperScan(basePackages = "connectus.product")
 @MapperScan(basePackages = "connectus.reservation")
+
+@MapperScan(basePackages = "connectus.mypage")
+
 @MapperScan(basePackages = "connectus.chat")
+
 public class ConnectusApplication {
 
 	public static void main(String[] args) {
