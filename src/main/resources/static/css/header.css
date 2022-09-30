@@ -85,16 +85,28 @@ body {
   width: 100%;
   margin-bottom: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .menu-icon {
   width: 5rem;
-  text-align: center;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon img {
+  width: 2rem;
 }
 
 .menu-title {
-  width: 10rem;
+  width: 8rem;
   text-align: left;
+  margin-left: 1rem;
+}
+
+.close {
+  display: none;
 }/*# sourceMappingURL=header.css.map */

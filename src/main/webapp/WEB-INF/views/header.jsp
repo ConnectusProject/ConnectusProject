@@ -64,26 +64,39 @@
 				<!--Navbar-->
 				<nav class="nav-box">
 					<% if(session.getAttribute("sessionid") == null) { %>
-					<div class="basic-menu-box">
-						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/product.png"
-									alt=""></span>
-							<span class="menu-title">전체 물품</span>
-						</div>
-						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/community.png"
-									alt=""></span>
-							<span class="menu-title">커뮤니티</span>
-						</div>
-					</div>
+						<div class="basic-menu-box">
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png" alt=""></span>
+								<div class="menu-title close"><a href="/">전체 물품</a></div>
+							</div>
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
+								<span class="menu-title close"><a href="/">커뮤니티</a></span>
+							</div>
+							</div>
+							<div class="after-login-menu-box">
+								<div class="nav-menu-box">
+									<span class="menu-icon"><img src="../../../../resources/static/pictures/chat.png" alt=""></span>
+									<span class="menu-title close"><a href="">채팅시스템</a></span>
+								</div>
+							</div>
 					<% } else { %>
-					<div class="after-login-menu-box">
-						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../resources/static/pictures/chat.png"
-									alt=""></span>
-							<span class="menu-title">채팅리스트</span>
-						</div>
-					</div>
+						<div class="basic-menu-box">
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png" alt=""></span>
+								<div class="menu-title close"><a href="/">전체 물품</a></div>
+							</div>
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
+								<span class="menu-title close"><a href="/">커뮤니티</a></span>
+							</div>
+							</div>
+							<div class="after-login-menu-box">
+								<div class="nav-menu-box">
+									<span class="menu-icon"><img src="../../../../resources/static/pictures/chat.png" alt=""></span>
+									<span class="menu-title close"><a href="">채팅시스템</a></span>
+								</div>
+							</div>
 					<% } %>
 				</nav>
 
