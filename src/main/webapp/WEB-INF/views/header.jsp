@@ -67,12 +67,12 @@
 						<div class="nav-menu-box">
 							<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png"
 									alt=""></span>
-							<div class="menu-title close"><a href="/">전체 물품</a></div>
+							<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 						</div>
 						<div class="nav-menu-box">
 							<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png"
 									alt=""></span>
-							<span class="menu-title close"><a href="/">커뮤니티</a></span>
+							<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 						</div>
 					</div>
 					<div class="after-login-menu-box">
@@ -87,12 +87,12 @@
 							<div class="nav-menu-box">
 								<span class="menu-icon"><img src="../../../../resources/static/pictures/product.png"
 										alt=""></span>
-								<div class="menu-title close"><a href="/">전체 물품</a></div>
+								<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 							</div>
 							<div class="nav-menu-box">
 								<span class="menu-icon"><img src="../../../../resources/static/pictures/community.png"
 										alt=""></span>
-								<span class="menu-title close"><a href="/">커뮤니티</a></span>
+								<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 							</div>
 						</div>
 						<div class="after-login-menu-box">
