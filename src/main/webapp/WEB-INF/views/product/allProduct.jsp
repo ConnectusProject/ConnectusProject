@@ -82,6 +82,8 @@
 
             <h1 class="mt-5"> ConnectUS 전체 품목 </h1>
             
+            <a href="http://localhost:8090/neighbor">내 이웃</a>
+            
             
             <a href="http://localhost:8090/chatList">채팅리스트</a>
 

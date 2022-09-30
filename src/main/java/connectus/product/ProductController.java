@@ -105,6 +105,42 @@ public class ProductController {
 	}
 	
 	
+	// 내 이웃 
+		@GetMapping("/neighbor")
+		public String neighborList(String item, String search, HttpSession session ,Model model) throws Exception {
+			
+			String sessionid = (String)session.getAttribute("sessionid");
+			String extraaddr = memberDAO.getRegion(sessionid);
+			String region = extraaddr.substring(2,extraaddr.length()-1);
+			
+
+			List<ProductDTO> searchList = productDAO.neighborList(region);
+			
+			// 찜 set 
+					for (ProductDTO dto : searchList) {
+						int productseq = (int)dto.getId();
+						
+						int zzim = 0; 
+						Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+						if(zzimcheck!=null) {
+							zzim = 1; 
+						}
+						
+						dto.setZzim(zzim);
+					}
+					
+					int productlength = searchList.size();
+			
+			model.addAttribute("productlength", productlength);
+			model.addAttribute("searchList", searchList);
+			return "product/neighbor";
+		}
+	
+	
+	
+	
+	
+	
 	
 	
 	// 물품 상세페이지 
