@@ -1,18 +1,29 @@
 package connectus.member;
 
 public class MemberDTO {
-	String userid, pw , name, phone, email, address;
+	String userid, pw , name, phone, email, address, region;
 	 
 	
 	public MemberDTO() {}
 	
-	public MemberDTO(String userid, String pw, String name, String phone, String email, String address) {
+	public MemberDTO(String userid, String pw, String name, String phone, String email, String address, String region) {
 		this.userid = userid;
 		this.pw = pw;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.region = region; 
+	}
+	
+	
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getUserid() {

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import connectus.ApiClient;
 import connectus.geoapiignore;
+import connectus.member.MemberDAO;
 import connectus.reservation.ReservationDTO;
 
 
@@ -30,6 +31,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductDAO productDAO;
+	
+	@Autowired
+	MemberDAO memberDAO; 
 	
 	
 	// 홈 
@@ -132,10 +136,13 @@ public class ProductController {
 	}
 	
 	
-	
 	//글작성 폼 
 	@GetMapping("/registerProduct")
-	public String registerProduct() {
+	public String registerProduct(HttpSession session, Model model) {
+		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = extraaddr.substring(2,extraaddr.length()-1);
+		model.addAttribute("region", region);
 		
 		return "product/insertProductForm";
 	}
@@ -165,17 +172,17 @@ public class ProductController {
 		}
 				
 		// 지역 이름 set 	( 이거 동네는 매번 위치를 킬 수 없으니까 회원가입할 때, 혹은 기간에 한번씩만 인증하는식으로 받아서 DTO 에 넣어두고 사용하자 )
-			ApiClient apiClient = new ApiClient(geoapiignore.geoaccess, geoapiignore.geosecret);
-			
-			String geo = apiClient.run(geoapiignore.geoip);
-			
-			int index = geo.indexOf("r3");
-			int index2 = geo.indexOf("lat");
-			
-			String region = geo.substring(index+6, index2-3);
-			System.out.println(region);
-			
-			dto.setBoardRegion(region); 
+//			ApiClient apiClient = new ApiClient(geoapiignore.geoaccess, geoapiignore.geosecret);
+//			
+//			String geo = apiClient.run(geoapiignore.geoip);
+//			
+//			int index = geo.indexOf("r3");
+//			int index2 = geo.indexOf("lat");
+//			
+//			String region = geo.substring(index+6, index2-3);
+//			System.out.println(region);
+//			
+//			dto.setBoardRegion(region); 
 			
 			productDAO.insertProduct(dto);
 		return "redirect:/allproduct";
