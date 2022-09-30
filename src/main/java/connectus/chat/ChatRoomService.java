@@ -24,8 +24,8 @@ public class ChatRoomService {
     @Autowired
     ChatRoomMapper chatRoomMapper;
     
-    String fileUploadPath = "//Users/youngban/upload/";
-    						//"c:/upload/"; 
+//    String fileUploadPath = "//Users/youngban/upload/";
+    String fileUploadPath = "c:/upload/";
  
     public void addChatRoom(ChatRoom chatRoom) throws IOException {
         
