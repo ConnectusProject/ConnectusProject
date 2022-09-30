@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../../../resources/static/css/header.css">
     <link rel="stylesheet" href="../../../../resources/static/css/product.css">
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
-    <script src="../../../../resources/static/js/header.js"></script>
+
     <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -26,8 +26,8 @@
                     e.preventDefault();
                     alert("로그인이 필요합니다.");
                 }
-            });  
-0
+            });
+            0
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
@@ -77,18 +77,16 @@
 </head>
 
 <body>
-        <div class="main-container">
-            <!-- header-section -->
-            <custom-header></custom-header>
-            <!-- content-section -->
-            <div class="content-container">
+    <div class="main-container">
+        <!-- header-section -->
+        <custom-header></custom-header>
+        
 
-            
-            
-            
-         
+        <!-- content-section -->
+        <div class="content-container">
 
             <div class="allproduct-container">
+                <p class="allproduct-title">모든 물품</p>
                 <!-- 검색기능  -->
                 <form class="allproduct-search-box" action="searchproduct">
                     <select name="item">
@@ -106,45 +104,44 @@
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 
-                        <!-- <c:forEach items="${allproduct}" var="product" varStatus="vs"> -->
+                    <!-- <c:forEach items="${allproduct}" var="product" varStatus="vs"> -->
                     <div class="product-box-item">
-                 
-                    <!-- 날짜 몇일 전으로 변환 -->
-                            <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
-                            <c:set var="current" value="<%=new java.util.Date()%>" />
-                            <fmt:formatDate value="${current}" pattern="yyyy-MM-dd" var="currentForm" />
-                            <fmt:parseDate value="${currentForm}" var="now" pattern="yyyy-MM-dd" />
+                        <!-- 날짜 몇일 전으로 변환 -->
+                        <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
-                            <fmt:parseNumber value="${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true"
-                                var="dateDiff"></fmt:parseNumber>
+                        <c:set var="current" value="<%=new java.util.Date()%>" />
+                        <fmt:formatDate value="${current}" pattern="yyyy-MM-dd" var="currentForm" />
+                        <fmt:parseDate value="${currentForm}" var="now" pattern="yyyy-MM-dd" />
 
-                            <c:set var="dateDiffShow" value="${dateDiff}일전" />
+                        <fmt:parseNumber value="${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true"
+                            var="dateDiff"></fmt:parseNumber>
 
-                            <c:if test="${dateDiffShow == '0일전'}">
-                                <c:set var="dateDiffShow" value="오늘" />
-                            </c:if>
+                        <c:set var="dateDiffShow" value="${dateDiff}일전" />
 
-					<!-- 찜 표시 -->
-                            <c:if test="${product.zzim == '0'}">
-                                <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
-                            </c:if>
+                        <c:if test="${dateDiffShow == '0일전'}">
+                            <c:set var="dateDiffShow" value="오늘" />
+                        </c:if>
 
-                            <c:if test="${product.zzim == '1'}">
-                                <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
-                            </c:if>
+                        <!-- 찜 표시 -->
+                        <c:if test="${product.zzim == '0'}">
+                            <c:set var="zzim"
+                                value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                        </c:if>
 
-                     <!-- 대표 이미지 -->
-                            <!-- <c:if test="${!empty product.img1}"> -->
-                                <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
-                                        src="http://localhost:8090/upload/${product.img1}">
-                                </div>
-                            <!-- </c:if> -->
-                            
-                            <!-- <c:if test="${empty product.img1}">
+                        <c:if test="${product.zzim == '1'}">
+                            <c:set var="zzim"
+                                value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+                        </c:if>
+
+                        <!-- 대표 이미지 -->
+                        <!-- <c:if test="${!empty product.img1}"> -->
+                        <div class="product-item-img">
+                            <img alt="사진이 없어요" width=90% height=95% src="http://localhost:8090/upload/${product.img1}">
+                        </div>
+                        <!-- </c:if> -->
+
+                        <!-- <c:if test="${empty product.img1}">
                                 <div class="product-item-img">
                                     <img alt="사진이 없어요" width=90% height=95%
                                         src="http://localhost:8090/upload/noimg.png">
@@ -152,12 +149,12 @@
                             </c:if>
                              -->
 
-                            <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
-                            <div class="product-item-date">${dateDiffShow}</div>
-                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
-                            <div class="product-item-location">${product.boardRegion}</div>
-                            <div class="product-item-owner">${product.userId}</div>
-                            <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
+                        <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
+                        <div class="product-item-date">${dateDiffShow}</div>
+                        <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
+                        <div class="product-item-location">${product.boardRegion}</div>
+                        <div class="product-item-owner">${product.userId}</div>
+                        <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
                     </div>
                     <div class="product-box-item"></div>
                     <div class="product-box-item"></div>
@@ -165,8 +162,8 @@
                     <div class="product-box-item"></div>
                     <div class="product-box-item"></div>
                     <div class="product-box-item"></div>
-                        <!-- </c:forEach> -->
-                       
+                    <!-- </c:forEach> -->
+
                 </div>
 
                 <a href="http://localhost:8090/">홈으로</a>
@@ -174,13 +171,13 @@
                 <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
             </div>
 
-           
+
 
         </div>
-        </div>
+    </div>
 
 
-        
+    <script src="../../../../resources/static/js/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

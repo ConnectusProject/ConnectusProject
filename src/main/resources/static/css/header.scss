@@ -84,15 +84,25 @@ body {
     display : flex;
     width : 100%;
     margin-bottom : 1rem;
-    @include flexbox(center, center);
+    @include flexbox(space-between, center);
 }
 
 .menu-icon {
     width : 5rem;
-    text-align: center;
+    height : 3rem;
+    @include flexbox(center, center)
+}
+
+.menu-icon img {
+    width : 2rem;
 }
 
 .menu-title {
-    width : 10rem;
+    width : 8rem;
     text-align: left;
+    margin-left : 1rem;
+}
+
+.close {
+    display:none;
 }

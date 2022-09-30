@@ -1,5 +1,4 @@
 
-
         class 클래스 extends HTMLElement {
             connectedCallback(){
                 this.innerHTML = 
@@ -28,22 +27,33 @@
                 <div class="basic-menu-box">
                 <div class="nav-menu-box">
                     <span class="menu-icon"><img src="../../../../resources/static/pictures/product.png" alt=""></span>
-                     <span class="menu-title">전체 물품</span>
+                    <div class="menu-title close"><a href="/">전체 물품</a></div>
                 </div>
                 <div class="nav-menu-box">
                     <span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
-                    <span class="menu-title">커뮤니티</span>
+                    <span class="menu-title close"><a href="/">커뮤니티</a></span>
                 </div>
                 </div>
                 <div class="after-login-menu-box">
                     <div class="nav-menu-box">
                         <span class="menu-icon"><img src="../../../../resources/static/pictures/chat.png" alt=""></span>
-                        <span class="menu-title">채팅시스템</span>
+                        <span class="menu-title close"><a href="">채팅시스템</a></span>
                     </div>
                 </div>
             </nav>`
             }
         }
         customElements.define("custom-header", 클래스);
-        
+
+ 
+
+let menu =   document.querySelector('.header-menu-button');
+let menuTitle = document.querySelectorAll('.menu-title');
+
+menu.addEventListener('click', function(){
+    for(let i = 0; i<3; i++){
+        menuTitle[i].classList.toggle('close');
+    }
+    
+})
         

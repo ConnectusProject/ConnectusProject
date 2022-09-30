@@ -35,7 +35,19 @@ $(function() {
 								: (item.secret != 1 ? "<p class='contents'>" + item.contents + "</p>" : ""))
 						
 						+ "<input class='commentSeq' type='hidden' name='commentSeq' value=" + item.comment_seq +">"
-						+ (sessionId == item.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'>" : "")
+
+						/* + "<input class='updateContents type='hidden' name='updateContents' value=" + item.updateContents +">" */
+						+ (sessionId == item.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'><input type=hidden id=comment_seq value="+item.comment_seq+">" : "")
+				
+				
+			 			//ajax비동기 부분 추가 새로고침 건너고
+				
+				
+				
+				
+
+						
+
 				); 
 			});
 		},
@@ -109,6 +121,7 @@ $(document).ready(function(){
 			
 			
 		} else if($(e.target).hasClass("completeBtn")) {		// 수정완료
+			alert($("#updateContents").val());
 			let updateSecret;
 			if($("#secretUpdateBtn").is(":checked") == true) { updateSecret = 1 } else { updateSecret = 0 };
 			
