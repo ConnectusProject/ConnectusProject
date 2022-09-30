@@ -9,11 +9,12 @@ public class ChatList {
 	private String buyerId;
 	private String fileName;
 	private String createdDate;
+	private String pr_title;
+	private String img1;
 	//not in DB
 	private String content;
 	private String sendTime;
 	private String senderId;
-	private String pr_title;
 
 	
 	public ChatList() {
@@ -21,7 +22,7 @@ public class ChatList {
 
 
 	public ChatList(int id, int pr_id, String sellerId, String buyerId, String fileName, String createdDate,
-			String content, String sendTime, String senderId, String pr_title) {
+			String content, String sendTime, String senderId, String pr_title, String im1) {
 		super();
 		this.id = id;
 		this.pr_id = pr_id;
@@ -33,6 +34,7 @@ public class ChatList {
 		this.sendTime = sendTime;
 		this.senderId = senderId;
 		this.pr_title = pr_title;
+		this.img1 = img1; 
 	}
 
 	
@@ -42,7 +44,21 @@ public class ChatList {
 	public String toString() {
 		return "ChatList [id=" + id + ", pr_id=" + pr_id + ", sellerId=" + sellerId + ", buyerId=" + buyerId
 				+ ", fileName=" + fileName + ", createdDate=" + createdDate + ", content=" + content + ", sendTime="
-				+ sendTime + ", senderId=" + senderId + ", pr_title=" + pr_title + "]";
+				+ sendTime + ", senderId=" + senderId + ", pr_title=" + pr_title +"img1= " + img1 + "]";
+	}
+	
+	
+	
+	
+
+
+	public String getImg1() {
+		return img1;
+	}
+
+
+	public void setImg1(String img1) {
+		this.img1 = img1;
 	}
 
 

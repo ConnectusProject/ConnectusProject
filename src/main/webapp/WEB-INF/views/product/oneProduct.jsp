@@ -20,10 +20,10 @@
     <script>
     
     function chatSubmit() {
- 		document.getElementById('chatSubmit_form').submit();
- 	} 
-    
-    
+        document.getElementById('chatSubmit_form').submit();
+    } 
+
+        
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productseq = '${oneProduct.id}';
@@ -213,15 +213,18 @@
 <!-- 채팅버튼 -->                        
                         <div class="goods-detail-chatbutton">
             
+            <c:if test="${sessionid != oneProduct.userId }">
             <form id="chatSubmit_form" action="/chatMessage" method="GET" >
-			<a href="javascript:{}" onclick="chatSubmit()">
+			<a  id="chatLink" href="javascript:{}" onclick="chatSubmit()">
 				<input type="hidden" name="buyerId" value="${sessionid}"/>
 				<input type="hidden" name="sellerId" value="${oneProduct.userId}"/>
 				<input type="hidden" name="pr_id" value="${oneProduct.id}"/>
 				<input type="hidden" name="pr_title" value="${oneProduct.title}"/>
+				<input type="hidden" name="img1" value="${oneProduct.img1}"/>
 				<button id="btn_chat">💬채팅</button>
 			</a>
 		   </form>
+			</c:if>
                         
 <!-- 찜 버튼 -->                        
                             <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span></div>
