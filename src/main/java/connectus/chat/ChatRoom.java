@@ -10,11 +10,13 @@ public class ChatRoom {
 	private String buyerId;
 	private String fileName;
 	private Timestamp createdDate;
+	private String pr_title;
+	private String img1;
 	//not in DB
 	private String content;
 	private String sendTime;
 	private String senderId;
-	private String pr_title;
+	
 	
 	
 	
@@ -24,11 +26,11 @@ public class ChatRoom {
 	public String toString() {
 		return "ChatRoom [id=" + id + ", pr_id=" + pr_id + ", sellerId=" + sellerId + ", buyerId=" + buyerId
 				+ ", fileName=" + fileName + ", createdDate=" + createdDate + ", content=" + content + ", sendTime="
-				+ sendTime + ", senderId=" + senderId + ", pr_title=" + pr_title + "]";
+				+ sendTime + ", senderId=" + senderId + ", pr_title=" + pr_title + ", img1=" + img1 + "]";
 	}
 
 	public ChatRoom(int id, int pr_id, String sellerId, String buyerId, String fileName,
-			Timestamp createdDate) {
+			Timestamp createdDate, String pr_title, String img1) {
 		super();
 		this.id = id;
 		this.pr_id = pr_id;
@@ -36,6 +38,8 @@ public class ChatRoom {
 		this.buyerId = buyerId;
 		this.fileName = fileName;
 		this.createdDate = createdDate;
+		this.pr_title = pr_title;
+		this.img1 = img1; 
 	}
 
 	public ChatRoom() {
@@ -46,6 +50,18 @@ public class ChatRoom {
 		this.content = content;
 		this.sendTime = sendTime;
 		this.senderId = senderId;
+	}
+	
+	
+	
+	
+
+	public String getImg1() {
+		return img1;
+	}
+
+	public void setImg1(String img1) {
+		this.img1 = img1;
 	}
 
 	public int getId() {

@@ -105,6 +105,9 @@ public class ChatApplicationController {
 			 JSONObject jo = new JSONObject();
 			 jo.put("pr_id", chatList.getPr_id());
 			 jo.put("buyerId", chatList.getBuyerId());
+			 jo.put("pr_title", chatList.getPr_title());
+			 jo.put("img1", chatList.getImg1());
+			 
 			 ja.put(jo);
 		}
 		 JSONObject jsnResult = new JSONObject();
