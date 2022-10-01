@@ -14,6 +14,41 @@
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>
 	
 
+
+</head>
+<body>
+
+
+  <div class="container">
+        <div class="title_text">
+            <h2>${pr_title}</h2>
+        </div>
+        <div class="row">    
+                <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
+                <div id="content">
+                    <c:forEach var="chatRoom" items="${chatHistory}">
+                        <p>
+                            <span id="chatRoomSenderId">${chatRoom.senderId}</span><br>
+                            <span id="chatRoomContent">${chatRoom.content}</span><br>
+                            <span id="chatRoomSendTime">${chatRoom.sendTime}</span><br>
+                        </p>    
+                    </c:forEach>
+                </div>
+                <%--메시지 입력창과 보내기 버튼 --%>
+                <div class="row_3">
+                    <div class="input_group" id="sendMessage">
+                        <input type="text" placeholder="Message" id="message" class="form_control"/>
+                        <div class="input_group_append">
+                            <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
+                            <input id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
+                            <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
+                            <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
+                            <input id="id" type="hidden" value="${chatRoomInfo.id}" />                        
+                        </div>                    
+                    </div>                
+                </div>
+            </div>
+    </div>
 <script>
 
 var stompClient = null;
@@ -115,41 +150,6 @@ $(document).ready(function(){
 	
 
 </script>
-
-</head>
-<body>
-
-
-  <div class="container">
-        <div class="title_text">
-            <h2>${pr_title}</h2>
-        </div>
-        <div class="row">    
-                <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
-                <div id="content">
-                    <c:forEach var="chatRoom" items="${chatHistory}">
-                        <p>
-                            <span id="chatRoomSenderId">${chatRoom.senderId}</span><br>
-                            <span id="chatRoomContent">${chatRoom.content}</span><br>
-                            <span id="chatRoomSendTime">${chatRoom.sendTime}</span><br>
-                        </p>    
-                    </c:forEach>
-                </div>
-                <%--메시지 입력창과 보내기 버튼 --%>
-                <div class="row_3">
-                    <div class="input_group" id="sendMessage">
-                        <input type="text" placeholder="Message" id="message" class="form_control"/>
-                        <div class="input_group_append">
-                            <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
-                            <input id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
-                            <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
-                            <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
-                            <input id="id" type="hidden" value="${chatRoomInfo.id}" />                        
-                        </div>                    
-                    </div>                
-                </div>
-            </div>
-    </div>
 
 
 
