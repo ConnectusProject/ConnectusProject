@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding : 0.3;
 }
 
 .allproduct-container {
@@ -15,7 +14,6 @@
   justify-content: none;
   align-items: center;
   flex-direction: column;
-  padding : 0.1;
 }
 
 .allproduct-product-box {

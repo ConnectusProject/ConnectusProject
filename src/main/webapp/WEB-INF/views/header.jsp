@@ -65,42 +65,50 @@
 				<% if(session.getAttribute("sessionid")==null) { %>
 					<div class="basic-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../pictures/product.png"
+							<span class="menu-icon"><img src="${path}/pictures/product.png"
 									alt=""></span>
 							<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 						</div>
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../pictures/community.png"
+							<span class="menu-icon"><img src="${path}/resources/static/pictures/neighbor.png" alt=""></span>
+							<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+							</div>
+						<div class="nav-menu-box">
+							<span class="menu-icon"><img src="${path}/pictures/community.png"
 									alt=""></span>
 							<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 						</div>
 					</div>
 					<div class="after-login-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="../../../../pictures/chat.png"
+							<span class="menu-icon"><img src="${path}/pictures/chat.png"
 									alt=""></span>
-							<span class="menu-title close"><a href="">채팅시스템</a></span>
+							<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅시스템</a></span>
 						</div>
 					</div>
 					<% } else { %>
 						<div class="basic-menu-box">
 
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="../../../../pictures/product.png"
+								<span class="menu-icon"><img src="${path}/pictures/product.png"
 										alt=""></span>
 								<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 							</div>
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="../../../../pictures/community.png"
+								<span class="menu-icon"><img src="${path}/pictures/neighbor.png" alt=""></span>
+								<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+								</div>
+							<div class="nav-menu-box">
+								<span class="menu-icon"><img src="${path}/pictures/community.png"
 										alt=""></span>
 								<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 							</div>
 						</div>
 						<div class="after-login-menu-box">
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="../../../../pictures/chat.png"
+								<span class="menu-icon"><img src="${path}/pictures/chat.png"
 										alt=""></span>
-								<span class="menu-title close"><a href="">채팅시스템</a></span>
+								<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅시스템</a></span>
 							</div>
 						</div>
 						<% } %>
@@ -111,7 +119,7 @@
 				let menuTitle = document.querySelectorAll('.menu-title');
 
 				menu.addEventListener('click', function () {
-					for (let i = 0; i < 3; i++) {
+					for (let i = 0; i < 4; i++) {
 						menuTitle[i].classList.toggle('close');
 					}
 				})

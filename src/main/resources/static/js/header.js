@@ -1,8 +1,6 @@
-
-        class 클래스 extends HTMLElement {
-            connectedCallback(){
-                this.innerHTML = 
-                ` <header class="header-box">
+class 클래스 extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = ` <header class="header-box">
                 <div class="header-menu-logo-box">
                     <span><img src="../../../../resources/static/pictures/menu-icon.png" class="header-menu-button"></span>
                     <span><a href="http://localhost:8090/allproduct">Connect Us</a></span>
@@ -30,6 +28,10 @@
                     <div class="menu-title close"><a href="/">전체 물품</a></div>
                 </div>
                 <div class="nav-menu-box">
+                <span class="menu-icon"><img src="../../../../resources/static/pictures/neighbor.png" alt=""></span>
+                <div class="menu-title close"><a href="/">내 이웃</a></div>
+                </div>
+                <div class="nav-menu-box">
                     <span class="menu-icon"><img src="../../../../resources/static/pictures/community.png" alt=""></span>
                     <span class="menu-title close"><a href="/">커뮤니티</a></span>
                 </div>
@@ -40,20 +42,16 @@
                         <span class="menu-title close"><a href="">채팅시스템</a></span>
                     </div>
                 </div>
-            </nav>`
-            }
-        }
-        customElements.define("custom-header", 클래스);
+            </nav>`;
+  }
+}
+customElements.define("custom-header", 클래스);
 
- 
+let menu = document.querySelector(".header-menu-button");
+let menuTitle = document.querySelectorAll(".menu-title");
 
-let menu =   document.querySelector('.header-menu-button');
-let menuTitle = document.querySelectorAll('.menu-title');
-
-menu.addEventListener('click', function(){
-    for(let i = 0; i<3; i++){
-        menuTitle[i].classList.toggle('close');
-    }
-    
-})
-        
+menu.addEventListener("click", function () {
+  for (let i = 0; i < 4; i++) {
+    menuTitle[i].classList.toggle("close");
+  }
+});
