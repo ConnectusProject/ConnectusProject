@@ -4,7 +4,7 @@
 <mapper namespace="connectus.board.BoardDAO" >
 	<insert id="insertBoard" parameterType="boarddto">
 		insert into board(title, contents, writer, pw, viewcount, writingtime, img)
-		values(#{title} , #{contents}, #{writer}, #{pw}, 0, now(), #{img})
+		values(#{title}, #{contents}, #{writer}, #{pw}, 0, now(), #{img})
 	</insert>
 	
 	<insert id="insertboardHis" parameterType="boarddto">
@@ -74,7 +74,13 @@
 		update board 
 		   set title    = #{title}
 		      ,contents = #{contents}
+		      ,img = #{img}
 		where seq = #{seq}
+	</update>
+	
+	<update id="updateimg">
+		update board 
+		set img=#{img}
 	</update>
 	
 	

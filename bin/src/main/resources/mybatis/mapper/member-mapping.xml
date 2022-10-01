@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="connectus.member" >
+<mapper namespace="connectus.member.MemberDAO" >
 	
 <select id="memberlist" resultType="memberdto" >
 	select * from members 
 </select>
 
 <select id="onemember" resultType="memberdto" parameterType="String" >
-    select * from members where id=#{id}
+    select * from members where userid=#{userid}
+</select>
+
+<select id="onemember_check" resultType="memberdto" parameterType="String" >
+    select * from members where userid=#{userid}
 </select>
 
 <select id="onemember_phone" resultType="memberdto" parameterType="String" >
@@ -17,12 +21,33 @@
 
 <select id="login" resultType="memberdto"  parameterType="java.util.Map"  >
 			select * from members
-			 where id=#{id}
+			 where userid=#{userid}
 			 and pw=#{pw}			
 </select>
 
-<insert id="insertmember" parameterType="memberdto" >
- insert into members(id,pw,name,phone,email,address) values(#{id},#{pw},#{name},#{phone},#{email},#{address}) 
+<insert id="insertMember" parameterType="memberdto" >
+	 insert into members(userid,pw,name,phone,email,address,region) values(#{userid},#{pw},#{name},#{phone},#{email},#{address},#{region}) 
 </insert>
+
+<update id="updateTempPassword">
+ <![CDATA[
+     update members set pw=#{pw} where userid=#{userid}
+     ]]>
+</update>
+
+<delete id="deletemember" parameterType="String">
+	delete from members where userid=#{userid}
+</delete>
+
+<select id="findId" resultType="memberdto">
+	select * from members where name=#{name} and phone=#{phone}
+</select>
+
+<select id="getRegion" resultType="String">
+	select region from members where userid=#{userid}
+</select>
+
+
+
 
 </mapper>

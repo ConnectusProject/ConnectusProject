@@ -76,17 +76,22 @@
 <groupId>javax.servlet</groupId>
 <artifactId>jstl</artifactId>
 </dependency>
-	
-	<!--for tomcat restart - starter에서 선택 가능-->
+
+<!-- mailsender -->
+<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-devtools</artifactId>
-<optional>true</optional>
+<groupId>javax.mail</groupId>
+<artifactId>mail</artifactId>
+<version>1.4.7</version>
 </dependency>
-	
-	
-	
-	
+
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context-support</artifactId>
+</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
@@ -115,6 +120,29 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<!-- websocket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		
+		<!-- SockJS -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>sockjs-client</artifactId>
+		    <version>1.1.2</version>
+		</dependency>		
+		
+		
+		
+		
+		
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
 
