@@ -42,11 +42,9 @@
 
 <body>
     <div class="main-container">
-        <jsp:include page="/WEB-INF/views/header.jsp">
-            <jsp:param value="false" name="mypage" />
-        </jsp:include>
-
-
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+        <!-- content-section -->
         <div class="content-container">
 
 
