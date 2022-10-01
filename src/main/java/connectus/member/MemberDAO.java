@@ -33,7 +33,7 @@ public interface MemberDAO {
 	public List<MemberDTO> onemember_phone(String phone);	
 	
 	MemberDTO findId(@Param(value="name")String name, @Param(value="phone")String phone) throws Exception;
-
+		
 	void updateTempPassword(@Param("userid")String userid, @Param("pw")String pw) throws Exception;
 	
 	public String getRegion(String userid); 

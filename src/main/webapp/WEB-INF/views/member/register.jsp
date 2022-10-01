@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="${path}/css/header.css">
 		<link rel="stylesheet" href="${path}/css/login.css">
 		<script src="${path}/js/jquery-3.6.0.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
 			$(document).ready(function () {
 
@@ -75,12 +76,12 @@
 							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
 						</div>
 						<div>
-							<input type="text" id="sample6_extraAddress" name="region" placeholder="참고항목">
+							<input type="text" id="sample6_extraAddress" name="region" placeholder="참고항목" readonly>
 							<input type="hidden" id="address" name="address" value="">
 						</div>
 					</div>
-					<button class="signup-button" type="submit" id="btn" value="회원가입" onclick="check()"
-						disabled>회원가입</button>
+					<button class="signup-button" type="submit" id="btn" onclick="check()"
+						>회원가입</button>
 				</div>
 			</form>
 		</div>
