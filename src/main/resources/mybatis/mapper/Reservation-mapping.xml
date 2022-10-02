@@ -6,7 +6,7 @@
 <mapper namespace="connectus.reservation.ReservationDAO">
 
 
-	<!-- 전체게시물 조회 (페이징) -->
+	<!-- 예약 추가 -->
 	<insert id="insertReservation" >
 		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})

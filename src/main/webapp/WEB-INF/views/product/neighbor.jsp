@@ -19,8 +19,8 @@
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
-
-            // 물품등록시 로그인 필요
+            
+	       // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
                 if (sessionId == "") {
                     e.preventDefault();
