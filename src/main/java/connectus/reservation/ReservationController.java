@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReservationController {
@@ -29,6 +30,24 @@ public class ReservationController {
 		long boardid = dto.getBoardId();
 		
 		return "redirect:/product/"+boardid;
+	}
+	
+	@ResponseBody
+	@PostMapping("/product/reservcheck")
+	public String reservCheck(int reservId) {
+
+		int reservCheck = 0; 
+		int reservCount = reservationDAO.countReservation(reservId);
+	
+		if (reservCount == 0) {
+			reservationDAO.checkReservation(reservId);
+			reservCheck = 1;
+		} else if (reservCount == 1) {
+			reservationDAO.cancleReservation(reservId);
+		}
+
+		return "{\"result\" : \"" + reservCount + "\", \"result2\" : \"" + reservCheck + "\" }";
+		
 	}
 		
 	

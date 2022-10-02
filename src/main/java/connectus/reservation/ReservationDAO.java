@@ -9,6 +9,10 @@ public interface ReservationDAO {
 	
 	
 	public int insertReservation(ReservationDTO dto);
-	
 
+	public int checkReservation(int reservId);
+	
+	public int cancleReservation(int reservId);
+
+	public int countReservation(int reservId);
 }

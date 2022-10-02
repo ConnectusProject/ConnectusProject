@@ -11,6 +11,29 @@
 		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
+	
+	<!-- 예약 수락 -->
+	<update id="checkReservation" >
+		update reservation set 
+		reservCheck = 1
+		where id = #{reservId}
+	</update>
+
+	<!--  에약 수락 취소 -->
+	<update id="cancleReservation" >
+		update reservation set 
+		reservCheck = 0
+		where id = #{reservId}
+	</update>
+	
+	
+	<!-- 예약 상태 조회 -->
+	<select id="countReservation" resultType="int">
+		select reservCheck from reservation where id = #{reservId}
+	</select>
+	
+
+
 
 	
 </mapper>
