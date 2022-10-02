@@ -148,8 +148,8 @@ $(document).ready(function(){
 <form  id="uploadForm" action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
 
 <div class="product-insert-table">
-<input type="text" name="title" placeholder="제목">
-<textarea id="contents" name="contents" rows="20" cols="60" placeholder="내용"></textarea>
+<input type="text" name="title" placeholder="제목" required="required">
+<textarea id="contents" name="contents" rows="20" cols="60" placeholder="내용" required="required"></textarea>
 <input type="text" name="boardRegion" value="${region}" placeholder="사는 곳" readonly  >
 <input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly >
 </div>

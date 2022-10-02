@@ -1,7 +1,7 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -47,6 +47,7 @@
             }); // onclick 예약
 
 
+            
 
 
 
@@ -100,6 +101,18 @@
                     }
                 }); // ajax 
             }); // onclick
+            
+            
+            $("#reservCheck").on("click", function (e) {
+                    alert("수락");
+                
+            }); // 예약 check onClick 
+
+            
+            
+            
+            
+            
         });   // onload
     </script>
 
@@ -244,13 +257,17 @@
             <br>
             <br>
 
-
-            <!-- 예약내역 테이블 -->
+</div> 
 
             <a href="http://localhost:8090/allproduct">물품리스트</a>
             <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
         </div>
+        
+</div> <!-- main container div 닫는칸 여기 맞는지 확인 필요 -->
+        
+            <!-- 예약내역 테이블 -->
 
+<br><br><br><br><br><br><br>
         <div class="reserved-connect-container">
             <h4>신청된 Connects</h4>
             <table class="reserved-connect">
@@ -261,6 +278,9 @@
                     <th>커넥트 종료</th>
                     <th>희망 비용</th>
                     <th>렌터</th>
+                    <c:if test="${sessionid == oneProduct.userId }">
+                    <th>수락 / 거절</th>
+                    </c:if>
                 </tr>
 
                 <c:forEach items="${reservationList}" var="reserv">
@@ -270,12 +290,14 @@
                         <td>${reserv.endRental}</td>
                         <td>${reserv.price}원</td>
                         <td>${reserv.buyerId}</td>
+                        <c:if test="${sessionid == oneProduct.userId }">
+                        <td><input id="reservCheck" type="button" value="수락"></td>
+                        </c:if>
                     </tr>
                 </c:forEach>
 
             </table>
         </div>
-    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
