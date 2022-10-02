@@ -1,6 +1,5 @@
 package connectus.reservation;
 
-import org.springframework.stereotype.Component;
 
 public class ReservationDTO {
 	private long id; 
@@ -9,12 +8,13 @@ public class ReservationDTO {
 	private String startRental; 
 	private String endRental; 
 	private long boardId;
-	private long price; 
+	private long price;
+	private int reservCheck; 
 	
 	
 	public ReservationDTO() {}
 	public ReservationDTO(long id, String buyerId, String sellerId, String startRental, String endRental,
-			long boardId, long price) {
+			long boardId, long price, int reservCheck) {
 		this.id = id;
 		this.buyerId = buyerId;
 		this.sellerId = sellerId;
@@ -22,6 +22,7 @@ public class ReservationDTO {
 		this.endRental = endRental;
 		this.boardId = boardId;
 		this.price = price; 
+		this.reservCheck = reservCheck;
 	}
 
 	
@@ -32,13 +33,21 @@ public class ReservationDTO {
 	@Override
 	public String toString() {
 		return "ReservationDTO [id=" + id + ", buyerId=" + buyerId + ", sellerId=" + sellerId + ", startRental="
-				+ startRental + ", endRental=" + endRental + ", boardId=" + boardId + "]";
+				+ startRental + ", endRental=" + endRental + ", boardId=" + boardId + "reservChekc= " + reservCheck;
 	}
 	
 	
 	
 	
 	
+	
+	
+	public int getReservCheck() {
+		return reservCheck;
+	}
+	public void setReservCheck(int reservCheck) {
+		this.reservCheck = reservCheck;
+	}
 	public long getPrice() {
 		return price;
 	}

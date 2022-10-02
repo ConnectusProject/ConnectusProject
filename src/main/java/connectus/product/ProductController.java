@@ -163,8 +163,9 @@ public class ProductController {
 		targetProduct.setZzim(zzim);
 		
 		List<ReservationDTO> reservList = productDAO.allReservation(productid);
+		int reservLength = reservList.size();
 		
-		
+		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);
 		model.addAttribute("oneProduct", targetProduct);
 

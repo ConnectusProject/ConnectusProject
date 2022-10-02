@@ -28,6 +28,7 @@
             let sessionId = '${sessionScope.sessionid}';
             let productseq = '${oneProduct.id}';
             let userId = '${oneProduct.userId}';
+            let reservLength = '${reservLength}';
 
 
             // 세션과 일치할 시, 수정 삭제 버튼 생성 
@@ -98,16 +99,57 @@
 
                         $("#zzimSpan").html(result2);
 
-                    }
+                    } // success 
                 }); // ajax 
             }); // onclick
             
             
-            $("#reservCheck").on("click", function (e) {
-                    alert("수락");
-                
-            }); // 예약 check onClick 
+            
+            // 예약 수락 기능 
+            for (var i = 0; i < reservLength; i++) {
+                let eachReservId = $("#reservId" + i).html();
+                let intReservId = parseInt(eachReservId);
 
+                $("#reservCheck" + i).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/reservcheck",
+                        dataType: "json",
+                        data: { 'reservId': intReservId },
+
+                        success: function (resp) {
+                            if (resp.result == 0) {
+                                alert("예약이 승낙되었습니다.");
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                            }
+                            else if (resp.result == 1) {
+                                alert("예약승낙이 취소되었습니다.");
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                            }
+
+
+                            if (resp.result2 == 0) {
+                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+                            }
+                            else if (resp.result2 == 1) {
+                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+                            }
+
+                            $("#reservCheck" + i).html(result2);
+
+                        } // success 
+                    }); // ajax 
+                }); // 예약 수락 onclick
+            } // for 
+
+            
+          
             
             
             
@@ -283,15 +325,15 @@
                     </c:if>
                 </tr>
 
-                <c:forEach items="${reservationList}" var="reserv">
+                <c:forEach items="${reservationList}" var="reserv" varStatus="vs">
                     <tr>
-                        <td>${reserv.id}</td>
+                        <td id="reservId${vs.index}">${reserv.id}</td>
                         <td>${reserv.startRental}</td>
                         <td>${reserv.endRental}</td>
                         <td>${reserv.price}원</td>
                         <td>${reserv.buyerId}</td>
                         <c:if test="${sessionid == oneProduct.userId }">
-                        <td><input id="reservCheck" type="button" value="수락"></td>
+                        <td><span id="reservCheck${vs.index}">${reserv.reservCheck}</span></td>
                         </c:if>
                     </tr>
                 </c:forEach>
