@@ -50,6 +50,14 @@
 	 </select>
 	 
 	 
+	 <!-- 예약 수락 -->
+	 <update id="checkReservation">
+	 	update product set reservedNow = 1 where id=#{productId}
+	 </update>
 	 
+	 <!-- 예약 수락 -->
+	 <update id="cancleReservation">
+	 	update product set reservedNow = 0 where id=#{productId}
+	 </update>
 
 </mapper>

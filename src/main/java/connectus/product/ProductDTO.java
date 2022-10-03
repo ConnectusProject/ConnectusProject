@@ -15,6 +15,7 @@ public class ProductDTO {
 	private String img5; 
 	private String img6; 
 	private int zzim; 
+	private int reservedNow;
 	
 	
 	@Override
@@ -24,7 +25,7 @@ public class ProductDTO {
 	}
 	
 	public ProductDTO() {}
-	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img1, String img2, String img3, String img4, String img5, String img6,  int zzim) {
+	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img1, String img2, String img3, String img4, String img5, String img6,  int zzim, int reservedNow) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -39,11 +40,20 @@ public class ProductDTO {
 		this.img5 = img5;
 		this.img6 = img6;
 		this.zzim = zzim; 
+		this.reservedNow = reservedNow;
 	}
 	
 	
 	
 	
+	public int getReservedNow() {
+		return reservedNow;
+	}
+
+	public void setReservedNow(int reservedNow) {
+		this.reservedNow = reservedNow;
+	}
+
 	public String getImg1() {
 		return img1;
 	}

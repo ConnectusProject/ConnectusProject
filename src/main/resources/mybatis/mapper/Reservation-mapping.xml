@@ -32,7 +32,16 @@
 		select reservCheck from reservation where id = #{reservId}
 	</select>
 	
-
+	
+	<!-- 예약 기간 가져오기 -->
+	<select id="getReservationDate" resultType="reservationdto">
+		select * from reservation where boardid = #{productId} and reservCheck=1;
+	</select>
+	
+	<!-- 예약된 prodcut Id 가져오기 -->
+	<select id="getProductId" resultType="int">
+		select boardid from reservation where id = #{reservId}
+	</select>
 
 
 	

@@ -142,6 +142,7 @@
                             }
 
                             $("#reservCheck" + i).html(result2);
+                            location.reload();
 
                         } // success 
                     }); // ajax 
@@ -302,16 +303,16 @@
             <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
             <div class="reserved-connect-container">
                 <h4>신청된 Connects</h4>
-                <table class="reserved-connect">
+                <table class="reserved-connect" border=5>
     
                     <tr>
                         <th>번호</th>
-                        <th>커넥트 시작</th>
-                        <th>커넥트 종료</th>
-                        <th>희망 비용</th>
-                        <th>렌터</th>
+                        <th>예약시작</th>
+                        <th>예약종료</th>
+                        <th>희망비용</th>
+                        <th>빌리는사람</th>
                         <c:if test="${sessionid == oneProduct.userId }">
-                        <th>수락 / 거절</th>
+                        <th>성사된 예약</th>
                         </c:if>
                     </tr>
     
