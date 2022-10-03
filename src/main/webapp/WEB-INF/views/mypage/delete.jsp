@@ -21,11 +21,7 @@
 	</head>
 	
 	<body>
-	
-		<div class="container-box">
-			<div class="main-container">
-				<custom-navbar></custom-navbar>
-				<div class="mypage-container">
+
 					<form action="deletemember" method="post" id="deleteForm" name="deleteForm">
 						탈퇴ID : <span style="color : red">${sessionid}</span>
 	
@@ -44,7 +40,6 @@
 	
 						</div>
 					</form>
-				</div>
 	
 				<script>
 					function back() {
@@ -74,9 +69,6 @@
 					}
 				</script>
 	
-	
-			</div>
-		</div>
 	
 	</body>
 	

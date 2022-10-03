@@ -116,8 +116,6 @@
 				<div class="nav-sub-menu-box mb-3">
 					<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
 				</div>
-	
-
 				<% } %>
 	</nav>
 
@@ -127,7 +125,7 @@
 		let menuTitle = document.querySelectorAll('.menu-title');
 
 		menu.addEventListener('click', function () {
-			for (let i = 0; i < 5; i++) {
+			for (let i = 0; i < menuTitle.length; i++) {
 				menuTitle[i].classList.toggle('close');
 			}
 		})

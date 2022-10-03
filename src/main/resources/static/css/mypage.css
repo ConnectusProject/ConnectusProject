@@ -1,1 +1,69 @@
-/*# sourceMappingURL=mypage.css.map */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.mypage-box-title-box {
+  position: absolute;
+  border-bottom: solid 2px rgb(142, 191, 188);
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  justify-content: left;
+  align-items: none;
+  top: 10rem;
+  padding-left: 8rem;
+}
+
+.mypage-box-title-box > div {
+  width: 8rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.mypage-container {
+  padding-left: 3rem;
+  width: 100%;
+  background-color: aquamarine;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+
+.mypage-info {
+  width: 25rem;
+}
+
+.mypage-info tr {
+  height: 3rem;
+}
+
+.mypage-info td {
+  border: solid 2px grey;
+}
+
+.mypage-info-button-box {
+  width: 25rem;
+  height: 3rem;
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  align-items: none;
+}
+
+.mypage-info-button {
+  width: 30%;
+  height: 100%;
+  background-color: red;
+}
+
+.show {
+  border-top: 2px solid rgb(142, 191, 188);
+}
+
+.close {
+  display: none;
+}/*# sourceMappingURL=mypage.css.map */

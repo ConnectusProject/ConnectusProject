@@ -27,13 +27,14 @@ a {
     width : 100vw;
     background-color: rgb(253, 251, 251);
     position : relative;
-    padding : 0.1;
+    padding : 1;
 }
 
 .content-container {
+    padding : 1;
     width : 90vw;
     position : absolute;
-    left : 10vw;
+    left : 5rem;
     margin-top : 11rem;
     @include flexbox(center, center );
     flex-direction: column;
