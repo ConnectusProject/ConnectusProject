@@ -42,7 +42,7 @@
 			<header class="header-box">
 				<div class="header-menu-logo-box">
 					<span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span>
-					<span>Connect Us</span>
+					<span class="header-menu-title">Connect Us</span>
 				</div>
 				<div class="header-search-box">
 					<div class="input-group header-search-box-inner">

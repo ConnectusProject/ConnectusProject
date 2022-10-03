@@ -1,5 +1,17 @@
+@font-face {
+  font-family: "MonoplexKR-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
 body {
   margin: 0;
+  font-family: "MonoplexKR-Regular";
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .main-container {
@@ -9,14 +21,27 @@ body {
   padding: 0.1;
 }
 
+.content-container {
+  background-color: red;
+  width: 90vw;
+  position: absolute;
+  left: 10vw;
+  margin-top: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .header-box {
   position: fixed;
   width: 100%;
   height: 4.5rem;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
   z-index: 2;
   display: flex;
   justify-content: space-between;
+  box-shadow: 5px 5px 10px rgb(170, 170, 170);
 }
 
 .header-menu-logo-box {
@@ -27,8 +52,16 @@ body {
 }
 
 .header-menu-logo-box span {
-  margin-left: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+}
+
+.header-menu-logo-box img {
+  width: 2rem;
+  margin-left: 1.4rem;
+}
+
+.header-menu-title {
+  margin-left: 2rem;
 }
 
 .header-search-box {
@@ -59,12 +92,12 @@ body {
 .nav-box {
   position: fixed;
   height: 100vh;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
   z-index: 1;
 }
 
 .nav-box img {
-  width: 2rem;
+  width: 1.5rem;
 }
 
 .basic-menu-box {
@@ -104,18 +137,6 @@ body {
 .menu-title {
   width: 8rem;
   text-align: left;
-  margin-left: 1rem;
-}
-
-.content-container {
-  width: 100%;
-  position: absolute;
-  left: 10vw;
-  margin-top: 11rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .close {

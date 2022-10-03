@@ -1,9 +1,11 @@
 .allproduct-container {
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: none;
   align-items: center;
   flex-direction: column;
+  left: 0;
 }
 
 .allproduct-product-box {

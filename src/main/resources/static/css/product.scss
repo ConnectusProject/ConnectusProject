@@ -14,9 +14,11 @@
 
 
 .allproduct-container {
+    position : absolute;
     width : 100%;
     @include flexbox(none,center);
     flex-direction: column;
+    left : 0;
 }
 
 .allproduct-product-box {
