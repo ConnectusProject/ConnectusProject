@@ -29,7 +29,7 @@
             let productseq = '${oneProduct.id}';
             let userId = '${oneProduct.userId}';
             let reservLength = '${reservLength}';
-
+            
 
             // 세션과 일치할 시, 수정 삭제 버튼 생성 
             $("#update").append(
@@ -186,6 +186,8 @@
             <c:if test="${dateDiffShow == '0일전'}">
                 <c:set var="dateDiffShow" value="오늘" />
             </c:if>
+            
+            
 
             <!-- 찜 상태에 따라 이미지 -->
             <c:if test="${oneProduct.zzim == '0'}">
@@ -331,10 +333,6 @@
                     
                     
                     
-                    
-                    
-                    
-                    
                         <tr>
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
@@ -342,7 +340,7 @@
                             <td>${reserv.price}원</td>
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
-                            <td><span id="reservCheck${vs.index}">${reservation}</span></td>
+                            <th><span id="reservCheck${vs.index}">${reservation}</span></th>
                             </c:if>
                         </tr>
                     </c:forEach>
