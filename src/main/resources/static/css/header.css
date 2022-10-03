@@ -107,6 +107,17 @@ body {
   margin-left: 1rem;
 }
 
+.content-container {
+  width: 100%;
+  position: absolute;
+  left: 10vw;
+  margin-top: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .close {
   display: none;
 }/*# sourceMappingURL=header.css.map */

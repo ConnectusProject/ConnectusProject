@@ -200,7 +200,7 @@
             <Br>
 
             <!-- 이미지 carousel 로 띄우기 -->
-            <div class="product-container">
+            <div class="oneproduct-container">
                     <div class="product-detail-img">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
@@ -294,70 +294,68 @@
                         </form>
                
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
 
-</div> 
+
+            </div> 
 
             <a href="http://localhost:8090/allproduct">물품리스트</a>
             <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
+            <div class="reserved-connect-container">
+                <h4>신청된 Connects</h4>
+                <table class="reserved-connect">
+    
+                    <tr>
+                        <th>번호</th>
+                        <th>커넥트 시작</th>
+                        <th>커넥트 종료</th>
+                        <th>희망 비용</th>
+                        <th>렌터</th>
+                        <c:if test="${sessionid == oneProduct.userId }">
+                        <th>수락 / 거절</th>
+                        </c:if>
+                    </tr>
+    
+                    <c:forEach items="${reservationList}" var="reserv" varStatus="vs">
+                    
+                <!-- 예약 수락상태 이미지 -->
+                <c:if test="${reserv.reservCheck == '0'}">
+                    <c:set var="reservation"
+                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=30 height=30 style='cursor:pointer'>" />
+                </c:if>
+    
+                <c:if test="${reserv.reservCheck== '1'}">
+                    <c:set var="reservation"
+                        value="<img src='http://localhost:8090/pictures/zzim.png' width=30 height='30' style='cursor:pointer'>" />
+                </c:if>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <tr>
+                            <td id="reservId${vs.index}">${reserv.id}</td>
+                            <td>${reserv.startRental}</td>
+                            <td>${reserv.endRental}</td>
+                            <td>${reserv.price}원</td>
+                            <td>${reserv.buyerId}</td>
+                            <c:if test="${sessionid == oneProduct.userId }">
+                            <td><span id="reservCheck${vs.index}">${reservation}</span></td>
+                            </c:if>
+                        </tr>
+                    </c:forEach>
+    
+                </table>
+            </div>
+
         </div>
         
 </div> <!-- main container div 닫는칸 여기 맞는지 확인 필요 -->
         
             <!-- 예약내역 테이블 -->
 
-<br><br><br><br><br><br><br>
-        <div class="reserved-connect-container">
-            <h4>신청된 Connects</h4>
-            <table class="reserved-connect">
 
-                <tr>
-                    <th>번호</th>
-                    <th>커넥트 시작</th>
-                    <th>커넥트 종료</th>
-                    <th>희망 비용</th>
-                    <th>렌터</th>
-                    <c:if test="${sessionid == oneProduct.userId }">
-                    <th>수락 / 거절</th>
-                    </c:if>
-                </tr>
-
-                <c:forEach items="${reservationList}" var="reserv" varStatus="vs">
-                
-            <!-- 예약 수락상태 이미지 -->
-            <c:if test="${reserv.reservCheck == '0'}">
-                <c:set var="reservation"
-                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=30 height=30 style='cursor:pointer'>" />
-            </c:if>
-
-            <c:if test="${reserv.reservCheck== '1'}">
-                <c:set var="reservation"
-                    value="<img src='http://localhost:8090/pictures/zzim.png' width=30 height='30' style='cursor:pointer'>" />
-            </c:if>
-                
-                
-                
-                
-                
-                
-                
-                    <tr>
-                        <td id="reservId${vs.index}">${reserv.id}</td>
-                        <td>${reserv.startRental}</td>
-                        <td>${reserv.endRental}</td>
-                        <td>${reserv.price}원</td>
-                        <td>${reserv.buyerId}</td>
-                        <c:if test="${sessionid == oneProduct.userId }">
-                        <td><span id="reservCheck${vs.index}">${reservation}</span></td>
-                        </c:if>
-                    </tr>
-                </c:forEach>
-
-            </table>
-        </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

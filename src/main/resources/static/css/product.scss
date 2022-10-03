@@ -12,13 +12,6 @@
     left : $left;
 }
 
-.content-container {
-    position : absolute;
-    left : 10vw;
-    width : 1500px;
-    margin-top : 11rem;
-    @include flexbox(center, none )
-}
 
 .allproduct-container {
     width : 100%;
@@ -66,10 +59,9 @@
 }
 
 
-.product-container {
+.oneproduct-container {
     background-color: aqua;
     width : 25rem;
-    height : 40rem;
     @include flexbox(space-around, center);
     flex-direction: column;
 }

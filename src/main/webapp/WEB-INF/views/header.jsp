@@ -70,7 +70,7 @@
 							<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 						</div>
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="${path}/resources/static/pictures/neighbor.png" alt=""></span>
+							<span class="menu-icon"><img src="${path}/pictures/neighbor.png" alt=""></span>
 							<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
 							</div>
 						<div class="nav-menu-box">
