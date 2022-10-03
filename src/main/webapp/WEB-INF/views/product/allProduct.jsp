@@ -104,6 +104,15 @@
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs">
                         <div class="product-box-item">
+                        	<!-- 예약중 표시 -->
+                        	<c:if test="${product.reservedNow==1 }">
+                        	<c:set var="reservedNowImg" value="렌탈중"/>
+                        	</c:if>
+                        	<c:if test="${product.reservedNow==0 }">
+                        	<c:set var="reservedNowImg" value=""/>
+                        	</c:if>
+                        	
+
 
                             <!-- 날짜 몇일 전으로 변환 -->
                             <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
@@ -148,7 +157,7 @@
                             </c:if>
 
 
-                            <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
+                            <div class="product-item-title"><span style=color:red>${reservedNowImg} </span> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
                             </div>
