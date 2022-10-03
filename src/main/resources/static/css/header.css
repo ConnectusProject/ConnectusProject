@@ -22,7 +22,6 @@ a {
 }
 
 .content-container {
-  background-color: red;
   width: 90vw;
   position: absolute;
   left: 10vw;
@@ -45,7 +44,7 @@ a {
 }
 
 .header-menu-logo-box {
-  width: 18%;
+  width: 20%;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -68,6 +67,25 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 60%;
+}
+
+.header-search-input {
+  width: 20vw;
+  border: solid 2px rgb(142, 191, 188);
+  border-radius: 5px;
+}
+
+.header-search-input:focus {
+  outline-style: solid;
+  outline-color: rgb(142, 191, 188);
+  outline-width: 2px;
+}
+
+.header-search-button {
+  border: none;
+  background-color: rgb(142, 191, 188);
+  color: white;
 }
 
 .header-search-box-inner {

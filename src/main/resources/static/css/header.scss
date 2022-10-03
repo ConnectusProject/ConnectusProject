@@ -1,3 +1,5 @@
+$color : rgb(142,191,188);
+
 @font-face {
     font-family: 'MonoplexKR-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
@@ -15,7 +17,6 @@ a {
     color : black;
 }
 
-
 @mixin flexbox($justify, $align){
     display : flex;
     justify-content: $justify;
@@ -30,7 +31,6 @@ a {
 }
 
 .content-container {
-    background-color: red;
     width : 90vw;
     position : absolute;
     left : 10vw;
@@ -51,7 +51,7 @@ a {
 }
 
 .header-menu-logo-box {
-    width : 18%;
+    width : 20%;
     @include flexbox(left, center);
 }
 
@@ -68,8 +68,28 @@ a {
     margin-left : 2rem;
 }
 
+
+
 .header-search-box {
     @include flexbox(center, center);
+    width : 60%;
+}
+
+.header-search-input {
+    width : 20vw;
+    border : solid 2px $color;
+    border-radius: 5px;
+}
+.header-search-input:focus {
+    outline-style: solid;
+    outline-color: $color;
+    outline-width: 2px;
+}
+
+.header-search-button {
+    border : none;
+    background-color: $color;
+    color : white;
 }
 
 .header-search-box-inner {

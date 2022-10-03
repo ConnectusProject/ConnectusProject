@@ -46,9 +46,8 @@
 				</div>
 				<div class="header-search-box">
 					<div class="input-group header-search-box-inner">
-						<input type="text" class="form-control" placeholder="Recipient's username"
-							aria-label="Recipient's username" aria-describedby="button-addon2">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+						<input class="header-search-input" type="text" class="form-control">
+						<button class="btn btn-outline-secondary header-search-button" type="button" id="button-addon2">Button</button>
 					</div>
 				</div>
 				<div class="header-sign-box">
@@ -65,49 +64,48 @@
 				<% if(session.getAttribute("sessionid")==null) { %>
 					<div class="basic-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="${path}/pictures/product.png"
-									alt=""></span>
+							<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img src="${path}/pictures/home.png"
+									alt=""></a></span>
 							<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 						</div>
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="${path}/pictures/neighbor.png" alt=""></span>
+							<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img src="${path}/pictures/neighbor.png" alt=""></a></span>
 							<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
 							</div>
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="${path}/pictures/community.png"
-									alt=""></span>
+							<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img src="${path}/pictures/community.png"
+									alt=""></a></span>
 							<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 						</div>
 					</div>
 					<div class="after-login-menu-box">
 						<div class="nav-menu-box">
-							<span class="menu-icon"><img src="${path}/pictures/chat.png"
-									alt=""></span>
+							<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+									alt=""></a></span>
 							<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅시스템</a></span>
 						</div>
 					</div>
 					<% } else { %>
 						<div class="basic-menu-box">
-
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="${path}/pictures/product.png"
-										alt=""></span>
+								<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img src="${path}/pictures/home.png"
+										alt=""></a></span>
 								<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
 							</div>
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="${path}/pictures/neighbor.png" alt=""></span>
+								<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img src="${path}/pictures/neighbor.png" alt=""></a></span>
 								<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
 								</div>
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="${path}/pictures/community.png"
-										alt=""></span>
+								<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img src="${path}/pictures/community.png"
+										alt=""></a></span>
 								<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 							</div>
 						</div>
 						<div class="after-login-menu-box">
 							<div class="nav-menu-box">
-								<span class="menu-icon"><img src="${path}/pictures/chat.png"
-										alt=""></span>
+								<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+										alt=""></a></span>
 								<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅시스템</a></span>
 							</div>
 						</div>

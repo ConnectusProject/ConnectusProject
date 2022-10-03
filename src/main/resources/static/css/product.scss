@@ -14,15 +14,15 @@
 
 
 .allproduct-container {
-    position : absolute;
     width : 100%;
     @include flexbox(none,center);
     flex-direction: column;
-    left : 0;
+    top : 0%;
 }
 
 .allproduct-product-box {
-    width: 1500px;
+    
+    width : 100%;
     @include flexbox(left,none);
     flex-wrap: wrap;
 }
