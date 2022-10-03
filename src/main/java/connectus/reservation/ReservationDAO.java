@@ -1,5 +1,7 @@
 package connectus.reservation;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,8 @@ public interface ReservationDAO {
 	public int cancleReservation(int reservId);
 
 	public int countReservation(int reservId);
+	
+	public List<ReservationDTO> getReservationDate(int productId);
+	
+	public int getProductId(int reservId);
 }
