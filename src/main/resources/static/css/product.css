@@ -1,15 +1,14 @@
 .allproduct-container {
-  position: absolute;
   width: 100%;
   display: flex;
   justify-content: none;
   align-items: center;
   flex-direction: column;
-  left: 0;
+  top: 0%;
 }
 
 .allproduct-product-box {
-  width: 1500px;
+  width: 100%;
   display: flex;
   justify-content: left;
   align-items: center;
