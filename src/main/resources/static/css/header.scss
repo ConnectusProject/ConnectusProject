@@ -68,8 +68,6 @@ a {
     margin-left : 2rem;
 }
 
-
-
 .header-search-box {
     @include flexbox(center, center);
     width : 60%;
@@ -114,10 +112,11 @@ a {
     height : 100vh;
     background-color: rgb(255, 255, 255);
     z-index: 1;
+    box-shadow: 5px 5px 10px rgb(170, 170, 170);
 }
 
 .nav-box img {
-    width : 1.5rem;
+    width : 2rem;
 }
 
 .basic-menu-box {
@@ -127,15 +126,14 @@ a {
     flex-direction: column;
 }
 
-.after-login-menu-box{
-    width : 100%;
-}
-
 .nav-menu-box {
     display : flex;
     width : 100%;
-    margin-bottom : 1rem;
     @include flexbox(space-between, center);
+}
+
+.nav-menu-box:hover {
+    background-color: $color;
 }
 
 .menu-icon {
@@ -144,14 +142,49 @@ a {
     @include flexbox(center, center)
 }
 
-.menu-icon img {
+.menu-icon > a {
+    width : 100%;
+    height : 100%;
+    @include flexbox(center, center);
+}
+
+.menu-icon > a > img {
     width : 2rem;
+    height : 2rem;
 }
 
 .menu-title {
     width : 8rem;
     text-align: left;
+    font-weight: 800;
 }
+
+.menu-title>a:hover {
+    color : white;
+}
+
+.nav-sub-menu-box {
+    width : 100%;
+    margin-bottom : 1rem;
+    @include flexbox(right, none);
+}
+
+.menu-title-sub {
+    width : 50%;
+    margin-right : 10%;
+}
+
+.menu-title-sub > a {
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.menu-title-sub > a:hover {
+    color : $color;
+}
+
+
+
 
 .close {
     display:none;
