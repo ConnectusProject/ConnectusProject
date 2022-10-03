@@ -326,6 +326,24 @@
                 </tr>
 
                 <c:forEach items="${reservationList}" var="reserv" varStatus="vs">
+                
+            <!-- 예약 수락상태 이미지 -->
+            <c:if test="${reserv.reservCheck == '0'}">
+                <c:set var="reservation"
+                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=30 height=30 style='cursor:pointer'>" />
+            </c:if>
+
+            <c:if test="${reserv.reservCheck== '1'}">
+                <c:set var="reservation"
+                    value="<img src='http://localhost:8090/pictures/zzim.png' width=30 height='30' style='cursor:pointer'>" />
+            </c:if>
+                
+                
+                
+                
+                
+                
+                
                     <tr>
                         <td id="reservId${vs.index}">${reserv.id}</td>
                         <td>${reserv.startRental}</td>
@@ -333,7 +351,7 @@
                         <td>${reserv.price}원</td>
                         <td>${reserv.buyerId}</td>
                         <c:if test="${sessionid == oneProduct.userId }">
-                        <td><span id="reservCheck${vs.index}">${reserv.reservCheck}</span></td>
+                        <td><span id="reservCheck${vs.index}">${reservation}</span></td>
                         </c:if>
                     </tr>
                 </c:forEach>
