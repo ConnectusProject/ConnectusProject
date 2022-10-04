@@ -116,6 +116,8 @@
 
 
 
+
+
                 <!-- 검색기능  -->
 
                 <form class="smart-search-box mb-4" action="smartSearch" method="post">
@@ -123,12 +125,12 @@
                 키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
                 렌탈시작 : <input class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 렌탈종료 : <input class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
-                동네 : <select name = "smartRegion">
+                동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
                 <option>검색</option>
                 </select>
-                <input class="smart-keyword" onchange="printName3()" type="text" name="smartRegion">
+                <span id="here"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="스마트검색">
                 </form>
                 <div class="smart-search-result-box">
@@ -152,7 +154,7 @@
                 </form>
                 
 
-                <!-- 스마트검색 기능 -->
+       <!--          스마트검색 기능
                 <form id="smartSearch" action="smartSearch" method="post">
                 키워드 : <input type="text" name="smartTitle">
                 렌탈시작 : <input type="date" name="smartStartDate">
@@ -164,7 +166,9 @@
                 </select>
                 
                 <span id="here"><input type='hidden' name='smartRegion' value='동'></span>
-
+                <input type="submit" value="스마트서치">
+                </form>
+ -->
    
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
