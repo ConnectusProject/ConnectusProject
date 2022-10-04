@@ -21,6 +21,10 @@
 	update members set phone=#{phone}, name=#{name},  email=#{email}, address=#{address} where userid=#{userid} and pw=#{pw}
 </update>
 
+<update id="passwordModify" parameterType="memberdto">
+	update members set pw=#{pw}   where userid=#{userid}
+</update>
+
 <delete id="deleteMember" parameterType="String">
 	delete from members where userid=#{userid}
 </delete>

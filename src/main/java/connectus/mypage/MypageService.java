@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.member.MemberDTO;
@@ -41,9 +42,25 @@ public class MypageService {
 		return mav;
 	}
 	
-	//(수정)
+	//회원정보(수정)
 	public void memberModify(MemberDTO memberdto) throws Exception {
 		dao.memberModify(memberdto);
+		return;		
+	}
+	
+	//비밀번호(가져오기)
+	public ModelAndView passwordForm(String userid) {
+		ModelAndView mav = new ModelAndView();
+		MemberDTO memberdto = dao.memberDetail(userid);
+		mav.addObject("modify",memberdto);
+		mav.setViewName("mypage/passwordModify");
+		return mav;
+	}
+	
+	//비밀번호(수정)
+	public void passwordModify(MemberDTO memberdto, @RequestParam(value="changePw")String pw) throws Exception {		
+		memberdto.setPw(pw);
+		dao.passwordModify(memberdto);
 		return;		
 	}
 	

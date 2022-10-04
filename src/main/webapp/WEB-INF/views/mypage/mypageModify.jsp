@@ -22,16 +22,6 @@ $(document).ready(function(){
 		</div>
 		
 		<div>
-			<input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required oninput="pwcheck()">
-		</div>
-		<div id="pw_check"></div>
-		
-		<div>
-			<input type=password name="pw2" id="pw2" placeholder="비밀번호를 한번 더 입력하세요" required oninput="pw2check()">
-		</div>
-		<div id="pw2_check"></div>
-		
-		<div>
 			<input type=text name=name id=name value="${member.name}" readonly>
 		</div>
 				
@@ -54,6 +44,13 @@ $(document).ready(function(){
 			<input type=text name=phone id=phone  value="${member.phone}"  required>		
 		</div>
 		<div id="phone_check"></div>
+		
+		<h3>정보 수정을 위해 비밀번호를 입력해주세요</h3>
+		<div>
+			<input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required oninput="pwcheck()">
+		</div>
+		<div id="pw_check"></div>
+		
 		
 		<div>
 			<input type="submit" id="btn" value="수정하기" disabled><br>
@@ -104,35 +101,12 @@ function pwcheck(){
 		$('#pw_check').text("패스워드 사용가능");
 			$('#pw_check').css("color","green");
 			pw_check=true;
-			if(pw_check==true&&pw2_check==true&&email_check==true){
+			if(pw_check==true&&email_check==true){
 			$('#btn').attr('disabled',false);
 		}		
 	}
 }
 
-function pw2check(){
-	var pw2 = $('#pw2').val();
-	var pw = $('#pw').val();
-	if(pw2==''){
-		$('#pw2_check').text("패스워드확인을 입력하세요");
-		$('#pw2_check').css("color","red");
-		pw2_check=false;
-		$('#btn').attr('disabled',true);
-	}else if(pw2 == pw){
-		$('#pw2_check').text("패스워드가 일치합니다.");
-		$('#pw2_check').css("color","green");
-		pw2_check=true;
-		if(pw_check==true&&pw2_check==true&&email_check==true){
-		$('#btn').attr('disabled',false);
-		}
-	}else{
-		$('#pw2_check').text("패스워드를 확인해주세요.");
-		$('#pw2_check').css("color","red");
-		pw2_check=false;
-		$('#btn').attr('disabled',true);
-				
-	}	
-}
 
 
 
@@ -145,31 +119,13 @@ function emailcheck(){
 		$('#btn').attr('disabled',true);		
 	}else{
 		email_check=true;
-		if(pw_check==true&&pw2_check==true&&email_check==true){
+		if(pw_check==true&&email_check==true){
 		$('#btn').attr('disabled',false);
 		}
 	}
 	
 }
-
-
-function namecheck(){
-	var name = $('#name').val();
-	if(name==''){
-		$('#name_check').text("이름을 입력하세요");
-		$('#name_check').css("color","red");
-		name_check=false;
-		$('#btn').attr('disabled',true);		
-	}else{
-		name_check=true;
-		if(pw_check==true&&pw2_check==true&&email_check==true){
-		$('#btn').attr('disabled',false);
-		}
-	}
-	
-}
-
-
+s
 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
