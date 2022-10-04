@@ -42,33 +42,33 @@
                     <div class="mypage-title">내 물건</div>
                     <div class="mypage-title">탈퇴하기</div>
                 </div>
-                <div class="mypage-container-inner-box close">
-
+                <div class="mypage-container-inner-box">
+                    <p class="mypage-info-title" >${member.name } 님의 정보</p>
                     <table class="mypage-info">
-                        <tr>
-                            <td style="width : 20%;">아이디</td>
-                            <td>: ${member.userid }</td>
+                        <tr style="background-color : rgb(243, 243, 243);">
+                            <td style="width : 25%;">아이디</td>
+                            <td> ${member.userid }</td>
                         </tr>
-                        <tr>
+                        <tr style="background-color : rgb(243, 243, 243);">
                             <td>비밀번호</td>
-                            <td>: ${member.pw }</td>
+                            <td> ${member.pw }</td>
                         </tr>
                         <tr>
                             <td>이름</td>
-                            <td>: ${member.name }</td>
+                            <td> ${member.name }</td>
                         </tr>
 
                         <tr>
                             <td>전화번호</td>
-                            <td>: ${member.phone }</td>
+                            <td> ${member.phone }</td>
                         </tr>
                         <tr>
                             <td>이메일</td>
-                            <td>: ${member.email }</td>
+                            <td> ${member.email }</td>
                         </tr>
                         <tr>
                             <td>주소</td>
-                            <td>: ${member.address }</td>
+                            <td> ${member.address }</td>
                         </tr>
                     </table>   
                     <div class="mypage-info-button-box mt-1">   
@@ -84,17 +84,14 @@
 
                 <div class="mypage-container-inner-box close">
 
-                    <form name="myproduct" action="myProduct" method="get">
-                        <div>
-                            <h2>내가 올린 물건</h2>
-                            <table border=5>
-                                <thead>
-                                    <tr>
-                                        <th>번호</th>
+                    <p class="myproduct-box-title">My product</p>
+                    <form class="myproduct-box" name="myproduct" action="myProduct" method="get">       
+                            <table class="myproduct-box-table">      
+                                    <tr class="myproduct-box-table-title">
+                                        <th style="width : 20%">번호</th>
                                         <th>제목</th>
                                         <th>날짜</th>
                                     </tr>
-                                </thead>
                                 <tbody>
                                     <c:forEach items="${allmyboard}" var="board" varStatus="vs">
                                         <fmt:parseDate value="${board.createdAt}" var="uploadDate"
@@ -107,8 +104,6 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-
-                        </div>
                     </form>
 
                     <script>

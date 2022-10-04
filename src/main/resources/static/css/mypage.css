@@ -5,8 +5,6 @@ a {
 
 .mypage-container {
   width: 100%;
-  background-color: aquamarine;
-  margin-top: 5rem;
   margin-left: 5rem;
   position: relative;
 }
@@ -31,6 +29,8 @@ a {
 
 .mypage-info {
   width: 25rem;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .mypage-info tr {
@@ -38,13 +38,12 @@ a {
 }
 
 .mypage-info td {
-  border: solid 2px grey;
+  border: solid 2px rgb(224, 224, 224);
 }
 
 .mypage-info-button-box {
   width: 25rem;
-  height: 3rem;
-  background-color: blue;
+  height: 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: none;
@@ -53,17 +52,82 @@ a {
 .mypage-info-button {
   width: 30%;
   height: 100%;
-  background-color: red;
-}
-
-.mypage-title1 {
-  background-color: red;
+  background-color: rgb(142, 191, 188);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 1px;
 }
 
 .mypage-container-inner-box {
   position: absolute;
   left: 3rem;
   margin-top: 2rem;
+}
+
+.mypage-info-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.myproduct-box-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.myproduct-box {
+  width: 35rem;
+}
+
+.myproduct-box-table {
+  width: 100%;
+  text-align: center;
+}
+
+.myproduct-box-table-title {
+  width: 100%;
+  border-bottom: solid 2px rgb(142, 191, 188);
+  text-align: center;
+}
+
+.mypage-delete-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.mypage-delete-box {
+  width: 25rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group > input {
+  width: 100%;
+  border: 2px solid rgb(142, 191, 188);
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  border-radius: 7px;
+}
+
+.delete-button-box {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: none;
+}
+
+.delete-button-box input {
+  width: 45%;
+  border: none;
+  background-color: rgb(142, 191, 188);
+  border-radius: 7px;
+  color: white;
 }
 
 .show {
