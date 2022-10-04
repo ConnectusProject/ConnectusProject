@@ -13,6 +13,33 @@ a {
     color : black;
 }
 
+.header-search-box {
+    @include flexbox(center, center);
+    width : 60%;
+}
+
+.header-search-input {
+    width : 20vw;
+    border : solid 2px $color;
+    border-radius: 5px;
+}
+.header-search-input:focus {
+    outline-style: solid;
+    outline-color: $color;
+    outline-width: 2px;
+}
+
+.header-search-button {
+    border : none;
+    background-color: $color;
+    color : white;
+}
+
+.header-search-box-inner {
+    width : 30rem;
+    margin : 0;
+}
+
 .mypage-container {
     width : 100%;
     margin-left : 5rem;

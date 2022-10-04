@@ -35,9 +35,9 @@ a {
     width : 90vw;
     position : absolute;
     left : 5rem;
-    margin-top : 11rem;
+    margin-top : 10rem;
     @include flexbox(center, center );
-    flex-direction: column;
+
 }
 
 .header-box {
