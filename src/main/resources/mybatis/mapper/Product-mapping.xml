@@ -65,10 +65,10 @@
 	 <select id="smartSearch" resultType="productdto">
 	select * from product left outer join reservation on product.id = reservation.boardid 
 	where (title like concat('%', #{smartTitle}, '%') 
-	and boardRegion = #{smartRegion}
+	and boardRegion like concat('%', #{smartRegion}, '%')  
 	and reservation.startRental is null)
 	or (title like concat('%', #{smartTitle}, '%') 
-	and boardRegion = #{smartRegion}
+	and boardRegion like concat('%', #{smartRegion}, '%')
 	and reservation.startRental not between #{smartStartDate} and #{smartEndDate}
 	and reservation.endRental not between #{smartStartDate} and #{smartEndDate} )
 	group by product.id order by product.createdAt desc;
