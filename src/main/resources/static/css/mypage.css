@@ -3,6 +3,36 @@ a {
   color: black;
 }
 
+.header-search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.header-search-input {
+  width: 20vw;
+  border: solid 2px rgb(142, 191, 188);
+  border-radius: 5px;
+}
+
+.header-search-input:focus {
+  outline-style: solid;
+  outline-color: rgb(142, 191, 188);
+  outline-width: 2px;
+}
+
+.header-search-button {
+  border: none;
+  background-color: rgb(142, 191, 188);
+  color: white;
+}
+
+.header-search-box-inner {
+  width: 30rem;
+  margin: 0;
+}
+
 .mypage-container {
   width: 100%;
   margin-left: 5rem;

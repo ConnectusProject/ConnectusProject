@@ -38,7 +38,7 @@
 
             <div class="mypage-container">
                 <div class="mypage-box-title-box">
-                    <div class="mypage-title">내 정보</div>
+                    <div class="mypage-title show">내 정보</div>
                     <div class="mypage-title">내 물건</div>
                     <div class="mypage-title">탈퇴하기</div>
                 </div>

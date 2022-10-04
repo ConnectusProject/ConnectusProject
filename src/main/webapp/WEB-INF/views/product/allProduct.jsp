@@ -101,11 +101,30 @@
         <!-- content-section -->
         <div class="content-container">
 
-
-
             <div class="allproduct-container">
                 <!-- 검색기능  -->
+
+                <form class="smart-search-box mb-4" action="smartSearch" method="post">
+                    <div class="smart-search-title">스마트 검색</div>
+                키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
+                렌탈시작 : <input class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                렌탈종료 : <input class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                동네 : <select name = "smartRegion">
+                <option>모든 동네</option>
+                <option>내 동네</option>
+                <option>검색</option>
+                </select>
+                <input class="smart-keyword" onchange="printName3()" type="text" name="smartRegion">
+                <input class="smart-search-button" type="submit" value="스마트검색">
+                </form>
+                <div class="smart-search-result-box">
+
+                </div>
+                
+
                 <form class="allproduct-search-box" action="searchproduct">
+                    <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+                    <div class="allproduct-search-box-input">
                     <select name="item">
                         <option value="title">제목</option>
                         <option value="boardRegion">지역</option>
@@ -115,6 +134,7 @@
 
                     <input class="search-box-search-input" type="text" name="search">
                     <input class="search-box-search-button" type="submit" value="검색">
+                    </div>
                 </form>
                 
                 <form id="smartSearch" action="smartSearch" method="post">
@@ -129,12 +149,7 @@
                 
                 <span id="here"><input type='hidden' name='smartRegion' value='동'></span>
 
-                <input type="submit" value="스마트검색">
-                </form>
-                
-                
-
-    <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+   
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 
@@ -207,19 +222,16 @@
 
                 </div>
 
-                <a href="http://localhost:8090/">홈으로</a>
-                <a href="http://localhost:8090/chatList">채팅리스트</a>
+                <!-- <a href="http://localhost:8090/">홈으로</a> -->
             
             </div>
-
-
 
         </div>
     </div>
     
 
 
-
+    <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
