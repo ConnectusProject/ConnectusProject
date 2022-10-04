@@ -42,6 +42,7 @@
 	<select id="getProductId" resultType="int">
 		select boardid from reservation where id = #{reservId}
 	</select>
+	
 
 
 	

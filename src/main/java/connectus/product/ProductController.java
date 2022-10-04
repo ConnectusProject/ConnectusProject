@@ -104,6 +104,36 @@ public class ProductController {
 		return "product/searchList";
 	}
 	
+	// 스마트검색 
+	@PostMapping("/smartSearch")
+	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session) throws Exception {
+		String sessionid = (String)session.getAttribute("sessionid");
+		
+		List<ProductDTO> searchList = productDAO.smartSearch(smartSearchDTO);
+
+		System.out.println(smartSearchDTO.toString());
+		
+		// 찜 set 
+		for (ProductDTO dto : searchList) {
+			int productseq = (int)dto.getId();
+			
+			int zzim = 0; 
+			Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+			if(zzimcheck!=null) {
+				zzim = 1; 
+			}
+			
+			dto.setZzim(zzim);
+		}
+		
+		int productlength = searchList.size();
+
+model.addAttribute("productlength", productlength);
+model.addAttribute("searchList", searchList);
+return "product/smartSearch";
+	}
+	
+	
 	
 	// 내 이웃 
 		@GetMapping("/neighbor")
