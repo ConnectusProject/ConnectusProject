@@ -48,6 +48,7 @@
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
+            	(function(i){
                 let eachProductId = $("#productid" + i).html();
                 let intProductId = parseInt(eachProductId);
 
@@ -75,19 +76,25 @@
                             }
 
 
-                            if (resp.result2 == 0) {
-                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
-                            }
-                            else if (resp.result2 == 1) {
-                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
-                            }
+//                            if (resp.result2 == 0) {
+//                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+//                            }
+//                            else if (resp.result2 == 1) {
+//                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+//                            }
+//                            $("#zzimSpan" + i).html(result2);
+                            
+                            
+                     
+                            
+                            //$("#zzimProducts").append(resp.oneProduct);
 
-                            $("#zzimSpan" + i).html(result2);
-
-                            location.reload();
+                          //  location.reload();
+                        //    $("#zzimProducts").html("어펜드 테스트");
                         } // success 
                     }); // ajax 
                 }); // 찜 onclick
+            	})(i); // for - ajax 용 function
             } // for 
         }); // onload 
     </script>
@@ -102,6 +109,13 @@
         <div class="content-container">
 
             <div class="allproduct-container">
+				<!-- 찜상품 띄우기 -->
+				<span id="zzimProducts">hello~!!~here</span>
+
+
+
+
+
                 <!-- 검색기능  -->
 
                 <form class="smart-search-box mb-4" action="smartSearch" method="post">
@@ -137,6 +151,8 @@
                     </div>
                 </form>
                 
+
+                <!-- 스마트검색 기능 -->
                 <form id="smartSearch" action="smartSearch" method="post">
                 키워드 : <input type="text" name="smartTitle">
                 렌탈시작 : <input type="date" name="smartStartDate">
