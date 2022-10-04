@@ -33,6 +33,9 @@ public interface ProductDAO {
 	
 	public int cancleReservation(int productId);
 	
+	public List<ProductDTO> smartSearch(SmartSearchDTO smartSearchDTO);
+	
+	
 		// 찜 조회 
 		public Object zzimCount(int productseq, String memberId) throws Exception;
 	

@@ -76,6 +76,7 @@
 </head>
 
 <body>
+
     <div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
@@ -97,13 +98,30 @@
                     <input class="search-box-search-input" type="text" name="search">
                     <input class="search-box-search-button" type="submit" value="검색">
                 </form>
+                
+                <form action="smartSearch" method="post">
+                키워드 : <input type="text" name="smartTitle">
+                렌탈시작 : <input type="date" name="smartStartDate">
+                렌탈종료 : <input type="date" name="smartEndDate">
+                동네 : <select name = "smartRegion">
+                <option>모든 동네</option>
+                <option>내 동네</option>
+                <option>검색</option>
+                </select>
+                <input type="text" name="smartRegion">
 
+                <input type="submit" value="스마트검색">
+                </form>
+                
+                
 
+    <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs">
                         <div class="product-box-item">
+                     
                         	<!-- 예약중 표시 -->
                         	<c:if test="${product.reservedNow==1 }">
                         	<c:set var="reservedNowImg" value="렌탈중"/>
@@ -172,7 +190,7 @@
 
                 <a href="http://localhost:8090/">홈으로</a>
                 <a href="http://localhost:8090/chatList">채팅리스트</a>
-                <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+            
             </div>
 
 
