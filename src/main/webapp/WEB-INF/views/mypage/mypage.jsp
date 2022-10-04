@@ -30,17 +30,19 @@
         <jsp:include page="/WEB-INF/views/header.jsp">
             <jsp:param value="false" name="mypage" />
         </jsp:include>
-        <div class="mypage-box-title-box">
-            <div class="mypage-title">내 정보</div>
-            <div class="mypage-title">내 물건</div>
-            <div class="mypage-title">탈퇴하기</div>
-        </div>
+
         <!-- content-section -->
         <div class="content-container">
 
 
+
             <div class="mypage-container">
-                <div class="mypage-container-inner-box">
+                <div class="mypage-box-title-box">
+                    <div class="mypage-title">내 정보</div>
+                    <div class="mypage-title">내 물건</div>
+                    <div class="mypage-title">탈퇴하기</div>
+                </div>
+                <div class="mypage-container-inner-box close">
 
                     <table class="mypage-info">
                         <tr>
@@ -78,9 +80,9 @@
                                     value="비밀번호 변경">    
                                 <input class="mypage-info-button" type="button" onclick="back()" value="뒤로">
                             </div>      
-                </div>
+                     </div>
 
-                <div class="mypage-container-inner-box">
+                <div class="mypage-container-inner-box close">
 
                     <form name="myproduct" action="myProduct" method="get">
                         <div>
@@ -116,7 +118,7 @@
                     </script>
                 </div>
 
-                <div class="mypage-container-inner-box ">
+                <div class="mypage-container-inner-box close">
                     <jsp:include page="/WEB-INF/views/mypage/delete.jsp">
                         <jsp:param value="false" name="mypage" />
                     </jsp:include>
@@ -127,11 +129,29 @@
     </div>
 
     <script>
+        let myPageTitle = $('.mypage-title');
+        let myPageInnerBox =  $('.mypage-container-inner-box');
 
-        document.querySelectorAll('.mypage-title')[1].addEventListener('click', function(){
-           console.log('hi')
+        for(let i = 0; i<myPageTitle.length; i++){
+            myPageTitle.eq(i).on('click', function(){
+            myPageTitle.removeClass('show');
+            myPageTitle.eq(i).addClass('show');
+            myPageInnerBox.addClass('close');
+            myPageInnerBox.eq(i).removeClass('close')
         })
+        }
 
+
+
+        // myPageTitle[1].addEventListener('click', function(){
+        //     myPageInnerBox.addClass('close');
+        //     myPageInnerBox[1].classList.remove('close')
+        // })
+
+        // myPageTitle[2].addEventListener('click', function(){
+        //     myPageInnerBox.addClass('close');
+        //     myPageInnerBox[2].classList.remove('close')
+        // })
     </script>
 
 
