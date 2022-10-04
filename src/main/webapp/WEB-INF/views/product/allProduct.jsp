@@ -18,7 +18,25 @@
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
-
+            
+            
+            $("#regionSelect").on("change", function(){
+            	var oneSelect = document.getElementById("regionSelect");
+            	// option value 가져오기
+            	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
+            	
+            	if(Regionvalue=='검색'){
+            		$("#here").html("<input type='text' name='smartRegion'>");
+            	}else if(Regionvalue=='모든 동네'){
+            		$("#here").html("<input type='hidden' name='smartRegion' value='동'>");
+            	}else if(Regionvalue=='내 동네'){
+            		$("#here").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            	}
+            });
+            
+            
+            
+            
             // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
                 if (sessionId == "") {
@@ -99,16 +117,17 @@
                     <input class="search-box-search-button" type="submit" value="검색">
                 </form>
                 
-                <form action="smartSearch" method="post">
+                <form id="smartSearch" action="smartSearch" method="post">
                 키워드 : <input type="text" name="smartTitle">
                 렌탈시작 : <input type="date" name="smartStartDate">
                 렌탈종료 : <input type="date" name="smartEndDate">
-                동네 : <select name = "smartRegion">
+                동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
-                <option>검색</option>
+                <option id="optionSearch">검색</option>
                 </select>
-                <input type="text" name="smartRegion">
+                
+                <span id="here"><input type='hidden' name='smartRegion' value='동'></span>
 
                 <input type="submit" value="스마트검색">
                 </form>

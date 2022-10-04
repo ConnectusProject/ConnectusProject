@@ -46,6 +46,8 @@ public class ProductController {
 	@GetMapping("/allproduct")
 	public String allProduct(Model model, HttpSession session) throws Exception {
 		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = extraaddr.substring(2,extraaddr.length()-1);
 		
 		List<ProductDTO> list = productDAO.allProduct();
 		
@@ -66,6 +68,7 @@ public class ProductController {
 		int productlength = list.size();
 		
 	
+		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("allproduct", list);
 		return "product/allProduct";
@@ -77,6 +80,7 @@ public class ProductController {
 	public String searchList(String item, String search, HttpSession session ,Model model) throws Exception {
 		
 		String sessionid = (String)session.getAttribute("sessionid");
+		
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("item", item);
@@ -108,6 +112,9 @@ public class ProductController {
 	@PostMapping("/smartSearch")
 	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session) throws Exception {
 		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = extraaddr.substring(2,extraaddr.length()-1);
+		
 		
 		List<ProductDTO> searchList = productDAO.smartSearch(smartSearchDTO);
 
@@ -126,11 +133,12 @@ public class ProductController {
 			dto.setZzim(zzim);
 		}
 		
-		int productlength = searchList.size();
-
-model.addAttribute("productlength", productlength);
-model.addAttribute("searchList", searchList);
-return "product/smartSearch";
+			int productlength = searchList.size();
+		model.addAttribute("region", region);
+		model.addAttribute("productlength", productlength);
+		model.addAttribute("searchList", searchList);
+		
+		return "product/smartSearch";
 	}
 	
 	
