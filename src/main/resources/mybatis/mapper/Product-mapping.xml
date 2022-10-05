@@ -67,18 +67,24 @@
 	where (title like concat('%', #{smartTitle}, '%') 
 	and boardRegion like concat('%', #{smartRegion}, '%')
 	and (reservation.startRental is null
-	or reservation.reservCheck = 0))
+	or reservation.reservCheck = 0
+	))
 	or (
 	title like concat('%', #{smartTitle}, '%') 
 	and boardRegion like concat('%', #{smartRegion}, '%')
 	and reservation.reservCheck = 1
-	and reservation.startRental not between #{smartStartDate} and #{smartEndDate}
-	and reservation.endRental not between #{smartStartDate} and #{smartEndDate} 
-	 ) 
+	and not (reservation.startRental between #{smartStartDate} and #{smartEndDate}
+	and reservation.endRental between #{smartStartDate} and #{smartEndDate} 
+	 )) 
 	group by product.id order by product.createdAt desc;
 
 	 </select>
 	 
+	 
+	 <!-- 찜 목록 가져오기 -->
+	 <select id="getZzimProducts" resultType="productdto">
+	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1;
+	 </select>
 	 
 	 
 	 

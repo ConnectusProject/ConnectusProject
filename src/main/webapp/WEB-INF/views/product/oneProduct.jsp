@@ -107,6 +107,7 @@
             
             // 예약 수락 기능 
             for (var i = 0; i < reservLength; i++) {
+            	(function(i){
                 let eachReservId = $("#reservId" + i).html();
                 let intReservId = parseInt(eachReservId);
 
@@ -142,11 +143,11 @@
                             }
 
                             $("#reservCheck" + i).html(result2);
-                            location.reload();
 
                         } // success 
                     }); // ajax 
                 }); // 예약 수락 onclick
+            	})(i); // for - ajax 용 function
             } // for 
 
             
@@ -304,7 +305,9 @@
             <a href="http://localhost:8090/allproduct">물품리스트</a>
             <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
             <div class="reserved-connect-container">
-                <h4>신청된 Connects</h4>
+            
+                <h4>예약목록</h4>
+                
                 <table class="reserved-connect" border=5>
     
                     <tr>
@@ -313,8 +316,8 @@
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
-                        <c:if test="${sessionid == oneProduct.userId }">
-                        <th>성사된 예약</th>
+                       <c:if test="${sessionid == oneProduct.userId }">
+                        <th>렌탈 확정</th>
                         </c:if>
                     </tr>
     
@@ -323,12 +326,12 @@
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=30 height=30 style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/zzim.png' width=30 height='30' style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height='50' style='cursor:pointer'>" />
                 </c:if>
                     
                     
@@ -342,6 +345,8 @@
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
                             </c:if>
+                            
+                            
                         </tr>
                     </c:forEach>
     

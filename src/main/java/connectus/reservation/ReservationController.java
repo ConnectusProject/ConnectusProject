@@ -36,11 +36,14 @@ public class ReservationController {
 	public String reservation(ReservationDTO dto) {
 
 		reservationDAO.insertReservation(dto);
+		
 		long boardid = dto.getBoardId();
 		
 		return "redirect:/product/"+boardid;
 	}
 	
+	
+	// 렌탈중 표시 
 	@ResponseBody
 	@PostMapping("/product/reservcheck")
 	public String reservCheck(int reservId) {

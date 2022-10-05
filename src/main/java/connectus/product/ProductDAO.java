@@ -35,6 +35,8 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> smartSearch(SmartSearchDTO smartSearchDTO);
 	
+	public List<ProductDTO> getZzimProducts(String sessionId);
+	
 	
 		// 찜 조회 
 		public Object zzimCount(int productseq, String memberId) throws Exception;

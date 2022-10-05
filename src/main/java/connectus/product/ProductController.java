@@ -4,6 +4,9 @@ package connectus.product;
 import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -69,7 +72,15 @@ public class ProductController {
 		
 		int productlength = list.size();
 		
-	
+		// 찜목록 리스트   
+		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
+// ( 역순 정렬 ) 		
+//		List<ProductDTO> copy = Collections.emptyList();
+//		Collections.copy(copy, OriginzzimProducts);
+//		Collections.reverse(copy);
+//		List<ProductDTO> zzimProducts = copy;
+		
+		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("allproduct", list);
@@ -359,8 +370,9 @@ public class ProductController {
 			}
 			
 			ProductDTO oneProduct = productDAO.oneProduct(productseq);
-
-			return "{\"result\" : \"" + zzimCheck + "\", \"oneProduct\" : \"" + oneProduct + "\" }";
+			
+			
+			return "{\"result\" : \"" + zzimCheck + "\", \"title\" : \"" + oneProduct.getTitle() + "\", \"img1\" : \"" + oneProduct.getImg1() + "\", \"id\" : \"" + oneProduct.getId() + "\" }";
 		}
 
 		
