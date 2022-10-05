@@ -1,0 +1,35 @@
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 알람 클릭했을 때 나오는 창 -->
+	<div class="notice-detail-box">
+		<span class="notice-detail-id">${selectNotice.receiveid}</span>
+		<span class="notice-detail-info">${selectNotice.noticeinfo}</span>
+		<span class="notice-detail-time">${insertProduct.createdAt}</span>
+	</div>
+	
+	
+	<!-- 알람 클릭 -->
+	<a href="#" class="link_alarm">
+		<span class="img_common_tistory ico_alarm ico_white">알림</span>
+	</a>
+	<div class="header_layer layer_news">
+	 <div class="inner_header_layer">
+	  <h2 class="tit_list">_</h2>
+	   <ul class="list_layer" style="max-height: 400px; overflow-y:auto;">
+	 	<li class>
+	 	<a href="" class="link_cont" target="_blank">_</a>
+	 	</li>
+	 	</ul>
+	 </div>
+	</div>
+
+
+</body>
+</html>

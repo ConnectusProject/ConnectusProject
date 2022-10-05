@@ -45,6 +45,15 @@ public class CommentDTO {
 		return "CommentDTO [seq=" + seq + ", secret=" + secret + ", comment_seq=" + comment_seq + ", contents="
 				+ contents + ", writer=" + writer + ", writingtime=" + writingtime + "]";
 	}
+	public CommentDTO(int seq, int secret, int comment_seq, String contents, String writer, String writingtime) {
+		super();
+		this.seq = seq;
+		this.secret = secret;
+		this.comment_seq = comment_seq;
+		this.contents = contents;
+		this.writer = writer;
+		this.writingtime = writingtime;
+	}
 	
 	
 	
