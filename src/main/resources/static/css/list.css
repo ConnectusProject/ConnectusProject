@@ -3,13 +3,81 @@ a {
   color: black;
 }
 
-.content-container {
-  position: absolute;
-  left: 10vw;
-  width: 1500px;
-  margin-top: 11rem;
+.list-container {
+  width: 50rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list-clean-box {
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.list-clean-box > a {
+  width: 8%;
+  height: 80%;
+  background-color: rgb(142, 191, 188);
+  border: none;
+  color: white;
   display: flex;
   justify-content: center;
-  align-items: none;
-  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.list-table {
+  width: 100%;
+  text-align: center;
+}
+
+.list-table-title {
+  height: 3rem;
+  border-top: 3px solid rgb(142, 191, 188);
+  border-bottom: 1px solid rgb(142, 191, 188);
+}
+
+.list-search-form {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.list-search-form-select {
+  height: 100%;
+  width: 5rem;
+  margin-right: 1rem;
+  border: 2px solid rgb(142, 191, 188);
+  border-radius: 5px;
+}
+
+.list-search-form > input {
+  border: 2px solid rgb(142, 191, 188);
+  border-radius: 5px;
+}
+
+.list-search-form-button {
+  background-color: rgb(142, 191, 188);
+  color: white;
+}
+
+.list-search-form-write-button {
+  position: absolute;
+  border: 2px solid rgb(142, 191, 188);
+  border-radius: 5px;
+  right: 0;
+  background-color: rgb(142, 191, 188);
+}
+
+.list-search-form-write-button a {
+  color: white;
 }/*# sourceMappingURL=list.css.map */
