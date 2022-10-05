@@ -14,6 +14,10 @@ a {
   color: black;
 }
 
+li {
+  list-style: none;
+}
+
 .main-container {
   width: 100vw;
   background-color: rgb(253, 251, 251);
@@ -23,7 +27,7 @@ a {
 
 .content-container {
   padding: 1;
-  width: 90vw;
+  width: 90rem;
   position: absolute;
   left: 5rem;
   margin-top: 10rem;
