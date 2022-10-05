@@ -18,12 +18,15 @@ public class ProductDTO {
 	private int reservedNow;
 	
 	
+	
+	
 	@Override
 	public String toString() {
-		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", contents=" + contents
-				+ ", boardRegion=" + boardRegion + ", createdAt=" + createdAt + "]";
+		return "ProductDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", contents=" + contents
+				+ ", boardRegion=" + boardRegion + ", createdAt=" + createdAt + ", img1=" + img1 + ", img2=" + img2
+				+ ", img3=" + img3 + ", img4=" + img4 + ", img5=" + img5 + ", img6=" + img6 + ", zzim=" + zzim
+				+ ", reservedNow=" + reservedNow + "]";
 	}
-	
 	public ProductDTO() {}
 	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img1, String img2, String img3, String img4, String img5, String img6,  int zzim, int reservedNow) {
 		super();
