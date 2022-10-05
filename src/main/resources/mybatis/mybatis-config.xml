@@ -9,7 +9,7 @@
 	<typeAlias type="connectus.reservation.ReservationDTO" alias="reservationdto"/>
 	<typeAlias type="connectus.member.MemberDTO" alias="memberdto"/>
 	<typeAlias type="connectus.comment.CommentDTO" alias="commentdto"/>
-	
+	<typeAlias type="connectus.notice.NoticeDTO" alias="noticedto"/>
 	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
 	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
 	

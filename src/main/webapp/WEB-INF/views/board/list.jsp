@@ -115,7 +115,8 @@
 
         })   
     </script>
-
+	
+	<div>
 
     <% List<BoardDTO> boardlist = (List<BoardDTO>)request.getAttribute("boardlst");
             for(int i = 0;i<boardlist.size();i++){ BoardDTO dto=boardlist.get(i); Cookie kc=new

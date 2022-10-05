@@ -55,6 +55,24 @@
 					<% if(session.getAttribute("sessionid")==null) { %>
 						<a class="loginBtn" href="../login">로그인</a>
 						<% } else { %>
+							<a href="#" class="link_alarm">
+							<span class="img_common_tistory ico_alarm ico_white">알림</span>
+							<span class="img_common_tistory ico_alarm ico_black">알림</span>
+							</a>
+							<div class="header_layer layer_news">
+							 <div class="inner_header_layer">
+							  <h2 class="tit_list">
+							  "New"
+							  <em>0</em>
+							  </h2>
+							  <ul class="list_layer" style="max-height: 400px; overflow-y: auto;">
+							  	<li class>
+							  		<a href="#" class="link_cont" target="_blank"></a>
+							  	  </li>
+							  	 </ul>
+							  	</div>
+							  </div>
+							
 							<a href="/mypage" class="mypage">마이페이지 </a>
 							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 							<% } %>
