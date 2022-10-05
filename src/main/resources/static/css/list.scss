@@ -14,7 +14,6 @@ a {
 
 .list-container {
     width : 50rem;
-
     @include flexbox(left, center);
     flex-direction: column;
 }
@@ -26,19 +25,18 @@ a {
 }
 
 .list-clean-box > a {
-width : 8%;
-height : 80%;
-background-color: $color;
-border : none;
-color : white;
-@include flexbox(center, center );
-margin : 5px;
-border-radius: 5px;
+    width : 8%;
+    height : 80%;
+    background-color: $color;
+    border : none;
+    color : white;
+    @include flexbox(center, center );
+    margin : 5px;
+    border-radius: 5px;
 }
 
 .list-table {
     width : 100%;
-
     text-align: center;
 }
 
@@ -46,13 +44,11 @@ border-radius: 5px;
     height : 3rem;
     border-top : 3px solid $color;
     border-bottom : 1px solid $color;
-
 }
 
 .list-search-form {
     width : 100%;
     height : 2rem;
-
     @include flexbox(center, center);
     position : relative;
 }
@@ -79,7 +75,6 @@ border-radius: 5px;
     position : absolute;
     border : 2px solid $color;
     border-radius: 5px;
-
     right : 0;
     background-color: $color;
 }
@@ -88,4 +83,143 @@ border-radius: 5px;
     color : white;
 }
 
+.write-form  {
+    width : 100%;
+}
+
+.write-form-title {
+    border : none;
+    width : 100%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+.write-form-textarea {
+    border : none;
+    width : 100%;
+    border : solid 2px $color;
+}
+.write-form-textarea:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: $color;
+}
+
+.write-form-writer {
+    border : none;
+    width : 25%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+
+.write-form-password {
+    border : none;
+    width : 25%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+
+.write-form-button {
+    width : 25%;
+    height : 2rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+
+.write-form input:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: $color;
+}
+
+.detail-container {
+    width : 55rem;
+    margin-left : 8%;
+    padding-left : 1rem;
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.detail-box {
+    width : 55rem;
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.detail-delete-box {
+    width : 55rem;
+    height : 3rem;
+    border-bottom: $color solid 2px;
+    @include flexbox(right, center);
+}
+
+.detail-title-box {
+    width : 100%;
+}
+
+.detail-content-box {
+    width : 55rem;
+}
+
+.detail-comment-container {
+    width : 100%;
+}
+
+.detail-comment-box {
+    width : 100%;
+}
+.detail-comment-box2 {
+    width : 100%;
+    background-color: rgb(243, 243, 243);
+}
+
+.detail-comment-box textarea {
+    width : 100%;
+}
+
+.commentListAll {
+    position : relative;
+    width : 100%;
+    margin-top : 0.5rem;
+}
+
+.deleteBtn {
+    position : absolute;
+    right : 5%;
+    top : 0%;
+    border : none;
+    background: none;
+    font-size: 0.8rem;
+}
+
+.updateBtn {
+    position : absolute;
+    right : 10%;
+    top : 0%;
+    border : none;
+    background: none;
+    font-size: 0.8rem;
+}
+
+.detail-delete-box input {
+ width : 4rem;
+ border-radius: 3px;
+ border : none;
+ background-color: $color;
+ color : white;
+ margin : 0.5rem;
+}
+
+.comment-button {
+    width : 5rem;
+    border-radius: 3px;
+    border : none;
+    background-color: $color;
+    color : white;
+    margin : 0.5rem;
+}
 
