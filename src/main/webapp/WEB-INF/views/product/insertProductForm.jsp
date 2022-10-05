@@ -10,10 +10,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/header.css">
 <link rel="stylesheet" href="${path}/css/product.css">
 <script src="${path}/js/jquery-3.6.0.min.js"></script>
-<script src="${path}/js/navbar.js"></script>
 
 <script>
 var Imgcount = 0; 
@@ -135,9 +135,11 @@ $(document).ready(function(){
 </head>
 
 <body>
-    <div class="container-box">
-        <div class="main-container">
-            <custom-navbar></custom-navbar>
+	<div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
 
 
 <h1 class="mt-5">물품등록</h1><div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
@@ -146,8 +148,8 @@ $(document).ready(function(){
 <form  id="uploadForm" action="http://localhost:8090/registerProduct" method="post" enctype="multipart/form-data">
 
 <div class="product-insert-table">
-<input type="text" name="title" placeholder="제목">
-<textarea id="contents" name="contents" rows="20" cols="60" placeholder="내용"></textarea>
+<input type="text" name="title" placeholder="제목" required="required">
+<textarea id="contents" name="contents" rows="20" cols="60" placeholder="내용" required="required"></textarea>
 <input type="text" name="boardRegion" value="${region}" placeholder="사는 곳" readonly  >
 <input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly >
 </div>

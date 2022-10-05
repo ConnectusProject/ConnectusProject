@@ -6,11 +6,44 @@
 <mapper namespace="connectus.reservation.ReservationDAO">
 
 
-	<!-- 전체게시물 조회 (페이징) -->
+	<!-- 예약 추가 -->
 	<insert id="insertReservation" >
 		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
+	
+	<!-- 예약 수락 -->
+	<update id="checkReservation" >
+		update reservation set 
+		reservCheck = 1
+		where id = #{reservId}
+	</update>
+
+	<!--  에약 수락 취소 -->
+	<update id="cancleReservation" >
+		update reservation set 
+		reservCheck = 0
+		where id = #{reservId}
+	</update>
+	
+	
+	<!-- 예약 상태 조회 -->
+	<select id="countReservation" resultType="int">
+		select reservCheck from reservation where id = #{reservId}
+	</select>
+	
+	
+	<!-- 예약 기간 가져오기 -->
+	<select id="getReservationDate" resultType="reservationdto">
+		select * from reservation where boardid = #{productId} and reservCheck=1;
+	</select>
+	
+	<!-- 예약된 prodcut Id 가져오기 -->
+	<select id="getProductId" resultType="int">
+		select boardid from reservation where id = #{reservId}
+	</select>
+	
+
 
 	
 </mapper>

@@ -1,0 +1,244 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "배민체";
+  src: url(../fonts/BMYEONSUNG_ttf.ttf);
+}
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "배민체";
+  position: relative;
+  background-color: rgb(239, 253, 247);
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.container-box {
+  width: 100vw;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-container {
+  width: 80rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+}
+
+.main-container-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-logo {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.main-login {
+  margin: 1rem;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
+
+.main-container-title {
+  width: 100%;
+  height: 10rem;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container {
+  border-top: 0.5px solid rgb(45, 133, 37);
+  box-shadow: 0 3px 5px rgb(45, 133, 37);
+  width: 100vw;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-navbar {
+  width: 80rem;
+  justify-content: space-between;
+}
+
+.main-navbar > a {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.community-list-container {
+  width: 100%;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.list-search-input {
+  display: flex;
+  position: absolute;
+  right: 20%;
+  top: 17%;
+}
+
+.community-list-container > table {
+  width: 60%;
+  border-top: 2px solid rgb(45, 133, 37);
+  text-align: center;
+  position: absolute;
+  top: 25%;
+}
+
+.community-list-container tr {
+  height: 5vh;
+  width: 60%;
+  border-bottom: solid 0.5px rgb(45, 133, 37);
+}
+
+.list-write-button {
+  width: 5rem;
+  height: 2.3rem;
+}
+
+.list-page-check {
+  position: absolute;
+  bottom: 10%;
+}
+
+.community-write-container {
+  width: 50%;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.write-textarea {
+  width: 100%;
+  height: 20rem;
+}
+
+.write-title input {
+  border: solid 3px rgb(164, 233, 164);
+  border-radius: 10px;
+}
+
+.write-title button {
+  border: solid 3px rgb(164, 233, 164);
+  border-radius: 10px;
+}
+
+.write-title ul {
+  border: solid 3px rgb(164, 233, 164);
+  border-radius: 10px;
+}
+
+.write-file * {
+  border: solid 3px rgb(164, 233, 164);
+  border-radius: 10px;
+}
+
+.write-textarea {
+  border: solid 3px rgb(164, 233, 164);
+  border-radius: 10px;
+}
+
+.write-confirm-button {
+  border: rgb(164, 233, 164) solid 3px;
+  width: 20%;
+  height: 7%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+}
+
+.community-detail-container {
+  width: 50%;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.community-detail-title {
+  width: 100%;
+  height: 6vh;
+  border-bottom: solid 2px rgb(45, 133, 37);
+  position: relative;
+}
+
+.detail-choicenum {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+}
+
+.detail-location {
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+}
+
+.detail-title {
+  position: absolute;
+  left: 2%;
+  top: 2%;
+}
+
+.community-detail-container textarea {
+  width: 100%;
+  height: 40vh;
+  border: none;
+  background: none;
+}
+
+.commnunity-detail-button-box {
+  width: 100%;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-modify-button {
+  border: rgb(164, 233, 164) solid 3px;
+  width: 20%;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  margin: 1vw;
+}
+
+.detail-delete-button {
+  border: rgb(164, 233, 164) solid 3px;
+  width: 20%;
+  height: 100%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(98, 167, 98);
+  margin: 1vw;
+}/*# sourceMappingURL=community.css.map */

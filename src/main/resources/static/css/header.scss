@@ -1,5 +1,20 @@
+$color : rgb(142,191,188);
+
+@font-face {
+    font-family: 'MonoplexKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
     margin : 0;
+    font-family: 'MonoplexKR-Regular';
+}
+
+a {
+    text-decoration: none;
+    color : black;
 }
 
 @mixin flexbox($justify, $align){
@@ -12,31 +27,68 @@ body {
     width : 100vw;
     background-color: rgb(253, 251, 251);
     position : relative;
-    padding : 0.1;
+    padding : 1;
+}
+
+.content-container {
+    padding : 1;
+    width : 90vw;
+    position : absolute;
+    left : 5rem;
+    margin-top : 10rem;
+    @include flexbox(center, center );
+
 }
 
 .header-box {
     position : fixed;
     width : 100%;
     height : 4.5rem;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(255, 255, 255);
     z-index: 2;
     display : flex;
     justify-content:space-between;
+    box-shadow: 5px 5px 10px rgb(170, 170, 170);
 }
 
 .header-menu-logo-box {
-    width : 18%;
+    width : 20%;
     @include flexbox(left, center);
 }
 
 .header-menu-logo-box span {
-    margin-left : 1rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+}
+
+.header-menu-logo-box img {
+    width : 2rem;
+    margin-left : 1.4rem;
+}
+
+.header-menu-title {
+    margin-left : 2rem;
 }
 
 .header-search-box {
     @include flexbox(center, center);
+    width : 60%;
+}
+
+.header-search-input {
+    width : 20vw;
+    border : solid 2px $color;
+    border-radius: 5px;
+}
+.header-search-input:focus {
+    outline-style: solid;
+    outline-color: $color;
+    outline-width: 2px;
+}
+
+.header-search-button {
+    border : none;
+    background-color: $color;
+    color : white;
 }
 
 .header-search-box-inner {
@@ -56,13 +108,12 @@ body {
     margin-right : 1rem;
 }
 
-
-
 .nav-box {
     position: fixed;
     height : 100vh;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
     z-index: 1;
+    box-shadow: 5px 5px 10px rgb(170, 170, 170);
 }
 
 .nav-box img {
@@ -76,15 +127,14 @@ body {
     flex-direction: column;
 }
 
-.after-login-menu-box{
-    width : 100%;
-}
-
 .nav-menu-box {
     display : flex;
     width : 100%;
-    margin-bottom : 1rem;
     @include flexbox(space-between, center);
+}
+
+.nav-menu-box:hover {
+    background-color: $color;
 }
 
 .menu-icon {
@@ -93,14 +143,45 @@ body {
     @include flexbox(center, center)
 }
 
-.menu-icon img {
+.menu-icon > a {
+    width : 100%;
+    height : 100%;
+    @include flexbox(center, center);
+}
+
+.menu-icon > a > img {
     width : 2rem;
+    height : 2rem;
 }
 
 .menu-title {
     width : 8rem;
     text-align: left;
-    margin-left : 1rem;
+    font-weight: 800;
+}
+
+.menu-title>a:hover {
+    color : white;
+}
+
+.nav-sub-menu-box {
+    width : 100%;
+    margin-bottom : 1rem;
+    @include flexbox(right, none);
+}
+
+.menu-title-sub {
+    width : 50%;
+    margin-right : 10%;
+}
+
+.menu-title-sub > a {
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.menu-title-sub > a:hover {
+    color : $color;
 }
 
 .close {

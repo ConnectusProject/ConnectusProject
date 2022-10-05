@@ -8,7 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
-<script src="${path}/js/jquery-3.6.0.min.js" ></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/header.css">
+<link rel="stylesheet" href="${path}/css/product.css">
+<script src="${path}/js/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
 
@@ -17,6 +21,11 @@ $(document).ready(function(){
 
 </head>
 <body>
+    <div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
 
 <form action="http://localhost:8090/product/reservationinput" method="post">
 
@@ -48,6 +57,16 @@ $(document).ready(function(){
 
 <br>
 <a href="http://localhost:8090/">홈으로</a>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+crossorigin="anonymous"></script>
 
 </body>
 </html>

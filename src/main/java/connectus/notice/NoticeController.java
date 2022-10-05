@@ -29,7 +29,7 @@ public class NoticeController {
 	// 예약하기 - 알람조회
 	@ResponseBody
 	@PostMapping("/notice/{productId}/selectproductnotice")
-	public Object selectNotice(@PathVariable("productid") int productid, String receiveid, String noticeinfo, HttpSession session, Model model) throws Exception{
+	public String selectNotice(@PathVariable("productid") int productid, String receiveid, String noticeinfo, HttpSession session, Model model) throws Exception{
 		String sessionid = (String)session.getAttribute("sessionid");
 		
 		ProductDTO targetProduct = productDAO.oneProduct(productid);
@@ -38,7 +38,8 @@ public class NoticeController {
 		List<NoticeDTO> NoticeList = noticeDAO.selectNotice();
 		
 		model.addAttribute("reservationList", reservList);
-		return NoticeList;
+		model.addAttribute("NotiList", NoticeList);
+		return "product/allproduct";
 		
 		
 		

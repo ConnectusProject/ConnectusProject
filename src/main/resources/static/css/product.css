@@ -1,28 +1,85 @@
-.content-container {
-  position: absolute;
-  left: 10vw;
-  width: 1500px;
-  margin-top: 11rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding : 0.3;
-}
-
 .allproduct-container {
   width: 100%;
   display: flex;
   justify-content: none;
   align-items: center;
   flex-direction: column;
-  padding : 0.1;
+  top: 0%;
+  margin-left: 5rem;
+  position: relative;
+  background-color: black;
 }
 
-.allproduct-product-box {
-  width: 1500px;
+.smart-search-box {
+  width: 95rem;
+  height: 4rem;
+  text-align: center;
+  position: absolute;
+  border-top: solid 2px rgb(142, 191, 188);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: none;
+  left: 0;
+}
+
+.smart-search-title {
+  width: 12%;
+  position: absolute;
+  background-color: white;
+  left: 44%;
+  top: -1.2rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.smart-search-result-box {
+  width: 95rem;
+  height: 3rem;
+  background-color: rgb(142, 191, 188);
+  border-radius: 10px;
   display: flex;
   justify-content: left;
   align-items: center;
+  position: absolute;
+  left: 0%;
+  top: 5rem;
+}
+
+.smart-search-result-box div {
+  margin-left: 2rem;
+}
+
+.allproduct-search-box {
+  width: 95rem;
+  position: absolute;
+  left: 0;
+  top: 9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: none;
+}
+
+.product-register {
+  width: 10rem;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgb(142, 191, 188);
+  color: white;
+  top: 9.5rem;
+  left: 0;
+  text-align: center;
+  padding-top: 0.2rem;
+}
+
+.allproduct-product-box {
+  position: absolute;
+  top: 13rem;
+  left: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: none;
   flex-wrap: wrap;
 }
 
@@ -31,7 +88,6 @@
   height: 22rem;
   margin: 3rem;
   position: relative;
-  background-color: red;
 }
 
 .product-item-img {
@@ -78,4 +134,44 @@
   right: 3%;
   bottom: 3%;
   left: none;
+}
+
+.oneproduct-container {
+  background-color: aqua;
+  width: 25rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.product-detail-img {
+  width: 100%;
+  height: 50%;
+}
+
+.product-detail-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-detail-content {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.product-detail-content-button {
+  width: 100%;
+  height: 10%;
+  position: relative;
+}
+
+.zzim-box {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
 }/*# sourceMappingURL=product.css.map */

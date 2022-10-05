@@ -29,6 +29,13 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> neighborList(String boardRegion);
 	
+	public int checkReservation(int productId);
+	
+	public int cancleReservation(int productId);
+	
+	public List<ProductDTO> smartSearch(SmartSearchDTO smartSearchDTO);
+	
+	
 		// 찜 조회 
 		public Object zzimCount(int productseq, String memberId) throws Exception;
 	
@@ -38,13 +45,13 @@ public interface ProductDAO {
 		// 찜 취소 
 		public void updateZzimCancel(int productseq, String memberId) throws Exception;
 
-		// 추천 insert
+		// 찜 insert
 		public void insertZzim(int productseq,String memberId) throws Exception;
 
-		// 추천 delete
+		// 찜 delete
 		public void deleteZzim(int productseq,String memberId)throws Exception;
 
-		// 추천 중복 조회
+		// 찜 중복 조회
 		public int zzimCheck(int productseq,String memberId) throws Exception;
 		
 

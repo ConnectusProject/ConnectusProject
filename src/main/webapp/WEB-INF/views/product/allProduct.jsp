@@ -18,7 +18,25 @@
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
-
+            
+            
+            $("#regionSelect").on("change", function(){
+            	var oneSelect = document.getElementById("regionSelect");
+            	// option value 가져오기
+            	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
+            	
+            	if(Regionvalue=='검색'){
+            		$("#here").html("<input type='text' name='smartRegion'>");
+            	}else if(Regionvalue=='모든 동네'){
+            		$("#here").html("<input type='hidden' name='smartRegion' value='동'>");
+            	}else if(Regionvalue=='내 동네'){
+            		$("#here").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            	}
+            });
+            
+            
+            
+            
             // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
                 if (sessionId == "") {
@@ -30,6 +48,7 @@
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
+            	(function(i){
                 let eachProductId = $("#productid" + i).html();
                 let intProductId = parseInt(eachProductId);
 
@@ -57,36 +76,71 @@
                             }
 
 
-                            if (resp.result2 == 0) {
-                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
-                            }
-                            else if (resp.result2 == 1) {
-                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
-                            }
+//                            if (resp.result2 == 0) {
+//                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+//                            }
+//                            else if (resp.result2 == 1) {
+//                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+//                            }
+//                            $("#zzimSpan" + i).html(result2);
+                            
+                            
+                     
+                            
+                            //$("#zzimProducts").append(resp.oneProduct);
 
-                            $("#zzimSpan" + i).html(result2);
-
-                            location.reload();
+                          //  location.reload();
+                        //    $("#zzimProducts").html("어펜드 테스트");
                         } // success 
                     }); // ajax 
                 }); // 찜 onclick
+            	})(i); // for - ajax 용 function
             } // for 
         }); // onload 
     </script>
 </head>
 
 <body>
+
     <div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
 
-
-
             <div class="allproduct-container">
+				<!-- 찜상품 띄우기 -->
+				<span id="zzimProducts">hello~!!~here</span>
+
+
+
+
+
+
+
                 <!-- 검색기능  -->
+
+                <form class="smart-search-box mb-4" action="smartSearch" method="post">
+                    <div class="smart-search-title">스마트 검색</div>
+                키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
+                렌탈시작 : <input class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                렌탈종료 : <input class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                동네 : <select id="regionSelect">
+                <option>모든 동네</option>
+                <option>내 동네</option>
+                <option>검색</option>
+                </select>
+                <span id="here"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
+                <input class="smart-search-button" type="submit" value="스마트검색">
+                </form>
+                <div class="smart-search-result-box">
+
+                </div>
+                
+
                 <form class="allproduct-search-box" action="searchproduct">
+                    <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+                    <div class="allproduct-search-box-input">
                     <select name="item">
                         <option value="title">제목</option>
                         <option value="boardRegion">지역</option>
@@ -96,14 +150,41 @@
 
                     <input class="search-box-search-input" type="text" name="search">
                     <input class="search-box-search-button" type="submit" value="검색">
+                    </div>
                 </form>
+                
 
-
+       <!--          스마트검색 기능
+                <form id="smartSearch" action="smartSearch" method="post">
+                키워드 : <input type="text" name="smartTitle">
+                렌탈시작 : <input type="date" name="smartStartDate">
+                렌탈종료 : <input type="date" name="smartEndDate">
+                동네 : <select id="regionSelect">
+                <option>모든 동네</option>
+                <option>내 동네</option>
+                <option id="optionSearch">검색</option>
+                </select>
+                
+                <span id="here"><input type='hidden' name='smartRegion' value='동'></span>
+                <input type="submit" value="스마트서치">
+                </form>
+ -->
+   
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs">
                         <div class="product-box-item">
+                     
+                        	<!-- 예약중 표시 -->
+                        	<c:if test="${product.reservedNow==1 }">
+                        	<c:set var="reservedNowImg" value="렌탈중"/>
+                        	</c:if>
+                        	<c:if test="${product.reservedNow==0 }">
+                        	<c:set var="reservedNowImg" value=""/>
+                        	</c:if>
+                        	
+
 
                             <!-- 날짜 몇일 전으로 변환 -->
                             <fmt:parseDate value="${product.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
@@ -148,7 +229,7 @@
                             </c:if>
 
 
-                            <div class="product-item-title"><a href="/product/${product.id}">${product.title}</a></div>
+                            <div class="product-item-title"><span style=color:red>${reservedNowImg} </span> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
                             </div>
@@ -161,19 +242,16 @@
 
                 </div>
 
-                <a href="http://localhost:8090/">홈으로</a>
-                <a href="http://localhost:8090/chatList">채팅리스트</a>
-                <a id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+                <!-- <a href="http://localhost:8090/">홈으로</a> -->
+            
             </div>
-
-
 
         </div>
     </div>
     
 
 
-
+    <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

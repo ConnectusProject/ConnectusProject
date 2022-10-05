@@ -50,6 +50,37 @@
 	 </select>
 	 
 	 
+	 <!-- 예약 수락 -->
+	 <update id="checkReservation">
+	 	update product set reservedNow = 1 where id=#{productId}
+	 </update>
+	 
+	 <!-- 예약 수락 -->
+	 <update id="cancleReservation">
+	 	update product set reservedNow = 0 where id=#{productId}
+	 </update>
+	 
+	 
+	 <!-- 스마트 검색 -->
+	 <select id="smartSearch" resultType="productdto">
+	select * from product left outer join reservation on product.id = reservation.boardid 
+	where (title like concat('%', #{smartTitle}, '%') 
+	and boardRegion like concat('%', #{smartRegion}, '%')
+	and (reservation.startRental is null
+	or reservation.reservCheck = 0))
+	or (
+	title like concat('%', #{smartTitle}, '%') 
+	and boardRegion like concat('%', #{smartRegion}, '%')
+	and reservation.reservCheck = 1
+	and reservation.startRental not between #{smartStartDate} and #{smartEndDate}
+	and reservation.endRental not between #{smartStartDate} and #{smartEndDate} 
+	 ) 
+	group by product.id order by product.createdAt desc;
+
+	 </select>
+	 
+	 
+	 
 	 
 
 </mapper>

@@ -59,23 +59,7 @@ public class MypageController {
 		return mav;		
 		
 	}
-	
-	/*내가 올린 제품
-	@GetMapping("/myProduct")
-	public String myProduct(String userid, Model model) throws Exception{
-		String sessionid = (String)session.getAttribute("sessionid");
-		
-		List<ProductDTO> list = myserv.allMyBoard(sessionid);
-		
-		int boardlength = list.size();
-		
-		model.addAttribute("boardlength", boardlength);
-		model.addAttribute("allmyboard",list);
-		System.out.println("myproduct");
-		
-		return "mypage/mypage";
-	}
-	*/
+
 	
 	//회원탈퇴
 	@GetMapping("/delete")
@@ -116,6 +100,26 @@ public class MypageController {
 		System.out.println("수정폼 " + memberdto.getName());
 		myserv.memberModify(memberdto);
 		return mav;
+	}
+	
+	//비밀번호 수정(가져오기)
+	@GetMapping("/passwordModify")
+	public ModelAndView modifyPassword(@RequestParam(required=false) String userid) throws Exception{
+		System.out.println("비밀번호");
+		userid = (String)session.getAttribute("sessionid");
+		mav = myserv.passwordForm(userid);
+		MemberDTO member = myserv.memberDetail(userid);
+		mav.addObject("member",member);
+		return mav;
+	}
+	
+	@PostMapping("/passwordModify")
+	public ModelAndView passwordModify(@ModelAttribute MemberDTO memberdto, @RequestParam(value="changePw")String pw, HttpServletRequest request) throws Exception {
+		session = request.getSession();
+		session.removeAttribute("sessionid");
+		memberdto.setPw(pw);
+		myserv.passwordModify(memberdto, pw);
+		return mav = new ModelAndView("member/login");		
 	}
 	
 	

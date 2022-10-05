@@ -10,7 +10,6 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 		<link rel="stylesheet" href="${path}/css/mypage.css">
-		<script src="${path}/js/navbar.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
@@ -21,16 +20,12 @@
 	</head>
 	
 	<body>
+					<p class="mypage-delete-title" style="color : red">탈퇴ID :  ${sessionid}</p>
+					<form class="mypage-delete-box" action="deletemember" method="post" id="deleteForm" name="deleteForm">
+						
 	
-		<div class="container-box">
-			<div class="main-container">
-				<custom-navbar></custom-navbar>
-				<div class="mypage-container">
-					<form action="deletemember" method="post" id="deleteForm" name="deleteForm">
-						탈퇴ID : <span style="color : red">${sessionid}</span>
-	
-						<div>
-							<p class="lead">회원탈퇴를 하려면 비밀번호를 입력해주세요.</p>
+						<div style="width : 100%">
+							<p class="lead"> 비밀번호를 입력해주세요.</p>
 							<div class="form-group">
 								<input class="delete-pw" type="password" id="pw" name="pw" placeholder="비밀번호" />
 							</div>
@@ -44,7 +39,6 @@
 	
 						</div>
 					</form>
-				</div>
 	
 				<script>
 					function back() {
@@ -74,9 +68,6 @@
 					}
 				</script>
 	
-	
-			</div>
-		</div>
 	
 	</body>
 	

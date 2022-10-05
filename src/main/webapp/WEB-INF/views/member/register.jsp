@@ -34,7 +34,7 @@
 						<a href="login" id="btn">로그인</a>
 					</div>
 					<div class="signup-box-signup-button">
-						<a href="register" id="btn">회원가입</a>
+						회원가입
 					</div>
 				</div>
 

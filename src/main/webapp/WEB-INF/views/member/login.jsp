@@ -41,9 +41,9 @@
                         <input class="login-input" type="password" name="pw" id="pw" autocomplete="off" placeholder="PASSWORD"><br>
                         <input class="login-button" type="submit" id="btn" value="login">
                     </form>
-                    <div class="login-box-find-box">                  
-                            <button class="signup-button" id="btn" type="button"><a href="findid">아이디 찾기</a></button>
-                            <button class="signup-button" id="btn" type="button"><a href="findpw">비밀번호 찾기</a></button>              
+                    <div class="login-box-find-box mt-2">                  
+                            <button class="find-idpw-button" id="btn" type="button"><a href="findid">아이디 찾기</a></button>
+                            <button class="find-idpw-button" id="btn" type="button"><a href="findpw">비밀번호 찾기</a></button>              
                     </div>
                     <div class="login-box-kakao-naver">
                         <img src="${path}/pictures/Kakao_logo.jpg">

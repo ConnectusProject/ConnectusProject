@@ -20,6 +20,7 @@ public interface MypageDAO {
 	public void deleteMember(String userid);
 	public ModelAndView modifyMember(String userid);
 	public void memberModify(MemberDTO memberdto);
+	public void passwordModify(MemberDTO memberdto);
 
 	public List<ProductDTO> allMyBoard(String userid);
 }

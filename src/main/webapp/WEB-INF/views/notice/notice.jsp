@@ -11,18 +11,11 @@
 
 function reservebutton() {
 	document.getElementyById('reserve').submit();
-	
-}
-
-$(function() {
 	let sessionId = '<%=session.getAttribute("sessionid")%>';
 	let noticeinfo = '${selectNotice.noticeinfo}'
 	let createtime = '${inserProduct.createdAt}'
 	let list = [];
 	
-	
-})
-
 	$.ajax({
 		type : "POST",
 		url : "notice/" + ${param.productid} + "/selectproductnotice", 
@@ -36,6 +29,15 @@ $(function() {
 			//보여줘야하는 부분은 예약을 해서 알람을 받는 아이디, 받았다는 메세지, 시간정도 호출해준다.
 			
 			$.each(list, function(i, item){
+				$("#notice").append("<li></li>");
+				$("#notice").append(
+						"<span class='notice-detail-id'>" + item.receiveid + "</span>"
+						+ "<span class='notice-detail-info'>" + item.noticeinfo + "</span>"
+						+ "<span class='notice-detail-time'>" + item.createdAt + "</span>"			
+				
+				
+				
+				)
 				if(sessionid == null){
 					e.preventDefault();
 					else{
@@ -45,12 +47,17 @@ $(function() {
 					
 				}
 				
-			})
+			},
+			error:function(request,status,error){
+				
+			}
 			
 			
-			
-		}
+		})
 	})
+
+
+
 	
 	
 
@@ -61,9 +68,15 @@ $(function() {
 	
 	<!-- 알람 클릭했을 때 나오는 창 -->
 	<div class="notice-detail-box">
+		<c:forEach items="${allproduct}" var="product" varStatus="vs"> 
+		<c:forEach items="${allnotice}" var="selectNotice" varStatus="vs">
 		<span class="notice-detail-id">${selectNotice.receiveid}</span>
 		<span class="notice-detail-info">${selectNotice.noticeinfo}</span>
-		<span class="notice-detail-time">${insertProduct.createdAt}</span>
+		<span class="notice-detail-time">${product.createdAt}</span>
+		
+		<ul id="notice"></ul>
+		 </c:forEach>
+		</c:forEach>
 	</div>
 	
 	

@@ -46,6 +46,10 @@ public class ProductController {
 	@GetMapping("/allproduct")
 	public String allProduct(Model model, HttpSession session) throws Exception {
 		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = "동"; 
+		if(extraaddr != null) {
+		region = extraaddr.substring(2,extraaddr.length()-1); }
 		
 		List<ProductDTO> list = productDAO.allProduct();
 		
@@ -66,6 +70,7 @@ public class ProductController {
 		int productlength = list.size();
 		
 	
+		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("allproduct", list);
 		return "product/allProduct";
@@ -77,6 +82,11 @@ public class ProductController {
 	public String searchList(String item, String search, HttpSession session ,Model model) throws Exception {
 		
 		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = "동"; 
+		if(extraaddr != null) {
+		region = extraaddr.substring(2,extraaddr.length()-1); }
+		
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("item", item);
@@ -98,11 +108,47 @@ public class ProductController {
 				}
 				
 				int productlength = searchList.size();
-		
+		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("searchList", searchList);
 		return "product/searchList";
 	}
+	
+	// 스마트검색 
+	@PostMapping("/smartSearch")
+	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session) throws Exception {
+		String sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		String region = "동"; 
+		if(extraaddr != null) {
+		region = extraaddr.substring(2,extraaddr.length()-1); }
+		
+		
+		List<ProductDTO> searchList = productDAO.smartSearch(smartSearchDTO);
+
+		System.out.println(smartSearchDTO.toString());
+		
+		// 찜 set 
+		for (ProductDTO dto : searchList) {
+			int productseq = (int)dto.getId();
+			
+			int zzim = 0; 
+			Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+			if(zzimcheck!=null) {
+				zzim = 1; 
+			}
+			
+			dto.setZzim(zzim);
+		}
+		
+			int productlength = searchList.size();
+		model.addAttribute("region", region);
+		model.addAttribute("productlength", productlength);
+		model.addAttribute("searchList", searchList);
+		
+		return "product/smartSearch";
+	}
+	
 	
 	
 	// 내 이웃 
@@ -111,7 +157,9 @@ public class ProductController {
 			
 			String sessionid = (String)session.getAttribute("sessionid");
 			String extraaddr = memberDAO.getRegion(sessionid);
-			String region = extraaddr.substring(2,extraaddr.length()-1);
+			String region = "동"; 
+			if(extraaddr != null) {
+			region = extraaddr.substring(2,extraaddr.length()-1); }
 			
 
 			List<ProductDTO> searchList = productDAO.neighborList(region);
@@ -130,7 +178,7 @@ public class ProductController {
 					}
 					
 					int productlength = searchList.size();
-			
+			model.addAttribute("region", region);
 			model.addAttribute("productlength", productlength);
 			model.addAttribute("searchList", searchList);
 			return "product/neighbor";
@@ -163,8 +211,9 @@ public class ProductController {
 		targetProduct.setZzim(zzim);
 		
 		List<ReservationDTO> reservList = productDAO.allReservation(productid);
+		int reservLength = reservList.size();
 		
-		
+		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);
 		model.addAttribute("oneProduct", targetProduct);
 
@@ -300,19 +349,18 @@ public class ProductController {
 		public String updatezzim(int productseq, String memberid) throws Exception {
 			
 
-			int zzim = 0; 
 			int zzimCheck = productDAO.zzimCheck(productseq, memberid);
 			if (zzimCheck == 0) {
 				productDAO.insertZzim(productseq, memberid);
 				productDAO.updateZzim(productseq, memberid);
-				zzim = 1;
 			} else if (zzimCheck == 1) {
 				productDAO.updateZzimCancel(productseq, memberid);
 				productDAO.deleteZzim(productseq, memberid);
 			}
 			
+			ProductDTO oneProduct = productDAO.oneProduct(productseq);
 
-			return "{\"result\" : \"" + zzimCheck + "\", \"result2\" : \"" + zzim + "\" }";
+			return "{\"result\" : \"" + zzimCheck + "\", \"oneProduct\" : \"" + oneProduct + "\" }";
 		}
 
 		

@@ -8,9 +8,12 @@
 	<typeAlias type="connectus.product.ProductDTO" alias="productdto"/>
 	<typeAlias type="connectus.reservation.ReservationDTO" alias="reservationdto"/>
 	<typeAlias type="connectus.member.MemberDTO" alias="memberdto"/>
+	<typeAlias type="connectus.comment.CommentDTO" alias="commentdto"/>
 	
 	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
 	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
+	
+	<typeAlias type="connectus.chat.ChatRoom" alias="ChatRoom" />
 </typeAliases>
 
 
