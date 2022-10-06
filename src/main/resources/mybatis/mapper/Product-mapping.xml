@@ -83,7 +83,7 @@
 	 
 	 <!-- 찜 목록 가져오기 -->
 	 <select id="getZzimProducts" resultType="productdto">
-	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1;
+	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by zzim.seq desc;
 	 </select>
 	 
 	 
