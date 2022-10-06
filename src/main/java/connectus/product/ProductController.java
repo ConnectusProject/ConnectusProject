@@ -341,7 +341,7 @@ public class ProductController {
 	@PostMapping(value ="/ajaxUpload", produces= {"application/json; charset=utf-8"})
 	public String uploadajax(MultipartFile imgFile) throws IOException {
 		
-//		String savePath = "/Users/youngban/upload/";
+	//	String savePath = "/Users/youngban/upload/";
 		String savePath = "c:/upload/";					
 
 		String originalname1 = imgFile.getOriginalFilename();
