@@ -33,7 +33,7 @@ li {
   margin-top: 10rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .header-box {
@@ -51,7 +51,7 @@ li {
   width: 20%;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: align;
 }
 
 .header-menu-logo-box span {
@@ -70,7 +70,7 @@ li {
 .header-search-box {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
   width: 60%;
 }
 
@@ -101,7 +101,7 @@ li {
   width: 20%;
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: align;
 }
 
 .header-sign-box a {
@@ -128,7 +128,7 @@ li {
   width: 100%;
   display: flex;
   justify-content: none;
-  align-items: center;
+  align-items: align;
   flex-direction: column;
 }
 
@@ -137,7 +137,7 @@ li {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: align;
 }
 
 .nav-menu-box:hover {
@@ -149,7 +149,7 @@ li {
   height: 3rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-icon > a {
@@ -157,7 +157,7 @@ li {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-icon > a > img {
@@ -180,7 +180,7 @@ li {
   margin-bottom: 1rem;
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-title-sub {
