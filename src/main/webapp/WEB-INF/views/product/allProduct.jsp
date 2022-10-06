@@ -27,11 +27,11 @@
             	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
             	
             	if(Regionvalue=='검색'){
-            		$("#here").html("<input type='text' name='smartRegion'>");
+            		$("#zzimList").html("<input type='text' name='smartRegion'>");
             	}else if(Regionvalue=='모든 동네'){
-            		$("#here").html("<input type='hidden' name='smartRegion' value='동'>");
+            		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
-            		$("#here").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
             	}
             });
             
@@ -67,16 +67,19 @@
                         data: { 'productseq': intProductId, 'memberid': sessionId },
 
                         success: function (resp) {
+                        	
                             if (resp.result == 0) {
                                 alert("찜!");
                                 $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
-                            // 찜 작동 시, 해당물품 화면에 출력 
-                                $("#zzimProducts").prepend("<span>"+resp.id + "<img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span>");
+                            // 찜 작동 시, 해당물품 장바구니에 출력 
+                            
+                                $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'>"+ resp.id + "<img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
                                 alert("찜 취소!");
                                 $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
-                                $("#zzimProducts")
+                            // 찜 취소 시, 해당물품 장바구니에서 제거
+                                $("#spanId" + resp.id).remove();
                             }
 
                         } // success 
@@ -115,7 +118,7 @@
                 <option>내 동네</option>
                 <option>검색</option>
                 </select>
-                <span id="here"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
+                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="스마트검색">
                 </form>
                 <div class="smart-search-result-box">
@@ -123,13 +126,15 @@
                 </div>
                 
 
-                <form class="allproduct-search-box" action="searchproduct">
+                <form class="allproduct-search-box" action="searchproduct">	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
 		<!-- 찜상품 띄우기 -->
 				<span id="zzimProducts">
 			<c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
-				${zzimProduct.id}<img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }
+			<a href="http://localhost:8090/product/${zzimProduct.id}">
+				<span id = "spanId${zzimProduct.id}">${zzimProduct.id}<img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+			</a>
 			</c:forEach>
 				</span>
                     
