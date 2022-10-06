@@ -35,6 +35,15 @@
             	}
             });
             
+            // 스마트검색 날짜 제한 (아예 입력하지 않거나, 둘다 입력하거나만 가능)
+            $("#smartStartDate").on("change", function(){
+            	$("#smartEndDate").attr("required", "required");
+            });
+            
+            $("#smartEndDate").on("change", function(){
+            	$("#smartStartDate").attr("required", "required");
+            });
+            
             
             
             
@@ -110,8 +119,8 @@
                 <form class="smart-search-box mb-4" action="smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
-                렌탈시작 : <input class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                렌탈종료 : <input class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                렌탈종료 : <input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>

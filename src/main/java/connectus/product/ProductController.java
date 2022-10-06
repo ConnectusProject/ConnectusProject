@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpRequest;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -139,7 +140,12 @@ public class ProductController {
 					dto.setZzim(zzim);
 				}
 				
-				int productlength = searchList.size();
+		int productlength = searchList.size();
+		
+		
+		
+		
+		
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("searchList", searchList);
@@ -155,9 +161,34 @@ public class ProductController {
 		if(extraaddr != null) {
 		region = extraaddr.substring(2,extraaddr.length()-1); }
 		
-		
-		List<ProductDTO> searchList = productDAO.smartSearch(smartSearchDTO);
+		// 제목,지역으로 검색한 상품리스트
+		List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion());
 
+		ArrayList<Integer> selectedList = new ArrayList<>();
+		
+		// 날짜로 검색 : 해당 날짜 조건에 부합하지 않는다 => 예약이 null 값인 것과, 예약수락이 없는 리스트까지 포함됨 
+		for(int i = 0; i<titleRegion.size(); i++) {
+
+		if(smartSearchDTO.getSmartStartDate() != "" && smartSearchDTO.getSmartEndDate() != "") {
+		Integer selected =  productDAO.searchByRentalDate(smartSearchDTO.getSmartStartDate(), smartSearchDTO.getSmartEndDate(), titleRegion.get(i));
+		
+		if(selected>0) {
+		selectedList.add(selected);  
+			}
+		}else if(smartSearchDTO.getSmartStartDate() == "" && smartSearchDTO.getSmartEndDate() == "") {
+			selectedList.add(titleRegion.get(i));
+			}
+		} //for 
+		
+		
+		List<ProductDTO> searchList = new ArrayList<>();
+		
+		// 찾은 상품 번호로 상품 list 를 불러옴 
+		for(int i =0; i<selectedList.size(); i++) {
+		ProductDTO searchedOne = productDAO.oneProduct(selectedList.get(i));
+		searchList.add(searchedOne);
+		}
+		
 		System.out.println(smartSearchDTO.toString());
 		
 		// 찜 set 
