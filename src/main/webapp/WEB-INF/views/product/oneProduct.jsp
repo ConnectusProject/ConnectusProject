@@ -19,9 +19,11 @@
 
     <script>
 
-        function chatSubmit() {
-            document.getElementById('chatSubmit_form').submit();
+        function chatSubmit(e) {
+			document.getElementById('chatSubmit_form').submit();
         }
+        
+        
 
 
         $(document).ready(function () {
@@ -48,6 +50,10 @@
             }); // onclick 예약
 
 
+            // 세션 없을 때 채팅버튼 
+            $("#noSession_FakeChatBTN").on("click", function(){
+            	alert("로그인이 필요합니다.");
+            });
             
 
 
@@ -117,7 +123,6 @@
                         return false;
                     }
 
-
                     $.ajax({
                         type: "POST",
                         url: "/product/reservcheck",
@@ -149,13 +154,6 @@
                 }); // 예약 수락 onclick
             	})(i); // for - ajax 용 function
             } // for 
-
-            
-          
-            
-            
-            
-            
             
         });   // onload
     </script>
@@ -202,6 +200,14 @@
             </c:if>
 
             <Br>
+			
+			<!-- 예약중 표시 -->
+            <c:if test="${oneProduct.reservedNow==1 }">
+            <c:set var="reservedNowImg" value="렌탈중"/>
+            </c:if>
+            <c:if test="${oneProduct.reservedNow==0 }">
+            <c:set var="reservedNowImg" value=""/>
+            </c:if>
 
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
@@ -255,7 +261,7 @@
                     <!-- 상세페이지 내용 -->
                     <div class="product-detail-content">
                         <span class="detail-title-num">${oneProduct.id}</span>
-                        <span class="detail-title-title">${oneProduct.title}</span>
+                        <span class="detail-title-title"><span style=color:red>${reservedNowImg} </span> ${oneProduct.title}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion}</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
@@ -265,7 +271,7 @@
                         <!-- 채팅버튼 -->
                         <div class="product-detail-chatbutton">
 
-                            <c:if test="${sessionid != oneProduct.userId }">
+                            <c:if test="${sessionid != oneProduct.userId && not empty sessionid }">
                                 <form id="chatSubmit_form" action="/chatMessage" method="GET">
                                     <a id="chatLink" href="javascript:{}" onclick="chatSubmit()">
                                         <input type="hidden" name="buyerId" value="${sessionid}" />
@@ -276,6 +282,9 @@
                                         <button id="btn_chat">💬채팅</button>
                                     </a>
                                 </form>
+                            </c:if>
+                            <c:if test="${empty sessionid }">
+                               <button id="noSession_FakeChatBTN">💬채팅</button>
                             </c:if>
 
                             <!-- 찜 버튼 -->

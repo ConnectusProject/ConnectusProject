@@ -4,6 +4,7 @@ package connectus.product;
 import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import connectus.ApiClient;
 import connectus.geoapiignore;
 import connectus.member.MemberDAO;
+import connectus.reservation.ReservationDAO;
 import connectus.reservation.ReservationDTO;
 
 
@@ -38,6 +40,9 @@ public class ProductController {
 	@Autowired
 	MemberDAO memberDAO; 
 	
+	@Autowired
+	ReservationDAO reservationDAO;
+	
 	
 	// 홈 
 	@GetMapping("/")
@@ -48,6 +53,7 @@ public class ProductController {
 	// 전체 물품 조회
 	@GetMapping("/allproduct")
 	public String allProduct(Model model, HttpSession session) throws Exception {
+		// 지역 set 
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = "동"; 
@@ -68,17 +74,30 @@ public class ProductController {
 			}
 			
 			dto.setZzim(zzim);
-		}
+
+		// 렌탈중 set  
+		List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
+			
+			LocalDate now = LocalDate.now();
+			for(int i = 0; i<reservations.size(); i++) {
+				String startDateString = reservations.get(i).getStartRental();
+				String endDateString = reservations.get(i).getEndRental();
+				
+				LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
+				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
+				
+				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
+					productDAO.checkReservation(productseq);
+				}else {
+					productDAO.cancleReservation(productseq);
+				}
+			} // inner for  
+		} // outer for 
 		
+		// 상품개수 
 		int productlength = list.size();
-		
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
-// ( 역순 정렬 ) 		
-//		List<ProductDTO> copy = Collections.emptyList();
-//		Collections.copy(copy, OriginzzimProducts);
-//		Collections.reverse(copy);
-//		List<ProductDTO> zzimProducts = copy;
 		
 		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
@@ -86,6 +105,8 @@ public class ProductController {
 		model.addAttribute("allproduct", list);
 		return "product/allProduct";
 	}
+		
+	
 	
 	
 	// 검색
