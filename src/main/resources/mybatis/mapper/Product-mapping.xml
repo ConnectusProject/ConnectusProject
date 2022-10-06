@@ -61,30 +61,33 @@
 	 </update>
 	 
 	 
-	 <!-- 스마트 검색 -->
-	 <select id="smartSearch" resultType="productdto">
-	select * from product left outer join reservation on product.id = reservation.boardid 
-	where (title like concat('%', #{smartTitle}, '%') 
-	and boardRegion like concat('%', #{smartRegion}, '%')
-	and (reservation.startRental is null
-	or reservation.reservCheck = 0
-	))
-	or (
-	title like concat('%', #{smartTitle}, '%') 
-	and boardRegion like concat('%', #{smartRegion}, '%')
-	and reservation.reservCheck = 1
-	and not (reservation.startRental between #{smartStartDate} and #{smartEndDate}
-	and reservation.endRental between #{smartStartDate} and #{smartEndDate} 
-	 )) 
-	group by product.id order by product.createdAt desc;
-
-	 </select>
-	 
 	 
 	 <!-- 찜 목록 가져오기 -->
 	 <select id="getZzimProducts" resultType="productdto">
 	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by zzim.seq desc;
 	 </select>
+
+<!-- 스마트 검색 -->
+	<!-- 키워드, 지역 검색 -->
+	<select id="searchByTitle_Region" resultType="Integer">
+	select product.id from product where product.title like concat('%', #{title}, '%') 
+	and product.boardRegion like concat('%', #{region}, '%') 
+	</select>
+	
+	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->
+	<select id="searchByRentalDate" resultType="Integer">
+	select if(
+((#{startDate} &lt; all(select reservation.startrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} ))
+and
+(#{endDate} &lt; all(select reservation.startrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} )))
+or
+((#{startDate} &gt; all(select reservation.endrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} ))
+and
+(#{endDate} &gt; all(select reservation.endrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} )))
+, #{productId}, 0
+);
+	</select>
+		 
 	 
 	 
 	 
