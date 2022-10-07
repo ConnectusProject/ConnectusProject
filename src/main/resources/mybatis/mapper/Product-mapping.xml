@@ -18,9 +18,9 @@
 		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6})
 	</insert>
 	
-	
+	<!-- 예약 리스트 -->
 	<select id="allReservation" resultType="reservationdto" >
-		select * from reservation where boardid=#{productid} 
+		select * from reservation where boardid=#{productid} order by id desc; 
 	</select>
 	
 	

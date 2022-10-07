@@ -263,7 +263,7 @@ public class ProductController {
 		
 		ProductDTO targetProduct = productDAO.oneProduct(productid);
 		
-		
+		// 찜 set
 		Object zzimcheck = productDAO.zzimCount(productid, sessionid);
 		
 		int zzim = 0 ; 
@@ -273,6 +273,7 @@ public class ProductController {
 		
 		targetProduct.setZzim(zzim);
 		
+		// 예약테이블 set
 		List<ReservationDTO> reservList = productDAO.allReservation(productid);
 		int reservLength = reservList.size();
 		

@@ -12,6 +12,13 @@
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
 	
+	<!-- 예약 삭제 -->
+	<delete id="deleteReservation">
+		delete from reservation where id = #{reservId}
+	</delete>
+	
+	
+	
 	<!-- 예약 수락 -->
 	<update id="checkReservation" >
 		update reservation set 

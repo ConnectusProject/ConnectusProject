@@ -23,6 +23,7 @@ public class ReservationController {
 	@Autowired
 	ProductDAO productDAO;
 	
+	// 필요없어짐 확인 후 삭제 
 	@PostMapping("/product/{boardid}/reservationinput")
 	public String reservationinput(@PathVariable("boardid")int boardid, String userid, Model model) {
 		
@@ -31,7 +32,7 @@ public class ReservationController {
 		return "product/reservationinput";
 	}
 	
-	
+	// 예약 추가 
 	@PostMapping("/product/reservationinput")
 	public String reservation(ReservationDTO dto) {
 
@@ -41,6 +42,16 @@ public class ReservationController {
 		
 		return "redirect:/product/"+boardid;
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/product/deleteReservation")
+	public int deleteReservation(int reservId) {
+		int deleteResult = reservationDAO.deleteReservation(reservId);
+		return deleteResult;
+	}
+	
+	
 	
 	
 	// 렌탈중 표시 
