@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
 <html>
 
@@ -132,19 +131,19 @@
                         success: function (resp) {
                             if (resp.result == 0) {
                                 alert("예약이 승낙되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             else if (resp.result == 1) {
                                 alert("예약승낙이 취소되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
 
 
                             if (resp.result2 == 0) {
-                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+                                var result2 = "<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>";
                             }
                             else if (resp.result2 == 1) {
-                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
+                                var result2 = "<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>";
                             }
 
                             $("#reservCheck" + i).html(result2);
@@ -166,10 +165,37 @@
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
-
-
-
-
+      
+        
+            <form class="reserve-box close" action="http://localhost:8090/product/reservationinput" method="post">
+                <div class="reserve-box-close-button">X</div>
+                <table>
+                <tr>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
+                </tr>
+                <tr>
+                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                </tr>
+                <tr>
+                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
+                </tr>
+                <tr>
+                <th>커넥트시작 <br> <input type="date" name="startRental"></th> 
+                </tr>
+                <tr>
+                <th>커넥트종료 <br> <input type="date" name="endRental"></th> 
+                </tr>
+                <tr>
+                <th>희망비용 <br> <input type="text" name="price" >원</th> 
+                </tr>
+                <tr>
+                <th><input type="submit" value="예약" id="reserve-off-button"></th>
+                </tr> 
+                </table>
+                </form>
+  
+      
+            
 
             <!-- 날짜 몇일전으로 변환 -->
             <fmt:parseDate value="${oneProduct.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
@@ -212,7 +238,7 @@
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
@@ -247,29 +273,50 @@
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
                             <button class="carousel-control-next" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- 상세페이지 내용 -->
+                    <div class="oneproduct-detail-textarea">
                     <div class="product-detail-content">
-                        <span class="detail-title-num">${oneProduct.id}</span>
-                        <span class="detail-title-title"><span style=color:red>${reservedNowImg} </span> ${oneProduct.title}</span>
+                        <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
+                        <span class="detail-title-title"> ${oneProduct.title}</span>
+                        <span class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion}</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
+                        <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
                     <div class="product-detail-content-button">
-                        <div class="product-detail-text">${oneProduct.contents}</div>
+
+                                            <!-- 예약 버튼 -->
+                    <div class="goods-detail-button-box">
+                        <!-- <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
+                            <input type="hidden" value="${oneProduct.userId}" name="userId">
+                           
+                        </form> -->
+                        <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
+
+                        <!-- 수정, 삭제 버튼 -->
+                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
+                        </form>
+                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
+                        </form>
+               
+                    </div>
+                        
                         <!-- 채팅버튼 -->
                         <div class="product-detail-chatbutton">
+                            <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span>
+                            </div>
 
                             <c:if test="${sessionid != oneProduct.userId && not empty sessionid }">
                                 <form id="chatSubmit_form" action="/chatMessage" method="GET">
@@ -279,45 +326,31 @@
                                         <input type="hidden" name="pr_id" value="${oneProduct.id}" />
                                         <input type="hidden" name="pr_title" value="${oneProduct.title}" />
                                         <input type="hidden" name="img1" value="${oneProduct.img1}" />
-                                        <button id="btn_chat">💬채팅</button>
+                                        <button class="chat-on-button" id="btn_chat">채팅하기</button>
                                     </a>
                                 </form>
                             </c:if>
                             <c:if test="${empty sessionid }">
-                               <button id="noSession_FakeChatBTN">💬채팅</button>
+                               <button class="chat-on-button" id="noSession_FakeChatBTN">채팅하기</button>
                             </c:if>
 
                             <!-- 찜 버튼 -->
-                            <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span>
-                            </div>
+                         
                         </div>
                     </div>
 
-                    <!-- 예약 버튼 -->
-                    <div class="goods-detail-button-box">
-                        <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
-                            <input type="hidden" value="${oneProduct.userId}" name="userId">
-                            <button class="reserve-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        </form>
-
-                        <!-- 수정, 삭제 버튼 -->
-                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
-                        </form>
-                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
-                        </form>
-               
-            </div>
 
 
+                </div>
             </div> 
 
-            <a href="http://localhost:8090/allproduct">물품리스트</a>
-            <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
-            <div class="reserved-connect-container">
+            <!-- <a href="http://localhost:8090/allproduct">물품리스트</a>
+            <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a> -->
+            <div class="reserved-connect-container mt-5">
             
                 <h4>예약목록</h4>
                 
-                <table class="reserved-connect" border=5>
+                <table class="reserved-connect">
     
                     <tr>
                         <th>번호</th>
@@ -335,12 +368,12 @@
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height='50' style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
                     
                     
@@ -368,7 +401,21 @@
         
             <!-- 예약내역 테이블 -->
 
+    <script>
+        let reserveOnButton = document.querySelector('.reserve-on-button');
+        let reserveBox = document.querySelector('.reserve-box');
+        let reserveOffButton = document.querySelector('.reserve-box-close-button');
 
+
+        reserveOnButton.addEventListener('click', function(){
+            reserveBox.classList.remove('close');
+        })
+
+        reserveOffButton.addEventListener('click', function(){
+            reserveBox.classList.add('close');
+        })
+
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

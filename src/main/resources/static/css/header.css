@@ -5,7 +5,8 @@
   font-style: normal;
 }
 body {
-  margin: 0;
+  margin: 1;
+  padding: 1;
   font-family: "MonoplexKR-Regular";
 }
 
@@ -22,7 +23,6 @@ li {
   width: 100vw;
   background-color: rgb(253, 251, 251);
   position: relative;
-  padding: 1;
 }
 
 .content-container {
@@ -42,6 +42,10 @@ li {
   justify-content: space-between;
   align-items: center;
   box-shadow: 5px 5px 10px rgb(170, 170, 170);
+}
+
+.header-menu-button {
+  cursor: pointer;
 }
 
 .header-menu-logo-box {

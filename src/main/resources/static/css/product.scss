@@ -15,7 +15,6 @@ $box-size : 100%;
     left : $left;
 }
 
-
 .allproduct-container {
     width : 100%;
     @include flexbox(none,center);
@@ -157,8 +156,6 @@ $box-size : 100%;
     overflow: hidden;
 }
 
-
-
 .product-item-img {
     position: absolute;
     top : 0%;
@@ -202,44 +199,212 @@ $box-size : 100%;
     @include itemPosition(none, 4% , 3%, none)
 }
 
-
-.oneproduct-container {
-    background-color: aqua;
-    width : 25rem;
-    @include flexbox(space-around, center);
-    flex-direction: column;
+.oneproduct-container{
+    z-index: 0;
+    width : 75%;
+    height : 30rem;
+    @include flexbox(space-between, none);
 }
 
 .product-detail-img {
-    width : 100%;
-    height : 50%;;
+    width : 50%;
+    height : 30rem;
 }
 
-.product-detail-img img {
-
+.carousel-box {
     width : 100%;
     height : 100%;
 }
 
-.product-detail-content {
-
+.carousel-inner {
     width : 100%;
-    height : 30%;
-    @include flexbox(center, center);
+    height : 100%;
+}
+
+.carousel-item {
+    width : 100%;
+    height : 100%;
+}
+
+.carousel-item img {
+    width : 100%;
+    height : 30rem;
+}
+.oneproduct-detail-textarea {
+    width : 50%;
+    @include flexbox(left, none);
     flex-direction: column;
+    position:relative;
+}
+
+.product-detail-content {
+    width : 100%;
+    height : 70%;
+    position : relative;
+}
+
+.detail-title-title {
+    position : absolute;
+    left : 3%;
+    top : 0%;
+    width : 94%;
+    height : 18%;
+    font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    border-bottom : 2px solid $color;
+    padding-top : 0.8rem;
+}
+
+.detail-title-reserved {
+    position : absolute;
+    top : 28%;
+    left : 3%;
+}
+
+.detail-title-hour {
+    position : absolute;
+    top : 20%;
+    right : 3%;
+}
+
+.nav-box {
+    z-index: 1;
+}
+
+.next-icon {
+    font-size: 2rem;
+    color : $color;
+    z-index: 0;
+}
+
+.detail-title-owner {
+    position : absolute;
+    top : 20%;
+    left : 3%;
+}
+
+.detail-title-location {
+    position : absolute;
+    top : 28%;
+    right : 3%;
+}
+
+.product-detail-text {
+    width : 100%;
+    position : absolute;
+    top : 40%;
+    height : 75%;
+    padding-left : 3%;
+    padding-right : 3%;
 }
 
 .product-detail-content-button {
     width : 100%;
-    height : 10%;
+}
 
-    position: relative;
+.product-detail-chatbutton {
+    position : absolute;
+    padding-left : 3%;
+    padding-right : 3%;
+    width : 100%;
+    height : 5.8rem;
+    bottom : 0%;
+    
+}
+
+.goods-detail-button-box {
+    position : absolute;
+    padding-left : 3%;
+    padding-right : 3%;
+    width : 50%;
+    height : 10%;
+    @include flexbox(left, center);
+    bottom : 3rem;
+    z-index: 2;
+}
+
+.update-delete-button {
+    margin-right: 1rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+.goods-detail-button-box button {
+    margin-right: 1rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+
+.reserved-connect-container {
+    width : 75%;
+}
+
+.reserved-connect {
+    width : 100%;
+    text-align: center;
+}
+
+.reserve-box {
+    padding:1rem;
+    position : absolute;
+    width : 20%;
+    right : 0%;
+    height : 50%;
+    top : 12rem;
+    border : 2px solid rgb(238, 238, 238);
+    box-shadow: 5px 5px 10px grey;
+}
+
+.reserve-box table {
+    width : 100%;
+    height : 100%;
+}
+
+.reserve-box table input {
+    border : none;
+    border-bottom : solid 2px $color;
+    background-color: rgb(240, 240, 240);
+}
+
+#reserve-off-button {
+    border : none;
+    background-color: $color;
+    color : white;
+    width : 100%;
+    border-radius: 5px;
+}
+
+.reserve-box-close-button {
+    position : absolute;
+    right : 3%;
+    top : 1%;
+    font-size: 1.5rem;
+    color : black;
+    cursor: pointer;
+}
+
+.chat-on-button {
+    position : absolute;
+    bottom : 0%;
+    border : none;
+    background-color: $color;
+    color : white;
+    width : 97%;
+    height : 3rem;
+    border-radius: 5px;
 }
 
 .zzim-box {
     position : absolute;
-    right : 3%;
-    bottom : 3%;
+    right : 0%;
+    top : 0%;
 }
 
-
+.close {
+    display:none;
+}
