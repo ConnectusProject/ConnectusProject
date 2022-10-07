@@ -26,24 +26,21 @@ li {
 }
 
 .content-container {
-  padding: 1;
-  width: 90rem;
-  position: absolute;
-  left: 5rem;
-  margin-top: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: align;
+  width: 1600px;
+  padding-top: 10rem;
+  padding-left: 10rem;
+  position: relative;
 }
 
 .header-box {
   position: fixed;
   width: 100%;
-  height: 4.5rem;
+  height: 4rem;
   background-color: rgb(255, 255, 255);
   z-index: 2;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 5px 5px 10px rgb(170, 170, 170);
 }
 
@@ -51,7 +48,7 @@ li {
   width: 20%;
   display: flex;
   justify-content: left;
-  align-items: align;
+  align-items: center;
 }
 
 .header-menu-logo-box span {
@@ -70,7 +67,7 @@ li {
 .header-search-box {
   display: flex;
   justify-content: center;
-  align-items: align;
+  align-items: center;
   width: 60%;
 }
 
@@ -101,7 +98,7 @@ li {
   width: 20%;
   display: flex;
   justify-content: right;
-  align-items: align;
+  align-items: center;
 }
 
 .header-sign-box a {
@@ -128,7 +125,7 @@ li {
   width: 100%;
   display: flex;
   justify-content: none;
-  align-items: align;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -137,7 +134,7 @@ li {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: align;
+  align-items: center;
 }
 
 .nav-menu-box:hover {
@@ -147,9 +144,6 @@ li {
 .menu-icon {
   width: 5rem;
   height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: align;
 }
 
 .menu-icon > a {
@@ -157,7 +151,7 @@ li {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: align;
+  align-items: center;
 }
 
 .menu-icon > a > img {
@@ -169,6 +163,8 @@ li {
   width: 8rem;
   text-align: left;
   font-weight: 800;
+  display: flex;
+  align-items: center;
 }
 
 .menu-title > a:hover {
@@ -180,7 +176,7 @@ li {
   margin-bottom: 1rem;
   display: flex;
   justify-content: right;
-  align-items: align;
+  align-items: none;
 }
 
 .menu-title-sub {
