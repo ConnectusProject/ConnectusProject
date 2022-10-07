@@ -15,7 +15,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <script src="${path}/js/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
-
+ 	
 });
 </script>
 
@@ -49,7 +49,7 @@ $(document).ready(function(){
 <th>희망비용 : <input type="text" name="price" >원</th> 
 </tr>
 <tr>
-<th><input type="submit" value="예약"></th>
+<th><input id="submitbtn" type="submit" value="예약"></th>
 </tr> 
 </table>
 </form>

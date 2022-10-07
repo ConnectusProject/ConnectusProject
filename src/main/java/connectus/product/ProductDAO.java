@@ -54,6 +54,9 @@ public interface ProductDAO {
 		// 찜 중복 조회
 		public int zzimCheck(int productseq,String memberId) throws Exception;
 		
+		// 알람 제목 조회
+		public List<ProductDTO> noticetitle(String title);
+		
 
 	
 }

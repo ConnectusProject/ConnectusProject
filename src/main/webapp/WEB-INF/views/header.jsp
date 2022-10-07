@@ -11,6 +11,41 @@
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" href="${path}/css/header.css">
+	
+	
+	<script>
+	
+	$(function (){
+		document.getElementById('submitbtn').submit(); 
+		let sessionId = '<%=session.getAttribute("sessionid")%>';
+		let title = '<%=request.getParameter("title")%>';
+		let list = [];
+		
+		$.ajax({
+			type : "POST",
+			url : "/notice/selectproductnotice", 
+			dataTye : "json",
+			data : {'memberid': sessionId, 'title' : title},
+			success : function(res) {
+			list = res;
+			$.each(list, function(i, item){
+				$("submitresult").append(item.title);
+			
+				$("#noticeinfo").append("<li></li>");
+				$("#noticeinfo").append(
+						"<span class='test2'>" + item.sessionid + "</span>"
+						+ "<span class='test2'>" + item.title + "</span>")
+			
+			/* error:function(request,status,error){
+				
+				} */
+			})				
+		}
+	}) // ajax end
+})
+	
+	</script>
+	
 
 	<script>
 		$(document).ready(function () {
@@ -54,13 +89,12 @@
 			<% if(session.getAttribute("sessionid")==null) { %>
 				<a class="loginBtn" href="../login">로그인</a>
 				<% } else { %>
-					<a href="#" class="link_alaram">알람</a>
-						<!-- <span class="img_common_tistory ico_alarm ico_white">알람</span> -->
-						<div class=header_layer layer_news">
-							<div class="inner_header_layer">
-								<h2 class="tit_list"></h2>
-							</div>
-						</div>
+				<div class="test"  id="noticeimage" position : relative; "><img src="pictures/notice.png" width="50"></img>
+        			<div class="test2" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
+          
+            		<span id="submitresult"> ${bringid}님 ,${bringtitle} 예약에 성공하셨습니다.</span><br>
+        			</div>
+    			</div>
 					<a href="/mypage" class="mypage">마이페이지 </a>
 					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 					<% } %>
@@ -84,24 +118,6 @@
 					<% if(session.getAttribute("sessionid")==null) { %>
 						<a class="loginBtn" href="../login">로그인</a>
 						<% } else { %>
-							<a href="#" class="link_alarm">
-							<span class="img_common_tistory ico_alarm ico_white">알림</span>
-							<span class="img_common_tistory ico_alarm ico_black">알림</span>
-							</a>
-							<div class="header_layer layer_news">
-							 <div class="inner_header_layer">
-							  <h2 class="tit_list">
-							  "New"
-							  <em>0</em>
-							  </h2>
-							  <ul class="list_layer" style="max-height: 400px; overflow-y: auto;">
-							  	<li class>
-							  		<a href="#" class="link_cont" target="_blank"></a>
-							  	  </li>
-							  	 </ul>
-							  	</div>
-							  </div>
-							
 							<a href="/mypage" class="mypage">마이페이지 </a>
 							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 							<% } %>
@@ -162,6 +178,14 @@
 			}
 		})
 	</script>
+	
+	 <script>
+	 //알람버튼 클릭했을때 자동으로 on/off하게 하는 기능
+        document.querySelector('.test').addEventListener('click', function(){
+            document.querySelector('.test2').classList.toggle('close');
+        })
+
+    </script>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
