@@ -53,6 +53,11 @@
             $("#noSession_FakeChatBTN").on("click", function(){
             	alert("로그인이 필요합니다.");
             });
+            // 자기 자신물품일 때 채팅버튼 
+            $("#Owner_FakeChatBTN").on("click", function(){
+            	alert("내가 올린 물품입니다.");
+            });
+            
             
 
 
@@ -130,11 +135,11 @@
 
                         success: function (resp) {
                             if (resp.result == 0) {
-                                alert("예약이 승낙되었습니다.");
+                                alert("렌탈이 확정되었습니다.");
                                 $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             else if (resp.result == 1) {
-                                alert("예약승낙이 취소되었습니다.");
+                                alert("렌탈이 취소되었습니다.");
                                 $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
 
@@ -151,6 +156,40 @@
                         } // success 
                     }); // ajax 
                 }); // 예약 수락 onclick
+                
+                
+                // 예약 삭제 기능
+                $("#reservDelete" + i).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+                    
+                    if (!confirm("신청된 예약을 삭제하시겠습니까?")) {
+                        e.preventDefault();
+                    } else { alert("예약이 삭제되었습니다.") }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/deleteReservation",
+                        dataType: "json",
+                        data: { 'reservId': intReservId },
+                        success: function (resp) {
+                            if (resp.result == 1) {
+                            	alert("예약이 삭제되었습니다.");
+                            //	$("#reservTR" + intReservId).attr("style","display:none");
+                            } 
+                            location.reload();    
+                        } // success 
+                    }); // ajax 
+                }); // 예약 삭제 onclick
+                
+                
+                
+                
+                
+                
+                
             	})(i); // for - ajax 용 function
             } // for 
             
@@ -166,7 +205,7 @@
         <!-- content-section -->
         <div class="content-container">
       
-        
+        <!-- 예약 테이블 -->
             <form class="reserve-box close" action="http://localhost:8090/product/reservationinput" method="post">
                 <div class="reserve-box-close-button">X</div>
                 <table>
@@ -180,13 +219,13 @@
                 <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
                 </tr>
                 <tr>
-                <th>커넥트시작 <br> <input type="date" name="startRental"></th> 
+                <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
                 </tr>
                 <tr>
-                <th>커넥트종료 <br> <input type="date" name="endRental"></th> 
+                <th>커넥트종료 <br> <input type="date" name="endRental" required></th> 
                 </tr>
                 <tr>
-                <th>희망비용 <br> <input type="text" name="price" >원</th> 
+                <th>희망비용 <br> <input type="text" name="price" required>원</th> 
                 </tr>
                 <tr>
                 <th><input type="submit" value="예약" id="reserve-off-button"></th>
@@ -330,9 +369,18 @@
                                     </a>
                                 </form>
                             </c:if>
+                            
+                            <!-- 세션 없을 때, 가짜 채팅버튼 -->
                             <c:if test="${empty sessionid }">
                                <button class="chat-on-button" id="noSession_FakeChatBTN">채팅하기</button>
                             </c:if>
+                            
+                            <!-- 자기가 올린 물품일 때, 가짜 채팅버튼 -->
+                            <c:if test="${sessionid == oneProduct.userId && not empty sessionid }">
+                               <button class="chat-on-button" id="Owner_FakeChatBTN">채팅하기</button>
+                            </c:if>
+                            
+                            
 
                             <!-- 찜 버튼 -->
                          
@@ -344,8 +392,7 @@
                 </div>
             </div> 
 
-            <!-- <a href="http://localhost:8090/allproduct">물품리스트</a>
-            <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a> -->
+        
             <div class="reserved-connect-container mt-5">
             
                 <h4>예약목록</h4>
@@ -360,6 +407,7 @@
                         <th>빌리는사람</th>
                        <c:if test="${sessionid == oneProduct.userId }">
                         <th>렌탈 확정</th>
+                        <th></th>
                         </c:if>
                     </tr>
     
@@ -378,7 +426,7 @@
                     
                     
                     
-                        <tr>
+                        <tr id="reservTR${reserv.id}">
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
@@ -386,8 +434,8 @@
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
+                            <th><span id="reservDelete${vs.index}"><button>삭제하기</button></span></th>
                             </c:if>
-                            
                             
                         </tr>
                     </c:forEach>
@@ -397,10 +445,9 @@
 
         </div>
         
-</div> <!-- main container div 닫는칸 여기 맞는지 확인 필요 -->
+</div> 
         
-            <!-- 예약내역 테이블 -->
-
+            <!-- 예약 테이블 노출 설정 -->
     <script>
         let reserveOnButton = document.querySelector('.reserve-on-button');
         let reserveBox = document.querySelector('.reserve-box');
