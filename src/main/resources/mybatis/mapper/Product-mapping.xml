@@ -50,12 +50,12 @@
 	 </select>
 	 
 	 
-	 <!-- 예약 수락 -->
+	 <!-- 렌탈중 표시 -->
 	 <update id="checkReservation">
 	 	update product set reservedNow = 1 where id=#{productId}
 	 </update>
 	 
-	 <!-- 예약 수락 -->
+	 <!-- 렌탈중 취소 -->
 	 <update id="cancleReservation">
 	 	update product set reservedNow = 0 where id=#{productId}
 	 </update>
