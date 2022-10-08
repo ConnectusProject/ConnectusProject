@@ -92,31 +92,8 @@ public class ProductController {
 			
 			dto.setZzim(zzim);
 
-		// 렌탈중 set  
-		List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
-			
-			LocalDate now = LocalDate.now();
-			
-			for(int i = 0; i<reservations.size(); i++) {
-				
-				String startDateString = reservations.get(i).getStartRental();
-				String endDateString = reservations.get(i).getEndRental();
-				
-				LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
-				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
-				
-				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
-					productDAO.checkReservation(productseq);
-				}else {
-					productDAO.cancleReservation(productseq);
-				}
-				
-				
-				
-				
-				
-			} // inner for  
-		} // outer for 
+		
+		} //  for 
 		
 		// 상품개수 
 		int productlength = list.size();
@@ -183,24 +160,8 @@ public class ProductController {
 					
 					dto.setZzim(zzim);
 
-				// 렌탈중 set  
-				List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
-					
-					LocalDate now = LocalDate.now();
-					for(int i = 0; i<reservations.size(); i++) {
-						String startDateString = reservations.get(i).getStartRental();
-						String endDateString = reservations.get(i).getEndRental();
-						
-						LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
-						LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
-						
-						if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
-							productDAO.checkReservation(productseq);
-						}else {
-							productDAO.cancleReservation(productseq);
-						}
-					} // inner for  
-				} // outer for 
+			
+				} // for 
 		
 		// 상품 개수 
 		int productlength = list.size();
