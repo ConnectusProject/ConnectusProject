@@ -111,7 +111,7 @@
 
 
          <!-- 스마트 검색 -->
-                <form class="smart-search-box mb-4" action="smartSearch" method="post">
+                <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
                 렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
@@ -146,7 +146,7 @@
                     </div>
                  </div>
 
-                <form class="allproduct-search-box" action="searchproduct">	
+                <form class="allproduct-search-box" action="http://localhost:8090/allproduct/2">	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
 		<!-- 검색기능 -->                    

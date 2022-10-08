@@ -82,14 +82,14 @@
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 				<div class="nav-menu-box mb-3">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box mb-3">
-					<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 				</div>
 				
 				<div class="nav-menu-box mb-3">
@@ -111,14 +111,14 @@
 			<% } else { %>
 				<div class="basic-menu-box">
 					<div class="nav-menu-box mb-3">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 					</div>
 					<div class="nav-menu-box mb-3">
-						<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 					</div>
 					<div class="nav-menu-box mb-3">
 						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
