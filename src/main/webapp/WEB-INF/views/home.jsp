@@ -34,7 +34,7 @@ $(document).ready(function(){
 <br>
 <br>
 
-<a href="http://localhost:8090/allproduct">물품 페이지 이동</a>
+<a href="http://localhost:8090/allproduct/1">물품 페이지 이동</a>
 
 <br>
 <br>
