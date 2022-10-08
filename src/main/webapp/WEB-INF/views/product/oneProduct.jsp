@@ -22,8 +22,6 @@
 			document.getElementById('chatSubmit_form').submit();
         }
         
-        
-
 
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -58,28 +56,22 @@
             	alert("내가 올린 물품입니다.");
             });
             
-            
 
-
-
+            // 게시물 삭제 확인
             $("#deleteBTN").on("click", function (e) {
                 if (!confirm("게시물을 삭제하시겠습니까?")) {
                     e.preventDefault();
                 } else { alert("게시물 삭제가 완료되었습니다.") }
-            }); // onclick 삭제 
+            });  
 
 
-
-
-            // 찜 
+            // 찜 기능
             $("#zzimSpan").on("click", function (e) {
 
                 if (sessionId == "") {
                     alert("로그인이 필요합니다.");
                     return false;
-
                 }
-
 
                 $.ajax({
                     type: "POST",
@@ -97,22 +89,9 @@
                             alert("찜 취소!");
                             $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
-
-
-
-                        if (resp.result2 == 0) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart.png' style=cursor:pointer; width=30; height=30'>";
-                        }
-                        else if (resp.result2 == 1) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>";
-                        }
-
-                        $("#zzimSpan").html(result2);
-
                     } // success 
                 }); // ajax 
             }); // onclick
-            
             
             
             // 예약 수락 기능 
@@ -142,16 +121,12 @@
                                 alert("렌탈이 취소되었습니다.");
                                 $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
-
-
-                            if (resp.result2 == 0) {
-                                var result2 = "<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>";
+                            
+                            if(resp.reservedNow==0){
+                            	$("#reservedNowSpan").html("");
+                            }else if(resp.reservedNow==1){
+                            	$("#reservedNowSpan").html("렌탈중");
                             }
-                            else if (resp.result2 == 1) {
-                                var result2 = "<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>";
-                            }
-
-                            $("#reservCheck" + i).html(result2);
 
                         } // success 
                     }); // ajax 
@@ -165,9 +140,17 @@
                         return false;
                     }
                     
+                    if ($("#reservCheck" + i).html() == '<img src="http://localhost:8090/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
+                    	alert("렌탈 확정을 취소하고 삭제를 진행해 주세요.")
+                    	e.preventDefault();
+                    	return false;
+                    }
+                    
                     if (!confirm("신청된 예약을 삭제하시겠습니까?")) {
                         e.preventDefault();
-                    } else { alert("예약이 삭제되었습니다.") }
+                        return false;
+                    } else { alert("예약이 삭제되었습니다."); }
+                    
 
                     $.ajax({
                         type: "POST",
@@ -183,11 +166,6 @@
                         } // success 
                     }); // ajax 
                 }); // 예약 삭제 onclick
-                
-                
-                
-                
-                
                 
                 
             	})(i); // for - ajax 용 function
@@ -328,7 +306,7 @@
                     <div class="product-detail-content">
                         <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
                         <span class="detail-title-title"> ${oneProduct.title}</span>
-                        <span class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
+                        <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion}</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>

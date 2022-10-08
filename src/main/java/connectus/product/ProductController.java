@@ -96,7 +96,9 @@ public class ProductController {
 		List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
 			
 			LocalDate now = LocalDate.now();
+			
 			for(int i = 0; i<reservations.size(); i++) {
+				
 				String startDateString = reservations.get(i).getStartRental();
 				String endDateString = reservations.get(i).getEndRental();
 				
@@ -108,6 +110,11 @@ public class ProductController {
 				}else {
 					productDAO.cancleReservation(productseq);
 				}
+				
+				
+				
+				
+				
 			} // inner for  
 		} // outer for 
 		
