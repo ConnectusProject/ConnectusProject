@@ -107,9 +107,18 @@ $(document).ready(function(){
   $("#imgFile").change(function(e) {
 		e.preventDefault();
 		var Imgcount = $("#count").html();
-	 	Imgcount++;
-	 	$("#count").html(Imgcount);
-
+		
+		// 이미지 파일 개수 count  
+		if(Imgcount>=6){
+			alert("사진은 6개까지! ");
+			return false;
+		}
+		if(Imgcount<6){
+		 	Imgcount++;
+		 	$("#count").html(Imgcount);
+			}
+		
+		
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -126,10 +135,10 @@ $(document).ready(function(){
 
 		success : function(resp){ 
 			
-			if(Imgcount>6){
-				alert("사진은 6개 까지만 등록 가능합니다.")
-				return false;
-			}
+	//		if(Imgcount>6){
+	//			alert("사진은 6개 까지만 등록 가능합니다.")
+	//			return false;
+	//		}
 			
 			var str = '<span>';
 			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
@@ -235,7 +244,9 @@ $(document).ready(function(){
 <input id="file4" type="text" style="display:none" name="file4">
 <input id="file5" type="text" style="display:none" name="file5">
 <input id="file6" type="text" style="display:none" name="file6">
-<span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
+<span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span>
+ 
+<!-- 기존 이미지 파일들 불러오기 -->	
 <div id="here">
 	<c:if test="${!empty updateProduct.img1}" >
 	<span>

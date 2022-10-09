@@ -26,7 +26,7 @@
 </select>
 
 <insert id="insertMember" parameterType="memberdto" >
-	 insert into members(userid,pw,name,phone,email,address,region) values(#{userid},#{pw},#{name},#{phone},#{email},#{address},#{region}) 
+	 insert into members(userid,pw,name,phone,email,address,region,coords) values(#{userid},#{pw},#{name},#{phone},#{email},#{address},#{region},#{coords}) 
 </insert>
 
 <update id="updateTempPassword">
