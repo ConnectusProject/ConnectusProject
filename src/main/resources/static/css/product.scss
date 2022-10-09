@@ -450,17 +450,10 @@ $box-size : 100%;
     height : 3rem;
 }
 
+
+
 .insertproduct-upload-button[type="file"] {
     display: none;
-}
-
-.insertproduct-label-button {
-    width : 5rem;
-    border : none;
-    background-color: $color;
-    color : white;
-    border-radius: 5px;
-    text-align: center;
 }
 
 .insertproduct-upload-result {
@@ -476,7 +469,22 @@ $box-size : 100%;
     margin : 0.5rem;
 }
 
+.insertproduct-label-button {
+    width : 5rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+    text-align: center;
+}
 
+#updateproduct-button {
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+    width : 50%;
+    height : 3rem;
+}
 
 .close {
     display:none;
