@@ -17,10 +17,14 @@ a {
     color : black;
 }
 
+li {
+    list-style: none;
+}
+
 @mixin flexbox($justify, $align){
     display : flex;
     justify-content: $justify;
-    align-items: center;
+    align-items: align;
 }
 
 .main-container {
@@ -32,7 +36,7 @@ a {
 
 .content-container {
     padding : 1;
-    width : 90vw;
+    width : 90rem;
     position : absolute;
     left : 5rem;
     margin-top : 10rem;

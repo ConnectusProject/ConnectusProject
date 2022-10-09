@@ -4,6 +4,11 @@ package connectus.product;
 import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import connectus.ApiClient;
 import connectus.geoapiignore;
 import connectus.member.MemberDAO;
+import connectus.reservation.ReservationDAO;
 import connectus.reservation.ReservationDTO;
 
 
@@ -35,6 +41,9 @@ public class ProductController {
 	@Autowired
 	MemberDAO memberDAO; 
 	
+	@Autowired
+	ReservationDAO reservationDAO;
+	
 	
 	// 홈 
 	@GetMapping("/")
@@ -45,6 +54,7 @@ public class ProductController {
 	// 전체 물품 조회
 	@GetMapping("/allproduct")
 	public String allProduct(Model model, HttpSession session) throws Exception {
+		// 지역 set 
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = "동"; 
@@ -65,16 +75,39 @@ public class ProductController {
 			}
 			
 			dto.setZzim(zzim);
-		}
+
+		// 렌탈중 set  
+		List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
+			
+			LocalDate now = LocalDate.now();
+			for(int i = 0; i<reservations.size(); i++) {
+				String startDateString = reservations.get(i).getStartRental();
+				String endDateString = reservations.get(i).getEndRental();
+				
+				LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
+				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
+				
+				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
+					productDAO.checkReservation(productseq);
+				}else {
+					productDAO.cancleReservation(productseq);
+				}
+			} // inner for  
+		} // outer for 
 		
+		// 상품개수 
 		int productlength = list.size();
+		// 찜목록 리스트   
+		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
 		
-	
+		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("allproduct", list);
 		return "product/allProduct";
 	}
+		
+	
 	
 	
 	// 검색
@@ -107,7 +140,12 @@ public class ProductController {
 					dto.setZzim(zzim);
 				}
 				
-				int productlength = searchList.size();
+		int productlength = searchList.size();
+		
+		
+		
+		
+		
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("searchList", searchList);
@@ -123,9 +161,34 @@ public class ProductController {
 		if(extraaddr != null) {
 		region = extraaddr.substring(2,extraaddr.length()-1); }
 		
-		
-		List<ProductDTO> searchList = productDAO.smartSearch(smartSearchDTO);
+		// 제목,지역으로 검색한 상품리스트
+		List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion());
 
+		ArrayList<Integer> selectedList = new ArrayList<>();
+		
+		// 날짜로 검색 : 해당 날짜 조건에 부합하지 않는다 => 예약이 null 값인 것과, 예약수락이 없는 리스트까지 포함됨 
+		for(int i = 0; i<titleRegion.size(); i++) {
+
+		if(smartSearchDTO.getSmartStartDate() != "" && smartSearchDTO.getSmartEndDate() != "") {
+		Integer selected =  productDAO.searchByRentalDate(smartSearchDTO.getSmartStartDate(), smartSearchDTO.getSmartEndDate(), titleRegion.get(i));
+		
+		if(selected>0) {
+		selectedList.add(selected);  
+			}
+		}else if(smartSearchDTO.getSmartStartDate() == "" && smartSearchDTO.getSmartEndDate() == "") {
+			selectedList.add(titleRegion.get(i));
+			}
+		} //for 
+		
+		
+		List<ProductDTO> searchList = new ArrayList<>();
+		
+		// 찾은 상품 번호로 상품 list 를 불러옴 
+		for(int i =0; i<selectedList.size(); i++) {
+		ProductDTO searchedOne = productDAO.oneProduct(selectedList.get(i));
+		searchList.add(searchedOne);
+		}
+		
 		System.out.println(smartSearchDTO.toString());
 		
 		// 찜 set 
@@ -216,11 +279,26 @@ public class ProductController {
 		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);
 		model.addAttribute("oneProduct", targetProduct);
-
+		System.out.println(targetProduct.getTitle());	
 		return "product/oneProduct";
 	}
 	
-	
+	// 물품 상세페이지 
+		@ResponseBody
+		@GetMapping("/product/{productid}/ajax")
+		public ProductDTO oneProductajax(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
+			
+			String sessionid = (String)session.getAttribute("sessionid");
+			ProductDTO targetProduct = productDAO.oneProduct(productid);
+			model.addAttribute("oneProduct", targetProduct);
+			System.out.println(targetProduct.getTitle());	
+			return targetProduct;
+		}
+		
+		
+		
+		
+		
 	//글작성 폼 
 	@GetMapping("/registerProduct")
 	public String registerProduct(HttpSession session, Model model) {
@@ -279,7 +357,7 @@ public class ProductController {
 	public String uploadajax(MultipartFile imgFile) throws IOException {
 		
 		String savePath = "/Users/youngban/upload/";
-//		String savePath = "c:/upload/";					
+	//	String savePath = "c:/upload/";					
 
 		String originalname1 = imgFile.getOriginalFilename();
 		String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
@@ -359,8 +437,9 @@ public class ProductController {
 			}
 			
 			ProductDTO oneProduct = productDAO.oneProduct(productseq);
-
-			return "{\"result\" : \"" + zzimCheck + "\", \"oneProduct\" : \"" + oneProduct + "\" }";
+			
+			
+			return "{\"result\" : \"" + zzimCheck + "\", \"title\" : \"" + oneProduct.getTitle() + "\", \"img1\" : \"" + oneProduct.getImg1() + "\", \"id\" : \"" + oneProduct.getId() + "\" }";
 		}
 
 		

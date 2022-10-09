@@ -35,6 +35,15 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> smartSearch(SmartSearchDTO smartSearchDTO);
 	
+	public List<ProductDTO> getZzimProducts(String sessionId);
+	
+	// 스마트 검색 
+	public List<Integer> searchByTitle_Region(String title, String region);
+	
+	public Integer searchByRentalDate(String startDate, String endDate, int productId);
+	
+	
+	
 	
 		// 찜 조회 
 		public Object zzimCount(int productseq, String memberId) throws Exception;

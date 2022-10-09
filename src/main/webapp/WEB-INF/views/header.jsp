@@ -16,11 +16,14 @@
 	<script>
 	
 	$(function (){
-		document.getElementById('submitbtn').submit(); 
+		$("#submitbtn").on("click",function(e){
+		e.preventDefault();
 		let sessionId = '<%=session.getAttribute("sessionid")%>';
-		let title = '<%=request.getParameter("title")%>';
+		<%-- let title = '<%=request.getParameter("title")%>';
+		let created = '<%=request.getParameter("createdAt")%>';
 		let list = [];
 		
+		alert(sessionId + "," + title);
 		$.ajax({
 			type : "POST",
 			url : "/notice/selectproductnotice", 
@@ -41,7 +44,32 @@
 				} */
 			})				
 		}
-	}) // ajax end
+	}) // ajax end --%> 
+	$.ajax({
+		url : "/product/" + $("#boardId").val() + "/ajax" ,
+		dataType :"json",
+		success : function(response){
+		 /* alert(sessionId + "님 " + response.title + "ㅅ 상품 "); */
+		 //예약하기 버튼을 누르지않았다면 그 값은 Null값으로
+		 
+		 /* if $("#submitbtn" == null){ */
+			 $("#submitbtn").on("click", function (e){
+				if(sessionId == ""){
+					e.preventDefault();
+					else{
+						
+					}
+				}
+				 
+			 });
+			 
+			/*  $("#submitresult")response.preventDefault(); */
+			 
+		 }
+		}
+		});
+		
+	})
 })
 	
 	</script>
@@ -89,12 +117,18 @@
 			<% if(session.getAttribute("sessionid")==null) { %>
 				<a class="loginBtn" href="../login">로그인</a>
 				<% } else { %>
+
 				<div class="test"  id="noticeimage" position : relative; "><img src="pictures/notice.png" width="50"></img>
         			<div class="test2" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
           
-            		<span id="submitresult"> ${bringid}님 ,${bringtitle} 예약에 성공하셨습니다.</span><br>
+            		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
+            								
         			</div>
     			</div>
+
+			
+					
+
 					<a href="/mypage" class="mypage">마이페이지 </a>
 					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 					<% } %>
@@ -114,6 +148,7 @@
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
 				</div>
+
 				<div class="header-sign-box">
 					<% if(session.getAttribute("sessionid")==null) { %>
 						<a class="loginBtn" href="../login">로그인</a>
@@ -121,6 +156,7 @@
 							<a href="/mypage" class="mypage">마이페이지 </a>
 							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 							<% } %>
+
 				<div class="nav-menu-box mb-3">
 					<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
 								src="${path}/pictures/community.png" alt=""></a></span>

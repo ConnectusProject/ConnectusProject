@@ -19,9 +19,11 @@
 
     <script>
 
-        function chatSubmit() {
-            document.getElementById('chatSubmit_form').submit();
+        function chatSubmit(e) {
+			document.getElementById('chatSubmit_form').submit();
         }
+        
+        
 
 
         $(document).ready(function () {
@@ -48,6 +50,10 @@
             }); // onclick 예약
 
 
+            // 세션 없을 때 채팅버튼 
+            $("#noSession_FakeChatBTN").on("click", function(){
+            	alert("로그인이 필요합니다.");
+            });
             
 
 
@@ -107,6 +113,7 @@
             
             // 예약 수락 기능 
             for (var i = 0; i < reservLength; i++) {
+            	(function(i){
                 let eachReservId = $("#reservId" + i).html();
                 let intReservId = parseInt(eachReservId);
 
@@ -115,7 +122,6 @@
                         alert("로그인이 필요합니다.");
                         return false;
                     }
-
 
                     $.ajax({
                         type: "POST",
@@ -142,19 +148,12 @@
                             }
 
                             $("#reservCheck" + i).html(result2);
-                            location.reload();
 
                         } // success 
                     }); // ajax 
                 }); // 예약 수락 onclick
+            	})(i); // for - ajax 용 function
             } // for 
-
-            
-          
-            
-            
-            
-            
             
         });   // onload
     </script>
@@ -201,6 +200,14 @@
             </c:if>
 
             <Br>
+			
+			<!-- 예약중 표시 -->
+            <c:if test="${oneProduct.reservedNow==1 }">
+            <c:set var="reservedNowImg" value="렌탈중"/>
+            </c:if>
+            <c:if test="${oneProduct.reservedNow==0 }">
+            <c:set var="reservedNowImg" value=""/>
+            </c:if>
 
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
@@ -254,7 +261,7 @@
                     <!-- 상세페이지 내용 -->
                     <div class="product-detail-content">
                         <span class="detail-title-num">${oneProduct.id}</span>
-                        <span class="detail-title-title">${oneProduct.title}</span>
+                        <span class="detail-title-title"><span style=color:red>${reservedNowImg} </span> ${oneProduct.title}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion}</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
@@ -264,7 +271,7 @@
                         <!-- 채팅버튼 -->
                         <div class="product-detail-chatbutton">
 
-                            <c:if test="${sessionid != oneProduct.userId }">
+                            <c:if test="${sessionid != oneProduct.userId && not empty sessionid }">
                                 <form id="chatSubmit_form" action="/chatMessage" method="GET">
                                     <a id="chatLink" href="javascript:{}" onclick="chatSubmit()">
                                         <input type="hidden" name="buyerId" value="${sessionid}" />
@@ -275,6 +282,9 @@
                                         <button id="btn_chat">💬채팅</button>
                                     </a>
                                 </form>
+                            </c:if>
+                            <c:if test="${empty sessionid }">
+                               <button id="noSession_FakeChatBTN">💬채팅</button>
                             </c:if>
 
                             <!-- 찜 버튼 -->
@@ -304,7 +314,9 @@
             <a href="http://localhost:8090/allproduct">물품리스트</a>
             <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
             <div class="reserved-connect-container">
-                <h4>신청된 Connects</h4>
+            
+                <h4>예약목록</h4>
+                
                 <table class="reserved-connect" border=5>
     
                     <tr>
@@ -313,8 +325,8 @@
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
-                        <c:if test="${sessionid == oneProduct.userId }">
-                        <th>성사된 예약</th>
+                       <c:if test="${sessionid == oneProduct.userId }">
+                        <th>렌탈 확정</th>
                         </c:if>
                     </tr>
     
@@ -323,12 +335,12 @@
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=30 height=30 style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/zzim.png' width=30 height='30' style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height='50' style='cursor:pointer'>" />
                 </c:if>
                     
                     
@@ -342,6 +354,8 @@
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
                             </c:if>
+                            
+                            
                         </tr>
                     </c:forEach>
     

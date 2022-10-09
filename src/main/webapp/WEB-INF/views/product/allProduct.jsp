@@ -20,18 +20,28 @@
             let productlength = '${productlength}';
             
             
+            // 스마트검색 지역선택 
             $("#regionSelect").on("change", function(){
             	var oneSelect = document.getElementById("regionSelect");
             	// option value 가져오기
             	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
             	
             	if(Regionvalue=='검색'){
-            		$("#here").html("<input type='text' name='smartRegion'>");
+            		$("#zzimList").html("<input type='text' name='smartRegion'>");
             	}else if(Regionvalue=='모든 동네'){
-            		$("#here").html("<input type='hidden' name='smartRegion' value='동'>");
+            		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
-            		$("#here").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
             	}
+            });
+            
+            // 스마트검색 날짜 제한 (아예 입력하지 않거나, 둘다 입력하거나만 가능)
+            $("#smartStartDate").on("change", function(){
+            	$("#smartEndDate").attr("required", "required");
+            });
+            
+            $("#smartEndDate").on("change", function(){
+            	$("#smartStartDate").attr("required", "required");
             });
             
             
@@ -66,31 +76,20 @@
                         data: { 'productseq': intProductId, 'memberid': sessionId },
 
                         success: function (resp) {
+                        	
                             if (resp.result == 0) {
                                 alert("찜!");
                                 $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                            // 찜 작동 시, 해당물품 장바구니에 출력 
+                                $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'>"+ resp.id + "<img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
                                 alert("찜 취소!");
                                 $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                            // 찜 취소 시, 해당물품 장바구니에서 제거
+                                $("#spanId" + resp.id).remove();
                             }
 
-
-//                            if (resp.result2 == 0) {
-//                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
-//                            }
-//                            else if (resp.result2 == 1) {
-//                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
-//                            }
-//                            $("#zzimSpan" + i).html(result2);
-                            
-                            
-                     
-                            
-                            //$("#zzimProducts").append(resp.oneProduct);
-
-                          //  location.reload();
-                        //    $("#zzimProducts").html("어펜드 테스트");
                         } // success 
                     }); // ajax 
                 }); // 찜 onclick
@@ -109,8 +108,6 @@
         <div class="content-container">
 
             <div class="allproduct-container">
-				<!-- 찜상품 띄우기 -->
-				<span id="zzimProducts">hello~!!~here</span>
 
 
 
@@ -118,19 +115,18 @@
 
 
 
-                <!-- 검색기능  -->
-
+         <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
-                렌탈시작 : <input class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                렌탈종료 : <input class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                렌탈종료 : <input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
                 <option>검색</option>
                 </select>
-                <span id="here"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
+                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="스마트검색">
                 </form>
                 <div class="smart-search-result-box">
@@ -138,8 +134,20 @@
                 </div>
                 
 
-                <form class="allproduct-search-box" action="searchproduct">
+                <form class="allproduct-search-box" action="searchproduct">	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+
+		<!-- 찜상품 띄우기 -->
+				<span id="zzimProducts">
+			<c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
+			<a href="http://localhost:8090/product/${zzimProduct.id}">
+				<span id = "spanId${zzimProduct.id}">${zzimProduct.id}<img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+			</a>
+			</c:forEach>
+				</span>
+                    
+                    
+		<!-- 검색기능 -->                    
                     <div class="allproduct-search-box-input">
                     <select name="item">
                         <option value="title">제목</option>
@@ -153,23 +161,7 @@
                     </div>
                 </form>
                 
-
-       <!--          스마트검색 기능
-                <form id="smartSearch" action="smartSearch" method="post">
-                키워드 : <input type="text" name="smartTitle">
-                렌탈시작 : <input type="date" name="smartStartDate">
-                렌탈종료 : <input type="date" name="smartEndDate">
-                동네 : <select id="regionSelect">
-                <option>모든 동네</option>
-                <option>내 동네</option>
-                <option id="optionSearch">검색</option>
-                </select>
                 
-                <span id="here"><input type='hidden' name='smartRegion' value='동'></span>
-                <input type="submit" value="스마트서치">
-                </form>
- -->
-   
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box">
 

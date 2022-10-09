@@ -14,6 +14,10 @@ a {
   color: black;
 }
 
+li {
+  list-style: none;
+}
+
 .main-container {
   width: 100vw;
   background-color: rgb(253, 251, 251);
@@ -23,13 +27,13 @@ a {
 
 .content-container {
   padding: 1;
-  width: 90vw;
+  width: 90rem;
   position: absolute;
   left: 5rem;
   margin-top: 10rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .header-box {
@@ -47,7 +51,7 @@ a {
   width: 20%;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: align;
 }
 
 .header-menu-logo-box span {
@@ -66,7 +70,7 @@ a {
 .header-search-box {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
   width: 60%;
 }
 
@@ -97,7 +101,7 @@ a {
   width: 20%;
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: align;
 }
 
 .header-sign-box a {
@@ -124,7 +128,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: none;
-  align-items: center;
+  align-items: align;
   flex-direction: column;
 }
 
@@ -133,7 +137,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: align;
 }
 
 .nav-menu-box:hover {
@@ -145,7 +149,7 @@ a {
   height: 3rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-icon > a {
@@ -153,7 +157,7 @@ a {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-icon > a > img {
@@ -176,7 +180,7 @@ a {
   margin-bottom: 1rem;
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: align;
 }
 
 .menu-title-sub {

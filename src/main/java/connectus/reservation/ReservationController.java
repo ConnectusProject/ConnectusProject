@@ -36,11 +36,14 @@ public class ReservationController {
 	public String reservation(ReservationDTO dto) {
 
 		reservationDAO.insertReservation(dto);
+		
 		long boardid = dto.getBoardId();
 		
 		return "redirect:/product/"+boardid;
 	}
 	
+	
+	// 렌탈중 표시 
 	@ResponseBody
 	@PostMapping("/product/reservcheck")
 	public String reservCheck(int reservId) {
@@ -53,7 +56,6 @@ public class ReservationController {
 			reservCheck = 1;
 			
 			int productId = reservationDAO.getProductId(reservId);
-			System.out.println("상품번호 : " +productId);
 			List<ReservationDTO> reservations = reservationDAO.getReservationDate(productId);
 			
 			LocalDate now = LocalDate.now();
@@ -65,9 +67,8 @@ public class ReservationController {
 				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
 				
 				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
-					System.out.println("yes!");
 					productDAO.checkReservation(productId);
-				}else {System.out.println("no!");
+				}else {
 					productDAO.cancleReservation(productId);
 				}
 				
@@ -79,7 +80,6 @@ public class ReservationController {
 			reservationDAO.cancleReservation(reservId);
 			
 			int productId = reservationDAO.getProductId(reservId);
-			System.out.println("상품번호 : " +productId);
 			List<ReservationDTO> reservations = reservationDAO.getReservationDate(productId);
 			
 			LocalDate now = LocalDate.now();
@@ -91,9 +91,8 @@ public class ReservationController {
 				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
 				
 				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
-					System.out.println("yes!");
 					productDAO.checkReservation(productId);
-				}else {System.out.println("no!");
+				}else {
 					productDAO.cancleReservation(productId);
 				}
 			}

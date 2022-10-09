@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import connectus.member.MemberDAO;
 import connectus.product.ProductDAO;
 import connectus.product.ProductDTO;
+import connectus.reservation.ReservationDAO;
+import connectus.reservation.ReservationDTO;
 
 @Controller
 public class NoticeController {
@@ -28,8 +30,11 @@ public class NoticeController {
 	@Autowired
 	MemberDAO memberDAO;
 	
+	@Autowired
+	ReservationDAO reservationDAO;
 	
-	// 예약하기 - 알람조회
+	
+	// 예약하기 - buyerid가 빌렸을때 나오는 화면, 알람조회
 	@ResponseBody
 	@PostMapping("/notice/selectproductnotice") 
 	public  List<ProductDTO> selectNotice(@RequestBody HttpSession session, Model model) throws Exception{
@@ -39,6 +44,9 @@ public class NoticeController {
 		//조회 할때 해당하는 아이디 가져오기
 		String sessionid = (String)session.getAttribute("sessionid");
 		String bringid = memberDAO.getRegion(sessionid);
+		
+//		//빌린 사람 아이디 가져오기
+//		List<ReservationDTO> rentalerid = reservationDAO.("buyerId");
 		
 		//물품 제목 가져오기
 		List<ProductDTO> bringtitle = productDAO.noticetitle("title");

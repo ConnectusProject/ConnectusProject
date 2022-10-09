@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 <table>
 <tr>
-<th>번호 : <input type="text" name="boardId" value="${boardId}" readonly></th>
+<th>번호 : <input type="text" name="boardId" id="boardId"  value="${boardId}" readonly></th> 
 </tr>
 <tr>
 <th>렌터 : <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
