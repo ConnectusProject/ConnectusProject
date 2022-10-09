@@ -50,6 +50,14 @@ public class ProductController {
 	public String home() {
 		return "home";
 	}
+	
+	// geo Test 
+	@GetMapping("/geo")
+	public String geoTest() {
+		return "product/geoTest";
+	}
+	
+	
 
 	// 물품 조회
 	@GetMapping("/allproduct/{searchType}")
