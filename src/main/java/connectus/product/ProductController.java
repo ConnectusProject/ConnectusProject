@@ -91,9 +91,34 @@ public class ProductController {
 			}
 			
 			dto.setZzim(zzim);
-
+			
+			// 렌탈중 표시 set ( 조회하는 시점에서 확인 ) 
+			List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
+			
+			// 승낙된 예약이 하나도 없을 때, reservedNow=0 ( List index 개수가 없으므로 따로 처리 ) 
+			if(reservations.size()==0) {
+				productDAO.cancleReservation(productseq);
+			}
+			
+			LocalDate now = LocalDate.now();
+			int checkReserved = 0;
+			for(int i = 0; i<reservations.size(); i++) {
+				String startDateString = reservations.get(i).getStartRental();
+				String endDateString = reservations.get(i).getEndRental();
+				
+				LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
+				LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
+				
+				if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
+					productDAO.checkReservation(productseq);
+					checkReserved = 1;
+				}else if(checkReserved != 1) {
+					productDAO.cancleReservation(productseq);
+					checkReserved = 0;
+				}
+			} // inner for 
 		
-		} //  for 
+		} //  outer for 
 		
 		// 상품개수 
 		int productlength = list.size();
