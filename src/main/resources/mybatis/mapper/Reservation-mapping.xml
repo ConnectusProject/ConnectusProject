@@ -12,6 +12,13 @@
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
 	
+	<!-- 예약 삭제 -->
+	<delete id="deleteReservation">
+		delete from reservation where id = #{reservId}
+	</delete>
+	
+	
+	
 	<!-- 예약 수락 -->
 	<update id="checkReservation" >
 		update reservation set 
@@ -33,10 +40,11 @@
 	</select>
 	
 	
-	<!-- 예약 기간 가져오기 -->
+	<!-- 수락된 예약 리스트 가져오기 -->
 	<select id="getReservationDate" resultType="reservationdto">
 		select * from reservation where boardid = #{productId} and reservCheck=1;
 	</select>
+	
 	
 	<!-- 예약된 prodcut Id 가져오기 -->
 	<select id="getProductId" resultType="int">

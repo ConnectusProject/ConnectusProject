@@ -21,4 +21,7 @@ public interface ReservationDAO {
 	public List<ReservationDTO> getReservationDate(int productId);
 	
 	public int getProductId(int reservId);
+	
+	public int deleteReservation(int reservId);
+	
 }

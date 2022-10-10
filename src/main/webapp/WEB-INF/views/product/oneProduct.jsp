@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
 <html>
 
@@ -17,14 +16,16 @@
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
 
 
+
+
+
+
     <script>
 
         function chatSubmit(e) {
 			document.getElementById('chatSubmit_form').submit();
         }
         
-        
-
 
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -54,28 +55,27 @@
             $("#noSession_FakeChatBTN").on("click", function(){
             	alert("로그인이 필요합니다.");
             });
+            // 자기 자신물품일 때 채팅버튼 
+            $("#Owner_FakeChatBTN").on("click", function(){
+            	alert("내가 올린 물품입니다.");
+            });
             
 
-
-
+            // 게시물 삭제 확인
             $("#deleteBTN").on("click", function (e) {
                 if (!confirm("게시물을 삭제하시겠습니까?")) {
                     e.preventDefault();
                 } else { alert("게시물 삭제가 완료되었습니다.") }
-            }); // onclick 삭제 
+            });  
 
 
-
-
-            // 찜 
+            // 찜 기능
             $("#zzimSpan").on("click", function (e) {
 
                 if (sessionId == "") {
                     alert("로그인이 필요합니다.");
                     return false;
-
                 }
-
 
                 $.ajax({
                     type: "POST",
@@ -93,22 +93,9 @@
                             alert("찜 취소!");
                             $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
-
-
-
-                        if (resp.result2 == 0) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart.png' style=cursor:pointer; width=30; height=30'>";
-                        }
-                        else if (resp.result2 == 1) {
-                            var result2 = "<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>";
-                        }
-
-                        $("#zzimSpan").html(result2);
-
                     } // success 
                 }); // ajax 
             }); // onclick
-            
             
             
             // 예약 수락 기능 
@@ -131,27 +118,60 @@
 
                         success: function (resp) {
                             if (resp.result == 0) {
-                                alert("예약이 승낙되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                                alert("렌탈이 확정되었습니다.");
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             else if (resp.result == 1) {
-                                alert("예약승낙이 취소되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                                alert("렌탈이 취소되었습니다.");
+                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
-
-
-                            if (resp.result2 == 0) {
-                                var result2 = "<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>";
+                            
+                            if(resp.reservedNow==0){
+                            	$("#reservedNowSpan").html("");
+                            }else if(resp.reservedNow==1){
+                            	$("#reservedNowSpan").html("렌탈중");
                             }
-                            else if (resp.result2 == 1) {
-                                var result2 = "<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>";
-                            }
-
-                            $("#reservCheck" + i).html(result2);
 
                         } // success 
                     }); // ajax 
                 }); // 예약 수락 onclick
+                
+                
+                // 예약 삭제 기능
+                $("#reservDelete" + i).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+                    
+                    if ($("#reservCheck" + i).html() == '<img src="http://localhost:8090/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
+                    	alert("렌탈 확정을 취소하고 삭제를 진행해 주세요.")
+                    	e.preventDefault();
+                    	return false;
+                    }
+                    
+                    if (!confirm("신청된 예약을 삭제하시겠습니까?")) {
+                        e.preventDefault();
+                        return false;
+                    } else { alert("예약이 삭제되었습니다."); }
+                    
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/deleteReservation",
+                        dataType: "json",
+                        data: { 'reservId': intReservId },
+                        success: function (resp) {
+                            if (resp.result == 1) {
+                            	alert("예약이 삭제되었습니다.");
+                            //	$("#reservTR" + intReservId).attr("style","display:none");
+                            } 
+                            location.reload();    
+                        } // success 
+                    }); // ajax 
+                }); // 예약 삭제 onclick
+                
+                
             	})(i); // for - ajax 용 function
             } // for 
             
@@ -166,10 +186,37 @@
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
-
-
-
-
+      
+        <!-- 예약 테이블 -->
+            <form class="reserve-box close" action="http://localhost:8090/product/reservationinput" method="post">
+                <div class="reserve-box-close-button">X</div>
+                <table>
+                <tr>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
+                </tr>
+                <tr>
+                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                </tr>
+                <tr>
+                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
+                </tr>
+                <tr>
+                <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
+                </tr>
+                <tr>
+                <th>커넥트종료 <br> <input type="date" name="endRental" required></th> 
+                </tr>
+                <tr>
+                <th>희망비용 <br> <input type="text" name="price" required>원</th> 
+                </tr>
+                <tr>
+                <th><input type="submit" value="예약" id="reserve-off-button"></th>
+                </tr> 
+                </table>
+                </form>
+  
+      
+            
 
             <!-- 날짜 몇일전으로 변환 -->
             <fmt:parseDate value="${oneProduct.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
@@ -212,7 +259,7 @@
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
@@ -247,29 +294,50 @@
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
                             <button class="carousel-control-next" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- 상세페이지 내용 -->
+                    <div class="oneproduct-detail-textarea">
                     <div class="product-detail-content">
-                        <span class="detail-title-num">${oneProduct.id}</span>
-                        <span class="detail-title-title"><span style=color:red>${reservedNowImg} </span> ${oneProduct.title}</span>
+                        <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
+                        <span class="detail-title-title"> ${oneProduct.title}</span>
+                        <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion}</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
+                        <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
                     <div class="product-detail-content-button">
-                        <div class="product-detail-text">${oneProduct.contents}</div>
+
+                                            <!-- 예약 버튼 -->
+                    <div class="goods-detail-button-box">
+                        <!-- <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
+                            <input type="hidden" value="${oneProduct.userId}" name="userId">
+                           
+                        </form> -->
+                        <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
+
+                        <!-- 수정, 삭제 버튼 -->
+                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
+                        </form>
+                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
+                        </form>
+               
+                    </div>
+                        
                         <!-- 채팅버튼 -->
                         <div class="product-detail-chatbutton">
+                            <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span>
+                            </div>
 
                             <c:if test="${sessionid != oneProduct.userId && not empty sessionid }">
                                 <form id="chatSubmit_form" action="/chatMessage" method="GET">
@@ -279,45 +347,39 @@
                                         <input type="hidden" name="pr_id" value="${oneProduct.id}" />
                                         <input type="hidden" name="pr_title" value="${oneProduct.title}" />
                                         <input type="hidden" name="img1" value="${oneProduct.img1}" />
-                                        <button id="btn_chat">💬채팅</button>
+                                        <button class="chat-on-button" id="btn_chat">채팅하기</button>
                                     </a>
                                 </form>
                             </c:if>
+                            
+                            <!-- 세션 없을 때, 가짜 채팅버튼 -->
                             <c:if test="${empty sessionid }">
-                               <button id="noSession_FakeChatBTN">💬채팅</button>
+                               <button class="chat-on-button" id="noSession_FakeChatBTN">채팅하기</button>
                             </c:if>
+                            
+                            <!-- 자기가 올린 물품일 때, 가짜 채팅버튼 -->
+                            <c:if test="${sessionid == oneProduct.userId && not empty sessionid }">
+                               <button class="chat-on-button" id="Owner_FakeChatBTN">채팅하기</button>
+                            </c:if>
+                            
+                            
 
                             <!-- 찜 버튼 -->
-                            <div id="zzimtd" class="zzim-box"><span id="zzimSpan" class="zzim-button">${zzim}</span>
-                            </div>
+                         
                         </div>
                     </div>
 
-                    <!-- 예약 버튼 -->
-                    <div class="goods-detail-button-box">
-                        <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
-                            <input type="hidden" value="${oneProduct.userId}" name="userId">
-                            <button class="reserve-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        </form>
-
-                        <!-- 수정, 삭제 버튼 -->
-                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
-                        </form>
-                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
-                        </form>
-               
-            </div>
 
 
+                </div>
             </div> 
 
-            <a href="http://localhost:8090/allproduct">물품리스트</a>
-            <a class="reserved-connect-button" href="http://localhost:8090/">홈으로</a>
-            <div class="reserved-connect-container">
+        
+            <div class="reserved-connect-container mt-5">
             
                 <h4>예약목록</h4>
                 
-                <table class="reserved-connect" border=5>
+                <table class="reserved-connect">
     
                     <tr>
                         <th>번호</th>
@@ -327,6 +389,7 @@
                         <th>빌리는사람</th>
                        <c:if test="${sessionid == oneProduct.userId }">
                         <th>렌탈 확정</th>
+                        <th></th>
                         </c:if>
                     </tr>
     
@@ -335,17 +398,17 @@
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height='50' style='cursor:pointer'>" />
+                        value="<img src='http://localhost:8090/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
                     
                     
                     
-                        <tr>
+                        <tr id="reservTR${reserv.id}">
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
@@ -353,8 +416,8 @@
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
+                            <th><span id="reservDelete${vs.index}"><button>삭제하기</button></span></th>
                             </c:if>
-                            
                             
                         </tr>
                     </c:forEach>
@@ -364,11 +427,24 @@
 
         </div>
         
-</div> <!-- main container div 닫는칸 여기 맞는지 확인 필요 -->
+</div> 
         
-            <!-- 예약내역 테이블 -->
+            <!-- 예약 테이블 노출 설정 -->
+    <script>
+        let reserveOnButton = document.querySelector('.reserve-on-button');
+        let reserveBox = document.querySelector('.reserve-box');
+        let reserveOffButton = document.querySelector('.reserve-box-close-button');
 
 
+        reserveOnButton.addEventListener('click', function(){
+            reserveBox.classList.remove('close');
+        })
+
+        reserveOffButton.addEventListener('click', function(){
+            reserveBox.classList.add('close');
+        })
+
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

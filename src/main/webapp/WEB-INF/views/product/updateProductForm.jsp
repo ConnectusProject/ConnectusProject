@@ -166,68 +166,31 @@ $(document).ready(function(){
 </script>
 </head>
 
-<>
+
 
 	<div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
+			<div class="insertproduct-container"></div>
 
-		<h1 class="title"> 게시물 수정</h1> <span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
+		<h1 class="insertproduct-title"> 게시물 수정</h1> 
+		
 
-<!-- 기존 이미지 파일들 불러오기 -->		
-<div id="here">
-<c:if test="${!empty updateProduct.img1}" >
-<span>
-<img id="img1" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="1"/>
-</c:if>
-<c:if test="${!empty updateProduct.img2}" >
-<span>
-<img id="img2" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="2"/>
-</c:if>
-<c:if test="${!empty updateProduct.img3}" >
-<span>
-<img id="img3" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="3"/>
-</c:if>
-<c:if test="${!empty updateProduct.img4}" >
-<span>
-<img id="img4" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="4"/>
-</c:if>
-<c:if test="${!empty updateProduct.img5}" >
-<span>
-<img id="img5" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="5"/>
-</c:if>
-<c:if test="${!empty updateProduct.img6}" >
-<span>
-<img id="img6" alt="상품이미지가 없습니다." width=200 height=200 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="6"/>
-</c:if>
-</div>
-
-<div id="count">${count}</div>
+<!-- <div id="count">${count}</div> -->
 
 <form id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
- <table border=5>
-<tr><th>물품</th><td><input type="text" name="title" value="${updateProduct.title}" > </td></tr>
-<tr><th>내용</th><td><textarea name="contents" rows="30" cols="60">${updateProduct.contents}</textarea> </td></tr>
-<tr><th>동네</th><td><input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > </td></tr>
-<tr><th>오너</th><td><input type="text" name="userId" value="${updateProduct.userId}" readonly > </td></tr>
-</table>
+	<div class="product-insert-table">
+	<input type="text" name="title" value="${updateProduct.title}" > 
+<textarea name="contents" rows="15" cols="60">${updateProduct.contents}</textarea> 
+<input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
+<input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
+</div>
 <br>
-물품사진 : <input id="imgFile" type="file" name="imgFile"><br>
+물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
+<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile"><br>
 <input id="file1" type="text" style="display:none" name="file1">
 <input id="file2" type="text" style="display:none" name="file2">
 <input id="file3" type="text" style="display:none" name="file3">
@@ -235,12 +198,54 @@ $(document).ready(function(){
 <input id="file5" type="text" style="display:none" name="file5">
 <input id="file6" type="text" style="display:none" name="file6">
 
+<span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
 
-<input type="submit" value="수정" name="update" id="updatebtn">
+<!-- 기존 이미지 파일들 불러오기 -->		
+<div class="insertproduct-upload-result mt-2"  id="here">
+<c:if test="${!empty updateProduct.img1}" >
+<span>
+<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="1"/>
+</c:if>
+<c:if test="${!empty updateProduct.img2}" >
+<span>
+<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="2"/>
+</c:if>
+<c:if test="${!empty updateProduct.img3}" >
+<span>
+<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="3"/>
+</c:if>
+<c:if test="${!empty updateProduct.img4}" >
+<span>
+<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="4"/>
+</c:if>
+<c:if test="${!empty updateProduct.img5}" >
+<span>
+<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="5"/>
+</c:if>
+<c:if test="${!empty updateProduct.img6}" >
+<span>
+<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
+</span>
+<c:set var="count" value="6"/>
+</c:if>
+</div>
+
+
+<input class="insertproduct-button mt-2" type="submit" value="수정" name="update" id="updatebtn">
 
 </form>
 
-
+</div>
 </div>
 </div>
 <br>

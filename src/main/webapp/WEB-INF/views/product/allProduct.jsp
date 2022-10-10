@@ -79,13 +79,13 @@
                         	
                             if (resp.result == 0) {
                                 alert("찜!");
-                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>")
+                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
-                                $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'>"+ resp.id + "<img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                                $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
                                 alert("찜 취소!");
-                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>")
+                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                                 $("#spanId" + resp.id).remove();
                             }
@@ -110,13 +110,8 @@
             <div class="allproduct-container">
 
 
-
-
-
-
-
          <!-- 스마트 검색 -->
-                <form class="smart-search-box mb-4" action="smartSearch" method="post">
+                <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
                 렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
@@ -134,19 +129,26 @@
                 </div>
                 
 
-                <form class="allproduct-search-box" action="searchproduct">	
+                		<!-- 찜상품 띄우기 -->
+                 <div class="zzimproduct-list-container">
+
+                    <div  class="zzimproduct-list-box">
+                    <p class="zzim-title" style="width : 100%;">찜 리스트</p>
+				    <span id="zzimProducts" class="zzim-product">
+                        <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
+                            <div class="zzim-product">
+                        <a href="http://localhost:8090/product/${zzimProduct.id}">
+                            <span id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+                        </a>
+                            </div>
+                        </c:forEach>
+                    </span>
+                    </div>
+                 </div>
+
+                <form class="allproduct-search-box" action="http://localhost:8090/allproduct/2">	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
-		<!-- 찜상품 띄우기 -->
-				<span id="zzimProducts">
-			<c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
-			<a href="http://localhost:8090/product/${zzimProduct.id}">
-				<span id = "spanId${zzimProduct.id}">${zzimProduct.id}<img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
-			</a>
-			</c:forEach>
-				</span>
-                    
-                    
 		<!-- 검색기능 -->                    
                     <div class="allproduct-search-box-input">
                     <select name="item">
@@ -167,7 +169,7 @@
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs">
                         <div class="product-box-item">
-                     
+
                         	<!-- 예약중 표시 -->
                         	<c:if test="${product.reservedNow==1 }">
                         	<c:set var="reservedNowImg" value="렌탈중"/>
@@ -197,31 +199,32 @@
                             <!-- 찜 표시 -->
                             <c:if test="${product.zzim == '0'}">
                                 <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/nozzim.png' width=50 height=50 style='cursor:pointer'>" />
+                                    value="<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>" />
                             </c:if>
 
                             <c:if test="${product.zzim == '1'}">
                                 <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/zzim.png' width=50 height=50 style='cursor:pointer'>" />
+                                    value="<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>" />
                             </c:if>
 
                             <!-- 대표 이미지 -->
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
+    
+                                    <img alt="사진이 없어요" width=100% height=60%
                                         src="http://localhost:8090/upload/${product.img1}">
                                 </div>
                             </c:if>
 
                             <c:if test="${empty product.img1}">
                                 <div class="product-item-img">
-                                    <img alt="사진이 없어요" width=90% height=95%
+                                    <img alt="사진이 없어요" width=100% height=60%
                                         src="http://localhost:8090/upload/noimg.png">
                                 </div>
                             </c:if>
 
-
-                            <div class="product-item-title"><span style=color:red>${reservedNowImg} </span> <a href="/product/${product.id}"> ${product.title}</a></div>
+                            <span class="reserved" style=color:red>${reservedNowImg} </span>
+                            <div class="product-item-title"> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
                             </div>

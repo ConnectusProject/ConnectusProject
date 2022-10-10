@@ -14,65 +14,32 @@
 	
 	
 	<script>
-	
 	$(function (){
-		$("#submitbtn").on("click",function(e){
-		e.preventDefault();
-		let sessionId = '<%=session.getAttribute("sessionid")%>';
-		<%-- let title = '<%=request.getParameter("title")%>';
-		let created = '<%=request.getParameter("createdAt")%>';
-		let list = [];
+		$("#reserve-off-button").on("click", function(e){
+			 e.preventDefault(); 
+			let sessionId = '<%=session.getAttribute("sessionid")%>';
+			let title = '${oneProduct.title}';
+			let createdAt = '${oneProduct.createdAt}'
+			<%-- let title = '<%=request.getParameter("title")%>';  --%> 
+			alert(sessionId + "님" + title + "상품예약에 성공하셨습니다" + "," + "등록시각 : " + createdAt); 
+			
+		})
 		
-		alert(sessionId + "," + title);
-		$.ajax({
-			type : "POST",
-			url : "/notice/selectproductnotice", 
-			dataTye : "json",
-			data : {'memberid': sessionId, 'title' : title},
-			success : function(res) {
-			list = res;
-			$.each(list, function(i, item){
-				$("submitresult").append(item.title);
-			
-				$("#noticeinfo").append("<li></li>");
-				$("#noticeinfo").append(
-						"<span class='test2'>" + item.sessionid + "</span>"
-						+ "<span class='test2'>" + item.title + "</span>")
-			
-			/* error:function(request,status,error){
-				
-				} */
-			})				
-		}
-	}) // ajax end --%> 
+		
+	});
+	
 	$.ajax({
-		url : "/product/" + $("#boardId").val() + "/ajax" ,
-		dataType :"json",
+		url: "/product/" + $("#boardId").val() + "/ajax",
+		dataType: "json",
 		success : function(response){
-		 /* alert(sessionId + "님 " + response.title + "ㅅ 상품 "); */
-		 //예약하기 버튼을 누르지않았다면 그 값은 Null값으로
-		 
-		 /* if $("#submitbtn" == null){ */
-			 $("#submitbtn").on("click", function (e){
-				if(sessionId == ""){
-					e.preventDefault();
-					else{
-						
-					}
-				}
-				 
-			 });
-			 
-			/*  $("#submitresult")response.preventDefault(); */
-			 
-		 }
+			alert(sessionId + "님" + response.title + "상품예약에 성공하셨습니다");
 		}
-		});
-		
 	})
-})
+	
 	
 	</script>
+	
+	
 	
 
 	<script>
@@ -119,7 +86,7 @@
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="pictures/notice.png" width="50"></img>
-        			<div class="test2" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
+        			<div class="test2 close" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
           
             		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
             								
@@ -139,14 +106,14 @@
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 				<div class="nav-menu-box mb-3">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box mb-3">
-					<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 				</div>
 
 				<div class="header-sign-box">
@@ -176,14 +143,14 @@
 			<% } else { %>
 				<div class="basic-menu-box">
 					<div class="nav-menu-box mb-3">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct">전체 물품</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 					</div>
 					<div class="nav-menu-box mb-3">
-						<span class="menu-icon"><a href="http://localhost:8090/neighbor"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/neighbor">내 이웃</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 					</div>
 					<div class="nav-menu-box mb-3">
 						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img

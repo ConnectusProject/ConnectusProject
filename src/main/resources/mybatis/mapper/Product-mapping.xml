@@ -18,9 +18,9 @@
 		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6})
 	</insert>
 	
-	
+	<!-- 예약 리스트 -->
 	<select id="allReservation" resultType="reservationdto" >
-		select * from reservation where boardid=#{productid} 
+		select * from reservation where boardid=#{productid} order by id desc; 
 	</select>
 	
 	
@@ -50,12 +50,12 @@
 	 </select>
 	 
 	 
-	 <!-- 예약 수락 -->
+	 <!-- 렌탈중 표시 -->
 	 <update id="checkReservation">
 	 	update product set reservedNow = 1 where id=#{productId}
 	 </update>
 	 
-	 <!-- 예약 수락 -->
+	 <!-- 렌탈중 취소 -->
 	 <update id="cancleReservation">
 	 	update product set reservedNow = 0 where id=#{productId}
 	 </update>
