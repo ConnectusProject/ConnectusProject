@@ -1,0 +1,109 @@
+$color : rgb(142,191,188);
+
+@mixin flexbox($justify, $align){
+    display : flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.chat-container {
+    width : 100%;
+    @include flexbox(space-between, none)
+}
+
+.chatTitle {
+    width : 100%;
+    height : 5rem;
+    color : $color;
+    font-size: 3rem;
+}
+
+.chatlist-box {
+    width : 40%;
+    margin-right : 2%;
+    @include flexbox(left, none);
+    flex-direction: column;
+}
+
+.chat-list-box {
+    width : 100%;
+    height : 5rem;
+    margin-bottom : 0.5rem;
+}
+
+.chatbox {
+    width : 100%;
+    height : 100%;
+    background-color: rgb(238, 238, 238);
+    position : relative;
+    border : none;
+    padding : 0.5rem;
+    border-radius: 5px;
+}
+
+.chatbox-img {
+    border : none;
+    border-radius: 30%;
+}
+
+.chat-title {
+    position : absolute;
+    top : 15%;
+    left : 15%;
+    font-size: 1.2rem;
+}
+
+.chat-name {
+    position : absolute;
+    bottom : 15%;
+    left : 15%;
+    font-size : 0.8rem;
+}
+
+.chatboard-box {
+    width : 58%;
+    background-color: green;
+}
+
+.chatroom-container {
+    width : 40%;
+    background-color: gray;
+    
+    
+}
+
+.chatroom-title {
+    width : 100%;
+    height : 3rem;
+    font-size: 2rem;
+    color : $color;
+    text-align: center;
+}
+
+.chatroom-content-box {
+    width : 100%;
+    background-color: rgb(216, 216, 216);
+}
+
+.chatroom-content-message {
+    width : 100%;
+    background-color: red;
+    height : 30rem;
+}
+
+.chatroom-content-message p {
+    width : 100%;
+    position : relative;
+    text-align: center;
+}
+
+.message-content {
+    position : absolute;
+    top : 2rem;
+    right : 0%;
+}
+
+
+
+
+

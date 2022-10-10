@@ -81,46 +81,51 @@
 	<nav class="nav-box">
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
-				<div class="nav-menu-box mb-3">
+				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 				</div>
-				<div class="nav-menu-box mb-3">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href=""><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 				</div>
 				
-				<div class="nav-menu-box mb-3">
+				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
 								src="${path}/pictures/community.png" alt=""></a></span>
 					<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 				</div>
 			</div>
 			<div class="nav-menu-box">
-				<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
+				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
 							alt=""></a></span>
 				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
 			</div>
-			<!-- 서브메뉴타이틀 -->
+			<div class="nav-menu-box">
+				<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+							alt=""></a></span>
+				<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+			</div>
+			<!-- 서브메뉴타이틀
 			<div class="nav-sub-menu-box mb-3">
 				<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
-			</div>
+			</div> -->
 
 			<% } else { %>
 				<div class="basic-menu-box">
-					<div class="nav-menu-box mb-3">
+					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
 						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 					</div>
-					<div class="nav-menu-box mb-3">
+					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
 						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 					</div>
-					<div class="nav-menu-box mb-3">
+					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
 									src="${path}/pictures/community.png" alt=""></a></span>
 						<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
@@ -131,10 +136,15 @@
 								alt=""></a></span>
 					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
 				</div>
-				<!-- 서브메뉴타이틀 -->
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+				</div>
+				<!-- 서브메뉴타이틀
 				<div class="nav-sub-menu-box mb-3">
 					<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
-				</div>
+				</div> -->
 				<% } %>
 	</nav>
 

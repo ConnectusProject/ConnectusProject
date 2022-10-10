@@ -12,6 +12,11 @@
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/stomp.js" type="text/javascript"></script>
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/header.css">
+<link rel="stylesheet" href="${path}/css/chat.css">
+<script src="${path}/js/jquery-3.6.0.min.js"></script>
 	
 
 <script>
@@ -117,31 +122,38 @@ $(document).ready(function(){
 
 </head>
 <body>
+    <div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp">
+            <jsp:param value="false" name="mypage" />
+        </jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
 
-
-  <div class="container">
+  <div class="chatroom-container">
         <div class="title_text">
-            <h2>${pr_title}</h2>
+            <p class="chatroom-title">${pr_title}</p>
         </div>
-        <div class="row">    
+        <div class="chatroom-content-box">    
                 <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
-                <div id="content">
+                <div id="content" class="chatroom-content-message">
                     <c:forEach var="chatRoom" items="${chatHistory}">
                         <p>
-                            <span id="chatRoomSenderId">${chatRoom.senderId}</span><br>
-                            <span id="chatRoomContent">${chatRoom.content}</span><br>
-                            <span id="chatRoomSendTime">${chatRoom.sendTime}</span><br>
+                            <span class="message-id" id="chatRoomSenderId">${chatRoom.senderId}</span>
+                            <span class="message-time" id="chatRoomSendTime">${chatRoom.sendTime}</span>
+                            <br>
+                            <span  class="message-content" id="chatRoomContent">${chatRoom.content}</span>
                         </p>    
                     </c:forEach>
                 </div>
                 <%--메시지 입력창과 보내기 버튼 --%>
-                <div class="row_3">
+                <div class="row_3" class="chatroom-content-input">
                     <div class="input_group" id="sendMessage">
                         <input type="text" placeholder="Message" id="message" class="form_control"/>
                         <div class="input_group_append">
                             <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
                          
-                            <%-- <input id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
+                            <%-- <input class=input-id id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
                             <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
                             <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
                             <input id="id" type="hidden" value="${chatRoomInfo.id}" /> --%>                        
@@ -154,6 +166,37 @@ $(document).ready(function(){
     </div>
 
 
+</div>
+</div>
 
+    <script>
+        let test = document.querySelectorAll('.message-id');
+        let test2 = document.querySelector('.input-id');
+
+        console.log(test2.value);
+
+        for(let i=0; i<test.length; i++) {
+            if(test2.value == test[i].innerHTML){
+            test[i].style.color = "white";
+        }else {
+            test[i].style.color = "yellow";
+        }
+        }
+
+ 
+
+
+
+    </script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
 </body>
 </html>
