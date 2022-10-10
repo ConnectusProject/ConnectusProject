@@ -85,7 +85,7 @@
 				<a class="loginBtn" href="../login">로그인</a>
 				<% } else { %>
 
-				<div class="test"  id="noticeimage" position : relative; "><img src="pictures/notice.png" width="50"></img>
+				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
         			<div class="test2 close" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
           
             		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
