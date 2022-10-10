@@ -31,12 +31,16 @@ $(document).ready(function(){
 	
 	
 	
+	
 
 });
 </script>
 
 </head>
 <body>
+
+<a href="https://map.naver.com/v5/directions/-/-/-/transit?c=14141383.0486701,4499920.8903513,10.81,0,0,0,dh"> 길찾아보기 </a>
+
 
 </body>
 </html>
