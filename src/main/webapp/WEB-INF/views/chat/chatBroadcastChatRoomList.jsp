@@ -27,6 +27,8 @@ var sellerId = "${sellerId}";
 var pr_id = "${pr_id}";
 var id = "${id}";
 var pr_title = "${pr_title}";
+var sessionId = "${sessionid}"
+
 alert(id);
 
 
@@ -76,7 +78,7 @@ $(document).ready(function(){
             'buyerId': buyerId, 
             'sellerId': sellerId,
             'pr_id': pr_id,
-            'senderId': sellerId
+            'senderId': sessionId
             });
         $('#message').val("");
     }
