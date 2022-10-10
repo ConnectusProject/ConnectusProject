@@ -74,17 +74,24 @@ public class ProductController {
 		
 		// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
 		if(searchType==1) {
-		list = productDAO.allProduct(); }
+		list = productDAO.allProduct(); 
+		model.addAttribute("searchType", 1); }
 		
 		else if (searchType==2) {	
-			HashMap<String, String> map = new HashMap<>();
+			int limit = 0;
+			HashMap map = new HashMap<>();
 			map.put("item", item);
 			map.put("search", search);
-
-			list = productDAO.searchList(map); }	
+			map.put("limit", limit);
+			
+			list = productDAO.searchList(map);
+			model.addAttribute("item", item);
+			model.addAttribute("search", search);
+			model.addAttribute("searchType", 2); }	
 	
 		else if (searchType==3) {
-			list = productDAO.neighborList(region);
+			list = productDAO.neighborList(region, 0);
+			model.addAttribute("searchType", 3);
 		}
 		
 		
@@ -142,25 +149,35 @@ public class ProductController {
 	}
 		
 	
-	// 물품 스크롤 append 
+	// 물품 스크롤 AJAX 
 		@ResponseBody
-		@PostMapping("/allproduct/ajax/1")
-		public List<ProductDTO> scrollProduct(Model model, HttpSession session, String item, String search, String scrollCount) throws Exception {
-			System.out.println(scrollCount);
+		@PostMapping("/allproduct/ajax/{searchType}")
+		public List<ProductDTO> scrollProduct(Model model, HttpSession session, String item, String search, String scrollCount, @PathVariable("searchType")int searchType) throws Exception {
+			int limit = Integer.parseInt(scrollCount)*20;
+			
 			// 지역 set 
 			String sessionid = (String)session.getAttribute("sessionid");
 			String extraaddr = memberDAO.getRegion(sessionid);
 			String region = "동"; 
 			if(extraaddr != null) {
 			region = extraaddr.substring(2,extraaddr.length()-1); }
-			
 
 			List<ProductDTO> list = new ArrayList<>();
 			
 			// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
-			list = productDAO.allProduct(); 
-			
-			
+			if(searchType ==1) {
+			list = productDAO.scrollProduct(limit); } 
+			else if (searchType==2) {	
+				HashMap map = new HashMap<>();
+				map.put("item", item);
+				map.put("search", search);
+				map.put("limit", limit);
+
+				list = productDAO.searchList(map); }	
+		
+			else if (searchType==3) {
+				list = productDAO.neighborList(region, limit);
+			}
 			
 			// 찜 set 
 			for (ProductDTO dto : list) {

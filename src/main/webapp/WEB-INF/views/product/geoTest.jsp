@@ -15,6 +15,13 @@
 <script>
 $(document).ready(function(){
 	
+	let todayDate = new Date(); 
+	let todayString = todayDate.toISOString();
+	let today = todayString.substring(0,10);
+	
+	alert(today);
+	
+	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 

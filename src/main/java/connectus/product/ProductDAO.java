@@ -15,6 +15,8 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> allProduct();
 	
+	public List<ProductDTO> scrollProduct(int limit);
+	
 	public ProductDTO oneProduct(int productid);
 	
 	public int insertProduct(ProductDTO dto);
@@ -25,9 +27,9 @@ public interface ProductDAO {
 	
 	public int updateProduct(ProductDTO dto);
 	
-	public List<ProductDTO> searchList(HashMap<String, String> searchType);
+	public List<ProductDTO> searchList(HashMap searchType);
 	
-	public List<ProductDTO> neighborList(String boardRegion);
+	public List<ProductDTO> neighborList(String boardRegion, int limit);
 	
 	public int checkReservation(int productId);
 	

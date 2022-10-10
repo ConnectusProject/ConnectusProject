@@ -6,8 +6,13 @@
 <mapper namespace="connectus.product.ProductDAO">
 
 	<select id="allProduct" resultType="productdto">
-		select * from product order by createdAt desc
+		select * from product order by id desc limit 0, 20
 	</select>
+	
+	<select id="scrollProduct" resultType="productdto">
+		select * from product order by id desc limit #{limit}, 20
+	</select>
+
 
 	<select id="oneProduct" resultType="productdto">
 		select * from product where id = #{productid}
@@ -37,16 +42,16 @@
 	
 	
 	<!-- 검색 -->
-	<select id="searchList" resultType="productdto" parameterType="hashMap">
+	<select id="searchList" resultType="productdto" >
 	 	select * from product where ${item} like concat('%', #{search}, '%') 
-	 	order by createdAt desc 
+	 	order by id desc limit #{limit}, 20
 	 </select>
 	 
 	 
 	 <!-- 이웃 검색 -->
 	<select id="neighborList" resultType="productdto">
 	 	select * from product where boardRegion = #{boardRegion}
-	 	order by createdAt desc 
+	 	order by id desc limit #{limit}, 20
 	 </select>
 	 
 	 
