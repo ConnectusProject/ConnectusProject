@@ -50,6 +50,14 @@ public class ProductController {
 	public String home() {
 		return "home";
 	}
+	
+	// geo Test 
+	@GetMapping("/geo")
+	public String geoTest() {
+		return "product/geoTest";
+	}
+	
+	
 
 	// 물품 조회
 	@GetMapping("/allproduct/{searchType}")
@@ -124,6 +132,7 @@ public class ProductController {
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
+
 		
 		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
@@ -132,6 +141,79 @@ public class ProductController {
 		return "product/allProduct";
 	}
 		
+	
+	// 물품 스크롤 append 
+		@ResponseBody
+		@PostMapping("/allproduct/ajax/1")
+		public List<ProductDTO> scrollProduct(Model model, HttpSession session, String item, String search, String scrollCount) throws Exception {
+			System.out.println(scrollCount);
+			// 지역 set 
+			String sessionid = (String)session.getAttribute("sessionid");
+			String extraaddr = memberDAO.getRegion(sessionid);
+			String region = "동"; 
+			if(extraaddr != null) {
+			region = extraaddr.substring(2,extraaddr.length()-1); }
+			
+
+			List<ProductDTO> list = new ArrayList<>();
+			
+			// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
+			list = productDAO.allProduct(); 
+			
+			
+			
+			// 찜 set 
+			for (ProductDTO dto : list) {
+				int productseq = (int)dto.getId();
+				
+				int zzim = 0; 
+				Object zzimcheck = productDAO.zzimCount(productseq, sessionid);
+				if(zzimcheck!=null) {
+					zzim = 1; 
+				}
+				
+				dto.setZzim(zzim);
+				
+				// 렌탈중 표시 set ( 조회하는 시점에서 확인 ) 
+				List<ReservationDTO> reservations = reservationDAO.getReservationDate(productseq);
+				
+				// 승낙된 예약이 하나도 없을 때, reservedNow=0 ( List index 개수가 없으므로 따로 처리 ) 
+				if(reservations.size()==0) {
+					productDAO.cancleReservation(productseq);
+				}
+				
+				LocalDate now = LocalDate.now();
+				int checkReserved = 0;
+				for(int i = 0; i<reservations.size(); i++) {
+					String startDateString = reservations.get(i).getStartRental();
+					String endDateString = reservations.get(i).getEndRental();
+					
+					LocalDate start2 = LocalDate.of(Integer.parseInt(startDateString.substring(0,4)), Integer.parseInt(startDateString.substring(5,7)), Integer.parseInt(startDateString.substring(8,10)));
+					LocalDate end2 = LocalDate.of(Integer.parseInt(endDateString.substring(0,4)), Integer.parseInt(endDateString.substring(5,7)), Integer.parseInt(endDateString.substring(8,10)));
+					
+					if( (now.isEqual(start2) || now.isAfter(start2)) && (now.isEqual(end2) || now.isBefore(end2))) {
+						productDAO.checkReservation(productseq);
+						checkReserved = 1;
+					}else if(checkReserved != 1) {
+						productDAO.cancleReservation(productseq);
+						checkReserved = 0;
+					}
+				} // inner for 
+			
+			} //  outer for 
+			
+			// 상품개수 
+			int productlength = list.size();
+			// 찜목록 리스트   
+			List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
+
+			
+			return list;
+		}
+	
+	
+	
+	
 	
 	
 

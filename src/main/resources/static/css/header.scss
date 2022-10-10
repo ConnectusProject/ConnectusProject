@@ -136,6 +136,7 @@ li {
     display : flex;
     width : 100%;
     @include flexbox(space-between, center);
+    margin-bottom : 5px;
 }
 
 .nav-menu-box:hover {

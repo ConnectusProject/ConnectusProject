@@ -107,9 +107,18 @@ $(document).ready(function(){
   $("#imgFile").change(function(e) {
 		e.preventDefault();
 		var Imgcount = $("#count").html();
-	 	Imgcount++;
-	 	$("#count").html(Imgcount);
-
+		
+		// 이미지 파일 개수 count  
+		if(Imgcount>=6){
+			alert("사진은 6개까지! ");
+			return false;
+		}
+		if(Imgcount<6){
+		 	Imgcount++;
+		 	$("#count").html(Imgcount);
+			}
+		
+		
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -126,13 +135,13 @@ $(document).ready(function(){
 
 		success : function(resp){ 
 			
-			if(Imgcount>6){
-				alert("사진은 6개 까지만 등록 가능합니다.")
-				return false;
-			}
+	//		if(Imgcount>6){
+	//			alert("사진은 6개 까지만 등록 가능합니다.")
+	//			return false;
+	//		}
 			
 			var str = '<span>';
-			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=200 width=200 style='cursor:pointer' onclick='delImg(this)' >";
+			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
             str += '</span>';
 
             $(str).appendTo('#here');
@@ -166,42 +175,19 @@ $(document).ready(function(){
 </script>
 </head>
 
-
+<>
 
 	<div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
-			<div class="insertproduct-container"></div>
+			<div class="insertproduct-container">
 
-		<h1 class="insertproduct-title"> 게시물 수정</h1> 
-		
-
-<!-- <div id="count">${count}</div> -->
-
-<form id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
-	<div class="product-insert-table">
-	<input type="text" name="title" value="${updateProduct.title}" > 
-<textarea name="contents" rows="15" cols="60">${updateProduct.contents}</textarea> 
-<input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
-<input type="text" name="userId" value="${updateProduct.userId}" readonly > 
-
-</div>
-<br>
-물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
-<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile"><br>
-<input id="file1" type="text" style="display:none" name="file1">
-<input id="file2" type="text" style="display:none" name="file2">
-<input id="file3" type="text" style="display:none" name="file3">
-<input id="file4" type="text" style="display:none" name="file4">
-<input id="file5" type="text" style="display:none" name="file5">
-<input id="file6" type="text" style="display:none" name="file6">
-
-<span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span> 
+		<h1 class="insertproduct-title" class="title"> 게시물 수정</h1> 
 
 <!-- 기존 이미지 파일들 불러오기 -->		
-<div class="insertproduct-upload-result mt-2"  id="here">
+<!-- <div id="here">
 <c:if test="${!empty updateProduct.img1}" >
 <span>
 <img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
@@ -238,10 +224,70 @@ $(document).ready(function(){
 </span>
 <c:set var="count" value="6"/>
 </c:if>
-</div>
+</div> -->
+
+<div id="count">${count}</div>
+
+<form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
+
+<input type="text" name="title" value="${updateProduct.title}" > 
+<textarea name="contents" rows="15" cols="60">${updateProduct.contents}</textarea> 
+<input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
+<input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
 
-<input class="insertproduct-button mt-2" type="submit" value="수정" name="update" id="updatebtn">
+<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
+<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile">
+<input id="file1" type="text" style="display:none" name="file1">
+<input id="file2" type="text" style="display:none" name="file2">
+<input id="file3" type="text" style="display:none" name="file3">
+<input id="file4" type="text" style="display:none" name="file4">
+<input id="file5" type="text" style="display:none" name="file5">
+<input id="file6" type="text" style="display:none" name="file6">
+<span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span>
+ 
+<!-- 기존 이미지 파일들 불러오기 -->	
+<div id="here">
+	<c:if test="${!empty updateProduct.img1}" >
+	<span>
+	<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="1"/>
+	</c:if>
+	<c:if test="${!empty updateProduct.img2}" >
+	<span>
+	<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="2"/>
+	</c:if>
+	<c:if test="${!empty updateProduct.img3}" >
+	<span>
+	<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="3"/>
+	</c:if>
+	<c:if test="${!empty updateProduct.img4}" >
+	<span>
+	<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="4"/>
+	</c:if>
+	<c:if test="${!empty updateProduct.img5}" >
+	<span>
+	<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="5"/>
+	</c:if>
+	<c:if test="${!empty updateProduct.img6}" >
+	<span>
+	<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
+	</span>
+	<c:set var="count" value="6"/>
+	</c:if>
+	</div>
+
+
+<input id="updateproduct-button"  type="submit" value="수정" name="update" id="updatebtn">
 
 </form>
 

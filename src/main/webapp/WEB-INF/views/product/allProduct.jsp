@@ -19,6 +19,61 @@
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
             
+            let scrollCount = 0; 
+            
+            $(window).scroll(function () {
+            
+            	
+                //스크롤이전가려진부분 높이 + 현재뷰포트높이
+                var scrollHeight = $(window).scrollTop() + $(window).height();
+                var documentHeight = $(document).height();//문서높이
+                if (scrollHeight == documentHeight) {
+                	scrollCount++; 
+                	
+                	let list = [];
+                	
+                    $.ajax({
+                        type: "POST",
+                        url: "/allproduct/ajax/1",
+                        dataType: "json",
+                        data: {'searchType': 1, 'scrollCount':scrollCount },
+
+                        success: function (resp) {
+                        	list = resp; 
+                        	
+// javascript each 반복문 돌려서 => 아래와 같이 만들어야 한다. 
+// list 는 scrollCount 를 이용해서 limit 으로 조회한 20개의 list 
+
+
+$.each(list, function(i, product){
+	
+    $("#appendScroll").append(
+    			'<div class="product-box-item" >'
+    			
+                        	+ '<span class="reserved" style=color:red>' + product.reservedNow  + '</span>'
+                            + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
+                            + '<div class="product-item-date">${dateDiffShow}</div>'
+                            + '<div class="product-item-location">' + product.boardRegion + '</div>'
+                            + '<div class="product-item-owner">' + product.userId + '</div>'
+                            + '<span class="product-item-zzim" id="zzimSpan${20 + i}">${zzim}</span>'
+                        + '</div>'
+    
+    ); //append 
+	
+	
+}); //each 
+
+
+              
+                        } // success 
+                    }); // ajax 
+                    
+                    
+                    
+                } //스크롤 if 
+            }); // scroll 
+            
+            
             
             // 스마트검색 지역선택 
             $("#regionSelect").on("change", function(){
@@ -165,10 +220,10 @@
                 
                 
                 <!-- allproduct-product-box -->
-                <div class="allproduct-product-box">
+                <div class="allproduct-product-box" id="appendScroll">
 
-                    <c:forEach items="${allproduct}" var="product" varStatus="vs">
-                        <div class="product-box-item">
+                    <c:forEach items="${allproduct}" var="product" varStatus="vs" >
+                        <div class="product-box-item" >
 
                         	<!-- 예약중 표시 -->
                         	<c:if test="${product.reservedNow==1 }">
@@ -234,9 +289,9 @@
                         </div>
 
                     </c:forEach>
+                    
 
-                </div>
-
+</div>
                 <!-- <a href="http://localhost:8090/">홈으로</a> -->
             
             </div>

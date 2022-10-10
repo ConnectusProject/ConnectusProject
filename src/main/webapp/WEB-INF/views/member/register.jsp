@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="${path}/css/login.css">
 		<script src="${path}/js/jquery-3.6.0.min.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74ad1a98ca11a868e151320c03495af6&libraries=services"></script>
 		<script>
 			$(document).ready(function () {
 
@@ -78,6 +79,7 @@
 						<div>
 							<input type="text" id="sample6_extraAddress" name="region" placeholder="참고항목" readonly>
 							<input type="hidden" id="address" name="address" value="">
+							<input type="hidden" id="coords" name="coords">
 						</div>
 					</div>
 					<button class="signup-button" type="submit" id="btn" onclick="check()"
@@ -154,6 +156,7 @@
 			let email_check = false;
 			let name_check = false;
 
+			let address = "";
 
 
 			function idcheck() {
@@ -365,6 +368,8 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('sample6_postcode').value = data.zonecode;
 						document.getElementById("sample6_address").value = addr;
+						adress = addr;
+						KakaoGeocoder();
 
 						// 커서를 상세주소 필드로 이동한다.
 
@@ -421,7 +426,23 @@
 				alert("성공적으로 가입되셨습니다.")
 			}
 			*/
+			
+			function KakaoGeocoder(){
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
 
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch(adress, function(result, status) {
+
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			        $("#coords").val(coords);
+			    } 
+			}); // addressSearch     
+		}
+			
 		</script>
 
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
