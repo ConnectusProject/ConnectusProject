@@ -329,11 +329,26 @@ public class ProductController {
 		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);
 		model.addAttribute("oneProduct", targetProduct);
-
+		System.out.println(targetProduct.getTitle());	
 		return "product/oneProduct";
 	}
 	
-	
+	// 물품 상세페이지 
+		@ResponseBody
+		@GetMapping("/product/{productid}/ajax")
+		public ProductDTO oneProductajax(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
+			
+			String sessionid = (String)session.getAttribute("sessionid");
+			ProductDTO targetProduct = productDAO.oneProduct(productid);
+			model.addAttribute("oneProduct", targetProduct);
+			System.out.println(targetProduct.getTitle());	
+			return targetProduct;
+		}
+		
+		
+		
+		
+		
 	//글작성 폼 
 	@GetMapping("/registerProduct")
 	public String registerProduct(HttpSession session, Model model) {

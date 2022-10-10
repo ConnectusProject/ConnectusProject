@@ -62,9 +62,11 @@
                     <div class="list-table mt-1 mb-3">
                 <table id="tableboard" style="width : 100%">
                     <tr class="list-table-title">
-                        <td  style="width : 8%" >번호</td>
+                  
+                        <td  style="width : 10%" >번호</td>
                         <td >제목</td>
-                        <td style="width : 15%">작성자</td>
+                        <td style="width : 10%">작성자</td>
+                
                     </tr>
                     <c:forEach items="${boardlst }" var="board">
 
@@ -114,6 +116,16 @@
 
         </div>
     </div>
+
+
+
+        })   
+    </script>
+	
+	<div>
+
+
+
 
 
     <% List<BoardDTO> boardlist = (List<BoardDTO>)request.getAttribute("boardlst");

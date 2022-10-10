@@ -18,9 +18,9 @@ function reservebutton() {
 	
 	$.ajax({
 		type : "POST",
-		url : "notice/" + ${param.productid} + "/selectproductnotice", 
+		url : "/notice/selectproductnotice", 
 		dataTye : "json",
-		data : {'notice' : noticeinfo, 'memberid': sessionid, 'time' : createdAt},
+		data : {'notice' : noticeinfo, 'memberid': sessionId, 'time' : createtime},
 		
 		
 		success : function (res){
@@ -31,9 +31,9 @@ function reservebutton() {
 			$.each(list, function(i, item){
 				$("#notice").append("<li></li>");
 				$("#notice").append(
-						"<span class='notice-detail-id'>" + item.receiveid + "</span>"
+						"<span class='notice-detail-id'>" + item.receiveId + "</span>"
 						+ "<span class='notice-detail-info'>" + item.noticeinfo + "</span>"
-						+ "<span class='notice-detail-time'>" + item.createdAt + "</span>"			
+						+ "<span class='notice-detail-time'>" + item.createtime + "</span>"			
 				
 				
 				
@@ -65,7 +65,21 @@ function reservebutton() {
 </head>
 <body>
 
+	<div>
+	<h1>test</h1>
+	${bringid }<br>님이 ${bringtitle }를 대여하셨습니다.
+	<%-- ${bringid }<br>님이 ${bringcomment }의 답글을 남기셨습니다. --%>
 	
+	</div>
+
+	
+	<!-- 예약하는 부분의 oneProdcut를 불러오기. -->
+	<jsp:include page="/WEB-INF/views/product/oneProduct.jsp">
+		
+	</jsp:include>
+	<% String userid = request.getParameter("userId");
+	 
+	%>
 	<!-- 알람 클릭했을 때 나오는 창 -->
 	<div class="notice-detail-box">
 		<c:forEach items="${allproduct}" var="product" varStatus="vs"> 
