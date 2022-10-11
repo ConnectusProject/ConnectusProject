@@ -15,7 +15,7 @@
 	
 	<script>
 	$(function (){
-		$("#reserve-off-button").on("click", function(e){
+		$("#reserve-off-button2").on("click", function(e){  //버튼이름에 2 붙여서 막아뒀습니다 
 			 e.preventDefault(); 
 			let sessionId = '<%=session.getAttribute("sessionid")%>';
 			let title = '${oneProduct.title}';
