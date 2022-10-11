@@ -40,6 +40,11 @@
 		where id = #{id}
 	</update>
 	
+	<!-- 조회수 -->
+	<update id="viewCount">
+		update product set viewCount = viewCount + 1 where id = #{productId}
+	</update>
+	
 	
 	<!-- 검색 -->
 	<select id="searchList" resultType="productdto" >

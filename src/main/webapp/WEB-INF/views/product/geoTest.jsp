@@ -21,7 +21,20 @@ $(document).ready(function(){
 	
 	alert(today);
 	
+	//let str = "(33.4506810661721, 126.57049341667)";
 	
+	//let index = str.indexOf(',');
+	//alert(index);
+	
+	
+	//alert(coords); 
+	
+	//alert(coords.indexOf('21'));
+	
+//	alert(str.indexOf('ba')); 
+	
+	
+	let strCoords = "";
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 
@@ -32,7 +45,22 @@ $(document).ready(function(){
 	     if (status === kakao.maps.services.Status.OK) {
 
 	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	        alert(coords);
+	        strCoords = coords.toString();
+	        var lat = strCoords.substring(1, strCoords.indexOf(','));
+	        var lon = strCoords.substring(strCoords.indexOf(',')+1, str.Coords.length -1);
+	        
+	        alert("lat" + lat + "lon" + lon);
+	      
+	        //var strCoords = coords;
+	        //alert(coords.substring(0,10));
+	        //var index = coords.indexOf(',');
+	        //alert(index);
+	        
+	        //var lat = coords.substring(0,coords.prototype.indexOf(",")); 
+	        //var lon = coords.substring(coords.prototype.indexOf(","+1)); 
+	        
+	        //alert("lat : " + lat);
+	        //alert("lon : " + lon);
 	    } 
 	}); // addressSearch     
 	

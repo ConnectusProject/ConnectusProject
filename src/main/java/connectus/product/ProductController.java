@@ -334,6 +334,7 @@ public class ProductController {
 	// 물품 상세페이지 
 	@GetMapping("/product/{productid}")
 	public String oneProduct(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
+		productDAO.viewCount(productid);
 		
 		String sessionid = (String)session.getAttribute("sessionid");
 		
