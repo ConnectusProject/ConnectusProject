@@ -12,6 +12,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .login-box {
@@ -119,7 +120,7 @@ a {
 .signup-box {
   background-color: white;
   width: 28rem;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .signup-box-title {
@@ -136,8 +137,13 @@ a {
 }
 
 .signup-box-sign-box {
+  z-index: 1;
+  margin-bottom: -7px;
+  background-color: white;
   width: 100%;
-  height: 7%;
+  height: 8%;
+  width: 28rem;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;

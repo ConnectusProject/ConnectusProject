@@ -59,6 +59,7 @@ var pr_id = "${chatRoomInfo.pr_id}";
 var id = "${chatRoomInfo.id}";
 
 alert(id);
+console.log(sellerId);
 
 
 
