@@ -16,8 +16,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "connectus.mypage")
 @ComponentScan(basePackages = "connectus.chat")
 @ComponentScan(basePackages = "connectus.notice")
+@ComponentScan(basePackages = "connectus.location")
 
-
+@ComponentScan(basePackages = "connectus.location")
 @MapperScan(basePackages = "connectus.comment")
 @MapperScan(basePackages = "connectus.member")
 @MapperScan(basePackages = "connectus.board")
