@@ -39,6 +39,8 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> getZzimProducts(String sessionId);
 	
+	public int viewCount(int productId);
+	
 	// 스마트 검색 
 	public List<Integer> searchByTitle_Region(String title, String region, int limit);
 
