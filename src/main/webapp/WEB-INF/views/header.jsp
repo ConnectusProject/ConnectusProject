@@ -115,19 +115,6 @@
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 				</div>
-
-
-				<div class="header-sign-box">
-					<% if(session.getAttribute("sessionid")==null) { %>
-						<a class="loginBtn" href="../login">로그인</a>
-						<% } else { %>
-							<a href="/mypage" class="mypage">마이페이지 </a>
-							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
-							<% } %>
-
-				<div class="nav-menu-box mb-3">
-
-				
 				<div class="nav-menu-box">
 
 					<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
