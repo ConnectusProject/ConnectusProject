@@ -74,17 +74,24 @@ public class ProductController {
 		
 		// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
 		if(searchType==1) {
-		list = productDAO.allProduct(); }
+		list = productDAO.allProduct(); 
+		model.addAttribute("searchType", 1); }
 		
 		else if (searchType==2) {	
-			HashMap<String, String> map = new HashMap<>();
+			int limit = 0;
+			HashMap map = new HashMap<>();
 			map.put("item", item);
 			map.put("search", search);
-
-			list = productDAO.searchList(map); }	
+			map.put("limit", limit);
+			
+			list = productDAO.searchList(map);
+			model.addAttribute("item", item);
+			model.addAttribute("search", search);
+			model.addAttribute("searchType", 2); }	
 	
 		else if (searchType==3) {
-			list = productDAO.neighborList(region);
+			list = productDAO.neighborList(region, 0);
+			model.addAttribute("searchType", 3);
 		}
 		
 		
@@ -142,24 +149,61 @@ public class ProductController {
 	}
 		
 	
-	// 물품 스크롤 append 
+	// 물품 조회 별 스크롤 AJAX 
 		@ResponseBody
-		@PostMapping("/allproduct/ajax/1")
-		public List<ProductDTO> scrollProduct(Model model, HttpSession session, String item, String search, String scrollCount) throws Exception {
-			System.out.println(scrollCount);
+		@PostMapping("/allproduct/ajax/{searchType}")
+		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, @PathVariable("searchType")int searchType) throws Exception {
+			int limit = Integer.parseInt(scrollCount)*20;
+			
 			// 지역 set 
 			String sessionid = (String)session.getAttribute("sessionid");
 			String extraaddr = memberDAO.getRegion(sessionid);
 			String region = "동"; 
 			if(extraaddr != null) {
 			region = extraaddr.substring(2,extraaddr.length()-1); }
-			
 
 			List<ProductDTO> list = new ArrayList<>();
 			
-			// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
-			list = productDAO.allProduct(); 
-			
+			// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 | 4 = 스마트 검색 ) 
+			if(searchType ==1) {
+			list = productDAO.scrollProduct(limit); } 
+			else if (searchType==2) {	
+				HashMap map = new HashMap<>();
+				map.put("item", item);
+				map.put("search", search);
+				map.put("limit", limit);
+
+				list = productDAO.searchList(map); }	
+		
+			else if (searchType==3) {
+				list = productDAO.neighborList(region, limit);
+			}
+			else if (searchType==4) {
+				// 제목,지역으로 검색한 상품리스트
+				List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit);
+
+				ArrayList<Integer> selectedList = new ArrayList<>();
+				
+				// 날짜로 검색 : 해당 날짜 조건에 부합하지 않는다 => 예약이 null 값인 것과, 예약수락이 없는 리스트까지 포함됨 
+				for(int i = 0; i<titleRegion.size(); i++) {
+
+				if(smartSearchDTO.getSmartStartDate() != "" && smartSearchDTO.getSmartEndDate() != "") {
+				Integer selected =  productDAO.searchByRentalDate(smartSearchDTO.getSmartStartDate(), smartSearchDTO.getSmartEndDate(), titleRegion.get(i));
+				
+				if(selected>0) {
+				selectedList.add(selected);  
+					}
+				}else if(smartSearchDTO.getSmartStartDate() == "" && smartSearchDTO.getSmartEndDate() == "") {
+					selectedList.add(titleRegion.get(i));
+					}
+				} //for 
+				
+				// 찾은 상품 번호로 상품 list 를 불러옴 
+				for(int i = 0; i < selectedList.size(); i++) {
+				ProductDTO searchedOne = productDAO.oneProduct(selectedList.get(i));
+				list.add(searchedOne);
+				}
+			}
 			
 			
 			// 찜 set 
@@ -206,29 +250,56 @@ public class ProductController {
 			int productlength = list.size();
 			// 찜목록 리스트   
 			List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
-
 			
 			return list;
 		}
 	
 	
 	
-	
-	
-	
 
 	// 스마트검색 
 	@PostMapping("/smartSearch")
-	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session) throws Exception {
+	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session, String distanceKm) throws Exception {
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = "동"; 
 		if(extraaddr != null) {
 		region = extraaddr.substring(2,extraaddr.length()-1); }
 		
+		if(smartSearchDTO.getSmartRegion()==null) {
+			smartSearchDTO.setSmartRegion("동");
+		}
 		// 제목,지역으로 검색한 상품리스트
-		List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion());
+		List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0);
 
+		// 거리 
+		ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
+			if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+				int intKm = Integer.parseInt(distanceKm);
+					for(int i=0; i<titleRegion.size(); i++) {
+						Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
+						if(innerDistanceId>0 && !innerDistanceIdList.contains(innerDistanceId)) {
+						innerDistanceIdList.add(innerDistanceId);
+						}
+					}
+					
+					for(int a = 0; a<innerDistanceIdList.size(); a++) {
+						System.out.println(innerDistanceIdList.get(a));
+					}
+					
+					titleRegion.clear();
+					
+					for(int j = 0; j<innerDistanceIdList.size(); j++) {
+						List<Integer> eachMemberProduct = productDAO.searchByTitle_Region_MemberId(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0, innerDistanceIdList.get(j));
+						for(int b = 0; b<eachMemberProduct.size(); b++) {
+						titleRegion.add(eachMemberProduct.get(b));
+						}
+					}
+				}
+			
+					
+
+		
 		ArrayList<Integer> selectedList = new ArrayList<>();
 		
 		// 날짜로 검색 : 해당 날짜 조건에 부합하지 않는다 => 예약이 null 값인 것과, 예약수락이 없는 리스트까지 포함됨 
@@ -246,14 +317,21 @@ public class ProductController {
 		} //for 
 		
 		
+		
+		
+		
 		List<ProductDTO> list = new ArrayList<>();
 		
 		// 찾은 상품 번호로 상품 list 를 불러옴 
-		for(int i = selectedList.size()-1; i>=0; i--) {
+		for(int i = 0; i < selectedList.size(); i++) {
 		ProductDTO searchedOne = productDAO.oneProduct(selectedList.get(i));
 		list.add(searchedOne);
 		}
 		System.out.println(smartSearchDTO.toString());
+
+		
+		
+		
 		
 		// 찜 set 
 				for (ProductDTO dto : list) {
@@ -266,15 +344,20 @@ public class ProductController {
 					}
 					
 					dto.setZzim(zzim);
-
-			
 				} // for 
 		
 		// 상품 개수 
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
-			
+		
+		model.addAttribute("smartTitle", smartSearchDTO.getSmartTitle());
+		model.addAttribute("smartRegion", smartSearchDTO.getSmartRegion());
+		model.addAttribute("smartStartDate", smartSearchDTO.getSmartStartDate());
+		model.addAttribute("smartEndDate", smartSearchDTO.getSmartEndDate());
+		
+		
+		model.addAttribute("searchType", 4);	
 		model.addAttribute("zzimProducts", zzimProducts);	
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
@@ -289,11 +372,27 @@ public class ProductController {
 	// 물품 상세페이지 
 	@GetMapping("/product/{productid}")
 	public String oneProduct(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
-		
+		productDAO.viewCount(productid);
 		String sessionid = (String)session.getAttribute("sessionid");
 		
-		
 		ProductDTO targetProduct = productDAO.oneProduct(productid);
+
+		Double distance_double = productDAO.getDistance(sessionid, targetProduct.getUserId());
+		int IntDistance = 0;  
+		String distance = "";
+
+		if(distance_double==null) {
+			distance = "(알수없는 위치)";
+		}else if(distance_double!=null) {
+			IntDistance = distance_double.intValue();
+			if(IntDistance==0) {
+				distance = "(1km 이내)";
+			}else {
+			distance = "(" + IntDistance + "km 거리)";
+			}
+		}
+		
+		
 		
 		// 찜 set
 		Object zzimcheck = productDAO.zzimCount(productid, sessionid);
@@ -309,26 +408,26 @@ public class ProductController {
 		List<ReservationDTO> reservList = productDAO.allReservation(productid);
 		int reservLength = reservList.size();
 		
+		model.addAttribute("distance", distance);
 		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);
 		model.addAttribute("oneProduct", targetProduct);
-		System.out.println(targetProduct.getTitle());	
+//		System.out.println(targetProduct.getTitle());
+		
 		return "product/oneProduct";
 	}
 	
-	// 물품 상세페이지 
-		@ResponseBody
-		@GetMapping("/product/{productid}/ajax")
-		public ProductDTO oneProductajax(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
-			
-			String sessionid = (String)session.getAttribute("sessionid");
-			ProductDTO targetProduct = productDAO.oneProduct(productid);
-			model.addAttribute("oneProduct", targetProduct);
-			System.out.println(targetProduct.getTitle());	
-			return targetProduct;
-		}
-		
-		
+	// 상세페이지 => header랑 연결 알림용  
+//		@ResponseBody
+//		@GetMapping("/product/{productid}/ajax")
+//		public ProductDTO oneProductajax(@PathVariable("productid")int productid, Model model, HttpSession session) throws Exception {
+//			
+//			String sessionid = (String)session.getAttribute("sessionid");
+//			ProductDTO targetProduct = productDAO.oneProduct(productid);
+//			model.addAttribute("oneProduct", targetProduct);
+//			System.out.println(targetProduct.getTitle());	
+//			return targetProduct;
+//		}
 		
 		
 		
@@ -366,19 +465,6 @@ public class ProductController {
 		if(uploaddto.getFile6()!=null) {
 			dto.setImg6(uploaddto.getFile6());
 		}
-				
-		// 지역 이름 set 	( 이거 동네는 매번 위치를 킬 수 없으니까 회원가입할 때, 혹은 기간에 한번씩만 인증하는식으로 받아서 DTO 에 넣어두고 사용하자 )
-//			ApiClient apiClient = new ApiClient(geoapiignore.geoaccess, geoapiignore.geosecret);
-//			
-//			String geo = apiClient.run(geoapiignore.geoip);
-//			
-//			int index = geo.indexOf("r3");
-//			int index2 = geo.indexOf("lat");
-//			
-//			String region = geo.substring(index+6, index2-3);
-//			System.out.println(region);
-//			
-//			dto.setBoardRegion(region); 
 			
 			productDAO.insertProduct(dto);
 		return "redirect:/allproduct/1";
@@ -475,10 +561,6 @@ public class ProductController {
 			return "{\"result\" : \"" + zzimCheck + "\", \"title\" : \"" + oneProduct.getTitle() + "\", \"img1\" : \"" + oneProduct.getImg1() + "\", \"id\" : \"" + oneProduct.getId() + "\" }";
 		}
 
-		
-	
-	
-	
 	
 
 	//

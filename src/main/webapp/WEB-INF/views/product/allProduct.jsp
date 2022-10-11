@@ -18,58 +18,126 @@
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
+            let scrollCount = 0;
+            let searchType = '${searchType}';
+            let item = '${item}'; 
+            let search = '${search}';
+
+            let smartTitle = '${smartTitle}'
+            let smartRegion = '${smartRegion}'
+            let smartStartDate = '${smartStartDate}'
+            let smartEndDate = '${smartEndDate}'
             
-            let scrollCount = 0; 
-            
+            // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
-            
-            	
-                //스크롤이전가려진부분 높이 + 현재뷰포트높이
                 var scrollHeight = $(window).scrollTop() + $(window).height();
-                var documentHeight = $(document).height();//문서높이
+                var documentHeight = $(document).height();
                 if (scrollHeight == documentHeight) {
+                	// 스크롤 수 => limit 시작 index로 가져옴 
                 	scrollCount++; 
                 	
                 	let list = [];
                 	
                     $.ajax({
                         type: "POST",
-                        url: "/allproduct/ajax/1",
+                        url: "/allproduct/ajax/" + searchType,
                         dataType: "json",
-                        data: {'searchType': 1, 'scrollCount':scrollCount },
+                        data: {'scrollCount':scrollCount, 'item':item, 'search':search, 'smartTitle' : smartTitle, 'smartRegion' : smartRegion, 'smartStartDate' : smartStartDate, 'smartEndDate' : smartEndDate },
 
                         success: function (resp) {
                         	list = resp; 
                         	
-// javascript each 반복문 돌려서 => 아래와 같이 만들어야 한다. 
+// javascript each 반복문 돌려서 => forEach문과 같은기능을 하도록 만듬. 
 // list 는 scrollCount 를 이용해서 limit 으로 조회한 20개의 list 
-
-
 $.each(list, function(i, product){
+	//렌탈중 표시 	
+	if(product.reservedNow==1){
+		var reservedNowImg = "렌탈중"
+	}
+	if(product.reservedNow==0){
+		var reservedNowImg = ""
+	}
+	// 찜 표시 
+	if(product.zzim == 0){
+		var zzim = "<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>"; 
+		
+	}
+	if(product.zzim == 1){
+		var zzim = "<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
+	}
+	// 날짜 몇일전으로 설정 
+	let uploadDateString = product.createdAt;
+	let uploadDate = new Date(uploadDateString);
 	
+	let today = new Date(); 
+	let todayString = today.toISOString();
+	let todayDateString = todayString.substring(0,10);
+	let todayDate = new Date(todayDateString);
+	
+	let timeDiff = todayDate.getTime() - uploadDate.getTime();
+	let dateDiff = Math.abs(timeDiff/(1000 * 60 * 60 *24));
+	
+	let dateDiffShow = dateDiff + '일전';
+	
+	if(dateDiffShow=='0일전'){
+		dateDiffShow = '오늘'; 
+	}
+	
+// append 로 붙이기	
     $("#appendScroll").append(
     			'<div class="product-box-item" >'
-    			
-                        	+ '<span class="reserved" style=color:red>' + product.reservedNow  + '</span>'
+    			+ '<div id="product-item-img' + product.id + '" class="product-item-img">'
+    			+ '</div>'
+                        	+ '<span class="reserved" style=color:red>' + reservedNowImg + '</span>'
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
-                            + '<div class="product-item-date">${dateDiffShow}</div>'
+                            + '<div class="product-item-date">' + dateDiffShow + '</div>'
                             + '<div class="product-item-location">' + product.boardRegion + '</div>'
                             + '<div class="product-item-owner">' + product.userId + '</div>'
-                            + '<span class="product-item-zzim" id="zzimSpan${20 + i}">${zzim}</span>'
+                            + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'
-    
     ); //append 
-	
+    
+    // img 가져오기 
+    if(product.img1 != ""){
+		$("#product-item-img" + product.id).html('<img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '">');
+	}
+    
+	// append 한 품목에도 찜 효과 적용     
+    $("#zzimSpan" + product.id).on("click", function (e) {
+        if (sessionId == "") {
+            alert("로그인이 필요합니다.");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/product/zzim",
+            dataType: "json",
+            data: { 'productseq': product.id, 'memberid': sessionId },
+
+            success: function (resp) {
+            	
+                if (resp.result == 0) {
+                    alert("찜!");
+                    $("#zzimSpan" + product.id).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                // 찜 작동 시, 해당물품 장바구니에 출력 
+                    $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                }
+                else if (resp.result == 1) {
+                    alert("찜 취소!");
+                    $("#zzimSpan" + product.id).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                // 찜 취소 시, 해당물품 장바구니에서 제거
+                    $("#spanId" + resp.id).remove();
+                } 
+                
+            } // success 
+        }); // inner ajax 
+    }); // 찜 onclick
 	
 }); //each 
-
-
               
                         } // success 
-                    }); // ajax 
-                    
-                    
-                    
+                    }); // outer ajax 
                 } //스크롤 if 
             }); // scroll 
             
@@ -81,12 +149,16 @@ $.each(list, function(i, product){
             	// option value 가져오기
             	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
             	
-            	if(Regionvalue=='검색'){
+            	if(Regionvalue=='동네 검색'){
             		$("#zzimList").html("<input type='text' name='smartRegion'>");
             	}else if(Regionvalue=='모든 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            	}else if(Regionvalue=='주변 10 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='100'>");
+            	}else if(Regionvalue=='주변 20 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='300'>");
             	}
             });
             
@@ -117,7 +189,7 @@ $.each(list, function(i, product){
                 let eachProductId = $("#productid" + i).html();
                 let intProductId = parseInt(eachProductId);
 
-                $("#zzimSpan" + i).on("click", function (e) {
+                $("#zzimSpan" + intProductId).on("click", function (e) {
                     if (sessionId == "") {
                         alert("로그인이 필요합니다.");
                         return false;
@@ -134,13 +206,13 @@ $.each(list, function(i, product){
                         	
                             if (resp.result == 0) {
                                 alert("찜!");
-                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
                                 $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
                                 alert("찜 취소!");
-                                $("#zzimSpan" + i).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                                 $("#spanId" + resp.id).remove();
                             }
@@ -174,7 +246,9 @@ $.each(list, function(i, product){
                 동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
-                <option>검색</option>
+                <option>주변 10 동네</option>
+                <option>주변 20 동네</option>
+                <option>동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="스마트검색">
@@ -285,7 +359,7 @@ $.each(list, function(i, product){
                             </div>
                             <div class="product-item-location">${product.boardRegion}</div>
                             <div class="product-item-owner">${product.userId}</div>
-                            <span class="product-item-zzim" id="zzimSpan${vs.index}">${zzim}</span>
+                            <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
 
                     </c:forEach>

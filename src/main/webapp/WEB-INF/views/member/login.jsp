@@ -19,8 +19,6 @@
             });
         </script>
     </head>
-    
-    <body>
         <div class="main-container">
     
             <div class="login-container">
@@ -52,7 +50,13 @@
                 </div>
     
             </div>
+            <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+            <!-- content-section -->
+            <div class="content-container">
+                
         </div>
+        </div>
+        
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

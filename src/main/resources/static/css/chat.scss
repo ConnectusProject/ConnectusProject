@@ -1,109 +1,171 @@
-$color : rgb(142,191,188);
+$color : rgb(142, 191, 188);
 
-@mixin flexbox($justify, $align){
-    display : flex;
+@mixin flexbox($justify, $align) {
+    display: flex;
     justify-content: $justify;
     align-items: $align;
 }
 
 .chat-container {
-    width : 100%;
+    width: 100%;
     @include flexbox(space-between, none)
 }
 
 .chatTitle {
-    width : 100%;
-    height : 5rem;
-    color : $color;
+    width: 100%;
+    height: 5rem;
+    color: $color;
     font-size: 3rem;
 }
 
 .chatlist-box {
-    width : 40%;
-    margin-right : 2%;
+    width: 40%;
+    margin-right: 2%;
     @include flexbox(left, none);
     flex-direction: column;
 }
 
 .chat-list-box {
-    width : 100%;
-    height : 5rem;
-    margin-bottom : 0.5rem;
+    width: 100%;
+    height: 5rem;
+    margin-bottom: 0.5rem;
 }
 
 .chatbox {
-    width : 100%;
-    height : 100%;
+    width: 100%;
+    height: 100%;
     background-color: rgb(238, 238, 238);
-    position : relative;
-    border : none;
-    padding : 0.5rem;
+    position: relative;
+    border: none;
+    padding: 0.5rem;
     border-radius: 5px;
 }
 
 .chatbox-img {
-    border : none;
+    border: none;
     border-radius: 30%;
 }
 
 .chat-title {
-    position : absolute;
-    top : 15%;
-    left : 15%;
+    position: absolute;
+    top: 15%;
+    left: 15%;
     font-size: 1.2rem;
 }
 
 .chat-name {
-    position : absolute;
-    bottom : 15%;
-    left : 15%;
-    font-size : 0.8rem;
+    position: absolute;
+    bottom: 15%;
+    left: 15%;
+    font-size: 0.8rem;
 }
 
 .chatboard-box {
-    width : 58%;
+    width: 58%;
     background-color: green;
 }
 
 .chatroom-container {
-    width : 40%;
-    background-color: gray;
-    
-    
+    width: 40%;
+    @include flexbox(left, center);
+    flex-direction: column;
+    background-color: $color;
+    border-radius: 5px;
 }
 
 .chatroom-title {
-    width : 100%;
-    height : 3rem;
-    font-size: 2rem;
-    color : $color;
+    width: 95%;
+    height: 3rem;
+    padding-top: 5px;
+    border-bottom: rgb(235, 235, 235) solid 2px;
+    font-size: 1.5rem;
+    color: white;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chatroom-content-box {
-    width : 100%;
-    background-color: rgb(216, 216, 216);
+    width: 100%;
+   
 }
 
 .chatroom-content-message {
-    width : 100%;
-    background-color: red;
-    height : 30rem;
+    width: 100%;
+    height: 35rem;
+    overflow: auto;
+    overflow-x: hidden;
+    padding : 2%;
 }
 
-.chatroom-content-message p {
-    width : 100%;
-    position : relative;
-    text-align: center;
+.chatroom-content-message::-webkit-scrollbar {
+    width : 1rem;
+}
+
+.chatroom-content-message::-webkit-scrollbar-track {
+    background-color: rgb(180, 233, 215);
+    border-radius: 10px;
+}
+
+.chatroom-content-message::-webkit-scrollbar-thumb {
+    background-color: rgb(98, 129, 119);
+    border-radius: 10px;
+}
+
+.message-id-time-content {
+    width: 100%;
+    position: relative;
+    display: block;
+
+}
+
+.message-id {
+    width: 20%;
+    border: none;
+    background: none;
+}
+
+.message-time {
+    border: none;
+    background: none;
 }
 
 .message-content {
-    position : absolute;
-    top : 2rem;
-    right : 0%;
+    padding: 5px;
+    max-width: 40%;
+    word-break: normal;
+    border: none;
+    background-color: rgb(183, 226, 212);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
+.chatroom-content-input {
+    width : 100%;
+    height : 5rem;
+}
 
+.chatroom-content-input-box {
+ width : 100%;
+ height : 4rem;
+ background-color: rgb(90, 138, 134);
+ @include flexbox(space-around, center);
+ box-shadow: 0px -5px 5px  rgb(73, 112, 109);
+}
 
+.chatroom-input {
+    width :70%;
+    height : 60%;
+    border :rgb(56, 88, 86) solid 2px ;
+    border-radius: 5px;
+}
 
-
+.chatroom-input-button {
+    width :100%;
+    height : 100%;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}

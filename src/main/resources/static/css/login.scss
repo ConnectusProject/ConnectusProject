@@ -13,12 +13,14 @@ a {
 }
 
 .login-container {
+    z-index: 3;
     position:absolute;
     top : 0%;
     width : 100vw;
     height : 100vh;
     background-color: rgba(0,0,0, 0.5);
-    @include flexbox(center, center)
+    @include flexbox(center, center);
+    flex-direction: column;
 }
 
 .login-box {
@@ -114,13 +116,16 @@ a {
 .signup-box {
     background-color: white;
     width : 28rem;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .signup-box-title {
-    width : 100%;
+    border-radius: 5px;
+    background-color: white;
+    width : 28rem;
     @include flexbox(center, center);
     color : $color;
+    margin-bottom : -15px;
 }
 
 .signup-box-title span {
@@ -129,8 +134,13 @@ a {
 }
 
 .signup-box-sign-box {
-    width : 100%;
-    height : 7%;
+    width : 28rem;
+    z-index: 1;
+    margin-bottom : -7px;
+    background-color: white;
+    height : 8%;
+    
+    border-radius: 5px;
     @include flexbox(center, center);
 }
 .signup-box-sign-box >div {
@@ -139,7 +149,7 @@ a {
 }
 
 .signup-box-signup-button {
-    height : 100%;
+    height : 70%;
     border-bottom : solid 3px $color;
 }
 
@@ -179,3 +189,33 @@ input:focus {
     outline-width: 3px;
     outline-color: $color;
 }
+
+.mypage-find {
+    width : 25rem;
+    height : 15rem;
+}
+
+.mypage-find p {
+    text-align: center;
+    font-size: 2rem;
+    color : $color;
+}
+
+.mypage-find input {
+    width : 25rem;
+    height : 3rem;
+    border : solid 2px $color;
+    border-radius: 5px;
+}
+
+.mypage-find button {
+    margin-top : 1rem;
+    width : 12rem;
+    height : 3rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+
+

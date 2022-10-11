@@ -15,6 +15,8 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> allProduct();
 	
+	public List<ProductDTO> scrollProduct(int limit);
+	
 	public ProductDTO oneProduct(int productid);
 	
 	public int insertProduct(ProductDTO dto);
@@ -25,9 +27,9 @@ public interface ProductDAO {
 	
 	public int updateProduct(ProductDTO dto);
 	
-	public List<ProductDTO> searchList(HashMap<String, String> searchType);
+	public List<ProductDTO> searchList(HashMap searchType);
 	
-	public List<ProductDTO> neighborList(String boardRegion);
+	public List<ProductDTO> neighborList(String boardRegion, int limit);
 	
 	public int checkReservation(int productId);
 	
@@ -37,8 +39,18 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> getZzimProducts(String sessionId);
 	
+	public int viewCount(int productId);
+	
+	public Integer searchByDistance(String buyerId, String sellerId, int intKm);
+
+	public Double getDistance(String buyerId, String sellerId);
+
+	public List<Integer> getMemberProduct(int id);
+	
 	// 스마트 검색 
-	public List<Integer> searchByTitle_Region(String title, String region);
+	public List<Integer> searchByTitle_Region(String title, String region, int limit);
+
+	public List<Integer> searchByTitle_Region_MemberId(String title, String region, int limit, int id );
 	
 	public Integer searchByRentalDate(String startDate, String endDate, int productId);
 	

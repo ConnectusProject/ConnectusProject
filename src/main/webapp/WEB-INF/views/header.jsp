@@ -15,7 +15,7 @@
 	
 	<script>
 	$(function (){
-		$("#reserve-off-button").on("click", function(e){
+		$("#reserve-off-button2").on("click", function(e){  //버튼이름에 2 붙여서 막아뒀습니다 
 			 e.preventDefault(); 
 			let sessionId = '<%=session.getAttribute("sessionid")%>';
 			let title = '${oneProduct.title}';
@@ -115,19 +115,6 @@
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
 				</div>
-
-
-				<div class="header-sign-box">
-					<% if(session.getAttribute("sessionid")==null) { %>
-						<a class="loginBtn" href="../login">로그인</a>
-						<% } else { %>
-							<a href="/mypage" class="mypage">마이페이지 </a>
-							<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
-							<% } %>
-
-				<div class="nav-menu-box mb-3">
-
-				
 				<div class="nav-menu-box">
 
 					<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
@@ -136,19 +123,21 @@
 				</div>
 			</div>
 			<div class="nav-menu-box">
-				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
-							alt=""></a></span>
-				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
-			</div>
-			<div class="nav-menu-box">
 				<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
 							alt=""></a></span>
 				<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
 			</div>
-			<!-- 서브메뉴타이틀
-			<div class="nav-sub-menu-box mb-3">
+			<div class="nav-menu-box">
+				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
+							alt=""></a></span>
+				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
+			</div>
+
+			<!-- 서브메뉴타이틀 -->
+			<!-- <div class="nav-sub-menu-box mb-3">
 				<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
 			</div> -->
+			
 
 			<% } else { %>
 				<div class="basic-menu-box">
@@ -169,14 +158,14 @@
 					</div>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
-								alt=""></a></span>
-					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
-				</div>
-				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
 								alt=""></a></span>
 					<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
 				</div>
 				<!-- 서브메뉴타이틀
 				<div class="nav-sub-menu-box mb-3">
