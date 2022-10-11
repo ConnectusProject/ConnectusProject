@@ -80,9 +80,23 @@
 <!-- 스마트 검색 -->
 	<!-- 키워드, 지역 검색 -->
 	<select id="searchByTitle_Region" resultType="Integer">
-	select product.id from product where product.title like concat('%', #{title}, '%') 
-	and product.boardRegion like concat('%', #{region}, '%') order by id desc limit #{limit}, 20
+	select product.id from product where product.title like concat('%', #{title}, '%')
+	and product.boardRegion like concat('%', #{region}, '%')
+	order by id desc  
+	limit #{limit}, 20
 	</select>
+	
+	<select id="searchByTitle_Region_MemberId" resultType="Integer">
+	select product.id from product inner join members on product.userid = members.userid where product.title like concat('%', #{title}, '%')
+	and product.boardRegion like concat('%', #{region}, '%')
+	and members.id = #{id}
+	order by id desc  
+	limit #{limit}, 20
+	</select>
+	
+	
+	
+	
 	
 	
 	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->
@@ -98,8 +112,26 @@ and
 , #{productId}, 0
 );
 	</select>
-		 
-	 
+	
+	
+	
+	<select id="getMemberProduct" resultType="Integer">
+	select product.id from product inner join members on product.userid = members.userid where members.id = #{id}	 
+	</select>	 
+	
+	<select id="searchByDistance" resultType="Integer">
+	SELECT  
+    if((6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
+    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))) 
+    &lt; #{intKm}
+    , (select id from members where userid = #{sellerId}), 0);
+	</select>	 
+	
+	<select id="getDistance" resultType="Double">
+	SELECT  
+    (6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
+    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))); 
+	</select> 
 	 
 	 
 
