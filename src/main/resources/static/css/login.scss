@@ -13,6 +13,7 @@ a {
 }
 
 .login-container {
+    z-index: 3;
     position:absolute;
     top : 0%;
     width : 100vw;
@@ -188,3 +189,33 @@ input:focus {
     outline-width: 3px;
     outline-color: $color;
 }
+
+.mypage-find {
+    width : 25rem;
+    height : 15rem;
+}
+
+.mypage-find p {
+    text-align: center;
+    font-size: 2rem;
+    color : $color;
+}
+
+.mypage-find input {
+    width : 25rem;
+    height : 3rem;
+    border : solid 2px $color;
+    border-radius: 5px;
+}
+
+.mypage-find button {
+    margin-top : 1rem;
+    width : 12rem;
+    height : 3rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+
+

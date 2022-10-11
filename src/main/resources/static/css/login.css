@@ -4,6 +4,7 @@ a {
 }
 
 .login-container {
+  z-index: 3;
   position: absolute;
   top: 0%;
   width: 100vw;
@@ -198,4 +199,32 @@ input:focus {
   outline-style: solid;
   outline-width: 3px;
   outline-color: rgb(142, 191, 188);
+}
+
+.mypage-find {
+  width: 25rem;
+  height: 15rem;
+}
+
+.mypage-find p {
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(142, 191, 188);
+}
+
+.mypage-find input {
+  width: 25rem;
+  height: 3rem;
+  border: solid 2px rgb(142, 191, 188);
+  border-radius: 5px;
+}
+
+.mypage-find button {
+  margin-top: 1rem;
+  width: 12rem;
+  height: 3rem;
+  border: none;
+  background-color: rgb(142, 191, 188);
+  color: white;
+  border-radius: 5px;
 }/*# sourceMappingURL=login.css.map */

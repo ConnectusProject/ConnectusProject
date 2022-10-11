@@ -123,19 +123,21 @@
 				</div>
 			</div>
 			<div class="nav-menu-box">
-				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
-							alt=""></a></span>
-				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
-			</div>
-			<div class="nav-menu-box">
 				<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
 							alt=""></a></span>
 				<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
 			</div>
-			<!-- 서브메뉴타이틀
-			<div class="nav-sub-menu-box mb-3">
+			<div class="nav-menu-box">
+				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
+							alt=""></a></span>
+				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
+			</div>
+
+			<!-- 서브메뉴타이틀 -->
+			<!-- <div class="nav-sub-menu-box mb-3">
 				<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
 			</div> -->
+			
 
 			<% } else { %>
 				<div class="basic-menu-box">
@@ -156,14 +158,14 @@
 					</div>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
-								alt=""></a></span>
-					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
-				</div>
-				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
 								alt=""></a></span>
 					<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
 				</div>
 				<!-- 서브메뉴타이틀
 				<div class="nav-sub-menu-box mb-3">
