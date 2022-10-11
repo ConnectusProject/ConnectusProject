@@ -149,12 +149,16 @@ $.each(list, function(i, product){
             	// option value 가져오기
             	var Regionvalue = oneSelect.options[document.getElementById("regionSelect").selectedIndex].value;
             	
-            	if(Regionvalue=='검색'){
+            	if(Regionvalue=='동네 검색'){
             		$("#zzimList").html("<input type='text' name='smartRegion'>");
             	}else if(Regionvalue=='모든 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
+            	}else if(Regionvalue=='주변 10 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='100'>");
+            	}else if(Regionvalue=='주변 20 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='300'>");
             	}
             });
             
@@ -242,7 +246,9 @@ $.each(list, function(i, product){
                 동네 : <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
-                <option>검색</option>
+                <option>주변 10 동네</option>
+                <option>주변 20 동네</option>
+                <option>동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="스마트검색">
