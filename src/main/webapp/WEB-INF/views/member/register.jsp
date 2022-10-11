@@ -26,18 +26,18 @@
 
 	<body>
 		<div class="login-container">
+			<div class="signup-box-title">
+				<span>Connect Us</span>
+			</div>
+			<div class="signup-box-sign-box">
+				<div class="signup-box-signin-button">
+					<a href="login" id="btn">로그인</a>
+				</div>
+				<div class="signup-box-signup-button" style="color : rgb(142,191,188);">
+					회원가입
+				</div>
+			</div>
 			<div class="signup-box">
-				<div class="signup-box-title">
-					<span>Connect Us</span>
-				</div>
-				<div class="signup-box-sign-box">
-					<div class="signup-box-signin-button">
-						<a href="login" id="btn">로그인</a>
-					</div>
-					<div class="signup-box-signup-button">
-						회원가입
-					</div>
-				</div>
 
 			<form name="form" action="register" method="post" class="signup-container">
 				<div class="signup-box mt-3">

@@ -34,6 +34,8 @@ alert(id);
 
 
 
+
+
 $(document).ready(function(){
     connect();
 });
@@ -107,6 +109,7 @@ $(document).ready(function(){
         '</div><div>[' +
         messageObj.sendTime +
         ']</div></p>';
+
     }
     
     <%-- HTML 형태의 메시지를 화면에 출력해줌 --%>
@@ -133,27 +136,24 @@ $(document).ready(function(){
         <div class="content-container">
 
   <div class="chatroom-container">
-        <div class="title_text">
-            <p class="chatroom-title">${pr_title}</p>
-        </div>
+        <p class="chatroom-title">${pr_title}</p>
         <div class="chatroom-content-box">    
                 <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
                 <div id="content" class="chatroom-content-message">
                     <c:forEach var="chatRoom" items="${chatHistory}">
-                        <p>
-                            <span class="message-id" id="chatRoomSenderId">${chatRoom.senderId}</span>
-                            <span class="message-time" id="chatRoomSendTime">${chatRoom.sendTime}</span>
-                            <br>
-                            <span  class="message-content" id="chatRoomContent">${chatRoom.content}</span>
+                        <p class="message-id-time-content">
+                            <input class="message-id" id="chatRoomSenderId" value="${chatRoom.senderId}" readonly>
+                            <input class="message-time" id="chatRoomSendTime" value="${chatRoom.sendTime}" readonly>
+                            <div class="message-content" id="chatRoomContent">${chatRoom.content}</div>
                         </p>    
                     </c:forEach>
                 </div>
                 <%--메시지 입력창과 보내기 버튼 --%>
                 <div class="row_3" class="chatroom-content-input">
-                    <div class="input_group" id="sendMessage">
-                        <input type="text" placeholder="Message" id="message" class="form_control"/>
-                        <div class="input_group_append">
-                            <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
+                    <div class="input_group chatroom-content-input-box" id="sendMessage">
+                        <input type="text" placeholder="Message" id="message" class="form_control chatroom-input"/>
+                        <div class="input_group_append" style="width : 20%; height : 60%">
+                            <button id="send" class="chatroom-input-button" onclick="send()">보내기</button>
                          
                             <%-- <input class=input-id id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
                             <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
@@ -172,20 +172,31 @@ $(document).ready(function(){
 </div>
 
     <script>
-        let test = document.querySelectorAll('.message-id');
-        let test2 = document.querySelector('.input-id');
+        let messageFormId = document.querySelectorAll('.message-id');
+        let messageFormTime = document.querySelectorAll('.message-time');
+        let messageFormContent = document.querySelectorAll('.message-content');
+        let messageForm = document.querySelectorAll('.message-id-time-content');
+        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+        console.log(sessionId);
+        console.log(messageFormId[0].value);
+     
 
-        console.log(test2.value);
-
-        for(let i=0; i<test.length; i++) {
-            if(test2.value == test[i].innerHTML){
-            test[i].style.color = "white";
+        for(let i = 0; i<messageForm.length; i++){
+            if(messageFormId[i].value == sessionId) {
+            messageForm[i].style.textAlign = "right";
+            messageFormId[i].style.display = "none";
+            messageFormTime[i].style.textAlign = "right";
+            messageFormContent[i].style.marginLeft = "60%";
         }else {
-            test[i].style.color = "yellow";
+            messageForm[i].style.textAlign = "left";
+            messageFormId[i].style.textAlign = "left";
+            messageFormTime[i].style.textAlign = "left";
+            messageFormContent[i].style.textAlign = "left";
+            messageFormContent[i].style.backgroundColor = "rgb(90, 138, 134)";
         }
         }
 
- 
+        chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
 
 
 
