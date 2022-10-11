@@ -76,8 +76,9 @@
 	<!-- 키워드, 지역 검색 -->
 	<select id="searchByTitle_Region" resultType="Integer">
 	select product.id from product where product.title like concat('%', #{title}, '%') 
-	and product.boardRegion like concat('%', #{region}, '%') 
+	and product.boardRegion like concat('%', #{region}, '%') order by id desc limit #{limit}, 20
 	</select>
+	
 	
 	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->
 	<select id="searchByRentalDate" resultType="Integer">
