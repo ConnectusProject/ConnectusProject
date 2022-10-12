@@ -1,4 +1,7 @@
-$color : rgb(142,191,188);
+$color : rgb(55,198,208);
+
+// rgb(55,198,208);
+
 
 @font-face {
     font-family: 'MonoplexKR-Regular';
@@ -11,6 +14,7 @@ body {
     margin:1;
     padding: 1;
     font-family: 'MonoplexKR-Regular';
+    position : relative;
 }
 
 a {
@@ -38,6 +42,19 @@ li {
     padding-top : 10rem;
     padding-left : 10rem;
     position : relative;
+}
+
+.up {
+    width : 30%;
+    height : 2rem;
+    position : absolute;
+    bottom: 3%;
+    left : 33%;
+}
+
+.up img {
+    width : 100%;
+    height : 100%;
 }
 
 .header-box {

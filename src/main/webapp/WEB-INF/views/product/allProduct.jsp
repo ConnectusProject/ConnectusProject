@@ -236,7 +236,6 @@ $.each(list, function(i, product){
 
             <div class="allproduct-container">
 
-
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
@@ -339,9 +338,9 @@ $.each(list, function(i, product){
                             <!-- 대표 이미지 -->
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
-    
+                                    <a href="/product/${product.id}">
                                     <img alt="사진이 없어요" width=100% height=60%
-                                        src="http://localhost:8090/upload/${product.img1}">
+                                        src="http://localhost:8090/upload/${product.img1}"></a>
                                 </div>
                             </c:if>
 
@@ -352,7 +351,7 @@ $.each(list, function(i, product){
                                 </div>
                             </c:if>
 
-                            <span class="reserved" style=color:red>${reservedNowImg} </span>
+                             <span class="reserved" style=color:red>${reservedNowImg} </span>
                             <div class="product-item-title"> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
@@ -373,6 +372,15 @@ $.each(list, function(i, product){
         </div>
     </div>
     
+    <script>
+
+
+
+ 
+    </script>
+
+
+
 
 
     <script src="${path}/js/allproduct.js"></script>

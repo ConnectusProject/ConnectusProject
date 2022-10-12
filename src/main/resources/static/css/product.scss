@@ -59,10 +59,18 @@ $box-size : 100%;
     position : absolute;
     left : 0%;
     top : 5rem;
+    color : white;
 }
 
 .smart-search-result-box div {
  margin-left : 2rem;
+}
+
+.closebutton {
+    margin-left : 0.5rem;
+    border: none;
+    background : none;
+    font-size: 1.1rem;
 }
 
 .zzim-title {
