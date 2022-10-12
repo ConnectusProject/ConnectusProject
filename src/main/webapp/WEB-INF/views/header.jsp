@@ -67,6 +67,8 @@
 
 <body>
 
+
+
 	<!--Header-->
 	<header class="header-box">
 		<div class="header-menu-logo-box">
@@ -92,10 +94,6 @@
             								
         			</div>
     			</div>
-
-			
-					
-
 					<a href="/mypage" class="mypage">마이페이지 </a>
 					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 					<% } %>
@@ -103,6 +101,9 @@
 	</header>
 	<!--Navbar-->
 	<nav class="nav-box">
+		<div class="up">
+			<img src="${path}/pictures/up.png" alt="">
+		</div>
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 				<div class="nav-menu-box">
@@ -111,9 +112,9 @@
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href=""><img
+					<span class="menu-icon"><a href="../login"><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
+					<div class="menu-title close"><a href="../login">내 이웃</a></div>
 				</div>
 				<div class="nav-menu-box">
 
@@ -123,14 +124,14 @@
 				</div>
 			</div>
 			<div class="nav-menu-box">
-				<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+				<span class="menu-icon"><a href="../login"><img src="${path}/pictures/chat.png"
 							alt=""></a></span>
-				<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+				<span class="menu-title close"><a href="../login">채팅리스트</a></span>
 			</div>
 			<div class="nav-menu-box">
-				<span class="menu-icon"><a href=""><img src="${path}/pictures/mypage.png"
+				<span class="menu-icon"><a href="../login"><img src="${path}/pictures/mypage.png"
 							alt=""></a></span>
-				<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
+				<span class="menu-title close"><a href="../login">마이페이지</a></span>
 			</div>
 
 			<!-- 서브메뉴타이틀 -->
@@ -193,6 +194,13 @@
         })
 
     </script>
+
+	<script>
+		document.querySelector('.up').addEventListener('click', function(){
+			window.scrollTo(0,0);
+		})
+
+	</script>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"

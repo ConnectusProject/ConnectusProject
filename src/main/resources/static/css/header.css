@@ -8,6 +8,7 @@ body {
   margin: 1;
   padding: 1;
   font-family: "MonoplexKR-Regular";
+  position: relative;
 }
 
 a {
@@ -29,6 +30,19 @@ li {
   padding-top: 10rem;
   padding-left: 10rem;
   position: relative;
+}
+
+.up {
+  width: 30%;
+  height: 2rem;
+  position: absolute;
+  bottom: 3%;
+  left: 33%;
+}
+
+.up img {
+  width: 100%;
+  height: 100%;
 }
 
 .header-box {
@@ -76,19 +90,19 @@ li {
 
 .header-search-input {
   width: 20vw;
-  border: solid 2px rgb(142, 191, 188);
+  border: solid 2px rgb(55, 198, 208);
   border-radius: 5px;
 }
 
 .header-search-input:focus {
   outline-style: solid;
-  outline-color: rgb(142, 191, 188);
+  outline-color: rgb(55, 198, 208);
   outline-width: 2px;
 }
 
 .header-search-button {
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: rgb(55, 198, 208);
   color: white;
 }
 
@@ -142,7 +156,7 @@ li {
 }
 
 .nav-menu-box:hover {
-  background-color: rgb(142, 191, 188);
+  background-color: rgb(55, 198, 208);
 }
 
 .menu-icon {
@@ -194,7 +208,7 @@ li {
 }
 
 .menu-title-sub > a:hover {
-  color: rgb(142, 191, 188);
+  color: rgb(55, 198, 208);
 }
 
 .close {

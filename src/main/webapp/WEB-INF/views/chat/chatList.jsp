@@ -43,7 +43,7 @@
         <script>
             let chatList = document.querySelector('.chatlist-box');
             var sessionid = '${sessionid}';
-            alert(sessionid);
+        
 
             //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
             function addChatDivImg(idx, pr_id, buyerId, pr_title, img1) {

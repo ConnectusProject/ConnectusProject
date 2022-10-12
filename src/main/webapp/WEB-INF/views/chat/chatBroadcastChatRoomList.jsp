@@ -29,7 +29,7 @@ var id = "${id}";
 var pr_title = "${pr_title}";
 var sessionId = "${sessionid}"
 
-alert(id);
+
 
 
 
