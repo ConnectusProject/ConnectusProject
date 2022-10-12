@@ -100,15 +100,15 @@ $.each(list, function(i, product){
                         	+ '<span class="reserved" style=color:red>' + reservedNowImg + '</span>'
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
                             + '<div class="product-item-date">' + dateDiffShow + '</div>'
-                            + '<div class="product-item-location">' + product.boardRegion + '</div>'
-                            + '<div class="product-item-owner">' + product.userId + '</div>'
+                            + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
+                            + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
                             + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'
     ); //append 
     
     // img 가져오기 
     if(product.img1 != ""){
-		$("#product-item-img" + product.id).html('<img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '">');
+		$("#product-item-img" + product.id).html('<a href="/product/' + product.id + '"><img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '"></a>');
 	}
     
 	// append 한 품목에도 찜 효과 적용     
@@ -363,9 +363,8 @@ $.each(list, function(i, product){
                              <span class="reserved" style=color:red>${reservedNowImg} </span>
                             <div class="product-item-title"> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
-                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
-                            </div>
-                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt=""> ${product.boardRegion}</div>
+                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
+                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt="">${product.boardRegion}</div>
                             <div class="product-item-owner close">${product.userId}</div>
                             <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
