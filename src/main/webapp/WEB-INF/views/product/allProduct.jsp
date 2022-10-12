@@ -261,12 +261,12 @@ $.each(list, function(i, product){
                  <div class="zzimproduct-list-container">
 
                     <div  class="zzimproduct-list-box">
-                    <p class="zzim-title" style="width : 100%;">찜 리스트</p>
+                    <p class="zzim-title">찜 리스트</p>
 				    <span id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product">
                         <a href="http://localhost:8090/product/${zzimProduct.id}">
-                            <span id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
                         </a>
                             </div>
                         </c:forEach>
@@ -356,8 +356,8 @@ $.each(list, function(i, product){
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
                             </div>
-                            <div class="product-item-location">${product.boardRegion}</div>
-                            <div class="product-item-owner">${product.userId}</div>
+                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt=""> ${product.boardRegion}</div>
+                            <div class="product-item-owner close">${product.userId}</div>
                             <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
 
@@ -373,6 +373,7 @@ $.each(list, function(i, product){
     </div>
     
     <script>
+       
 
 
 
