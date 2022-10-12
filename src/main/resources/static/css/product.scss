@@ -1,5 +1,7 @@
-$color : rgb(142,191,188);
+// $color : rgb(142,191,188);
 $box-size : 100%;
+//$color : rgb(185, 221, 255);
+$color : rgb(55,198,208);
 
 @mixin flexbox($justify, $align){
     display : flex;
@@ -48,6 +50,7 @@ $box-size : 100%;
     border-radius: 5px;
     background-color: $color;
     color : white;
+    box-shadow: 0px 3px 5px rgb(196, 196, 196);
 }
 
 .smart-search-result-box {
@@ -60,6 +63,7 @@ $box-size : 100%;
     left : 0%;
     top : 5rem;
     color : white;
+    box-shadow: 0px 3px 5px rgb(196, 196, 196);
 }
 
 .smart-search-result-box div {
@@ -74,15 +78,19 @@ $box-size : 100%;
 }
 
 .zzim-title {
-    width : 100%;
-    color : $color;
+    width : 8rem;
+    color : white;
+    background-color: $color;
+    text-align: center;
 }
 
 .zzimproduct-list-container {
     position : absolute;
-    right : -17rem;
-    top : 2rem;
+    right : -10rem;
+    top : 15rem;
     width : 15rem;
+    z-index: 9;
+
 }
 
 .zzimproduct-list-box {
@@ -90,13 +98,29 @@ $box-size : 100%;
     width : 100%;
 }
 
+
 .zzim-product {
-    width : 100%;
+    width : 10rem;
     @include flexbox(none, left );
     flex-direction: column;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 .zzim-product a {
     margin-bottom : 1rem;
+    width : 100%;
+    overflow: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.zzim-product-title {
+    width : 100%;
+    overflow: hidden; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .allproduct-search-box {
@@ -130,6 +154,7 @@ $box-size : 100%;
     border-radius: 5px;
     background-color: $color;
     color : white;
+    box-shadow: 0px 3px 5px rgb(196, 196, 196);
 }
 
 .product-register {
@@ -142,6 +167,7 @@ $box-size : 100%;
     left : 0;
     text-align: center;
     padding-top : 0.2rem;
+    box-shadow: 0px 3px 5px rgb(196, 196, 196);
 }
 
 .allproduct-product-box {
@@ -159,7 +185,7 @@ $box-size : 100%;
     margin : 3rem;
     position : relative;
     border: 2px solid rgb(230, 230, 230);
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0px 5px 8px rgb(216, 216, 216);
     overflow: hidden;
 }
@@ -195,12 +221,19 @@ $box-size : 100%;
 
 .product-item-date {
     font-size: 0.9rem;
-    @include itemPosition(none, none , 12%, 3%)
+    
+    @include itemPosition(none, none , 4%, 3%)
 } 
 
 .product-item-location {
     font-size: 0.9rem;
-    @include itemPosition(none, none , 4%, 3%)
+    @include itemPosition(none, none , 15%, 3%);
+    
+}
+
+.product-item-location img{
+    width : 1rem;
+    height : 1rem;
 }
 
 .product-item-zzim {

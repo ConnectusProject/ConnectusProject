@@ -72,7 +72,7 @@
 	<!--Header-->
 	<header class="header-box">
 		<div class="header-menu-logo-box">
-			<span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span>
+			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
 			<span class="header-menu-title">Connect Us</span>
 		</div>
 		<div class="header-search-box">
@@ -84,7 +84,7 @@
 		</div>
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
-				<a class="loginBtn" href="../login">로그인</a>
+				<a class="loginBtn" href="../login" style="color : white">로그인</a>
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
@@ -101,11 +101,14 @@
 	</header>
 	<!--Navbar-->
 	<nav class="nav-box">
+		
 		<div class="up">
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
+		<span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span>
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
+
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
@@ -122,17 +125,19 @@
 								src="${path}/pictures/community.png" alt=""></a></span>
 					<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/chat.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="../login">채팅리스트</a></span>
+				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/mypage.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="../login">마이페이지</a></span>
+				</div>
 			</div>
-			<div class="nav-menu-box">
-				<span class="menu-icon"><a href="../login"><img src="${path}/pictures/chat.png"
-							alt=""></a></span>
-				<span class="menu-title close"><a href="../login">채팅리스트</a></span>
-			</div>
-			<div class="nav-menu-box">
-				<span class="menu-icon"><a href="../login"><img src="${path}/pictures/mypage.png"
-							alt=""></a></span>
-				<span class="menu-title close"><a href="../login">마이페이지</a></span>
-			</div>
+			
+
 
 			<!-- 서브메뉴타이틀 -->
 			<!-- <div class="nav-sub-menu-box mb-3">
@@ -157,17 +162,18 @@
 									src="${path}/pictures/community.png" alt=""></a></span>
 						<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 					</div>
+					<div class="nav-menu-box">
+						<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+									alt=""></a></span>
+						<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+					</div>
+					<div class="nav-menu-box">
+						<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
+									alt=""></a></span>
+						<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
+					</div>
 				</div>
-				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
-								alt=""></a></span>
-					<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
-				</div>
-				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
-								alt=""></a></span>
-					<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
-				</div>
+
 				<!-- 서브메뉴타이틀
 				<div class="nav-sub-menu-box mb-3">
 					<span class="menu-title menu-title-sub close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
