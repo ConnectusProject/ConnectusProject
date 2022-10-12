@@ -152,7 +152,7 @@ public class ProductController {
 	// 물품 조회 별 스크롤 AJAX 
 		@ResponseBody
 		@PostMapping("/allproduct/ajax/{searchType}")
-		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, @PathVariable("searchType")int searchType) throws Exception {
+		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, String distanceKm, @PathVariable("searchType")int searchType) throws Exception {
 			int limit = Integer.parseInt(scrollCount)*20;
 			
 			// 지역 set 
@@ -181,7 +181,50 @@ public class ProductController {
 			else if (searchType==4) {
 				// 제목,지역으로 검색한 상품리스트
 				List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit);
+				if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+					return null;
+				}
 
+				
+//				// 거리 AJAX 처리 
+//				ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
+//					if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+//						int intKm = Integer.parseInt(distanceKm);
+//						System.out.println("받아온 거리"+intKm);
+//						
+//							for(int i=0; i<titleRegion.size(); i++) {
+//								Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
+//								if(innerDistanceId>0 && !innerDistanceIdList.contains(innerDistanceId)) {
+//								innerDistanceIdList.add(innerDistanceId);
+//								}
+//							}
+//							
+//							for(int a = 0; a<innerDistanceIdList.size(); a++) {
+//								System.out.println("거리통과한 멤버id : "+innerDistanceIdList.get(a));
+//							}
+//							
+//							titleRegion.clear();
+//							
+//							for(int j = 0; j<innerDistanceIdList.size(); j++) {
+//								List<Integer> eachMemberProduct = productDAO.searchByTitle_Region_MemberId(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit, innerDistanceIdList.get(j));
+//								System.out.println("eachmb사이즈 : " + eachMemberProduct.size());
+//								
+//								for(int b = 0; b<eachMemberProduct.size(); b++) {
+//									System.out.println( innerDistanceIdList.get(j)  + "의 상품번호 : "+eachMemberProduct.get(b));
+//								
+//									if(titleRegion.size()<20) {
+//									titleRegion.add(eachMemberProduct.get(b));
+//									}
+//								}
+//							}
+//							Collections.sort(titleRegion);
+//
+//							for(int i = 0; i< titleRegion.size(); i++) {
+//								
+//								System.out.println(titleRegion.get(i));
+//							}
+//						}
+				
 				ArrayList<Integer> selectedList = new ArrayList<>();
 				
 				// 날짜로 검색 : 해당 날짜 조건에 부합하지 않는다 => 예약이 null 값인 것과, 예약수락이 없는 리스트까지 포함됨 
@@ -204,7 +247,6 @@ public class ProductController {
 				list.add(searchedOne);
 				}
 			}
-			
 			
 			// 찜 set 
 			for (ProductDTO dto : list) {
@@ -246,14 +288,8 @@ public class ProductController {
 			
 			} //  outer for 
 			
-			// 상품개수 
-			int productlength = list.size();
-			// 찜목록 리스트   
-			List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
-			
 			return list;
 		}
-	
 	
 	
 
@@ -269,22 +305,24 @@ public class ProductController {
 		if(smartSearchDTO.getSmartRegion()==null) {
 			smartSearchDTO.setSmartRegion("동");
 		}
+		
 		// 제목,지역으로 검색한 상품리스트
-		List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0);
+		List<Integer> titleRegion = new ArrayList<>();
+		if(distanceKm==null) {
+				titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0);}
 
 		// 거리 
 		ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
 			if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
 				int intKm = Integer.parseInt(distanceKm);
-					for(int i=0; i<titleRegion.size(); i++) {
+				
+				titleRegion = productDAO.NoLimitTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion());
+				
+				for(int i=0; i<titleRegion.size(); i++) {
 						Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
 						if(innerDistanceId>0 && !innerDistanceIdList.contains(innerDistanceId)) {
 						innerDistanceIdList.add(innerDistanceId);
 						}
-					}
-					
-					for(int a = 0; a<innerDistanceIdList.size(); a++) {
-						System.out.println(innerDistanceIdList.get(a));
 					}
 					
 					titleRegion.clear();
@@ -292,13 +330,12 @@ public class ProductController {
 					for(int j = 0; j<innerDistanceIdList.size(); j++) {
 						List<Integer> eachMemberProduct = productDAO.searchByTitle_Region_MemberId(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0, innerDistanceIdList.get(j));
 						for(int b = 0; b<eachMemberProduct.size(); b++) {
-						titleRegion.add(eachMemberProduct.get(b));
+						
+						if(!titleRegion.contains(eachMemberProduct.get(b))) {
+						titleRegion.add(eachMemberProduct.get(b));}
 						}
 					}
 				}
-			
-					
-
 		
 		ArrayList<Integer> selectedList = new ArrayList<>();
 		
@@ -316,10 +353,6 @@ public class ProductController {
 			}
 		} //for 
 		
-		
-		
-		
-		
 		List<ProductDTO> list = new ArrayList<>();
 		
 		// 찾은 상품 번호로 상품 list 를 불러옴 
@@ -328,10 +361,6 @@ public class ProductController {
 		list.add(searchedOne);
 		}
 		System.out.println(smartSearchDTO.toString());
-
-		
-		
-		
 		
 		// 찜 set 
 				for (ProductDTO dto : list) {
@@ -356,6 +385,7 @@ public class ProductController {
 		model.addAttribute("smartStartDate", smartSearchDTO.getSmartStartDate());
 		model.addAttribute("smartEndDate", smartSearchDTO.getSmartEndDate());
 		
+		model.addAttribute("distanceKm", distanceKm);
 		
 		model.addAttribute("searchType", 4);	
 		model.addAttribute("zzimProducts", zzimProducts);	
