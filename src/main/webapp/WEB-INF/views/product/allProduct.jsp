@@ -27,6 +27,7 @@
             let smartRegion = '${smartRegion}'
             let smartStartDate = '${smartStartDate}'
             let smartEndDate = '${smartEndDate}'
+            let distanceKm = '${distanceKm}'; 
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -42,7 +43,15 @@
                         type: "POST",
                         url: "/allproduct/ajax/" + searchType,
                         dataType: "json",
-                        data: {'scrollCount':scrollCount, 'item':item, 'search':search, 'smartTitle' : smartTitle, 'smartRegion' : smartRegion, 'smartStartDate' : smartStartDate, 'smartEndDate' : smartEndDate },
+                        data: { 'scrollCount':scrollCount, 
+                     		   	'item':item, 
+                        		'search':search, 
+                        		'smartTitle' : smartTitle, 
+                        		'smartRegion' : smartRegion, 
+                        		'smartStartDate' : smartStartDate, 
+                        		'smartEndDate' : smartEndDate,
+                        		'distanceKm' : distanceKm
+                        		},
 
                         success: function (resp) {
                         	list = resp; 

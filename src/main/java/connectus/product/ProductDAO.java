@@ -50,6 +50,8 @@ public interface ProductDAO {
 	// 스마트 검색 
 	public List<Integer> searchByTitle_Region(String title, String region, int limit);
 
+	public List<Integer> NoLimitTitle_Region(String title, String region);
+
 	public List<Integer> searchByTitle_Region_MemberId(String title, String region, int limit, int id );
 	
 	public Integer searchByRentalDate(String startDate, String endDate, int productId);

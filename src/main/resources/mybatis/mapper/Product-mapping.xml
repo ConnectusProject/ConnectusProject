@@ -86,17 +86,18 @@
 	limit #{limit}, 20
 	</select>
 	
+	<select id="NoLimitTitle_Region" resultType="Integer">
+	select product.id from product where product.title like concat('%', #{title}, '%')
+	and product.boardRegion like concat('%', #{region}, '%')
+	order by id desc  
+	</select>
+	
 	<select id="searchByTitle_Region_MemberId" resultType="Integer">
 	select product.id from product inner join members on product.userid = members.userid where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
 	and members.id = #{id}
-	order by id desc  
-	limit #{limit}, 20
+	order by product.id desc  
 	</select>
-	
-	
-	
-	
 	
 	
 	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->

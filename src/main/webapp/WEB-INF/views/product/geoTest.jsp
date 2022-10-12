@@ -63,10 +63,11 @@ $(document).ready(function(){
 	        //alert("lon : " + lon);
 	    } 
 	}); // addressSearch     
+
+location2();
 	
 	
-	
-	
+	function location2(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.402048486442, 127.108690978068), // 지도의 중심좌표
@@ -94,6 +95,8 @@ var marker2 = new kakao.maps.Marker({
 // 마커가 지도 위에 표시되도록 설정합니다
 marker1.setMap(map);
 marker2.setMap(map);
+
+	}
 
 //마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
 var iwContent = '<div style="padding:5px;"><a href="http://localhost:8090/">링크<a></div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
