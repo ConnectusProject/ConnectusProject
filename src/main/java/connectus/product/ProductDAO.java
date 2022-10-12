@@ -47,6 +47,8 @@ public interface ProductDAO {
 
 	public List<Integer> getMemberProduct(int id);
 	
+	public String getCoords(String userId); 
+	
 	// 스마트 검색 
 	public List<Integer> searchByTitle_Region(String title, String region, int limit);
 
@@ -55,6 +57,7 @@ public interface ProductDAO {
 	public List<Integer> searchByTitle_Region_MemberId(String title, String region, int limit, int id );
 	
 	public Integer searchByRentalDate(String startDate, String endDate, int productId);
+	
 	
 	
 	

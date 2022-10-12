@@ -396,7 +396,7 @@ public class ProductController {
 		return "product/allProduct";
 	}
 	
-	
+
 	
 	
 	// 물품 상세페이지 
@@ -422,7 +422,9 @@ public class ProductController {
 			}
 		}
 		
-		
+		// 지도 좌표 
+		String sessionCoords = productDAO.getCoords(sessionid);
+		String sellerCoords = productDAO.getCoords(targetProduct.getUserId());
 		
 		// 찜 set
 		Object zzimcheck = productDAO.zzimCount(productid, sessionid);
@@ -438,6 +440,8 @@ public class ProductController {
 		List<ReservationDTO> reservList = productDAO.allReservation(productid);
 		int reservLength = reservList.size();
 		
+		model.addAttribute("sessionCoords", sessionCoords);
+		model.addAttribute("sellerCoords", sellerCoords);
 		model.addAttribute("distance", distance);
 		model.addAttribute("reservLength", reservLength);
 		model.addAttribute("reservationList", reservList);

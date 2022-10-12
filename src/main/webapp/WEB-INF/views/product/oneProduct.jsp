@@ -428,6 +428,11 @@
         </div>
         
 </div> 
+
+<!-- 카카오맵 위치정보 API --> 
+<div>
+<jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+</div>
         
             <!-- 예약 테이블 노출 설정 -->
     <script>

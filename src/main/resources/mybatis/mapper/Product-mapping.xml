@@ -133,6 +133,11 @@ and
     (6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
     -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))); 
 	</select> 
+	
+	
+	<select id="getCoords" resultType="String">
+	select coords from members where userid = #{userId} 
+	</select>
 	 
 	 
 
