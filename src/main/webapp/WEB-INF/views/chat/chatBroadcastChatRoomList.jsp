@@ -17,10 +17,6 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <link rel="stylesheet" href="${path}/css/header.css">
 <link rel="stylesheet" href="${path}/css/chat.css">
 <script src="${path}/js/jquery-3.6.0.min.js"></script>
-	
-
-
-
 </head>
 <body>
     <div class="main-container">
@@ -55,15 +51,11 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                             <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
                             <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
                             <input id="id" type="hidden" value="${chatRoomInfo.id}" /> --%>                        
-                         
-                         
                          </div>                    
                     </div>                
                 </div>
             </div>
-    </div>
-
-
+  	  </div>	
 </div>
 </div>
 
@@ -81,36 +73,17 @@ var sellerId = "${sellerId}";
 var pr_id = "${pr_id}";
 var id = "${id}";
 var pr_title = "${pr_title}";
-var img1 = "${img1}";
-var img2 = "${img2}";
-var img3 = "${img3}";
-var img4 = "${img4}";
-var img5 = "${img5}";
-var img6 = "${img6}";
 
-//var sessionId = "${sessionid}"
+var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
 
-if(img1 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img1 +'" height=400 width=400>'); }
-if(img2 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img2 +'" height=400 width=400>'); }
-if(img3 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img3 +'" height=400 width=400>'); }
-if(img4 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img4 +'" height=400 width=400>'); }
-if(img5 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img5 +'" height=400 width=400>'); }
-if(img6 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img6 +'" height=400 width=400>'); }
-
-
-
-
-
+for(var i= 0; i<img.length; i++){
+if(img[i] !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img[i] +'" height=400 width=400>'); }
+}
 
 $(document).ready(function(){
     connect();
     ajaxChatRead();
-    
-    
-    
-    
 });
-
     
     function connect() {
         <%-- map URL using SockJS--%>
@@ -189,9 +162,6 @@ $(document).ready(function(){
         $("#content").html($("#content").html() + message);
     }
     
-    
-    
-	
 
 	<%-- 읽음처리 채팅리스트에서 --%>
 	function ajaxChatRead() {
@@ -214,9 +184,6 @@ $(document).ready(function(){
 		})
 	}
 
-	
-	
-	
 
 </script>
 
@@ -246,13 +213,7 @@ $(document).ready(function(){
         }
 
         chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
-
-
-
     </script>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
