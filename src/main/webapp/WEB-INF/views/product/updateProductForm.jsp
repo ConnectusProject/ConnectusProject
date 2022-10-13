@@ -175,7 +175,7 @@ $(document).ready(function(){
 </script>
 </head>
 
-<>
+
 
 	<div class="main-container">
         <!-- header-section -->
@@ -226,7 +226,7 @@ $(document).ready(function(){
 </c:if>
 </div> -->
 
-<div id="count">${count}</div>
+<div id="count" class="close">${count}</div>
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 

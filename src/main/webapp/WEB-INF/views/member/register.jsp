@@ -33,7 +33,7 @@
 				<div class="signup-box-signin-button">
 					<a href="login" id="btn">로그인</a>
 				</div>
-				<div class="signup-box-signup-button" style="color : rgb(142,191,188);">
+				<div class="signup-box-signup-button">
 					회원가입
 				</div>
 			</div>

@@ -121,18 +121,18 @@
 	<header class="header-box">
 		<div class="header-menu-logo-box">
 			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
-			<span class="header-menu-title">Connect Us</span>
+			<span class="header-menu-title"><img src="${path}/pictures/logo.png" alt=""> Connect Us</span>
 		</div>
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
 				<input class="header-search-input" type="text" class="form-control">
 				<button class="btn btn-outline-secondary header-search-button" type="button"
-					id="button-addon2">Button</button>
+					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
 			</div>
 		</div>
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
-				<a class="loginBtn" href="../login" style="color : white">로그인</a>
+				<a class="loginBtn" href="../login">로그인</a>
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>

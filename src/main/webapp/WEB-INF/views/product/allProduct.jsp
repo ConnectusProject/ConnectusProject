@@ -248,10 +248,10 @@ $.each(list, function(i, product){
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
-                키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
-                렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                렌탈종료 : <input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
-                동네 : <select id="regionSelect">
+               <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
                 <option>주변 10 동네</option>
@@ -259,7 +259,7 @@ $.each(list, function(i, product){
                 <option>동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
-                <input class="smart-search-button" type="submit" value="스마트검색">
+                <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 <div class="smart-search-result-box">
 

@@ -192,13 +192,13 @@
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
-                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" disabled></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" disabled></th> 
                 </tr>
                 <tr>
-                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
+                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" disabled></th> 
                 </tr>
                 <tr>
                 <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
@@ -381,9 +381,9 @@
                 
                 <table class="reserved-connect">
     
-                    <tr>
+                    <tr class="reserved-table-title">
                         <th>번호</th>
-                        <th>예약시작</th>
+                        <th readonly>예약시작</th>
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
@@ -408,7 +408,7 @@
                     
                     
                     
-                        <tr id="reservTR${reserv.id}">
+                        <tr id="reservTR${reserv.id}" class="reserved-table-item">
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
@@ -448,6 +448,18 @@
         reserveOffButton.addEventListener('click', function(){
             reserveBox.classList.add('close');
         })
+
+        let reservedTableItem = document.querySelectorAll('.reserved-table-item')
+
+        for(let i = 0; i< reservedTableItem.length; i++) {
+            if(i%2 == 0){
+                reservedTableItem[i].style.backgroundColor = "rgb(206, 206, 206)";
+            }else{
+                reservedTableItem[i].style.backgroundColor = "rgb(243, 243, 243)";
+            }
+        }
+
+
 
     </script>
 

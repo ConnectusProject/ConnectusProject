@@ -159,7 +159,7 @@
 					</div>
 
 
-					물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
+					물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> [최대 6개 가능]
 					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
@@ -172,7 +172,7 @@
 					<br>
 					<input class="insertproduct-button" type="submit" value="물품등록" class="product-insert-button">
 				</form>
-				<hr>
+				<br>
 			</div>
 		</div>
 	</div>
