@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "connectus.mypage")
 @ComponentScan(basePackages = "connectus.chat")
 @ComponentScan(basePackages = "connectus.notice")
+@ComponentScan(basePackages = "connectus.admin")
+@ComponentScan(basePackages = "connectus")
 
 
 @MapperScan(basePackages = "connectus.comment")
@@ -26,6 +28,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(basePackages = "connectus.mypage")
 @MapperScan(basePackages = "connectus.chat")
 @MapperScan(basePackages = "connectus.notice")
+@MapperScan(basePackages = "connectus.admin")
 
 public class ConnectusApplication {
 

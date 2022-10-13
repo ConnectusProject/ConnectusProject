@@ -1,9 +1,11 @@
 package connectus.member;
 
 public class MemberDTO {
-	String userid, pw , name, phone, email, address, region, coords;
+	String userid, pw , name, phone, email, address, region, coords,userStatus;
+
+
 	
-	public MemberDTO(String userid, String pw, String name, String phone, String email, String address, String region, String coords) {
+	public MemberDTO(String userid, String pw, String name, String phone, String email, String address, String region, String coords, String userStatus) {
 		this.userid = userid;
 		this.pw = pw;
 		this.name = name;
@@ -12,7 +14,17 @@ public class MemberDTO {
 		this.address = address;
 		this.region = region;
 		this.coords = coords;
+		this.userStatus = userStatus;
 	}
+	
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+
 	public String getCoords() {
 		return coords;
 	}

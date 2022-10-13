@@ -99,57 +99,6 @@
 
 
 
-
-
-
-
-
-	<!-- <div>
-<form name="form" action="register" method="post">
-	<div>
-		<input type=text name="userid" id="userid" placeholder="아이디를 입력하세요" required>
-		<input type="button" id="id-btn" value="id체크" onclick="idcheck()" >
-	</div>
-	<div id="id_check"></div>
-	
-	<div>
-	<input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required oninput="pwcheck()"><br>
-	</div>
-	<div id="pw_check"></div>
-	
-	<div>
-	<input type=password name="pw2" id="pw2" placeholder="비밀번호를 한번 더 입력하세요" required oninput="pw2check()">
-	</div>
-	<div id="pw2_check"></div>
-	
-	<input type=text name="name" placeholder="이름을 입력하세요" required oninput="namecheck()"><br>
-	
-	<input type=text name="email" placeholder="이메일을 입력하세요" required oninput="emailcheck()"><br>
-
-	<br>
-	<input type="text" id="sample6_postcode" placeholder="우편번호">
-	<input class="check-address-button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample6_address" placeholder="주소"><br>
-	<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-	<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-	<input type="hidden" id="address" name="address" value="">	
-	<br><br>
-
-	<div>
-	<input type=text name="phone" id="phone" placeholder="전화번호를 (-)제외하고 입력하세요" required oninput="phonecheck()"><br>
-	</div>
-	<div id="phone_check"></div>
-	<div>
-		<input type="submit" id="btn" value="회원가입" onclick="check()" disabled><br>
-	</div>
-	
-</form>
-
-
-</div> -->
-
-
-
 	<script>
 		let userid = $('#userid');
 		let pw = $('#pw');
@@ -393,50 +342,6 @@
 
 		}
 
-
-
-		/*
-		function check(){
-			var fm = document.form;
-			
-			if(fm.id.value == ""){
-				alert("아이디를 입력하세요");
-				document.form.id.focus();
-				return;
-			}
-			if(fm.pw.value == ""){
-				alert("비밀번호를 입력하세요");
-				document.form.pw.focus();
-				return;
-			}	
-			if(fm.pw2.value == ""){
-				alert("비밀번호를 입력하세요");
-				document.form.pw.focus();
-				return;
-			}
-			if(fm.name.value == ""){
-				alert("이름을 입력하세요");
-				document.form.name.focus();
-				return;
-			}
-			if(fm.phone.value == ""){
-				alert("전화번호를 입력하세요 ('-'는 제외)");
-				document.form.phone.focus();
-				return;
-			}
-			if(fm.email.value == ""){
-				alert("이메일을 입력하세요");
-				document.form.email.focus();
-				return;
-			}
-			if(fm.address.value == ""){
-				alert("주소를 입력하세요");
-				document.form.address.focus();
-				return;
-			}
-			alert("성공적으로 가입되셨습니다.")
-		}
-		*/
 
 		function KakaoGeocoder() {
 			// 주소-좌표 변환 객체를 생성합니다

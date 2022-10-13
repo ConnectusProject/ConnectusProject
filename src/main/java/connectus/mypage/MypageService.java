@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import connectus.board.BoardDTO;
 import connectus.member.MemberDTO;
 import connectus.product.ProductDTO;
 
@@ -69,4 +70,8 @@ public class MypageService {
 		return dao.allMyBoard(userid);
 	}
 	
+	//내가 쓴 글
+	public List<BoardDTO> allMyBoard2(String userid) {
+		return dao.allMyBoard2(userid);
+	}
 }
