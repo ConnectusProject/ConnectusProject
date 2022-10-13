@@ -57,6 +57,7 @@ var sellerId = "${chatRoomInfo.sellerId}";
 var senderId = "${chatRoomInfo.buyerId}";
 var pr_id = "${chatRoomInfo.pr_id}";
 var id = "${chatRoomInfo.id}";
+//var sessionId = '${sessionid}';
 
 alert(id);
 console.log(sellerId);
@@ -66,6 +67,8 @@ console.log(sellerId);
 
 $(document).ready(function(){
     connect();
+    alert(sessionId);
+    ajaxChatRead();
 });
 
     
@@ -108,7 +111,7 @@ $(document).ready(function(){
             'buyerId': buyerId, 
             'sellerId': sellerId,
             'pr_id': pr_id,
-            'senderId': senderId
+            'senderId': senderId	//상세페이지에서 입장 ( senderId = buyerId)
             });
         $('#message').val("");
     }
@@ -147,6 +150,32 @@ $(document).ready(function(){
     
 
 	
+    
+/* 	function clearBroadcast() {
+		$('#content').html("");
+	}
+ 지우기 */
+ 
+ 
+ <%-- 읽음처리 상세페이지에서 --%>
+	function ajaxChatRead() {
+		console.log("hi");
+		
+		$.ajax({
+			url:'/chatread/product/ajax',
+			type: 'POST',
+			data: JSON.stringify({
+				id: id,
+				buyerId: buyerId
+			}),
+			dataType: 'json',
+			contentType: 'application/json'
+		})
+	}
+
+    
+    
+    
 	
 	
 

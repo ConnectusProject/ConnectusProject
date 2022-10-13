@@ -12,6 +12,8 @@ public class ChatRoom {
 	private Timestamp createdDate;
 	private String pr_title;
 	private String img1;
+	private int chatReadBuy;
+	private int chatReadSell;
 	//not in DB
 	private String content;
 	private String sendTime;
@@ -30,7 +32,7 @@ public class ChatRoom {
 	}
 
 	public ChatRoom(int id, int pr_id, String sellerId, String buyerId, String fileName,
-			Timestamp createdDate, String pr_title, String img1) {
+			Timestamp createdDate, String pr_title, String img1, String ChatReadBuy, String ChatReadSell) {
 		super();
 		this.id = id;
 		this.pr_id = pr_id;
@@ -40,6 +42,28 @@ public class ChatRoom {
 		this.createdDate = createdDate;
 		this.pr_title = pr_title;
 		this.img1 = img1; 
+		this.chatReadBuy = chatReadBuy;
+		this.chatReadSell = chatReadSell;
+	}
+	
+	
+	
+	
+
+	public int getChatReadBuy() {
+		return chatReadBuy;
+	}
+
+	public void setChatReadBuy(int chatReadBuy) {
+		this.chatReadBuy = chatReadBuy;
+	}
+
+	public int getChatReadSell() {
+		return chatReadSell;
+	}
+
+	public void setChatReadSell(int chatReadSell) {
+		this.chatReadSell = chatReadSell;
 	}
 
 	public ChatRoom() {
