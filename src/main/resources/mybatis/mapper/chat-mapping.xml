@@ -9,8 +9,8 @@
 
    <insert id="addChatRoom" parameterType="ChatRoom">
     	INSERT INTO 
-    	CHATROOM(pr_id, sellerId, buyerId, fileName, createdDate, pr_title, img1)
-    	VALUES (#{pr_id}, #{sellerId}, #{buyerId}, #{fileName}, #{createdDate}, #{pr_title}, #{img1});
+    	CHATROOM(pr_id, sellerId, buyerId, fileName, createdDate, pr_title, img1, img2, img3, img4, img5, img6)
+    	VALUES (#{pr_id}, #{sellerId}, #{buyerId}, #{fileName}, #{createdDate}, #{pr_title}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6});
     </insert>
     
     <select id="findByUserId" resultType="connectus.chat.ChatList">

@@ -59,7 +59,6 @@ var pr_id = "${chatRoomInfo.pr_id}";
 var id = "${chatRoomInfo.id}";
 //var sessionId = '${sessionid}';
 
-alert(id);
 console.log(sellerId);
 
 
@@ -67,7 +66,6 @@ console.log(sellerId);
 
 $(document).ready(function(){
     connect();
-    alert(sessionId);
     ajaxChatRead();
 });
 
@@ -170,7 +168,7 @@ $(document).ready(function(){
 			}),
 			dataType: 'json',
 			contentType: 'application/json'
-		})
+		});
 	}
 
     
