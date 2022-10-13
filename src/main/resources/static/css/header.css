@@ -1,13 +1,19 @@
 @font-face {
-  font-family: "MonoplexKR-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2") format("woff2");
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "twayair";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
 }
 body {
   margin: 1;
   padding: 1;
-  font-family: "MonoplexKR-Regular";
+  font-family: "Pretendard-Regular";
   position: relative;
 }
 
@@ -82,7 +88,15 @@ li {
 }
 
 .header-menu-title {
-  margin-left: 7rem;
+  margin-left: 5rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-family: "twayair";
+}
+
+.header-menu-title img {
+  margin-right: 1rem;
 }
 
 .header-search-box {
@@ -94,20 +108,24 @@ li {
 
 .header-search-input {
   width: 20vw;
-  border: solid 2px rgb(55, 198, 208);
+  border: solid 2px #6462cb;
   border-radius: 5px;
 }
 
 .header-search-input:focus {
   outline-style: solid;
-  outline-color: rgb(55, 198, 208);
+  outline-color: #6462cb;
   outline-width: 2px;
 }
 
 .header-search-button {
   border: none;
-  background-color: rgb(55, 198, 208);
-  color: white;
+  background-color: #6462cb;
+}
+
+.header-search-button img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .header-search-box-inner {
@@ -123,30 +141,28 @@ li {
 }
 
 .header-sign-box a {
-  text-decoration: none;
-  color: black;
+  color: #cddfe0;
   font-size: 1.2rem;
   margin-right: 1rem;
-}
-
-.loginBtn {
   width: 8rem;
   height: 2rem;
-  background-color: red;
-  text-align: center;
   border: none;
-  background-color: rgb(55, 198, 208);
-  border-radius: 10px;
-  color: white;
+  background-color: #6462cb;
+  border-radius: 50px;
+  color: #cddfe0;
   box-shadow: 0px 3px 5px rgb(204, 204, 204);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-box {
+  margin-left: 1px;
   position: fixed;
   height: 100vh;
-  background-color: rgb(55, 198, 208);
+  background-color: #6462cb;
   z-index: 10;
-  box-shadow: 5px 5px 5px rgb(204, 204, 204);
+  box-shadow: 5px 0px 2px #6462cb;
   border-radius: 50px;
 }
 
@@ -173,7 +189,7 @@ li {
 }
 
 .nav-menu-box:hover {
-  background-color: rgb(55, 198, 208);
+  background-color: #6462cb;
 }
 
 .menu-icon {
@@ -202,6 +218,10 @@ li {
   align-items: center;
 }
 
+.menu-title a {
+  color: #cddfe0;
+}
+
 .menu-title > a:hover {
   color: white;
 }
@@ -222,10 +242,6 @@ li {
 .menu-title-sub > a {
   font-size: 0.8rem;
   font-weight: 400;
-}
-
-.menu-title-sub > a:hover {
-  color: rgb(55, 198, 208);
 }
 
 .close {
