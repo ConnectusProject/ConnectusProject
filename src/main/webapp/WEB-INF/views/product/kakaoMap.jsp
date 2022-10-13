@@ -18,11 +18,12 @@ $(document).ready(function(){
 	
 	        var sessionLat = sessionCoords.substring(1, sessionCoords.indexOf(','));
 	        var sessionLon = sessionCoords.substring(sessionCoords.indexOf(',')+2, sessionCoords.length-1);
+	        
 	        var sellerLat = sellerCoords.substring(1, sellerCoords.indexOf(','));
 	        var sellerLon = sellerCoords.substring(sellerCoords.indexOf(',')+2, sellerCoords.length-1);
 	        
 
-kakaoMap();	        
+	kakaoMap();	        
  
 	
 	function kakaoMap(){

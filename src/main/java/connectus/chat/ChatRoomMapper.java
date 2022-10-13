@@ -30,4 +30,13 @@ public interface ChatRoomMapper {
 
 	public void updateFileName(int id, String fileName);
 	
+	public void updateChatReadBuy(int id, int chatReadBuy);
+	
+	public void updateChatReadSell(int id, int chatReadSell);
+
+	public int getUnreadMessages(String userId);
+	
+	public List<Integer> getUnreadChatRoom(String userId);
+	
+	
 }

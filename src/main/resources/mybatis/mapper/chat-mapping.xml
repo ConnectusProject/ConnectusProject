@@ -49,6 +49,35 @@
     	WHERE ID = #{id};
     </update>
    
+   <!-- 알림 -->
+   
+   <update id="updateChatReadBuy">
+    	UPDATE CHATROOM
+    	SET CHATREADBUY = #{chatReadBuy}
+    	WHERE ID = #{id};
+    </update>
+
+    <update id="updateChatReadSell">
+    	UPDATE CHATROOM
+    	SET CHATREADSELL = #{chatReadSell}
+    	WHERE ID = #{id};
+    </update>
+   
+   <select id="getUnreadMessages" resultType="int">
+   		SELECT COUNT(id)
+   		FROM CHATROOM
+   		WHERE (SELLERID = #{userId} AND CHATREADSELL = 0) OR 
+   		(BUYERID = #{userId} AND CHATREADBUY = 0);
+   </select>
+
+   <select id="getUnreadChatRoom" resultType="int">
+   		SELECT id
+   		FROM CHATROOM
+   		WHERE (SELLERID = #{userId} AND CHATREADSELL = 0) OR 
+   		(BUYERID = #{userId} AND CHATREADBUY = 0);
+   </select>
+   
+   
            
 
 </mapper>

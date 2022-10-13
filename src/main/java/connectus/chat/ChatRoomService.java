@@ -135,7 +135,16 @@ public class ChatRoomService {
 		System.out.println("sellerId: "+ chatRoom.getSellerId());
 		System.out.println(senderId.equals(chatRoom.getSellerId()));
 		
+		//알림 
+		if (senderId.equals(chatRoom.getSellerId())) {
+			updateChatReadBuy(chatRoom.getId(), 0);
+		} else {
+			updateChatReadSell(chatRoom.getId(), 0);
+		}
+		
 	}
+	
+	// 알림 
 
 	public ChatRoom findByChatId(int pr_id, String buyerId) {
 		return chatRoomMapper.findByChatId(pr_id, buyerId);
@@ -148,6 +157,28 @@ public class ChatRoomService {
 
 	    
     
+	public void updateChatReadBuy(int id, int chatReadBuy) {
+		
+		chatRoomMapper.updateChatReadBuy(id, chatReadBuy);
+		
+	}
+
+	public void updateChatReadSell(int id, int chatReadSell) {
+		
+		chatRoomMapper.updateChatReadSell(id, chatReadSell);
+		
+	}
+	
+	public int getUnreadMessages(String userId) {
+		
+		return chatRoomMapper.getUnreadMessages(userId);
+	}
+
+	public List<Integer> getUnreadChatRoom(String userId) {
+		
+		List<Integer> unread = chatRoomMapper.getUnreadChatRoom(userId); 
+		return unread;
+	}
     
     
     

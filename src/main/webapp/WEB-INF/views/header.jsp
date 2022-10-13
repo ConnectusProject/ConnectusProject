@@ -14,10 +14,11 @@
 	
 	
 	<script>
+	let sessionId = '${sessionid}';
+
 	$(function (){
 		$("#reserve-off-button2").on("click", function(e){  //버튼이름에 2 붙여서 막아뒀습니다 
 			 e.preventDefault(); 
-			let sessionId = '<%=session.getAttribute("sessionid")%>';
 			let title = '${oneProduct.title}';
 			let createdAt = '${oneProduct.createdAt}'
 			<%-- let title = '<%=request.getParameter("title")%>';  --%> 
@@ -28,13 +29,13 @@
 		
 	});
 	
-	$.ajax({
+	/* $.ajax({
 		url: "/product/" + $("#boardId").val() + "/ajax",
 		dataType: "json",
 		success : function(response){
 			alert(sessionId + "님" + response.title + "상품예약에 성공하셨습니다");
 		}
-	})
+	}) */
 	
 	
 	</script>
@@ -43,6 +44,8 @@
 	
 
 	<script>
+	
+	
 		$(document).ready(function () {
 			$("#logoutchk").click(function (ev) {
 				if (!confirm("로그아웃 하시겠습니까?")) {
@@ -54,6 +57,51 @@
 					ev.preventDefault();
 				} else { alert("회원탈퇴가 완료되었습니다.") }
 			});
+			
+			
+			// 채팅 알림
+			
+			if (sessionId != null) {
+							getUnread();
+							getInfiniteUnread(); } 
+			
+			
+				function getUnread() {
+										$.ajax({
+											url: "/chatUnreadAlert/ajax",
+											type: "POST",
+											data: JSON.stringify({
+												sessionId: sessionId
+											}) ,
+											dataType: "json",
+											contentType: "application/json",
+											success: function(result) {
+												if (result >= 1) {
+													showUnread(result);
+													
+												} else {
+													showUnread('');
+												}
+											}
+										});
+									}
+									
+									function getInfiniteUnread() {
+										setInterval(() => {
+											getUnread();
+										}, 1000);
+									}
+									
+									function showUnread(result) {
+										$('#messageAlert').html(result);
+									}
+			
+			
+			
+			
+			
+			
+			
 		});
 	</script>
 	<title>ConnectUs</title>
@@ -94,6 +142,16 @@
             								
         			</div>
     			</div>
+    			
+    			
+    			<div>
+    			<a href="http://localhost:8090/chatList">
+							채팅
+							<span id="messageAlert"></span>
+						</a>
+    			</div>
+				
+				
 					<a href="/mypage" class="mypage">마이페이지 </a>
 					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
 					<% } %>
@@ -166,6 +224,10 @@
 						<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
 									alt=""></a></span>
 						<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+						
+						
+						
+						
 					</div>
 					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
