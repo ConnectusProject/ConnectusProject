@@ -145,10 +145,7 @@
     			
     			
     			<div>
-    			<a href="http://localhost:8090/chatList">
-							채팅
-							<span id="messageAlert"></span>
-						</a>
+    			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:yellow></span></a>
     			</div>
 				
 				

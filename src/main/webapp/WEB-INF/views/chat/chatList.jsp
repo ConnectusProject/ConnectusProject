@@ -61,7 +61,7 @@
             
             
             //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
-            function addChatDivImg(idx, sellerId, sessionid, pr_id, buyerId, pr_title, img1) {
+            function addChatDivImg(i, sellerId, sessionid, pr_id, buyerId, pr_title, img1) {
             	var opponent = "";
             	if(sessionid==sellerId){
             		opponent = buyerId;
@@ -71,7 +71,7 @@
             	
             	
             	
-                $(chatList).append('<div class=chat-list-box chatMessageInfo' + idx + '><div class="chatbox wrapPr_img"><img height=100% width=67 class="chatbox-img" src="http://localhost:8090/upload/' + img1 + '"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId  + '"><div class=chat-title>'+ pr_title+'</div><div class=chat-name>'+ opponent + '님 과의 채팅방'+'</div> <div class="wrapSellerTitle' + idx +'"></div></div>');
+                $(chatList).append('<div class=chat-list-box chatMessageInfo' + i + '><div class="chatbox wrapPr_img"><img height=100% width=67 class="chatbox-img" src="http://localhost:8090/upload/' + img1 + '"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId  + '"><div class=chat-title>'+ pr_title+'</div><div class=chat-name>'+ opponent + '님 과의 채팅방'+'</div> <div class="wrapSellerTitle' + i +'"></div></div>');
             }
     
             //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
@@ -138,7 +138,7 @@
                }, 1000);
             }
             
-            //일정 간격으로 업데이트된 데이터를 화면에 출력하는 메서드 됨
+            //일정 간격으로 업데이트된 데이터를 화면에 출력하는 메서드  //새 메세지 받는 용도로 사용 
             function addChatList(pr_id, buyerId, senderName, pr_title, messageUnread, idx) {
     
                 var str =
@@ -151,8 +151,8 @@
                 senderName +
                 '&nbsp;</span>' +
                 '<span id="title">' + 
-                pr_title +  */
-                '</span><span id="message">' + 
+                pr_title +  </span>*/
+                '<span id="message" style="color:red; font-size : 16px; position : absolute; bottom : 10px; left : 500px;" >' + 
                 messageUnread+'</span></div></a>';
                 
                 //HTML화면의 <div class="wrapSellerTitle0,1,...etc"> 하위에 str 변수를 추가해준다.                  

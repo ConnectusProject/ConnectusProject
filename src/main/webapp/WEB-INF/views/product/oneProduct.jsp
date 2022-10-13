@@ -192,13 +192,13 @@
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
-                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" disabled></th>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" disabled></th> 
+                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
                 </tr>
                 <tr>
-                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" disabled></th> 
+                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
                 </tr>
                 <tr>
                 <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
@@ -347,6 +347,12 @@
                                         <input type="hidden" name="pr_id" value="${oneProduct.id}" />
                                         <input type="hidden" name="pr_title" value="${oneProduct.title}" />
                                         <input type="hidden" name="img1" value="${oneProduct.img1}" />
+                                        <input type="hidden" name="img2" value="${oneProduct.img2}" />
+                                        <input type="hidden" name="img3" value="${oneProduct.img3}" />
+                                        <input type="hidden" name="img4" value="${oneProduct.img4}" />
+                                        <input type="hidden" name="img5" value="${oneProduct.img5}" />
+                                        <input type="hidden" name="img6" value="${oneProduct.img6}" />
+                                        
                                         <button class="chat-on-button" id="btn_chat">채팅하기</button>
                                     </a>
                                 </form>

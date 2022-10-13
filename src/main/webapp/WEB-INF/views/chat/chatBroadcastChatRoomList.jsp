@@ -67,6 +67,11 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 </div>
 </div>
 
+<!-- 사진 -->
+<div id="chatImg">
+
+</div>
+
 
 <script>
 
@@ -76,9 +81,21 @@ var sellerId = "${sellerId}";
 var pr_id = "${pr_id}";
 var id = "${id}";
 var pr_title = "${pr_title}";
+var img1 = "${img1}";
+var img2 = "${img2}";
+var img3 = "${img3}";
+var img4 = "${img4}";
+var img5 = "${img5}";
+var img6 = "${img6}";
+
 //var sessionId = "${sessionid}"
 
-
+if(img1 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img1 +'" height=400 width=400>'); }
+if(img2 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img2 +'" height=400 width=400>'); }
+if(img3 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img3 +'" height=400 width=400>'); }
+if(img4 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img4 +'" height=400 width=400>'); }
+if(img5 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img5 +'" height=400 width=400>'); }
+if(img6 !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img6 +'" height=400 width=400>'); }
 
 
 
@@ -88,6 +105,10 @@ var pr_title = "${pr_title}";
 $(document).ready(function(){
     connect();
     ajaxChatRead();
+    
+    
+    
+    
 });
 
     
@@ -148,7 +169,7 @@ $(document).ready(function(){
         }
     });
     
-    <%-- 입력한 메시지를 HTML 형태로 가공 --%>
+    <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
         console.log("createTextNode");
         console.log("messageObj: " + messageObj.content);

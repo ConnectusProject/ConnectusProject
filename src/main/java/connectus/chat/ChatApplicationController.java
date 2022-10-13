@@ -62,7 +62,7 @@ public class ChatApplicationController {
             chatRoomService.createFile(chatRoom.getPr_id(), chatRoomService.getId(chatRoom.getPr_id(), chatRoom.getBuyerId()));                                
         }
  
-            //chatRoom Add 시 생성될 chatId
+            //채팅방 번호
             chatRoom.setId(chatRoomService.getId(chatRoom.getPr_id(), chatRoom.getBuyerId()));
             
             System.out.println("모델 : "+chatRoom.toString());
@@ -91,7 +91,21 @@ public class ChatApplicationController {
 		int id = chatRoomService.getId(pr_id, buyerId);
 		String pr_title = chatRoomRead.getPr_title();
 		String sellerId = chatRoomRead.getSellerId();
+
+		String img1 = chatRoomRead.getImg1();
+		String img2 = chatRoomRead.getImg2();
+		String img3 = chatRoomRead.getImg3();
+		String img4 = chatRoomRead.getImg4();
+		String img5 = chatRoomRead.getImg5();
+		String img6 = chatRoomRead.getImg6();
 		
+		
+		model.addAttribute("img1", img1);
+		model.addAttribute("img2", img2);
+		model.addAttribute("img3", img3);
+		model.addAttribute("img4", img4);
+		model.addAttribute("img5", img5);
+		model.addAttribute("img6", img6);
 		model.addAttribute("id", id);
 		model.addAttribute("pr_id", pr_id);
 		model.addAttribute("buyerId", buyerId);
@@ -120,11 +134,6 @@ public class ChatApplicationController {
    		String sessionid = (String) jsn.get("sessionid");
    		List<ChatList> chatRoomList = chatRoomService.findByUserId(sessionid);
    		
-   		System.out.println(chatRoomList.get(0).toString());
-   		System.out.println(chatRoomList.get(1).toString());
-   		
-   		
-   		
    		JSONArray ja = new JSONArray();
 
    		 for (ChatList chatList : chatRoomList) {
@@ -147,7 +156,7 @@ public class ChatApplicationController {
     
     
     
-    
+    // 채팅 전송
     @MessageMapping("/broadcast")
     public void send(ChatRoom chatRoom) throws IOException {
  
@@ -160,7 +169,7 @@ public class ChatApplicationController {
         String url = "/user/" + id + "/queue/messages";
         simpMessage.convertAndSend(url, new ChatRoom(chatRoom.getContent(), chatRoom.getSenderId(), chatRoom.getSendTime())); 
         
-        
+        // 내가 쓴 채팅 읽음 처리
         if(chatRoom.getSenderId().equals(chatRoom.getBuyerId())){
         chatRoomService.updateChatReadBuy(id, 1);}
         else if(chatRoom.getSenderId().equals(chatRoom.getSellerId())) {
@@ -171,6 +180,7 @@ public class ChatApplicationController {
     
     // 알림
     //채팅리스트로 들어갔을 때 읽음처리 
+    @ResponseBody
     @RequestMapping("/chatread/chatroom/ajax")
 	public void ajaxChatRoomRead(@RequestBody String json) throws IOException {
 		JSONObject jsn = new JSONObject(json);
@@ -190,6 +200,7 @@ public class ChatApplicationController {
     
     
     //상세페이지로 들어갔을 때 읽음처리
+    @ResponseBody
 	@RequestMapping(value="/chatread/product/ajax", method=RequestMethod.POST)
 	public void ajaxChatProductRead(@RequestBody String json) throws IOException {
 		JSONObject jsn = new JSONObject(json);
@@ -210,7 +221,7 @@ public class ChatApplicationController {
 		return messages;
 	}
 
-	// 
+	// 채팅리스트에 '새 메세지' 표시 
 	@RequestMapping(value="/chatUnreadMessageInfo/ajax", method=RequestMethod.POST)
 	@ResponseBody
 	public String chatListUnread(@RequestBody String json) {
