@@ -230,8 +230,9 @@ $(document).ready(function(){
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 
-<input type="text" name="title" value="${updateProduct.title}" > 
-<textarea name="contents" rows="15" cols="60">${updateProduct.contents}</textarea> 
+<input type="text" name="title" value="${updateProduct.title}" required> 
+<textarea name="contents" rows="15" cols="60" required>${updateProduct.contents}</textarea> 
+<input type="text" name="price" value="${updateProduct.price}" required>	
 <input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
