@@ -170,9 +170,9 @@ $.each(list, function(i, product){
             	}else if(Regionvalue=='내 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
             	}else if(Regionvalue=='가까운 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='10'>");
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='5'>");
             	}else if(Regionvalue=='먼 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='30'>");
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='15'>");
             	}
             });
             
