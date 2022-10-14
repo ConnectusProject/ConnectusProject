@@ -28,6 +28,8 @@
             let smartStartDate = '${smartStartDate}'
             let smartEndDate = '${smartEndDate}'
             let distanceKm = '${distanceKm}'; 
+            let smartPriceMin = '${smartPriceMin}'; 
+            let smartPriceMax = '${smartPriceMax}'; 
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -50,7 +52,9 @@
                         		'smartRegion' : smartRegion, 
                         		'smartStartDate' : smartStartDate, 
                         		'smartEndDate' : smartEndDate,
-                        		'distanceKm' : distanceKm
+                        		'distanceKm' : distanceKm,
+                        		'smartPriceMin' : smartPriceMin, 
+                        		'smartPriceMax' : smartPriceMax
                         		},
 
                         success: function (resp) {
@@ -101,6 +105,7 @@ $.each(list, function(i, product){
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
                             + '<div class="product-item-date">' + dateDiffShow + '</div>'
                             + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
+                            + '<div class="product-item-price">1일가격 : ' + product.price + '원</div>'
                             + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
                             + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'
@@ -248,7 +253,9 @@ $.each(list, function(i, product){
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
-               <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격">
+                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격">
                 시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
