@@ -254,8 +254,8 @@ $.each(list, function(i, product){
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격">
-                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격">
+                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="5000">
+                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="5000">
                 시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
