@@ -41,7 +41,7 @@
 			<div class="list-container">
 
 				<form class="write-form" action="boardwrite" method="post" enctype="multipart/form-data">
-					<input class="write-form-title mb-2" type=text name="title" placeholder="Title">
+					<input class="write-form-title mb-2" type=text name="title" placeholder="Title" required>
 					<p>물품사진 : <input type="file" name="file1"></p>
 					<p>사진은 *.png, *.jpeg만 가능합니다</p>
 					<textarea class="write-form-textarea"  rows=10 name="contents" placeholder="내용을 입력하세요."></textarea>

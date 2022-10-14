@@ -1,4 +1,5 @@
-$color : rgb(142,191,188);
+$color : #6462cb;
+$fontColor :#cddfe0;
 
 @mixin flexbox($justify, $align){
     display : flex;
@@ -27,6 +28,18 @@ a {
     outline-style: solid;
     outline-color: $color;
     outline-width: 2px;
+}
+
+.header-search-input {
+    width : 10vw;
+    border : solid 2px $color;
+    border-radius: 5px;
+    height : 2.4rem;
+    transition: all 0.5s;
+}
+
+.header-search-input:focus {
+    width : 20vw;
 }
 
 .header-search-button {

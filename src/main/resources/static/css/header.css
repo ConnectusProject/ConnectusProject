@@ -1,13 +1,20 @@
 @font-face {
-  font-family: "MonoplexKR-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2") format("woff2");
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ImcreSoojin";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
 }
 body {
   margin: 1;
   padding: 1;
-  font-family: "MonoplexKR-Regular";
+  font-family: "Pretendard-Regular";
+  position: relative;
 }
 
 a {
@@ -31,12 +38,26 @@ li {
   position: relative;
 }
 
+.up {
+  width: 30%;
+  height: 2rem;
+  position: absolute;
+  bottom: 3%;
+  left: 1.5rem;
+  z-index: 11;
+}
+
+.up img {
+  width: 100%;
+  height: 100%;
+}
+
 .header-box {
   position: fixed;
   width: 100%;
   height: 4rem;
   background-color: rgb(255, 255, 255);
-  z-index: 2;
+  z-index: 9;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,18 +65,17 @@ li {
 }
 
 .header-menu-button {
+  position: absolute;
   cursor: pointer;
+  top: 2%;
+  left: 1.5rem;
 }
 
 .header-menu-logo-box {
-  width: 20%;
+  width: 25rem;
   display: flex;
   justify-content: left;
   align-items: center;
-}
-
-.header-menu-logo-box span {
-  font-size: 1.7rem;
 }
 
 .header-menu-logo-box img {
@@ -64,7 +84,17 @@ li {
 }
 
 .header-menu-title {
-  margin-left: 2rem;
+  margin-left: 3rem;
+  width: 20rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "ImcreSoojin";
+}
+
+.header-menu-title img {
+  margin-right: 1rem;
 }
 
 .header-search-box {
@@ -75,48 +105,70 @@ li {
 }
 
 .header-search-input {
-  width: 20vw;
-  border: solid 2px rgb(142, 191, 188);
+  width: 10vw;
+  border: solid 2px #6462cb;
   border-radius: 5px;
+  height: 2.4rem;
+  transition: all 0.5s;
+}
+
+.header-search-input:focus {
+  width: 20vw;
 }
 
 .header-search-input:focus {
   outline-style: solid;
-  outline-color: rgb(142, 191, 188);
+  outline-color: #6462cb;
   outline-width: 2px;
 }
 
 .header-search-button {
   border: none;
-  background-color: rgb(142, 191, 188);
-  color: white;
+  background-color: #6462cb;
+}
+
+.header-search-button img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .header-search-box-inner {
-  width: 30rem;
-  margin: 0;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: none;
 }
 
 .header-sign-box {
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: right;
   align-items: center;
 }
 
 .header-sign-box a {
-  text-decoration: none;
-  color: black;
-  font-size: 1.2rem;
+  color: #cddfe0;
+  font-size: 0.8vw;
   margin-right: 1rem;
+  width: 8rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50px;
+  color: #6462cb;
+  box-shadow: 0px 3px 5px rgb(204, 204, 204);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-box {
+  margin-left: 1px;
   position: fixed;
   height: 100vh;
-  background-color: rgb(255, 255, 255);
-  z-index: 1;
-  box-shadow: 5px 5px 10px rgb(170, 170, 170);
+  background-color: #6462cb;
+  z-index: 10;
+  box-shadow: 5px 0px 2px #6462cb;
+  border-radius: 50px;
 }
 
 .nav-box img {
@@ -138,11 +190,11 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .nav-menu-box:hover {
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
 }
 
 .menu-icon {
@@ -171,6 +223,10 @@ li {
   align-items: center;
 }
 
+.menu-title a {
+  color: #cddfe0;
+}
+
 .menu-title > a:hover {
   color: white;
 }
@@ -191,10 +247,6 @@ li {
 .menu-title-sub > a {
   font-size: 0.8rem;
   font-weight: 400;
-}
-
-.menu-title-sub > a:hover {
-  color: rgb(142, 191, 188);
 }
 
 .close {

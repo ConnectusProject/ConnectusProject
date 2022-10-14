@@ -49,10 +49,6 @@
                             <td style="width : 25%;">아이디</td>
                             <td> ${member.userid }</td>
                         </tr>
-                        <tr style="background-color : rgb(243, 243, 243);">
-                            <td>비밀번호</td>
-                            <td> ${member.pw }</td>
-                        </tr>
                         <tr>
                             <td>이름</td>
                             <td> ${member.name }</td>

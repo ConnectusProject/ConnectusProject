@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +27,10 @@ public class MemberController {
 	@Autowired
 	MemberService memserv;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoderPassword;
+
+	
 	//회원가입
 	@GetMapping("/register")
 	public String registerform() {
@@ -32,6 +39,8 @@ public class MemberController {
 	
 	@PostMapping("/register")
 	public String register(@ModelAttribute MemberDTO dto) {
+		String pw = encoderPassword.encode(dto.getPw());
+		dto.setPw(pw);
 		memserv.insertMember(dto);
 		return "redirect:/login";
 		
@@ -39,6 +48,7 @@ public class MemberController {
 	//로그인
 	@GetMapping("/login")
 	public String loginform() {
+		System.out.println("login");
 		return "member/login";
 	}
 	
@@ -52,7 +62,7 @@ public class MemberController {
 		else {
 			String dbpassword = list.get(0).getPw();
 			System.out.println(dbpassword);
-			if(dbpassword.equals(pw)) {
+			if(encoderPassword.matches(pw,dbpassword)) {
 				session.setAttribute("sessionid", userid);
 				System.out.println(session.getAttribute("sessionid"));
 				return  "/home";				

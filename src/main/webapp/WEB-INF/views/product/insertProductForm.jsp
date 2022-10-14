@@ -154,12 +154,13 @@
 						<input type="text" name="title" placeholder="제목" required="required">
 						<textarea id="contents" name="contents" rows="15" cols="60" placeholder="내용"
 							required="required"></textarea>
+						<input type="number" name="price" placeholder="1일 가격" required step="500">	
 						<input type="text" name="boardRegion" value="${region}" placeholder="사는 곳" readonly>
 						<input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly>
 					</div>
 
 
-					물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
+					물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> [최대 6개 가능]
 					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
@@ -172,7 +173,7 @@
 					<br>
 					<input class="insertproduct-button" type="submit" value="물품등록" class="product-insert-button">
 				</form>
-				<hr>
+				<br>
 			</div>
 		</div>
 	</div>

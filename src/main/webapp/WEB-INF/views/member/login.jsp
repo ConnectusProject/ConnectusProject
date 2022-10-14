@@ -44,8 +44,12 @@
                             <button class="find-idpw-button" id="btn" type="button"><a href="findpw">비밀번호 찾기</a></button>              
                     </div>
                     <div class="login-box-kakao-naver">
-                        <img src="${path}/pictures/Kakao_logo.jpg">
-                        <img src="${path}/pictures/naver-logo.png">
+                        <div>
+                        <img src="${path}/pictures/Kakao_logo.jpg"> 카카오로 접속하기
+                    </div>
+                    <div class="mt-2">
+                        <img src="${path}/pictures/naver-logo.png"> 네이버로 접속하기
+                    </div>
                     </div>
                 </div>
     

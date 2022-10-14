@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
+import connectus.board.BoardDTO;
 import connectus.member.MemberDTO;
 import connectus.product.ProductDTO;
 
@@ -23,4 +24,5 @@ public interface MypageDAO {
 	public void passwordModify(MemberDTO memberdto);
 
 	public List<ProductDTO> allMyBoard(String userid);
+	public List<BoardDTO> allMyBoard2(String userid);
 }

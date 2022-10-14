@@ -42,7 +42,7 @@ $(document).ready(function(){
 <a href="http://localhost:8090/boardstart">커뮤니티 이동</a>
 
 <br>
-<a href="http://localhost:8090/keywordlist">나의 근처 물품 지도</a>
+
 
 </body>
 </html>

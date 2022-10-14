@@ -4,7 +4,7 @@ a {
 }
 
 .login-container {
-  z-index: 3;
+  z-index: 11;
   position: absolute;
   top: 0%;
   width: 100vw;
@@ -19,7 +19,7 @@ a {
 .login-box {
   background-color: white;
   width: 25rem;
-  height: 25rem;
+  height: 30rem;
   border-radius: 10px;
 }
 
@@ -28,12 +28,12 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(142, 191, 188);
 }
 
 .login-box-title span {
   margin: 1rem;
   font-size: 2rem;
+  color: #6462cb;
 }
 
 .login-box-sign-box {
@@ -53,8 +53,8 @@ a {
 
 .login-box-signin-button {
   height: 100%;
-  border-bottom: solid 3px rgb(142, 191, 188);
-  color: rgb(142, 191, 188);
+  border-bottom: solid 3px #6462cb;
+  color: #6462cb;
 }
 
 .login-box-form {
@@ -71,8 +71,8 @@ a {
 .login-input {
   width: 90%;
   height: 3rem;
-  background-color: rgb(228, 227, 227);
   border: none;
+  background-color: rgb(231, 231, 231);
   border-radius: 5px;
   padding-left: 1rem;
 }
@@ -81,7 +81,7 @@ a {
   width: 90%;
   height: 3rem;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
 }
 
@@ -108,8 +108,15 @@ a {
   width: 100%;
   height: 10%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  flex-direction: column;
+}
+
+.login-box-kakao-naver > div {
+  padding: 3px;
+  width: 90%;
+  box-shadow: 0px 5px 5px rgb(228, 228, 228);
 }
 
 .login-box-kakao-naver img {
@@ -131,7 +138,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(142, 191, 188);
+  color: #6462cb;
   margin-bottom: -15px;
 }
 
@@ -161,16 +168,17 @@ a {
 
 .signup-box-signup-button {
   height: 70%;
-  border-bottom: solid 3px rgb(142, 191, 188);
+  border-bottom: solid 3px #6462cb;
+  color: #6462cb;
 }
 
 .signup-box-signup-button a {
-  color: rgb(142, 191, 188);
+  color: #6462cb;
 }
 
 .signup-box input {
   margin: 0.5rem;
-  background-color: rgb(228, 227, 227);
+  background-color: rgb(230, 230, 230);
   border: none;
   border-radius: 5px;
   padding-left: 0.5rem;
@@ -181,7 +189,7 @@ a {
   border-radius: 5px;
   width: 20%;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
 }
 
@@ -190,7 +198,7 @@ a {
   width: 95%;
   height: 2.5rem;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
   border-radius: 5px;
 }
@@ -198,7 +206,7 @@ a {
 input:focus {
   outline-style: solid;
   outline-width: 3px;
-  outline-color: rgb(142, 191, 188);
+  outline-color: #6462cb;
 }
 
 .mypage-find {
@@ -209,13 +217,13 @@ input:focus {
 .mypage-find p {
   text-align: center;
   font-size: 2rem;
-  color: rgb(142, 191, 188);
+  color: #6462cb;
 }
 
 .mypage-find input {
   width: 25rem;
   height: 3rem;
-  border: solid 2px rgb(142, 191, 188);
+  border: solid 2px #6462cb;
   border-radius: 5px;
 }
 
@@ -224,7 +232,7 @@ input:focus {
   width: 12rem;
   height: 3rem;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
   border-radius: 5px;
 }/*# sourceMappingURL=login.css.map */

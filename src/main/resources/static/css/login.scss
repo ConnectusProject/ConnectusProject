@@ -1,5 +1,5 @@
-$grey : rgb(228, 227, 227);
-$color : rgb(142,191,188);
+$color : #6462cb;
+$fontColor :#cddfe0;
 
 a {
     text-decoration: none;
@@ -13,7 +13,7 @@ a {
 }
 
 .login-container {
-    z-index: 3;
+    z-index: 11;
     position:absolute;
     top : 0%;
     width : 100vw;
@@ -26,19 +26,20 @@ a {
 .login-box {
     background-color: white;
     width : 25rem;
-    height : 25rem;
+    height : 30rem;
     border-radius: 10px;
 }
 
 .login-box-title {
     width : 100%;
     @include flexbox(center, center);
-    color : $color;
+    
 }
 
 .login-box-title span {
     margin:1rem;
     font-size: 2rem;
+    color : $color;
 }
 
 .login-box-sign-box {
@@ -70,8 +71,8 @@ a {
 .login-input {
     width : 90%;
     height : 3rem;
-    background-color: $grey;
     border : none;
+    background-color: rgb(231, 231, 231);
     border-radius: 5px;
     padding-left : 1rem;
 }
@@ -104,7 +105,14 @@ a {
     margin-top : 1rem;
     width : 100%;
     height : 10%;
-    @include flexbox(center, center);
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.login-box-kakao-naver > div {
+    padding : 3px;
+    width : 90%;
+    box-shadow: 0px 5px 5px rgb(228, 228, 228);
 }
 
 .login-box-kakao-naver img{
@@ -151,6 +159,7 @@ a {
 .signup-box-signup-button {
     height : 70%;
     border-bottom : solid 3px $color;
+    color : $color;
 }
 
 .signup-box-signup-button a{
@@ -159,7 +168,7 @@ a {
 
 .signup-box input {
     margin : 0.5rem;
-    background-color: $grey;
+    background-color: rgb(230, 230, 230);
     border : none;
     border-radius: 5px;
     padding-left : 0.5rem;

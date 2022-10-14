@@ -12,6 +12,13 @@ public class ChatRoom {
 	private Timestamp createdDate;
 	private String pr_title;
 	private String img1;
+	private String img2;
+	private String img3;
+	private String img4;
+	private String img5;
+	private String img6;
+	private int chatReadBuy;
+	private int chatReadSell;
 	//not in DB
 	private String content;
 	private String sendTime;
@@ -29,8 +36,9 @@ public class ChatRoom {
 				+ sendTime + ", senderId=" + senderId + ", pr_title=" + pr_title + ", img1=" + img1 + "]";
 	}
 
+	 
 	public ChatRoom(int id, int pr_id, String sellerId, String buyerId, String fileName,
-			Timestamp createdDate, String pr_title, String img1) {
+			Timestamp createdDate, String pr_title, String img1, String img2, String img3, String img4, String img5, String img6, int chatReadBuy, int chatReadSell) {
 		super();
 		this.id = id;
 		this.pr_id = pr_id;
@@ -40,6 +48,33 @@ public class ChatRoom {
 		this.createdDate = createdDate;
 		this.pr_title = pr_title;
 		this.img1 = img1; 
+		this.img2 = img2; 
+		this.img3 = img3; 
+		this.img4 = img4; 
+		this.img5 = img5; 
+		this.img6 = img6; 
+		this.chatReadBuy = chatReadBuy;
+		this.chatReadSell = chatReadSell;
+	}
+	
+	
+	
+	
+
+	public int getChatReadBuy() {
+		return chatReadBuy;
+	}
+
+	public void setChatReadBuy(int chatReadBuy) {
+		this.chatReadBuy = chatReadBuy;
+	}
+
+	public int getChatReadSell() {
+		return chatReadSell;
+	}
+
+	public void setChatReadSell(int chatReadSell) {
+		this.chatReadSell = chatReadSell;
 	}
 
 	public ChatRoom() {
@@ -143,6 +178,48 @@ public class ChatRoom {
 	public void setPr_title(String pr_title) {
 		this.pr_title = pr_title;
 	}
+
+	public String getImg2() {
+		return img2;
+	}
+
+	public void setImg2(String img2) {
+		this.img2 = img2;
+	}
+
+	public String getImg3() {
+		return img3;
+	}
+
+	public void setImg3(String img3) {
+		this.img3 = img3;
+	}
+
+	public String getImg4() {
+		return img4;
+	}
+
+	public void setImg4(String img4) {
+		this.img4 = img4;
+	}
+
+	public String getImg5() {
+		return img5;
+	}
+
+	public void setImg5(String img5) {
+		this.img5 = img5;
+	}
+
+	public String getImg6() {
+		return img6;
+	}
+
+	public void setImg6(String img6) {
+		this.img6 = img6;
+	}
+	
+	
 	
 	
 	

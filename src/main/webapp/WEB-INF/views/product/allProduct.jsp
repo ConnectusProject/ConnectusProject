@@ -27,6 +27,9 @@
             let smartRegion = '${smartRegion}'
             let smartStartDate = '${smartStartDate}'
             let smartEndDate = '${smartEndDate}'
+            let distanceKm = '${distanceKm}'; 
+            let smartPriceMin = '${smartPriceMin}'; 
+            let smartPriceMax = '${smartPriceMax}'; 
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -42,7 +45,17 @@
                         type: "POST",
                         url: "/allproduct/ajax/" + searchType,
                         dataType: "json",
-                        data: {'scrollCount':scrollCount, 'item':item, 'search':search, 'smartTitle' : smartTitle, 'smartRegion' : smartRegion, 'smartStartDate' : smartStartDate, 'smartEndDate' : smartEndDate },
+                        data: { 'scrollCount':scrollCount, 
+                     		   	'item':item, 
+                        		'search':search, 
+                        		'smartTitle' : smartTitle, 
+                        		'smartRegion' : smartRegion, 
+                        		'smartStartDate' : smartStartDate, 
+                        		'smartEndDate' : smartEndDate,
+                        		'distanceKm' : distanceKm,
+                        		'smartPriceMin' : smartPriceMin, 
+                        		'smartPriceMax' : smartPriceMax
+                        		},
 
                         success: function (resp) {
                         	list = resp; 
@@ -91,15 +104,16 @@ $.each(list, function(i, product){
                         	+ '<span class="reserved" style=color:red>' + reservedNowImg + '</span>'
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
                             + '<div class="product-item-date">' + dateDiffShow + '</div>'
-                            + '<div class="product-item-location">' + product.boardRegion + '</div>'
-                            + '<div class="product-item-owner">' + product.userId + '</div>'
+                            + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
+                            + '<div class="product-item-price">1일가격 : ' + product.price + '원</div>'
+                            + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
                             + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'
     ); //append 
     
     // img 가져오기 
     if(product.img1 != ""){
-		$("#product-item-img" + product.id).html('<img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '">');
+		$("#product-item-img" + product.id).html('<a href="/product/' + product.id + '"><img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '"></a>');
 	}
     
 	// append 한 품목에도 찜 효과 적용     
@@ -155,10 +169,10 @@ $.each(list, function(i, product){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
-            	}else if(Regionvalue=='주변 10 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='100'>");
-            	}else if(Regionvalue=='주변 20 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='300'>");
+            	}else if(Regionvalue=='가까운 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='5'>");
+            	}else if(Regionvalue=='먼 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='15'>");
             	}
             });
             
@@ -236,22 +250,23 @@ $.each(list, function(i, product){
 
             <div class="allproduct-container">
 
-
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
-                키워드 : <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()">
-                렌탈시작 : <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                렌탈종료 : <input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
-                동네 : <select id="regionSelect">
+                <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
+                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
+                시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
-                <option>주변 10 동네</option>
-                <option>주변 20 동네</option>
+                <option>가까운 동네</option>
+                <option>먼 동네</option>
                 <option>동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
-                <input class="smart-search-button" type="submit" value="스마트검색">
+                <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 <div class="smart-search-result-box">
 
@@ -262,12 +277,12 @@ $.each(list, function(i, product){
                  <div class="zzimproduct-list-container">
 
                     <div  class="zzimproduct-list-box">
-                    <p class="zzim-title" style="width : 100%;">찜 리스트</p>
+                    <p class="zzim-title">찜 리스트</p>
 				    <span id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product">
                         <a href="http://localhost:8090/product/${zzimProduct.id}">
-                            <span id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
                         </a>
                             </div>
                         </c:forEach>
@@ -339,9 +354,9 @@ $.each(list, function(i, product){
                             <!-- 대표 이미지 -->
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
-    
+                                    <a href="/product/${product.id}">
                                     <img alt="사진이 없어요" width=100% height=60%
-                                        src="http://localhost:8090/upload/${product.img1}">
+                                        src="http://localhost:8090/upload/${product.img1}"></a>
                                 </div>
                             </c:if>
 
@@ -352,13 +367,14 @@ $.each(list, function(i, product){
                                 </div>
                             </c:if>
 
-                            <span class="reserved" style=color:red>${reservedNowImg} </span>
+                             <span class="reserved" style=color:red>${reservedNowImg} </span>
                             <div class="product-item-title"> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
-                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}
-                            </div>
-                            <div class="product-item-location">${product.boardRegion}</div>
-                            <div class="product-item-owner">${product.userId}</div>
+                            <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
+                            
+                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt="">${product.boardRegion} </div>
+                            <div class="product-item-price">1일가격 : ${product.price}원</div>
+                            <div class="product-item-owner close">${product.userId}</div>
                             <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
 
@@ -373,6 +389,16 @@ $.each(list, function(i, product){
         </div>
     </div>
     
+    <script>
+       
+
+
+
+ 
+    </script>
+
+
+
 
 
     <script src="${path}/js/allproduct.js"></script>

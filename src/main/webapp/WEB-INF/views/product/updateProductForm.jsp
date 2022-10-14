@@ -175,7 +175,7 @@ $(document).ready(function(){
 </script>
 </head>
 
-<>
+
 
 	<div class="main-container">
         <!-- header-section -->
@@ -226,12 +226,13 @@ $(document).ready(function(){
 </c:if>
 </div> -->
 
-<div id="count">${count}</div>
+<div id="count" class="close">${count}</div>
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 
-<input type="text" name="title" value="${updateProduct.title}" > 
-<textarea name="contents" rows="15" cols="60">${updateProduct.contents}</textarea> 
+<input type="text" name="title" value="${updateProduct.title}" required> 
+<textarea name="contents" rows="15" cols="60" required>${updateProduct.contents}</textarea> 
+<input type="number" name="price" value="${updateProduct.price}" required step="500">	
 <input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 

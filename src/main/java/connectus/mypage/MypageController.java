@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,9 @@ public class MypageController {
 	HttpSession session;
 	
 	ModelAndView mav = new ModelAndView();
+	
+	@Autowired
+	private BCryptPasswordEncoder encoderPassword;
 	
 	//마이페이지
 	@GetMapping("/mypage")

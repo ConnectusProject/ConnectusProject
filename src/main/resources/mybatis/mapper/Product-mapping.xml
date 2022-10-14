@@ -19,8 +19,8 @@
 	</select>
 	
 	<insert id="insertProduct">
-		insert into product (userid, title, contents, boardRegion, createdAt, img1, img2, img3, img4, img5, img6) 
-		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6})
+		insert into product (userid, title, contents, boardRegion, createdAt, price, img1, img2, img3, img4, img5, img6) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{price}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5},#{img6})
 	</insert>
 	
 	<!-- 예약 리스트 -->
@@ -35,7 +35,7 @@
 
 
 	<update id="updateProduct">
-		update product set title=#{title}, contents=#{contents},
+		update product set title=#{title}, contents=#{contents}, price=#{price},
 		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6} 
 		where id = #{id}
 	</update>
@@ -82,21 +82,29 @@
 	<select id="searchByTitle_Region" resultType="Integer">
 	select product.id from product where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
+	and product.price &gt; #{minPrice} -1
+	and product.price &lt; #{maxPrice} +1
 	order by id desc  
 	limit #{limit}, 20
+	</select>
+	
+	<!-- 가까운 동네 검색 -->
+	<select id="NoLimitTitle_Region" resultType="Integer">
+	select product.id from product 
+	where product.title like concat('%', #{title}, '%')
+	and product.boardRegion like concat('%', #{region}, '%')
+	and product.price &gt; #{minPrice} -1
+	and product.price &lt; #{maxPrice} +1
+	order by id desc  
 	</select>
 	
 	<select id="searchByTitle_Region_MemberId" resultType="Integer">
-	select product.id from product inner join members on product.userid = members.userid where product.title like concat('%', #{title}, '%')
+	select product.id from product inner join members on product.userid = members.userid 
+	where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
 	and members.id = #{id}
-	order by id desc  
-	limit #{limit}, 20
+	order by product.id desc  
 	</select>
-	
-	
-	
-	
 	
 	
 	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->
@@ -132,6 +140,11 @@ and
     (6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
     -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))); 
 	</select> 
+	
+	
+	<select id="getCoords" resultType="String">
+	select coords from members where userid = #{userId} 
+	</select>
 	 
 	 
 

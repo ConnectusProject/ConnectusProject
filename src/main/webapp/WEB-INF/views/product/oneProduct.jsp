@@ -313,6 +313,7 @@
                         <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
+                        <span  class="detail-title-price">1일 ${oneProduct.price}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
@@ -347,6 +348,12 @@
                                         <input type="hidden" name="pr_id" value="${oneProduct.id}" />
                                         <input type="hidden" name="pr_title" value="${oneProduct.title}" />
                                         <input type="hidden" name="img1" value="${oneProduct.img1}" />
+                                        <input type="hidden" name="img2" value="${oneProduct.img2}" />
+                                        <input type="hidden" name="img3" value="${oneProduct.img3}" />
+                                        <input type="hidden" name="img4" value="${oneProduct.img4}" />
+                                        <input type="hidden" name="img5" value="${oneProduct.img5}" />
+                                        <input type="hidden" name="img6" value="${oneProduct.img6}" />
+                                        
                                         <button class="chat-on-button" id="btn_chat">채팅하기</button>
                                     </a>
                                 </form>
@@ -381,9 +388,9 @@
                 
                 <table class="reserved-connect">
     
-                    <tr>
+                    <tr class="reserved-table-title">
                         <th>번호</th>
-                        <th>예약시작</th>
+                        <th readonly>예약시작</th>
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
@@ -408,7 +415,7 @@
                     
                     
                     
-                        <tr id="reservTR${reserv.id}">
+                        <tr id="reservTR${reserv.id}" class="reserved-table-item">
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
@@ -428,6 +435,11 @@
         </div>
         
 </div> 
+
+<!-- 카카오맵 위치정보 API --> 
+<div>
+<jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+</div>
         
             <!-- 예약 테이블 노출 설정 -->
     <script>
@@ -443,6 +455,18 @@
         reserveOffButton.addEventListener('click', function(){
             reserveBox.classList.add('close');
         })
+
+        let reservedTableItem = document.querySelectorAll('.reserved-table-item')
+
+        for(let i = 0; i< reservedTableItem.length; i++) {
+            if(i%2 == 0){
+                reservedTableItem[i].style.backgroundColor = "rgb(206, 206, 206)";
+            }else{
+                reservedTableItem[i].style.backgroundColor = "rgb(243, 243, 243)";
+            }
+        }
+
+
 
     </script>
 

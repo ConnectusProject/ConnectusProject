@@ -12,19 +12,31 @@ a {
 
 .header-search-input {
   width: 20vw;
-  border: solid 2px rgb(142, 191, 188);
+  border: solid 2px #6462cb;
   border-radius: 5px;
 }
 
 .header-search-input:focus {
   outline-style: solid;
-  outline-color: rgb(142, 191, 188);
+  outline-color: #6462cb;
   outline-width: 2px;
+}
+
+.header-search-input {
+  width: 10vw;
+  border: solid 2px #6462cb;
+  border-radius: 5px;
+  height: 2.4rem;
+  transition: all 0.5s;
+}
+
+.header-search-input:focus {
+  width: 20vw;
 }
 
 .header-search-button {
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
 }
 
@@ -40,7 +52,7 @@ a {
 }
 
 .mypage-box-title-box {
-  border-bottom: solid 2px rgb(142, 191, 188);
+  border-bottom: solid 2px #6462cb;
   width: 100%;
   height: 3rem;
   display: flex;
@@ -82,7 +94,7 @@ a {
 .mypage-info-button {
   width: 30%;
   height: 100%;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   border: none;
   border-radius: 5px;
   color: white;
@@ -118,7 +130,7 @@ a {
 
 .myproduct-box-table-title {
   width: 100%;
-  border-bottom: solid 2px rgb(142, 191, 188);
+  border-bottom: solid 2px #6462cb;
   text-align: center;
 }
 
@@ -138,7 +150,7 @@ a {
 
 .form-group > input {
   width: 100%;
-  border: 2px solid rgb(142, 191, 188);
+  border: 2px solid #6462cb;
   height: 3rem;
   margin-bottom: 0.5rem;
   border-radius: 7px;
@@ -155,13 +167,13 @@ a {
 .delete-button-box input {
   width: 45%;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   border-radius: 7px;
   color: white;
 }
 
 .show {
-  border-top: 2px solid rgb(142, 191, 188);
+  border-top: 2px solid #6462cb;
 }
 
 .close {

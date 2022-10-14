@@ -8,7 +8,7 @@
 .chatTitle {
   width: 100%;
   height: 5rem;
-  color: rgb(142, 191, 188);
+  color: #6462cb;
   font-size: 3rem;
 }
 
@@ -61,27 +61,75 @@
   background-color: green;
 }
 
+.chatroom-picture-box {
+  padding: 5px;
+  margin-left: 5rem;
+  width: 35%;
+  height: 6rem;
+  background-color: rgb(236, 236, 236);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+}
+
+.chatroom-picture-box p {
+  position: absolute;
+  top: -1.5rem;
+  font-weight: 700;
+}
+
+.roomPictureS {
+  width: 16%;
+  height: 100%;
+  margin: 3px;
+}
+
+.roomPictureS:hover {
+  border: solid 3px #6462cb;
+}
+
 .chatroom-container {
-  width: 40%;
+  position: relative;
+  margin-left: 5rem;
+  width: 35%;
   display: flex;
   justify-content: left;
   align-items: center;
   flex-direction: column;
-  background-color: rgb(142, 191, 188);
+  background-color: rgb(215, 233, 245);
   border-radius: 5px;
 }
 
+.chatroom-picture-box2 {
+  position: absolute;
+  width: 50rem;
+  height: 50rem;
+  top: 0%;
+  right: -55rem;
+  padding: 10%;
+}
+
+.roomPictureB {
+  width: 80%;
+  height: 80%;
+  padding: 1rem;
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 3px 5px rgb(209, 209, 209);
+}
+
 .chatroom-title {
-  width: 95%;
+  width: 100%;
   height: 3rem;
   padding-top: 5px;
-  border-bottom: rgb(235, 235, 235) solid 2px;
   font-size: 1.5rem;
-  color: white;
+  color: black;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background-color: rgb(187, 211, 228);
+  box-shadow: 0px 3px 5px rgb(187, 211, 228);
 }
 
 .chatroom-content-box {
@@ -114,6 +162,7 @@
   width: 100%;
   position: relative;
   display: block;
+  margin: 0;
 }
 
 .message-id {
@@ -132,7 +181,7 @@
   max-width: 40%;
   word-break: normal;
   border: none;
-  background-color: rgb(183, 226, 212);
+  background-color: #9897c7;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -145,25 +194,29 @@
 .chatroom-content-input-box {
   width: 100%;
   height: 4rem;
-  background-color: rgb(90, 138, 134);
+  background-color: rgb(224, 224, 224);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0px -5px 5px rgb(73, 112, 109);
+  box-shadow: 0px -5px 10px rgb(211, 211, 211);
 }
 
 .chatroom-input {
   width: 70%;
   height: 60%;
-  border: rgb(56, 88, 86) solid 2px;
   border-radius: 5px;
+  border: none;
 }
 
 .chatroom-input-button {
   width: 100%;
   height: 100%;
   border: none;
-  background-color: rgb(142, 191, 188);
+  background-color: #6462cb;
   color: white;
   border-radius: 5px;
+}
+
+.close {
+  display: none;
 }/*# sourceMappingURL=chat.css.map */

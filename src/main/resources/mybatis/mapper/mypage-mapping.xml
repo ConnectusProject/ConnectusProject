@@ -37,4 +37,8 @@
 <select id="allMyBoard" resultType="productdto">
 		select * from product where userid=#{userid} order by createdAt desc
 </select>
+
+<select id="allMyBoard2" resultType="productdto">
+		select * from Board where writer=#{userid} order by writingtime desc
+</select>
 </mapper>
