@@ -189,7 +189,7 @@ public class ProductController {
 				List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(),smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax(), limit);
 				
 				
-				if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+				if(distanceKm!=null && (distanceKm.equals("10") || distanceKm.equals("30"))) {
 					return null;
 				}
 				
@@ -288,7 +288,7 @@ public class ProductController {
 
 		// 거리 
 		ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
-			if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+			if(distanceKm!=null && (distanceKm.equals("10") || distanceKm.equals("30"))) {
 				int intKm = Integer.parseInt(distanceKm);
 				
 				titleRegion = productDAO.NoLimitTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax());
