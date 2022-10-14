@@ -5,8 +5,8 @@
   font-style: normal;
 }
 @font-face {
-  font-family: "twayair";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff") format("woff");
+  font-family: "ImcreSoojin";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -72,14 +72,10 @@ li {
 }
 
 .header-menu-logo-box {
-  width: 20%;
+  width: 25rem;
   display: flex;
   justify-content: left;
   align-items: center;
-}
-
-.header-menu-logo-box span {
-  font-size: 1.7rem;
 }
 
 .header-menu-logo-box img {
@@ -88,11 +84,13 @@ li {
 }
 
 .header-menu-title {
-  margin-left: 5rem;
+  margin-left: 3rem;
+  width: 20rem;
+  font-size: 2rem;
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
-  font-family: "twayair";
+  font-family: "ImcreSoojin";
 }
 
 .header-menu-title img {
@@ -107,9 +105,15 @@ li {
 }
 
 .header-search-input {
-  width: 20vw;
+  width: 10vw;
   border: solid 2px #6462cb;
   border-radius: 5px;
+  height: 2.4rem;
+  transition: all 0.5s;
+}
+
+.header-search-input:focus {
+  width: 20vw;
 }
 
 .header-search-input:focus {
@@ -129,12 +133,14 @@ li {
 }
 
 .header-search-box-inner {
-  width: 30rem;
-  margin: 0;
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: none;
 }
 
 .header-sign-box {
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -142,14 +148,13 @@ li {
 
 .header-sign-box a {
   color: #cddfe0;
-  font-size: 1.2rem;
+  font-size: 0.8vw;
   margin-right: 1rem;
   width: 8rem;
   height: 2rem;
   border: none;
-  background-color: #6462cb;
   border-radius: 50px;
-  color: #cddfe0;
+  color: #6462cb;
   box-shadow: 0px 3px 5px rgb(204, 204, 204);
   display: flex;
   justify-content: center;

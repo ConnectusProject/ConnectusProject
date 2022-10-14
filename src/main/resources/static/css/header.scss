@@ -14,8 +14,8 @@ $fontColor :#cddfe0;
 }
 
 @font-face {
-    font-family: 'twayair';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-family: 'ImcreSoojin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -88,13 +88,10 @@ li {
 }
 
 .header-menu-logo-box {
-    width : 20%;
+    width : 25rem;
     @include flexbox(left, center);
 }
 
-.header-menu-logo-box span {
-    font-size: 1.7rem;
-}
 
 .header-menu-logo-box img {
     width : 2rem;
@@ -102,9 +99,11 @@ li {
 }
 
 .header-menu-title {
-    margin-left : 5rem;
-    @include flexbox(right, center );
-    font-family: 'twayair';
+    margin-left : 3rem;
+    width : 20rem;
+    font-size : 2rem;
+    @include flexbox( center, center );
+    font-family: 'ImcreSoojin';
 }
 
 .header-menu-title img {
@@ -117,9 +116,15 @@ li {
 }
 
 .header-search-input {
-    width : 20vw;
+    width : 10vw;
     border : solid 2px $color;
     border-radius: 5px;
+    height : 2.4rem;
+    transition: all 0.5s;
+}
+
+.header-search-input:focus {
+    width : 20vw;
 }
 .header-search-input:focus {
     outline-style: solid;
@@ -138,25 +143,26 @@ li {
 }
 
 .header-search-box-inner {
-    width : 30rem;
-    margin : 0;
+    width : 30vw;
+    @include flexbox(center, none);
+
 }
 
 .header-sign-box {
-    width : 20%;
+    width : 30%;
     @include flexbox(right, center);
+
 }
 
 .header-sign-box a {
     color : $fontColor;
-    font-size: 1.2rem;
+    font-size: 0.8vw;
     margin-right : 1rem;
     width : 8rem;
     height : 2rem;
     border : none;
-    background-color: $color;
     border-radius: 50px;
-    color : $fontColor;
+    color : $color;
     box-shadow: 0px 3px 5px  rgb(204, 204, 204);
     @include flexbox(center, center);
 }

@@ -136,7 +136,7 @@
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
-        			<div class="test2 close" id="noticeinfo" style="width : 100px; height:500px; background-color: white; margin-top : 50px; position : absolute;  ">
+        			<div class="test2 close" id="noticeinfo">
           
             		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
             								
@@ -145,7 +145,7 @@
     			
     			
     			<div>
-    			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:yellow></span></a>
+    			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
 				
 				
