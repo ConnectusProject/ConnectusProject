@@ -169,10 +169,10 @@ $.each(list, function(i, product){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
-            	}else if(Regionvalue=='주변 10 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='100'>");
-            	}else if(Regionvalue=='주변 20 동네'){
-            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='300'>");
+            	}else if(Regionvalue=='가까운 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='10'>");
+            	}else if(Regionvalue=='먼 동네'){
+            		$("#zzimList").html("<input type='hidden' name='distanceKm' value='30'>");
             	}
             });
             
@@ -254,15 +254,15 @@ $.each(list, function(i, product){
                 <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="5000">
-                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="5000">
+                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
+                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
                 시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
-                <option>주변 10 동네</option>
-                <option>주변 20 동네</option>
+                <option>가까운 동네</option>
+                <option>먼 동네</option>
                 <option>동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
