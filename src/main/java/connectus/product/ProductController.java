@@ -132,14 +132,12 @@ public class ProductController {
 					checkReserved = 0;
 				}
 			} // inner for 
-		
 		} //  outer for 
 		
 		// 상품개수 
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
-
 		
 		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
@@ -179,51 +177,21 @@ public class ProductController {
 				list = productDAO.neighborList(region, limit);
 			}
 			else if (searchType==4) {
-				// 제목,지역으로 검색한 상품리스트
-				List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit);
-				if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+				
+				// 가격 세팅 
+				if(smartSearchDTO.getSmartPriceMax()=="") {
+					smartSearchDTO.setSmartPriceMax("100000000");  }
+				if(smartSearchDTO.getSmartPriceMin()=="") {
+					smartSearchDTO.setSmartPriceMin("0"); }
+				
+				
+				// 제목,지역,가격 으로 검색한 상품리스트
+				List<Integer> titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(),smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax(), limit);
+				
+				
+				if(distanceKm!=null && (distanceKm.equals("10") || distanceKm.equals("30"))) {
 					return null;
 				}
-
-				
-//				// 거리 AJAX 처리 
-//				ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
-//					if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
-//						int intKm = Integer.parseInt(distanceKm);
-//						System.out.println("받아온 거리"+intKm);
-//						
-//							for(int i=0; i<titleRegion.size(); i++) {
-//								Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
-//								if(innerDistanceId>0 && !innerDistanceIdList.contains(innerDistanceId)) {
-//								innerDistanceIdList.add(innerDistanceId);
-//								}
-//							}
-//							
-//							for(int a = 0; a<innerDistanceIdList.size(); a++) {
-//								System.out.println("거리통과한 멤버id : "+innerDistanceIdList.get(a));
-//							}
-//							
-//							titleRegion.clear();
-//							
-//							for(int j = 0; j<innerDistanceIdList.size(); j++) {
-//								List<Integer> eachMemberProduct = productDAO.searchByTitle_Region_MemberId(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit, innerDistanceIdList.get(j));
-//								System.out.println("eachmb사이즈 : " + eachMemberProduct.size());
-//								
-//								for(int b = 0; b<eachMemberProduct.size(); b++) {
-//									System.out.println( innerDistanceIdList.get(j)  + "의 상품번호 : "+eachMemberProduct.get(b));
-//								
-//									if(titleRegion.size()<20) {
-//									titleRegion.add(eachMemberProduct.get(b));
-//									}
-//								}
-//							}
-//							Collections.sort(titleRegion);
-//
-//							for(int i = 0; i< titleRegion.size(); i++) {
-//								
-//								System.out.println(titleRegion.get(i));
-//							}
-//						}
 				
 				ArrayList<Integer> selectedList = new ArrayList<>();
 				
@@ -285,14 +253,12 @@ public class ProductController {
 						checkReserved = 0;
 					}
 				} // inner for 
-			
 			} //  outer for 
-			
 			return list;
 		}
 	
-	
 
+		
 	// 스마트검색 
 	@PostMapping("/smartSearch")
 	public String smartSearch(SmartSearchDTO smartSearchDTO, Model model, HttpSession session, String distanceKm) throws Exception {
@@ -306,17 +272,26 @@ public class ProductController {
 			smartSearchDTO.setSmartRegion("동");
 		}
 		
-		// 제목,지역으로 검색한 상품리스트
+		// 제목,지역, 가격으로 검색한 상품리스트
 		List<Integer> titleRegion = new ArrayList<>();
+
+		
+		// 가격 세팅 
+		if(smartSearchDTO.getSmartPriceMax()=="") {
+			smartSearchDTO.setSmartPriceMax("100000000");  }
+		if(smartSearchDTO.getSmartPriceMin()=="") {
+			smartSearchDTO.setSmartPriceMin("0"); }
+		
+		
 		if(distanceKm==null) {
-				titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), 0);}
+				titleRegion = productDAO.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax(), 0);}
 
 		// 거리 
 		ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
-			if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+			if(distanceKm!=null && (distanceKm.equals("10") || distanceKm.equals("30"))) {
 				int intKm = Integer.parseInt(distanceKm);
 				
-				titleRegion = productDAO.NoLimitTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion());
+				titleRegion = productDAO.NoLimitTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax());
 				
 				for(int i=0; i<titleRegion.size(); i++) {
 						Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
@@ -380,6 +355,8 @@ public class ProductController {
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productDAO.getZzimProducts(sessionid);
 		
+		model.addAttribute("smartPriceMin", smartSearchDTO.getSmartPriceMin());
+		model.addAttribute("smartPriceMax", smartSearchDTO.getSmartPriceMax());
 		model.addAttribute("smartTitle", smartSearchDTO.getSmartTitle());
 		model.addAttribute("smartRegion", smartSearchDTO.getSmartRegion());
 		model.addAttribute("smartStartDate", smartSearchDTO.getSmartStartDate());
@@ -596,6 +573,46 @@ public class ProductController {
 		}
 
 	
+		
+		////				// 거리 AJAX 처리 
+//		ArrayList<Integer> innerDistanceIdList = new ArrayList<>();
+//		if(distanceKm!=null && (distanceKm.equals("100") || distanceKm.equals("300"))) {
+//			int intKm = Integer.parseInt(distanceKm);
+//			System.out.println("받아온 거리"+intKm);
+//			
+//				for(int i=0; i<titleRegion.size(); i++) {
+//					Integer innerDistanceId = productDAO.searchByDistance(sessionid, productDAO.oneProduct(titleRegion.get(i)).getUserId(), intKm );
+//					if(innerDistanceId>0 && !innerDistanceIdList.contains(innerDistanceId)) {
+//					innerDistanceIdList.add(innerDistanceId);
+//					}
+//				}
+//				
+//				for(int a = 0; a<innerDistanceIdList.size(); a++) {
+//					System.out.println("거리통과한 멤버id : "+innerDistanceIdList.get(a));
+//				}
+//				
+//				titleRegion.clear();
+//				
+//				for(int j = 0; j<innerDistanceIdList.size(); j++) {
+//					List<Integer> eachMemberProduct = productDAO.searchByTitle_Region_MemberId(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(), limit, innerDistanceIdList.get(j));
+//					System.out.println("eachmb사이즈 : " + eachMemberProduct.size());
+//					
+//					for(int b = 0; b<eachMemberProduct.size(); b++) {
+//						System.out.println( innerDistanceIdList.get(j)  + "의 상품번호 : "+eachMemberProduct.get(b));
+//					
+//						if(titleRegion.size()<20) {
+//						titleRegion.add(eachMemberProduct.get(b));
+//						}
+//					}
+//				}
+//				Collections.sort(titleRegion);
+//
+//				for(int i = 0; i< titleRegion.size(); i++) {
+//					
+//					System.out.println(titleRegion.get(i));
+//				}
+//			}
+
 
 	//
 }

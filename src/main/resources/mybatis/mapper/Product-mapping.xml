@@ -82,18 +82,25 @@
 	<select id="searchByTitle_Region" resultType="Integer">
 	select product.id from product where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
+	and product.price &gt; #{minPrice} -1
+	and product.price &lt; #{maxPrice} +1
 	order by id desc  
 	limit #{limit}, 20
 	</select>
 	
+	<!-- 가까운 동네 검색 -->
 	<select id="NoLimitTitle_Region" resultType="Integer">
-	select product.id from product where product.title like concat('%', #{title}, '%')
+	select product.id from product 
+	where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
+	and product.price &gt; #{minPrice} -1
+	and product.price &lt; #{maxPrice} +1
 	order by id desc  
 	</select>
 	
 	<select id="searchByTitle_Region_MemberId" resultType="Integer">
-	select product.id from product inner join members on product.userid = members.userid where product.title like concat('%', #{title}, '%')
+	select product.id from product inner join members on product.userid = members.userid 
+	where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
 	and members.id = #{id}
 	order by product.id desc  
