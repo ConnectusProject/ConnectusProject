@@ -245,7 +245,7 @@ $fontColor :#cddfe0;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 600;
-    @include itemPosition(none, none , 28%, 3%)
+    @include itemPosition(none, none , 30%, 3%)
 } 
 
 .product-item-title a {
@@ -260,15 +260,19 @@ $fontColor :#cddfe0;
 
 .product-item-date {
     font-size: 0.9rem;
-    
-    @include itemPosition(none, none , 4%, 3%)
+    @include itemPosition(none, none , 12%, 3%)
 } 
 
 .product-item-location {
     font-size: 0.9rem;
-    @include itemPosition(none, none , 15%, 3%);
+    @include itemPosition(none, none , 21%, 3%);
     
 }
+
+.product-item-price {
+    font-size: 0.9rem;
+    @include itemPosition(none, none , 3%, 3%)
+} 
 
 .product-item-location img{
     width : 1rem;
@@ -372,6 +376,12 @@ $fontColor :#cddfe0;
     position : absolute;
     top : 28%;
     right : 3%;
+}
+
+.detail-title-price {
+    position : absolute;
+    top : 20%;
+    right : 50%;
 }
 
 .product-detail-text {

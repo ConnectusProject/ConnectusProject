@@ -246,7 +246,7 @@
   position: absolute;
   top: none;
   right: none;
-  bottom: 28%;
+  bottom: 30%;
   left: 3%;
 }
 
@@ -268,7 +268,7 @@
   position: absolute;
   top: none;
   right: none;
-  bottom: 4%;
+  bottom: 12%;
   left: 3%;
 }
 
@@ -277,7 +277,16 @@
   position: absolute;
   top: none;
   right: none;
-  bottom: 15%;
+  bottom: 21%;
+  left: 3%;
+}
+
+.product-item-price {
+  font-size: 0.9rem;
+  position: absolute;
+  top: none;
+  right: none;
+  bottom: 3%;
   left: 3%;
 }
 
@@ -390,6 +399,12 @@
   position: absolute;
   top: 28%;
   right: 3%;
+}
+
+.detail-title-price {
+  position: absolute;
+  top: 20%;
+  right: 50%;
 }
 
 .product-detail-text {

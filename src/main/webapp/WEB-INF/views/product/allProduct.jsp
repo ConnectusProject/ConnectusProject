@@ -365,7 +365,8 @@ $.each(list, function(i, product){
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
                             
-                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt="">${product.boardRegion} 1일가격 : ${product.price}원</div>
+                            <div class="product-item-location"> <img src="${path}/pictures/location.png" alt="">${product.boardRegion} </div>
+                            <div class="product-item-price">1일가격 : ${product.price}원</div>
                             <div class="product-item-owner close">${product.userId}</div>
                             <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
