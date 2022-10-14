@@ -19,21 +19,39 @@
         $(document).ready(function () {
             $("#search_icon").on('click', function () {
                 location.href = "boardContent";
+              
             });
         });
     </script>
     <script>
         //글쓰기 권한 설정
-        $(document).ready(function () {
-            let sessionId = '${sessionScope.sessionid}';
+        
+       /*  function writeLink(){
+             let sessionId = '${sessionScope.sessionid}'; 
+        	document.getElementById("register").addEventListener("click", writeLink);
+        
+        	if (sessionId == null) {
+                window.alert("로그인 먼저 하세요.");
+    	
+   				 }
+         	
+         	 
+        };  */
+         	 
+       		 $(document).ready(function () {
+             	$("#community").on('click', function (e) { 
+             	let sessionId = '${sessionScope.sessionid}'; 	
+                if (sessionId == "") {
+                	e.preventDefault();
+                    alert("로그인 먼저 하세요.");
+        	
+       				 }
 
-            $("#register").on('click', function () {
-                if (sessionid == null) {
-                    e.preventDefault();
-                    alert("로그인 먼저 하세요.")
-                }
+                 }) 
             });
-        });
+        
+        
+        
     </script>
 
 
@@ -92,15 +110,23 @@
                     </select>
                     <input class="list-search-form-input" type="text" name="boardsearch" id="boardsearch">
                     <input class="list-search-form-button" type="submit" value="검색">
-                  
-                    <button class="list-search-form-write-button"id="register" onclick="writeLink()"><a href="boardwrite">글쓰기</a></button>
+                   <!--  <button class="list-search-form-write-button"id="register" onclick="writeLink()"><a href="boardwrite">글쓰기</a></button> -->
+        		<a class="list-search-form-write-button" id="community" href="boardwrite">글쓰기</a>
                 </form>
+        		
+        		
+                
                 <div class="mt-2">
-                    <% int totalcount=(Integer)request.getAttribute("totalboard"); String
-                        url=(String)request.getAttribute("boardUrl"); String
-                        selectedVal=(String)request.getAttribute("SelectedValue"); String
-                        searchedVal=(String)request.getAttribute("SearchedValue"); int totalpage=0; if(totalcount % 3==0){
-                        totalpage=totalcount / 3; } else{ totalpage=totalcount / 3 + 1; } for(int i=1; i <=totalpage ; i++){
+                    <% int totalcount=(Integer)request.getAttribute("totalboard"); 
+                    	String url=(String)request.getAttribute("boardUrl"); 
+                    	String selectedVal=(String)request.getAttribute("SelectedValue"); 
+                    	String searchedVal=(String)request.getAttribute("SearchedValue"); 
+                    	int totalpage=0; if(totalcount % 5==0){
+                        totalpage=totalcount / 5; 
+                        } 
+                    	else{ totalpage=totalcount / 5 + 1; 
+                    	} 
+                    	for(int i=1; i <=totalpage ; i++){
                         %>
                         <a href="<%=url %>?page=<%=i%>&selectOption=<%=selectedVal %>&boardsearch=<%=searchedVal %>"
                             id="pagenumber">
@@ -129,8 +155,8 @@
 
 
     <% List<BoardDTO> boardlist = (List<BoardDTO>)request.getAttribute("boardlst");
-            for(int i = 0;i<boardlist.size();i++){ BoardDTO dto=boardlist.get(i); Cookie kc=new
-                Cookie("cookie"+dto.getSeq(),null); kc.setMaxAge(0); response.addCookie(kc); } %>
+            for(int i = 0;i<boardlist.size();i++){ BoardDTO dto=boardlist.get(i); 
+            Cookie kc=new Cookie("cookie"+dto.getSeq(),null); kc.setMaxAge(0); response.addCookie(kc); } %>
 
 
 

@@ -188,9 +188,9 @@
 	
 	 <script>
 	 //알람버튼 클릭했을때 자동으로 on/off하게 하는 기능
-        document.querySelector('.test').addEventListener('click', function(){
+      /*    document.querySelector('.test').addEventListener('click', function(){
             document.querySelector('.test2').classList.toggle('close');
-        })
+        })  */
 
     </script>
 

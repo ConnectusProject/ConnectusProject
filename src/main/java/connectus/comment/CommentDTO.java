@@ -2,7 +2,8 @@ package connectus.comment;
 
 public class CommentDTO {
 	
-	int seq, secret, comment_seq;
+	private int seq, secret; 
+	private Integer comment_seq;
 	String contents, writer, writingtime;
 	public int getSeq() {
 		return seq;
@@ -16,10 +17,10 @@ public class CommentDTO {
 	public void setSecret(int secret) {
 		this.secret = secret;
 	}
-	public int getComment_seq() {
+	public Integer getComment_seq() {
 		return comment_seq;
 	}
-	public void setComment_seq(int comment_seq) {
+	public void setComment_seq(Integer comment_seq) {
 		this.comment_seq = comment_seq;
 	}
 	public String getContents() {
@@ -45,7 +46,7 @@ public class CommentDTO {
 		return "CommentDTO [seq=" + seq + ", secret=" + secret + ", comment_seq=" + comment_seq + ", contents="
 				+ contents + ", writer=" + writer + ", writingtime=" + writingtime + "]";
 	}
-	public CommentDTO(int seq, int secret, int comment_seq, String contents, String writer, String writingtime) {
+	public CommentDTO(int seq, int secret, Integer comment_seq, String contents, String writer, String writingtime) {
 		super();
 		this.seq = seq;
 		this.secret = secret;
@@ -54,6 +55,10 @@ public class CommentDTO {
 		this.writer = writer;
 		this.writingtime = writingtime;
 	}
+	public CommentDTO() {
+		
+	}
+	
 	
 	
 	

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +20,8 @@ public class CommentController {
 	public Object getAllComment(@PathVariable("boardSeq") int seq) {
 		List<CommentDTO> commentList = commentDAO.getAllComment(seq);
 		
+		System.out.println(commentList.size());
+		
 		return commentList;
 	}
 	
@@ -28,8 +29,16 @@ public class CommentController {
 	@ResponseBody
 	@RequestMapping("/boarddetail/{boardSeq}/insertComment")
 
-	public CommentDTO insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) {
+	public CommentDTO insertComment(@PathVariable("boardSeq") int seq, CommentDTO dto) throws Exception{
+//		int commentseqInt = Integer.parseInt(dto.getComment_seq());
+		
 		commentDAO.insertComment(dto);
+//		System.out.println(dto);
+		//select	-- 여기에서 최신으로 insert.Comment를 해줬을때 조회해줄수 있는 DAO가 나와야한다.
+//		return 
+//		return null;
+//		System.out.println(dto);
+		System.out.println(commentDAO.getComment(dto.getComment_seq()));
 		return commentDAO.getComment(dto.getComment_seq());
 		
 	}

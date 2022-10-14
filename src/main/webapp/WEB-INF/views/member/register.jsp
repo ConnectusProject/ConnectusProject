@@ -17,6 +17,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74ad1a98ca11a868e151320c03495af6&libraries=services"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1aaf3b3947461833899b50f6dead3eee"></script>
 	<script>
 		$(document).ready(function () {
 
@@ -71,6 +72,7 @@
 								<input type="text" id="sample6_postcode" placeholder="우편번호">
 								<button class="signup-check-button" type="button" onclick="sample6_execDaumPostcode()"
 									value="주소찾기">주소찾기</button>
+								<button class="map-check-button" type="button" onclick="locationarea()" value="내 위치">내 위치</button>
 							</div>
 							<div>
 								<input type="text" id="sample6_address" placeholder="주소">
@@ -97,7 +99,7 @@
 		</div>
 	</div>
 
-
+<div id="map" style="width:36%;height:716px;right:-63%;"></div>
 
 
 
@@ -381,7 +383,7 @@
 					document.getElementById("sample6_address").value = addr;
 					adress = addr;
 					KakaoGeocoder();
-
+					locationarea();
 					// 커서를 상세주소 필드로 이동한다.
 
 					document.getElementById("sample6_detailAddress").focus();
@@ -437,8 +439,9 @@
 			alert("성공적으로 가입되셨습니다.")
 		}
 		*/
-
+		
 		function KakaoGeocoder() {
+			
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new kakao.maps.services.Geocoder();
 
@@ -450,10 +453,38 @@
 
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					$("#coords").val(coords);
+		/* console.log(coords); */			
+					  locationarea(); 
+					
 				}
 			}); // addressSearch     
 		}
+		
+<%-- 		<%@include file="/WEB-INF/views/maps/keywordList.jsp"%> - --%>
+		 function locationarea(){
+			
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+
+		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+		// marker.setMap(null);    
+		} 
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

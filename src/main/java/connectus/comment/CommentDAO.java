@@ -13,6 +13,8 @@ public interface CommentDAO {
 	
 	public CommentDTO getComment(int commentSeq);
 	
+	public CommentDTO getCommentseq();
+	
 	public List<CommentDTO> getAllComment(int seq);
 	
 	public void updateComment(CommentDTO dto);

@@ -14,54 +14,54 @@
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
 	<script>
 
-		$(function () {
-			let sessionId = '<%=session.getAttribute("sessionid")%>';
-			let list = [];
+	$(function () {
+        let sessionId = '<%=session.getAttribute("sessionid")%>';
+        let list = [];
 
-			$.ajax({
-				url: "boarddetail/" + ${ param.seq } + "/getAllComment",
-				data: { seq: ${ param.seq }},
-			type: 'post',
-			dataType: 'json',
-			success: function (res) {
-				list = res;
+        $.ajax({
+           url: "boarddetail/" + ${ param.seq } + "/getAllComment",
+           data: { seq: ${ param.seq }},
+        type: 'post',
+        dataType: 'json',
+        success: function (res) {
+           list = res;
 
-				$.each(list, function (i, item) {
-					$("#comment").append("<li></li>");
-					$("#commentNum").html("댓글 " + (i + 1));
+           $.each(list, function (i, item) {
+              $("#comment").append("<li></li>");
+              $("#commentNum").html("댓글 " + (i + 1));
 
-					$("#comment li:last-child").addClass("commentListAll");
-					$("#comment li:last-child").addClass("commentList" + i);
-					$(".commentList" + i).append(
-						"<span class='writer'>" + item.writer + "</span>"
-						+ "<span class='date'>" + item.writingtime + "</span>"
-						+ "<span class='isSecret'>" + (item.secret == 1 ? "비밀글입니다" : "") + "</span>"
+              $("#comment li:last-child").addClass("commentListAll");
+              $("#comment li:last-child").addClass("commentList" + i);
+              $(".commentList" + i).append(
+                 "<span class='writer'>" + item.writer + "</span>"
+                 + "<span class='date'>" + item.writingtime + "</span>"
+                 + "<span class='isSecret'>" + (item.secret == 1 ? "비밀글입니다" : "") + "</span>"
 
-						+ (item.secret == 1 && sessionId == item.writer ? "<p class='contents'>" + item.contents + "</p>"
-							: (item.secret != 1 ? "<p class='contents'>" + item.contents + "</p>" : ""))
+                 + (item.secret == 1 && sessionId == item.writer ? "<p class='contents'>" + item.contents + "</p>"
+                    : (item.secret != 1 ? "<p class='contents'>" + item.contents + "</p>" : ""))
 
-						+ "<input class='commentSeq' type='hidden' name='commentSeq' value=" + item.comment_seq + ">"
+                 + "<input class='commentSeq' type='hidden' name='commentSeq' value=" + item.comment_seq + ">"
 
-						/* + "<input class='updateContents type='hidden' name='updateContents' value=" + item.updateContents +">" */
-						+ (sessionId == item.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'><input type=hidden id=comment_seq value=" + item.comment_seq + ">" : "")
-
-
-						//ajax비동기 부분 추가 새로고침 건너고
+                 /* + "<input class='updateContents type='hidden' name='updateContents' value=" + item.updateContents +">" */
+                 + (sessionId == item.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'><input type=hidden id=comment_seq value=" + item.comment_seq + ">" : "")
 
 
+                 //ajax비동기 부분 추가 새로고침 건너고
 
 
 
 
 
-					);
-				});
-			},
-			error: function (request, status, error) {
-				/*	 alert(${param.seq});
-					 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);*/
-			}
-	})
+
+
+              );
+           });
+        },
+        error: function (request, status, error) {
+           /*    alert(${param.seq});
+               alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);*/
+        }
+  })
 })
 
 
@@ -71,7 +71,7 @@
 				let secret;
 				let sessionId = '<%=session.getAttribute("sessionid")%>';
 				let seq = '<%=request.getParameter("seq")%>';
-
+				 alert(seq); 
 				if ($("#contents").val() != '') {
 					if ($("#secretCheckBtn").is(":checked") == true) { secret = 1 } else { secret = 0 };
 
@@ -151,11 +151,11 @@
 			
 			
 		} else if ($(e.target).hasClass("deleteBtn")) {		// 삭제
-			let commentSeq = $(e.target).prevAll(".commentSeq").val();
-
+			//let commentSeq = $(e.target).prevAll(".commentSeq").val();
+			alert($("#comment_seq").val());
 			$.ajax({
 				url: "boarddetail/" + ${ param.seq } + "/deleteComment",
-				data: { commentSeq: commentSeq },
+				data: {commentSeq: $("#comment_seq").val()},
 				type: 'post',
 				success: function (res) {
 					$(e.target).parents("li").remove();
