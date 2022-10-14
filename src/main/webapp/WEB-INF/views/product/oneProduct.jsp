@@ -313,6 +313,7 @@
                         <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
+                        <span>1일 ${oneProduct.price}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>

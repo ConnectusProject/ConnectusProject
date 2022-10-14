@@ -154,6 +154,7 @@
 						<input type="text" name="title" placeholder="제목" required="required">
 						<textarea id="contents" name="contents" rows="15" cols="60" placeholder="내용"
 							required="required"></textarea>
+						<input type="text" name="price" placeholder="1일 가격" required >	
 						<input type="text" name="boardRegion" value="${region}" placeholder="사는 곳" readonly>
 						<input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly>
 					</div>
