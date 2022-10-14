@@ -22,6 +22,18 @@ a {
   outline-width: 2px;
 }
 
+.header-search-input {
+  width: 10vw;
+  border: solid 2px #6462cb;
+  border-radius: 5px;
+  height: 2.4rem;
+  transition: all 0.5s;
+}
+
+.header-search-input:focus {
+  width: 20vw;
+}
+
 .header-search-button {
   border: none;
   background-color: #6462cb;

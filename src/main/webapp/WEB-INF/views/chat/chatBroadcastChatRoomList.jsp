@@ -26,16 +26,27 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
         </jsp:include>
         <!-- content-section -->
         <div class="content-container">
+            
+            <div id="chatImg" class="chatroom-picture-box mb-3">
+                
+                <p>클릭시 확대</p>
+            </div>
+            
+            
+            
 
   <div class="chatroom-container">
+    <div id="chatImg2" class="chatroom-picture-box2 ">
+      
+    </div>
         <p class="chatroom-title">${pr_title}</p>
         <div class="chatroom-content-box">    
                 <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
                 <div id="content" class="chatroom-content-message">
                     <c:forEach var="chatRoom" items="${chatHistory}">
                         <p class="message-id-time-content">
-                            <input class="message-id" id="chatRoomSenderId" value="${chatRoom.senderId}" readonly>
-                            <input class="message-time" id="chatRoomSendTime" value="${chatRoom.sendTime}" readonly>
+                            <input class="message-id" id="chatRoomSenderId" value="${chatRoom.senderId}" disabled>
+                            <input class="message-time" id="chatRoomSendTime" value="${chatRoom.sendTime}" disabled>
                             <div class="message-content" id="chatRoomContent">${chatRoom.content}</div>
                         </p>    
                     </c:forEach>
@@ -60,10 +71,10 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 </div>
 
 <!-- 사진 -->
-<div id="chatImg">
+<!-- <div id="chatImg" class="chatroom-picture-box">
 
 </div>
-
+ -->
 
 <script>
 
@@ -77,8 +88,28 @@ var pr_title = "${pr_title}";
 var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
 
 for(var i= 0; i<img.length; i++){
-if(img[i] !=""){$("#chatImg").append('<img src="http://localhost:8090/upload/'+ img[i] +'" height=400 width=400>'); }
+if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="http://localhost:8090/upload/'+ img[i] +'" height=100% width=100%></div>'); }
 }
+
+for(var i= 0; i<img.length; i++){
+if(img[i] !=""){$("#chatImg2").append('<div class="roomPictureB close"><img src="http://localhost:8090/upload/'+ img[i] +'" height=100% width=100%></div>'); }
+}
+
+let chatRoomPictureS = $('.roomPictureS');
+let chatRoomPictureB = $('.roomPictureB');
+
+for(let i = 0; i< chatRoomPictureS.length; i++){
+
+    chatRoomPictureS[i].addEventListener('click', function(){
+    chatRoomPictureB.addClass('close');
+    chatRoomPictureB.eq(i).removeClass('close');
+})
+
+}
+
+
+
+
 
 $(document).ready(function(){
     connect();
@@ -141,25 +172,37 @@ $(document).ready(function(){
             send();
         }
     });
-    
+
     <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
         console.log("createTextNode");
         console.log("messageObj: " + messageObj.content);
-        return '<p><div class="row alert alert-info"><div class="col_8">' +
-        messageObj.senderId +
-        '</div><div class="col_4 text-right">' +
-        messageObj.content+
-        '</div><div>[' +
+        return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
+       messageObj.senderId  +
+        ']</div><div class="message-time close">' +
         messageObj.sendTime +
-        ']</div></p>';
+        '</div></div><div class="message-content mb-3" style="margin-left : 60%;">' +
+        messageObj.content+
+        '</div>';
+        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+
+        if(true){
+            chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+        }
+        
 
     }
     
     <%-- HTML 형태의 메시지를 화면에 출력해줌 --%>
     <%-- 해당되는 id 태그의 모든 하위 내용들을 message가 추가된 내용으로 갱신해줌 --%>
+
     function showBroadcastMessage(message) {
         $("#content").html($("#content").html() + message);
+        
+        
+        if(true){
+            chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+        }
     }
     
 
@@ -208,11 +251,11 @@ $(document).ready(function(){
             messageFormId[i].style.textAlign = "left";
             messageFormTime[i].style.textAlign = "left";
             messageFormContent[i].style.textAlign = "left";
-            messageFormContent[i].style.backgroundColor = "rgb(90, 138, 134)";
+            messageFormContent[i].style.backgroundColor = "white";
         }
         }
-
         chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
