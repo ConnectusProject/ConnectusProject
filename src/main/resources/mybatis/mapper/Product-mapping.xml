@@ -52,6 +52,17 @@
 	 	order by id desc limit #{limit}, 20
 	 </select>
 	 
+	 <!-- Nav 검색 -->
+	 <select id="navSearch" resultType="productdto">
+	 	select * from product 
+			where title like concat('%', #{search}, '%') 
+			or contents like concat('%', #{search}, '%') 
+			or boardRegion like concat('%', #{search}, '%') 
+			or userid like concat('%', #{search}, '%')
+			order by id desc limit #{limit}, 20
+	 </select>
+	 
+	 
 	 
 	 <!-- 이웃 검색 -->
 	<select id="neighborList" resultType="productdto">

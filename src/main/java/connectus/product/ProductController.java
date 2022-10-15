@@ -72,20 +72,14 @@ public class ProductController {
 
 		List<ProductDTO> list = new ArrayList<>();
 		
-		// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 ) 
+		// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 ) 
 		if(searchType==1) {
 		list = productDAO.allProduct(); 
 		model.addAttribute("searchType", 1); }
 		
-		else if (searchType==2) {	
-			int limit = 0;
-			HashMap map = new HashMap<>();
-			map.put("item", item);
-			map.put("search", search);
-			map.put("limit", limit);
+		else if (searchType==2) {
+			list = productDAO.navSearch(search, 0);
 			
-			list = productDAO.searchList(map);
-			model.addAttribute("item", item);
 			model.addAttribute("search", search);
 			model.addAttribute("searchType", 2); }	
 	
@@ -162,17 +156,13 @@ public class ProductController {
 
 			List<ProductDTO> list = new ArrayList<>();
 			
-			// 조회 Type set ( 1 = 전체 | 2 = 일반검색 | 3 = 내동네 검색 | 4 = 스마트 검색 ) 
+			// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 | 4 = 스마트 검색 ) 
 			if(searchType ==1) {
 			list = productDAO.scrollProduct(limit); } 
-			else if (searchType==2) {	
-				HashMap map = new HashMap<>();
-				map.put("item", item);
-				map.put("search", search);
-				map.put("limit", limit);
-
-				list = productDAO.searchList(map); }	
 		
+			else if (searchType==2) {	
+				list = productDAO.navSearch(search, limit);
+			}	
 			else if (searchType==3) {
 				list = productDAO.neighborList(region, limit);
 			}

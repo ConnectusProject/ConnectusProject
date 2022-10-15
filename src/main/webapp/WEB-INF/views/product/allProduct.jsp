@@ -290,22 +290,9 @@ $.each(list, function(i, product){
                     </div>
                  </div>
 
-                <form class="allproduct-search-box" action="http://localhost:8090/allproduct/2">	
+                <div class="allproduct-search-box" >	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
-
-		<!-- 검색기능 -->                    
-                    <div class="allproduct-search-box-input">
-                    <select name="item">
-                        <option value="title">제목</option>
-                        <option value="boardRegion">지역</option>
-                        <option value="userId">오너이름</option>
-                        <option value="contents">내용</option>
-                    </select>
-
-                    <input class="search-box-search-input" type="text" name="search">
-                    <input class="search-box-search-button" type="submit" value="검색">
-                    </div>
-                </form>
+				</div>
                 
                 
                 <!-- allproduct-product-box -->
