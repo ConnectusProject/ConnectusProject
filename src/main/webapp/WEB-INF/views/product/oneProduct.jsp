@@ -192,13 +192,13 @@
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
-                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" disabled></th>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input class="date1" id='currentDate' type="text" name="buyerId" value="${sessionScope.sessionid}" disabled></th> 
+                <th>렌터 <br>  <input class="date1" id='currentDate' type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
                 </tr>
                 <tr>
-                <th>오너<br>  <input class="date2" type="text" name="sellerId" value="${oneProduct.userId}" disabled></th> 
+                <th>오너<br>  <input class="date2" type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
                 </tr>
                 <tr>
                 <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
@@ -435,11 +435,6 @@
         </div>
         
 </div> 
-
-<!-- 카카오맵 위치정보 API --> 
-<div>
-<jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
-</div>
         
             <!-- 예약 테이블 노출 설정 -->
     <script>
