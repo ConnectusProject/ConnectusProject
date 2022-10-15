@@ -117,14 +117,16 @@
                                         <th>제목</th>
                                         <th>날짜</th>
                                     </tr>
+                          
                                 <tbody>
                                     <c:forEach items="${zzimList}" var="board" varStatus="vs">
                                         <fmt:parseDate value="${board.createdAt}" var="uploadDate"
                                             pattern="yyyy-MM-dd" />
                                         <tr>
-                                            <th id="boardid${vs.index}">${board.id}</th>
+                                            <th id="zzimid${vs.index}">${board.id}</th>
                                             <th><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=200 height=200>${board.title}</a></th>
                                             <th>${board.createdAt}</th>
+                                            <th><span class="product-item-zzim" id="zzimSpan${board.id}"><img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'></span></th>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -168,6 +170,52 @@
         //     myPageInnerBox.addClass('close');
         //     myPageInnerBox[2].classList.remove('close')
         // })
+        
+        
+        
+        
+          // 찜 기능
+        let zzimlength = '${zzimlength}';
+            for (var i = 0; i < zzimlength; i++) {
+            	(function(i){
+                let eachProductId = $("#zzimid" + i).html();
+                let intProductId = parseInt(eachProductId);
+
+                $("#zzimSpan" + intProductId).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/zzim",
+                        dataType: "json",
+                        data: { 'productseq': intProductId, 'memberid': sessionId },   //sessionId Header에 defined.
+
+                        success: function (resp) {
+                        	
+                            if (resp.result == 0) {
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                            // 찜 작동 시, 해당물품 장바구니에 출력 
+                            //    $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                            }
+                            else if (resp.result == 1) {
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                            // 찜 취소 시, 해당물품 장바구니에서 제거
+                            //    $("#spanId" + resp.id).remove();
+                            }
+
+                        } // success 
+                    }); // ajax 
+                }); // 찜 onclick
+            	})(i); // for - ajax 용 function
+            } // for 
+        
+        
+        
+        
     </script>
 
 

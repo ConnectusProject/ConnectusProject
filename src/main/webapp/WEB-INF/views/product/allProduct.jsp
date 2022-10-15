@@ -210,7 +210,6 @@ $.each(list, function(i, product){
                         return false;
                     }
 
-
                     $.ajax({
                         type: "POST",
                         url: "/product/zzim",
@@ -220,13 +219,11 @@ $.each(list, function(i, product){
                         success: function (resp) {
                         	
                             if (resp.result == 0) {
-                                alert("찜!");
                                 $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
                                 $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
-                                alert("찜 취소!");
                                 $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                                 $("#spanId" + resp.id).remove();

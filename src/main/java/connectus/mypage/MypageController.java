@@ -51,7 +51,9 @@ public class MypageController {
 		int boardlength = list.size();
 		//찜목록
 		List<ProductDTO> zzimList = productService.getZzimProducts(userid);
-		
+		int zzimlength = zzimList.size();
+		model.addAttribute("zzimlength", zzimlength);
+		model.addAttribute("sessionId", userid);
 		model.addAttribute("zzimList", zzimList);
 		model.addAttribute("boardlength", boardlength);
 		model.addAttribute("allmyboard",list);
