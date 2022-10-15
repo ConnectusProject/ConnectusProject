@@ -108,6 +108,31 @@
                         }
                     </script>
                 </div>
+                
+                <!-- 찜목록 div 정훈님작업 -->
+                <div>
+                <table class="myproduct-box-table">      
+                                    <tr class="myproduct-box-table-title">
+                                        <th style="width : 20%">번호</th>
+                                        <th>제목</th>
+                                        <th>날짜</th>
+                                    </tr>
+                                <tbody>
+                                    <c:forEach items="${zzimList}" var="board" varStatus="vs">
+                                        <fmt:parseDate value="${board.createdAt}" var="uploadDate"
+                                            pattern="yyyy-MM-dd" />
+                                        <tr>
+                                            <th id="boardid${vs.index}">${board.id}</th>
+                                            <th><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=200 height=200>${board.title}</a></th>
+                                            <th>${board.createdAt}</th>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                </div>
+                
+                
+                
 
                 <div class="mypage-container-inner-box close">
                     <jsp:include page="/WEB-INF/views/mypage/delete.jsp">
