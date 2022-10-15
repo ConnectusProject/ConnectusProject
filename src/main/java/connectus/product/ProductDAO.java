@@ -27,7 +27,9 @@ public interface ProductDAO {
 	
 	public int updateProduct(ProductDTO dto);
 	
-	public List<ProductDTO> searchList(HashMap searchType);
+	public List<ProductDTO> searchList(HashMap searchType); // 기능 보류 navSearch로 대체 
+	
+	public List<ProductDTO> navSearch(String search, int limit); 
 	
 	public List<ProductDTO> neighborList(String boardRegion, int limit);
 	

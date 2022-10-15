@@ -123,13 +123,17 @@
 			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
 			<span class="header-menu-title"><img src="${path}/pictures/logo.png" alt=""> Connect Us</span>
 		</div>
+		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
-				<input class="header-search-input" type="text" class="form-control">
-				<button class="btn btn-outline-secondary header-search-button" type="button"
+			<form action="http://localhost:8090/allproduct/2">
+				<input class="header-search-input" type="text" name="search">
+				<button class="btn btn-outline-secondary header-search-button" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+			</form>
 			</div>
 		</div>
+		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
 				<a class="loginBtn" href="../login">로그인</a>
