@@ -172,6 +172,45 @@ a {
   color: white;
 }
 
+.mypage-modify-title {
+  width: 100%;
+  height: 3rem;
+  border-bottom: solid 3px #6462cb;
+  font-size: 2rem;
+}
+
+.modify-box input {
+  width: 15rem;
+  height: 2.5rem;
+  margin: 5px;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  border-bottom: solid 2px #6462cb;
+}
+
+.modify-box p {
+  margin: 0%;
+  margin-left: 5px;
+}
+
+#mypage-modify-button {
+  width: 31rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6462cb;
+  color: white;
+}
+
+#mypage-modify-pw-button {
+  margin-top: 10px;
+  width: 21rem;
+  height: 3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6462cb;
+  color: white;
+}
+
 .show {
   border-top: 2px solid #6462cb;
 }
