@@ -85,7 +85,7 @@
 	 
 	 <!-- 찜 목록 가져오기 -->
 	 <select id="getZzimProducts" resultType="productdto">
-	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by zzim.seq desc;
+	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by product.id desc;
 	 </select>
 
 <!-- 스마트 검색 -->
@@ -155,6 +155,8 @@ and
 	<select id="getCoords" resultType="String">
 	select coords from members where userid = #{userId} 
 	</select>
+	
+	
 	 
 	 
 

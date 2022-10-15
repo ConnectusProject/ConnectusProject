@@ -22,6 +22,7 @@ import connectus.member.MemberDTO;
 import connectus.member.MemberService;
 import connectus.product.ProductDAO;
 import connectus.product.ProductDTO;
+import connectus.product.ProductService;
 
 @Controller
 public class MypageController {
@@ -30,6 +31,9 @@ public class MypageController {
 		
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	ProductService productService;
 	
 	ModelAndView mav = new ModelAndView();
 	
@@ -45,7 +49,10 @@ public class MypageController {
 		//물품
 		List<ProductDTO> list = myserv.allMyBoard(userid);		
 		int boardlength = list.size();
+		//찜목록
+		List<ProductDTO> zzimList = productService.getZzimProducts(userid);
 		
+		model.addAttribute("zzimList", zzimList);
 		model.addAttribute("boardlength", boardlength);
 		model.addAttribute("allmyboard",list);
 		
