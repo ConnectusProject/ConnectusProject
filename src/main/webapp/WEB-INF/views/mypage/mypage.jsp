@@ -94,7 +94,7 @@
                                             pattern="yyyy-MM-dd" />
                                         <tr>
                                             <th id="boardid${vs.index}">${board.id}</th>
-                                            <th><a href="/product/${board.id}">${board.title}</th>
+                                            <th><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=200 height=200>${board.title}</a></th>
                                             <th>${board.createdAt}</th>
                                         </tr>
                                     </c:forEach>
