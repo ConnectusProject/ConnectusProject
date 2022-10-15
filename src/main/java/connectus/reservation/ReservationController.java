@@ -22,6 +22,8 @@ public class ReservationController {
 	ReservationDAO reservationDAO; 
 	@Autowired
 	ProductDAO productDAO;
+	@Autowired
+	ReservationService reservationService;
 	
 	// 필요없어짐 확인 후 삭제 
 	@PostMapping("/product/{boardid}/reservationinput")
@@ -36,7 +38,7 @@ public class ReservationController {
 	@PostMapping("/product/reservationinput")
 	public String reservation(ReservationDTO dto) {
 
-		reservationDAO.insertReservation(dto);
+		reservationService.insertReservation(dto);
 		
 		long boardid = dto.getBoardId();
 		
@@ -47,7 +49,7 @@ public class ReservationController {
 	@ResponseBody
 	@PostMapping("/product/deleteReservation")
 	public int deleteReservation(int reservId) {
-		int deleteResult = reservationDAO.deleteReservation(reservId);
+		int deleteResult = reservationService.deleteReservation(reservId);
 		return deleteResult;
 	}
 	
@@ -59,14 +61,14 @@ public class ReservationController {
 	@PostMapping("/product/reservcheck")
 	public String reservCheck(int reservId) {
 		int reservedNow = 0;
-		int reservCount = reservationDAO.countReservation(reservId);
+		int reservCount = reservationService.countReservation(reservId);
 	
 		// 렌탈 수락할 때 
 		if (reservCount == 0) {
-			reservationDAO.checkReservation(reservId);
+			reservationService.checkReservation(reservId);
 			
-			int productId = reservationDAO.getProductId(reservId);
-			List<ReservationDTO> reservations = reservationDAO.getReservationDate(productId);
+			int productId = reservationService.getProductId(reservId);
+			List<ReservationDTO> reservations = reservationService.getReservationDate(productId);
 			
 			LocalDate now = LocalDate.now();
 			for(int i = 0; i<reservations.size(); i++) {
@@ -84,10 +86,10 @@ public class ReservationController {
 			
 			//렌탈 수락 취소할 때 
 		} else if (reservCount == 1) {
-			reservationDAO.cancleReservation(reservId);
+			reservationService.cancleReservation(reservId);
 			
-			int productId = reservationDAO.getProductId(reservId);
-			List<ReservationDTO> reservations = reservationDAO.getReservationDate(productId);
+			int productId = reservationService.getProductId(reservId);
+			List<ReservationDTO> reservations = reservationService.getReservationDate(productId);
 			
 			// 승낙된 예약이 하나도 없을 때, reservedNow=0 ( List index 개수가 없으므로 따로 처리 ) 
 			if(reservations.size()==0) {
