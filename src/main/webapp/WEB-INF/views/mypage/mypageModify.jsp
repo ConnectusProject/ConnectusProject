@@ -54,7 +54,7 @@
 
 						<br>
 						<input type="text" id="sample6_postcode" placeholder="우편번호">
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input id="mypage-modify-address-button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 						<input type="text" id="sample6_address" placeholder="주소"><br>
 						<input type="text" id="sample6_detailAddress" placeholder="상세주소">
 						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
@@ -63,6 +63,7 @@
 
 
 						<div>
+							<p>전화번호</p>
 							<input type=text name=phone id=phone value="${member.phone}" required>
 						</div>
 						<div id="phone_check"></div>
