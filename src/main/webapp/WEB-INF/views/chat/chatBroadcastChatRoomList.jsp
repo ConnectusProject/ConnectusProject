@@ -70,6 +70,12 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 </div>
 </div>
 
+
+<!-- 카카오맵 위치정보 API --> 
+<div>
+<jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+</div>
+
 <!-- 사진 -->
 <!-- <div id="chatImg" class="chatroom-picture-box">
 

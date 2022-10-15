@@ -20,7 +20,6 @@
             let productlength = '${productlength}';
             let scrollCount = 0;
             let searchType = '${searchType}';
-            let item = '${item}'; 
             let search = '${search}';
 
             let smartTitle = '${smartTitle}'
@@ -46,7 +45,6 @@
                         url: "/allproduct/ajax/" + searchType,
                         dataType: "json",
                         data: { 'scrollCount':scrollCount, 
-                     		   	'item':item, 
                         		'search':search, 
                         		'smartTitle' : smartTitle, 
                         		'smartRegion' : smartRegion, 
@@ -168,10 +166,13 @@ $.each(list, function(i, product){
             	}else if(Regionvalue=='모든 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
             	}else if(Regionvalue=='가까운 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='distanceKm' value='5'>");
             	}else if(Regionvalue=='먼 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='distanceKm' value='15'>");
             	}
             });
