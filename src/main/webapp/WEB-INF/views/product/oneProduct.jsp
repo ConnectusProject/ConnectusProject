@@ -192,13 +192,13 @@
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
-                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
+                <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" disabled></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                <th>렌터 <br>  <input class="date1" id='currentDate' type="text" name="buyerId" value="${sessionScope.sessionid}" disabled></th> 
                 </tr>
                 <tr>
-                <th>오너<br>  <input type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
+                <th>오너<br>  <input class="date2" type="text" name="sellerId" value="${oneProduct.userId}" disabled></th> 
                 </tr>
                 <tr>
                 <th>커넥트시작 <br> <input type="date" name="startRental" required></th> 
@@ -459,8 +459,10 @@
             }else{
                 reservedTableItem[i].style.backgroundColor = "rgb(243, 243, 243)";
             }
-        }
+        };
 
+
+        document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 
 
     </script>
