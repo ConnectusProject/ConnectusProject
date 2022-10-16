@@ -13,7 +13,8 @@ a {
 }
 
 .list-container {
-    width : 50rem;
+    margin-left : 10%;
+    width : 80%;
     @include flexbox(left, center);
     flex-direction: column;
 }
@@ -48,7 +49,7 @@ a {
 
 .list-search-form {
     width : 100%;
-    height : 2rem;
+    height : 2.2rem;
     @include flexbox(center, center);
     position : relative;
 }
@@ -64,11 +65,13 @@ a {
 .list-search-form > input {
     border : 2px solid $color;
     border-radius: 5px;
+    height : 100%;
 }
 
 .list-search-form-button {
     background-color: $color;
     color : white;
+    width : 5%;
 }
 
 .list-search-form-write-button {
@@ -76,7 +79,11 @@ a {
     border : 2px solid $color;
     border-radius: 5px;
     right : 0;
+    color : white;
+    width : 10%;
     background-color: $color;
+    height : 100%;
+    @include flexbox(center, center);
 }
 
 .list-search-form-write-button a{
@@ -136,34 +143,37 @@ a {
     outline-color: $color;
 }
 
-.detail-container {
-    width : 55rem;
-    margin-left : 8%;
-    padding-left : 1rem;
-    @include flexbox(left, center);
-    flex-direction: column;
-}
 
 .detail-box {
-    width : 55rem;
+    width : 100%;
     @include flexbox(left, center);
     flex-direction: column;
 }
 
 .detail-delete-box {
-    width : 55rem;
-    height : 3rem;
+    width : 100%;
     border-bottom: $color solid 2px;
     @include flexbox(right, center);
 }
 
 .detail-title-box {
     width : 100%;
+    height : 5rem;
+    background-color: rgb(243, 243, 243);
+}
+
+.detail-title-box > div {
+height : 50%;
+}
+
+.detail-title {
+    font-size: 1.5rem;
 }
 
 .detail-content-box {
-    width : 55rem;
+    width : 100%;
 }
+
 
 .detail-comment-container {
     width : 100%;
@@ -189,7 +199,7 @@ a {
 
 .deleteBtn {
     position : absolute;
-    right : 5%;
+    right : 3%;
     top : 0%;
     border : none;
     background: none;
@@ -198,7 +208,7 @@ a {
 
 .updateBtn {
     position : absolute;
-    right : 10%;
+    right : 7%;
     top : 0%;
     border : none;
     background: none;
@@ -222,4 +232,14 @@ a {
     color : white;
     margin : 0.5rem;
 }
+
+.writer {
+    font-size: 1.3rem;
+}
+
+.date {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+}
+
 

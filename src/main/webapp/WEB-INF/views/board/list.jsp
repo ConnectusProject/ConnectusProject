@@ -82,6 +82,7 @@
                     <tr class="list-table-title">
                   
                         <td  style="width : 10%" >번호</td>
+                        <td style="width : 15%" ></td>
                         <td >제목</td>
                         <td style="width : 10%">작성자</td>
                 
@@ -91,10 +92,11 @@
                         <tr class="list-list">
 
                             <td>${board.seq }</td>
+                            <td><img alt="상품이미지가없습니다." width=50 height=50
+                                src="http://localhost:8090/upload/${board.img }"></td>
 
                             <td><a href="boarddetail?seq=${board.seq }">${board.title }</a>
-                                <img alt="상품이미지가없습니다." width=100 height=100
-                                    src="http://localhost:8090/upload/${board.img }">
+                                
                             </td>
                             <td>${board.writer }</td>
                         </tr>
@@ -145,10 +147,10 @@
 
 
 
-        })   
+        
     </script>
 	
-	<div>
+
 
 
 
