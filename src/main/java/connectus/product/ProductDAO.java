@@ -13,9 +13,22 @@ import connectus.reservation.ReservationDTO;
 @Repository
 public interface ProductDAO {
 	
+	// 전체 물품조회 
 	public List<ProductDTO> allProduct();
-	
+
 	public List<ProductDTO> scrollProduct(int limit);
+
+	public List<ProductDTO> allProductOrderByLowPrice();
+
+	public List<ProductDTO> scrollProductOrderByLowPrice(int limit);
+	
+	public List<ProductDTO> allProductOrderByHighPrice();
+
+	public List<ProductDTO> scrollProductOrderByHighPrice(int limit);
+
+	public List<ProductDTO> allProductOrderByCount();
+
+	public List<ProductDTO> scrollProductOrderByCount(int limit);
 	
 	public ProductDTO oneProduct(int productid);
 	
@@ -29,9 +42,18 @@ public interface ProductDAO {
 	
 	public List<ProductDTO> searchList(HashMap searchType); // 기능 보류 navSearch로 대체 
 	
+	// 검색 물품조회
 	public List<ProductDTO> navSearch(String search, int limit); 
-	
+	public List<ProductDTO> navSearchOrderByLowPrice(String search, int limit); 
+	public List<ProductDTO> navSearchOrderByHighPrice(String search, int limit); 
+	public List<ProductDTO> navSearchOrderByCount(String search, int limit); 
+
+	// 이웃 물품조회 
 	public List<ProductDTO> neighborList(String boardRegion, int limit);
+	public List<ProductDTO> neighborListOrderByLowPrice(String boardRegion, int limit);
+	public List<ProductDTO> neighborListOrderByHighPrice(String boardRegion, int limit);
+	public List<ProductDTO> neighborListOrderByCount(String boardRegion, int limit);
+	
 	
 	public int checkReservation(int productId);
 	

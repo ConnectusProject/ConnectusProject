@@ -126,7 +126,7 @@
 		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
-			<form action="http://localhost:8090/allproduct/2">
+			<form action="http://localhost:8090/allproduct/2/1">
 				<input class="header-search-input" type="text" name="search" placeholder="검색">
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
@@ -169,9 +169,9 @@
 			<div class="basic-menu-box">
 
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="../login"><img
@@ -207,14 +207,14 @@
 			<% } else { %>
 				<div class="basic-menu-box">
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3/1"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3/1">내 이웃</a></div>
 					</div>
 					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img

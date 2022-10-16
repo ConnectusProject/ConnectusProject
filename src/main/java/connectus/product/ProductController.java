@@ -52,8 +52,8 @@ public class ProductController {
 	}
 
 	// 물품 조회
-	@GetMapping("/allproduct/{searchType}")
-	public String allProduct(Model model, HttpSession session, String item, String search, @PathVariable("searchType")int searchType) throws Exception {
+	@GetMapping("/allproduct/{searchType}/{orderType}")
+	public String allProduct(Model model, HttpSession session, String item, String search, @PathVariable("searchType")int searchType, @PathVariable("orderType")int orderType) throws Exception {
 		// 지역 set 
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
@@ -66,18 +66,73 @@ public class ProductController {
 		
 		// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 ) 
 		if(searchType==1) {
+			if(orderType==1) {
 		list = productService.allProduct(); 
-		model.addAttribute("searchType", 1); }
+		model.addAttribute("searchType", 1);
+		model.addAttribute("orderType", 1);
+			}
+			else if(orderType==2) {
+		list = productService.allProductOrderByLowPrice();
+		model.addAttribute("searchType",1);
+		model.addAttribute("orderType", 2);
+			}
+			else if(orderType==3) {
+		list = productService.allProductOrderByHighPrice();
+		model.addAttribute("searchType",1);
+		model.addAttribute("orderType", 3);
+			}
+			else if(orderType==4) {
+		list = productService.allProductOrderByCount();
+		model.addAttribute("searchType", 1);
+		model.addAttribute("orderType", 4);
+			}
+		}
 		
 		else if (searchType==2) {
-			list = productService.navSearch(search, 0);
-			
-			model.addAttribute("search", search);
-			model.addAttribute("searchType", 2); }	
+			if(orderType==1) {
+				list = productService.navSearch(search, 0);
+				model.addAttribute("search", search);
+				model.addAttribute("searchType", 2); 
+				model.addAttribute("orderType", 1);
+			}
+			else if(orderType==2) {
+				list = productService.navSearchOrderByLowPrice(search, 0);
+				model.addAttribute("search", search);
+				model.addAttribute("searchType", 2); 
+				model.addAttribute("orderType", 2);
+			}
+			else if(orderType==3) {
+				list = productService.navSearchOrderByHighPrice(search, 0);
+				model.addAttribute("search", search);
+				model.addAttribute("searchType", 2); 
+				model.addAttribute("orderType", 3);
+				}
+			else if(orderType==4) {
+				list = productService.navSearchOrderByCount(search, 0);
+				model.addAttribute("search", search);
+				model.addAttribute("searchType", 2); 
+				model.addAttribute("orderType", 4);
+				}
+		}
 	
 		else if (searchType==3) {
-			list = productService.neighborList(region, 0);
-			model.addAttribute("searchType", 3);
+			if(orderType==1) {
+				list = productService.neighborList(region, 0);
+				model.addAttribute("searchType", 3);
+				model.addAttribute("orderType", 1);
+			}else if(orderType==2) {
+				list = productService.neighborListOrderByLowPrice(region, 0);
+				model.addAttribute("searchType", 3);
+				model.addAttribute("orderType", 2);
+			}else if(orderType==3) {
+				list = productService.neighborListOrderByHighPrice(region, 0);
+				model.addAttribute("searchType", 3);
+				model.addAttribute("orderType", 3);
+			}else if(orderType==4) {
+				list = productService.neighborListOrderByCount(region, 0);
+				model.addAttribute("searchType", 3);
+				model.addAttribute("orderType", 4);
+			}
 		}
 		
 		
@@ -135,8 +190,8 @@ public class ProductController {
 	
 	// 물품 조회 별 스크롤 AJAX 
 		@ResponseBody
-		@PostMapping("/allproduct/ajax/{searchType}")
-		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, String distanceKm, @PathVariable("searchType")int searchType) throws Exception {
+		@PostMapping("/allproduct/ajax/{searchType}/{orderType}")
+		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, String distanceKm, @PathVariable("searchType")int searchType, @PathVariable("orderType")int orderType) throws Exception {
 			int limit = Integer.parseInt(scrollCount)*20;
 			
 			// 지역 set 
@@ -150,13 +205,37 @@ public class ProductController {
 			
 			// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 | 4 = 스마트 검색 ) 
 			if(searchType ==1) {
-			list = productService.scrollProduct(limit); } 
-		
-			else if (searchType==2) {	
-				list = productService.navSearch(search, limit);
+				if(orderType == 1) {
+			list = productService.scrollProduct(limit); 
+			} else if(orderType == 2 ) {
+			list = productService.scrollProductOrderByLowPrice(limit);
+			} else if(orderType == 3) {
+			list = productService.scrollProductOrderByHighPrice(limit);	
+			} else if(orderType == 4) {
+			list = productService.scrollProductOrderByCount(limit);
+			}
+			}
+			else if (searchType==2) {
+				if(orderType == 1) {
+			list = productService.navSearch(search, limit);
+			}else if(orderType == 2) {
+			list = productService.navSearchOrderByLowPrice(search, limit);	
+			}else if(orderType == 3) {
+			list = productService.navSearchOrderByHighPrice(search, limit);	
+			}else if(orderType == 4) {
+			list = productService.navSearchOrderByCount(search, limit);	
+			}
 			}	
 			else if (searchType==3) {
+				if(orderType==1) {
 				list = productService.neighborList(region, limit);
+			}else if(orderType==2) {
+				list = productService.neighborListOrderByLowPrice(region, limit);
+			}else if(orderType==3) {
+				list = productService.neighborListOrderByHighPrice(region, limit);
+			}else if(orderType==4) {
+				list = productService.neighborListOrderByCount(region, limit);
+			}
 			}
 			else if (searchType==4) {
 				
@@ -336,7 +415,7 @@ public class ProductController {
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
-		
+		model.addAttribute("orderType", 1);
 		model.addAttribute("smartPriceMin", smartSearchDTO.getSmartPriceMin());
 		model.addAttribute("smartPriceMax", smartSearchDTO.getSmartPriceMax());
 		model.addAttribute("smartTitle", smartSearchDTO.getSmartTitle());
