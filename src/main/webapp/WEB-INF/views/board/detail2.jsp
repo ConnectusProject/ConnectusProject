@@ -181,7 +181,7 @@
 		</jsp:include>
 		<!-- content-section -->
 		<div class="content-container">
-			<div class="detail-container">
+			<div class="list-container">
 
 
 				<div class="detail-box">
@@ -195,7 +195,7 @@
 					</form>
 					</div>
 					<div class="detail-title-box">
-						<div>
+						<div class="detail-title">
 							${seqList.title}
 						</div>
 						<div>

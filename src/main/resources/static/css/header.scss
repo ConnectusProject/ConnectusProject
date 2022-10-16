@@ -117,14 +117,13 @@ li {
 
 .header-search-input {
     width : 10vw;
-    border : solid 2px $color;
+    border : solid 3px $color;
     border-radius: 5px;
-    height : 2.4rem;
     transition: all 0.5s;
 }
 
 .header-search-input:focus {
-    width : 20vw;
+    width : 25vw;
 }
 .header-search-input:focus {
     outline-style: solid;
