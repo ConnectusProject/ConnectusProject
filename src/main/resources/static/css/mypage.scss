@@ -126,16 +126,64 @@ a {
     width : 35rem;
 }
 
-.myproduct-box-table {
+.myproduct-box-item {
     width : 100%;
+    height : 5rem;
+    position : relative;
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+    margin-bottom : 1rem;
+}
+
+.myproduct-item-img {
+    position: absolute;
+    left : 10px;
+    width : 10%;
+    height : 80%;
+    top : 10%;
+}
+
+.myproduct-item-img a  {
+    width : 100%;
+    height : 100%;
+}
+
+.myproduct-item-img img  {
+    width : 100%;
+    height : 100%;
+}
+
+.myproduct-item-title {
+    position: absolute;
+    left : 15%;
+    top : 10%;
+    font-size: 1.3rem;
+}
+
+.myproduct-item-date {
+    position: absolute;
+    left : 15%;
+    bottom : 10%;
+}
+
+.myproduct-zzim-box {
+    width : 40rem;
     text-align: center;
 }
 
-.myproduct-box-table-title {
-    width : 100%;
-    border-bottom : solid 2px $color;
-    text-align: center;
+.myproduct-zzim-box img {
+    margin-right : 1rem;
 }
+
+.myproduct-zzim-item {
+    margin : 1rem;
+}
+
+.myproduct-box-table-title {
+    height : 3rem;
+    border-bottom : solid 2px $color;
+}
+
 
 .mypage-delete-title {
     width : 100%;
