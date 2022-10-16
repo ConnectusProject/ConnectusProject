@@ -14,6 +14,7 @@ public class ProductService {
 	@Autowired
 	ProductDAO productDAO;
 	
+	// 전체 물품조회
 	public List<ProductDTO> allProduct(){
 		List<ProductDTO> allProductList = productDAO.allProduct();
 		return allProductList;
@@ -24,6 +25,40 @@ public class ProductService {
 		List<ProductDTO> scrollList = productDAO.scrollProduct(limit);
 		return scrollList;
 	};
+	
+	public List<ProductDTO> allProductOrderByLowPrice(){
+		List<ProductDTO> allProductPriceOrderList = productDAO.allProductOrderByLowPrice();
+		return allProductPriceOrderList;
+	};
+	
+	public List<ProductDTO> scrollProductOrderByLowPrice(int limit){
+		List<ProductDTO> scrollPriceOrderList = productDAO.scrollProductOrderByLowPrice(limit);
+		return scrollPriceOrderList;
+	};
+	
+	public List<ProductDTO> allProductOrderByHighPrice(){
+		List<ProductDTO> allProductPriceOrderList = productDAO.allProductOrderByHighPrice();
+		return allProductPriceOrderList;
+	};
+	
+	public List<ProductDTO> scrollProductOrderByHighPrice(int limit){
+		List<ProductDTO> scrollPriceOrderList = productDAO.scrollProductOrderByHighPrice(limit);
+		return scrollPriceOrderList;
+	};
+
+	public List<ProductDTO> allProductOrderByCount(){
+		List<ProductDTO> allProductCountOrderList = productDAO.allProductOrderByCount();
+		return allProductCountOrderList;
+	};
+	
+	
+	public List<ProductDTO> scrollProductOrderByCount(int limit){
+		List<ProductDTO> scrollCountOrderList = productDAO.scrollProductOrderByCount(limit);
+		return scrollCountOrderList;
+	};
+
+	
+	
 	
 	public ProductDTO oneProduct(int productid) {
 		ProductDTO oneProduct = productDAO.oneProduct(productid);
@@ -52,16 +87,54 @@ public class ProductService {
 	};
 
 	
+	// 검색 물품조회 
 	public List<ProductDTO> navSearch(String search, int limit){
 		List<ProductDTO> navSearchList = productDAO.navSearch(search, limit);
 		return navSearchList;
 	}; 
 
+	public List<ProductDTO> navSearchOrderByLowPrice(String search, int limit){
+		List<ProductDTO> navSearchList = productDAO.navSearchOrderByLowPrice(search, limit);
+		return navSearchList;
+	}; 
+
+	public List<ProductDTO> navSearchOrderByHighPrice(String search, int limit){
+		List<ProductDTO> navSearchList = productDAO.navSearchOrderByHighPrice(search, limit);
+		return navSearchList;
+	}; 
+
+	public List<ProductDTO> navSearchOrderByCount(String search, int limit){
+		List<ProductDTO> navSearchList = productDAO.navSearchOrderByCount(search, limit);
+		return navSearchList;
+	}; 
+
 	
+	// 이웃 물품조회 
 	public List<ProductDTO> neighborList(String boardRegion, int limit){
 		List<ProductDTO> neighborList = productDAO.neighborList(boardRegion, limit);
 		return neighborList;
 	};
+	
+	public List<ProductDTO> neighborListOrderByLowPrice(String boardRegion, int limit){
+		List<ProductDTO> neighborList = productDAO.neighborListOrderByLowPrice(boardRegion, limit);
+		return neighborList;
+	};
+	
+	public List<ProductDTO> neighborListOrderByHighPrice(String boardRegion, int limit){
+		List<ProductDTO> neighborList = productDAO.neighborListOrderByHighPrice(boardRegion, limit);
+		return neighborList;
+	};
+	
+	public List<ProductDTO> neighborListOrderByCount(String boardRegion, int limit){
+		List<ProductDTO> neighborList = productDAO.neighborListOrderByCount(boardRegion, limit);
+		return neighborList;
+	};
+	
+	
+	
+	
+	
+	
 
 	
 	public int checkReservation(int productId) {
