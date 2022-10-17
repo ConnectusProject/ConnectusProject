@@ -147,14 +147,14 @@
         			</div>
     			</div>
     			
-    			
     			<div>
     			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
-				
-				
+					<div>
+					<a  class="manager-button"  href="http://localhost:8090/admin_memlist">관리자</a>
+					</div>
 					<a href="/mypage" class="mypage">마이페이지 </a>
-					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
+					<a id="logoutchk" href="/logout">로그아웃</a>
 					<% } %>
 		</div>
 	</header>
@@ -268,6 +268,12 @@
 		document.querySelector('.up').addEventListener('click', function(){
 			window.scrollTo(0,0);
 		})
+
+		if(sessionId != "admin1234"){
+			document.querySelector('.manager-button').parentElement.remove();
+		}
+
+
 
 	</script>
 

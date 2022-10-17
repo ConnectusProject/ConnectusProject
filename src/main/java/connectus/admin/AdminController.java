@@ -40,7 +40,7 @@ public class AdminController {
 		return "admin/admin_memlist";
 	}
 	
-	@GetMapping(value = "/role")
+	@GetMapping(value = "/admin_header")
 	public String admin_allmem2(Model model, MemberDTO memberdto) {	
 		System.out.println("role");
 		
@@ -50,7 +50,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "header";
+		return "admin/admin_header";
 	}
 
 	

@@ -160,6 +160,12 @@ li {
   align-items: center;
 }
 
+.admin {
+  width: 5rem;
+  height: 2rem;
+  background-color: red;
+}
+
 .nav-box {
   margin-left: 1px;
   position: fixed;
