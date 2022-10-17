@@ -83,7 +83,14 @@ public interface ProductDAO {
 	public Integer searchByRentalDate(String startDate, String endDate, int productId);
 	
 	
+	// 검색어 순위 
+	public int searchCheck(String keyword); 
 	
+	public int insertSearch(String keyword);
+	
+	public int updateSearchCount(String keyword);
+	
+	public List<String> searchLanking();
 	
 	
 		// 찜 조회 
@@ -106,6 +113,9 @@ public interface ProductDAO {
 		
 		// 알람 제목 조회
 		public List<ProductDTO> noticetitle(String title);
+		
+		
+		
 		
 
 	

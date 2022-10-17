@@ -211,6 +211,28 @@ public class ProductService {
 	
 	
 	
+	// 검색어 순위 
+	public int searchCheck(String keyword) {
+		int searchCheckresult = productDAO.searchCheck(keyword);
+		return searchCheckresult;
+	}
+	
+	public int insertSearch(String keyword) {
+		int insertSearchResult = productDAO.insertSearch(keyword);
+		return insertSearchResult;
+		
+	}
+	
+	public int updateSearchCount(String keyword) {
+		int updateSearchCountResult = productDAO.updateSearchCount(keyword);
+		return updateSearchCountResult;
+	}
+	
+	public List<String> searchLanking(){
+		List<String> searchLankingList = productDAO.searchLanking();
+		return searchLankingList;
+	}
+	
 	
 	
 		// 찜 조회 

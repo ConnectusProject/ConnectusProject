@@ -89,6 +89,13 @@ public class ProductController {
 		}
 		
 		else if (searchType==2) {
+			// 검색어 순위 
+			if(productService.searchCheck(search)==0) {
+				productService.insertSearch(search);
+			}else if(productService.searchCheck(search)>0) {
+				productService.updateSearchCount(search);
+			}
+			
 			if(orderType==1) {
 				list = productService.navSearch(search, 0);
 				model.addAttribute("search", search);
@@ -179,7 +186,10 @@ public class ProductController {
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
 		
+		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
@@ -331,6 +341,16 @@ public class ProductController {
 		
 		if(smartSearchDTO.getSmartRegion()==null) {
 			smartSearchDTO.setSmartRegion("동");
+		}
+		
+		// 검색어 순위 반영
+		if(smartSearchDTO.getSmartTitle()!=null) {
+		String search = smartSearchDTO.getSmartTitle();
+		if(productService.searchCheck(search)==0) {
+			productService.insertSearch(search);
+		}else if(productService.searchCheck(search)>0) {
+			productService.updateSearchCount(search);
+		}
 		}
 		
 		// 제목,지역, 가격으로 검색한 상품리스트
@@ -537,7 +557,7 @@ public class ProductController {
 		}
 			
 			productService.insertProduct(dto);
-		return "redirect:/allproduct/1";
+		return "redirect:/allproduct/1/1";
 	}
 	
 	// 이미지 미리보기 
@@ -566,7 +586,7 @@ public class ProductController {
 	@PostMapping("/product/{productid}/delete")
 	public String deleteProduct(@PathVariable("productid")int productid) {
 		productService.deleteProduct(productid);
-		return "redirect:/allproduct/1";
+		return "redirect:/allproduct/1/1";
 	}
 	
 	
@@ -606,7 +626,7 @@ public class ProductController {
 		// update 실행 
 		int updateResult = productService.updateProduct(productDTO);
 		
-		return "redirect:/allproduct/1";
+		return "redirect:/allproduct/1/1";
 	}
 
 	

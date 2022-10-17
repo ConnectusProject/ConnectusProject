@@ -164,7 +164,7 @@
 	 </select>
 
 <!-- 스마트 검색 -->
-	<!-- 키워드, 지역 검색 -->
+	<!-- 키워드, 지역, 가격 검색 -->
 	<select id="searchByTitle_Region" resultType="Integer">
 	select product.id from product where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
@@ -231,8 +231,22 @@ and
 	select coords from members where userid = #{userId} 
 	</select>
 	
-	
+	<!-- 검색어 순위 -->	
+	<select id="searchCheck" resultType="int">
+	select count(*) from search where keyword=#{keyword}
+	</select>
 	 
+	<insert id="insertSearch">
+	insert into search (keyword) values(#{keyword})
+	</insert>
+	
+	<update id="updateSearchCount">
+	update search set searchCount = searchCount+1 where keyword=#{keyword}
+	</update>
+	
+	<select id="searchLanking" resultType="String">
+	select keyword from search order by searchCount desc limit 0,10;
+	</select>
 	 
 
 </mapper>

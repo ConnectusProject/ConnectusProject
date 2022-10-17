@@ -22,6 +22,7 @@
             let searchType = '${searchType}';
             let orderType = '${orderType}';
             let search = '${search}';
+            let searchLankingList = '${searchLankingList}';
 
             let smartTitle = '${smartTitle}'
             let smartRegion = '${smartRegion}'
@@ -30,6 +31,18 @@
             let distanceKm = '${distanceKm}'; 
             let smartPriceMin = '${smartPriceMin}'; 
             let smartPriceMax = '${smartPriceMax}'; 
+            
+            
+            // 검색어 순위 
+            $("#oneRank").on("mouseover",function(){
+            $("#showSearchRank").attr("style", "");
+            });
+            
+            $("#oneRank").on("mouseleave",function(){
+                $("#showSearchRank").attr("style", "display:none");
+                });
+            
+            
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -299,23 +312,39 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/1">최신순</a>|
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/2">낮은 가격순</a>|
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/3">높은 가격순</a>|
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/1">최신순</a> |
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/2">낮은 가격순</a> |
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/3">높은 가격순</a> |
                             <a class="product-array-button" href="http://localhost:8090/allproduct/1/4">인기순</a>
                             </c:if>
                             <c:if test="${searchType==2 }">
-                            <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a>|
-                            <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a>|
-                            <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a> |
+                            <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a> |
                             <a href="http://localhost:8090/allproduct/2/4?search=${search}">인기순</a>
                             </c:if>
                             <c:if test="${searchType==3 }">
-                            <a href="http://localhost:8090/allproduct/3/1">최신순</a>|
-                            <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a>|
-                            <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/3/1">최신순</a> |
+                            <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a> |
                             <a href="http://localhost:8090/allproduct/3/4">인기순</a>
                             </c:if>
+                            
+                            
+                            <!-- 검색어순위 -->
+                            <div id="oneRank">
+                            <c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0" end="0">
+                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count}. ${searchString} </a><br> 
+                    		</c:forEach>
+                    		<div id="showSearchRank" style="display:none">
+                    		<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="1" >
+                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count + 1}. ${searchString} </a> <br>  
+                    		</c:forEach>
+                            </div>
+                    		</div>
+                            
+                            
+                            
                     </div>
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs" >
