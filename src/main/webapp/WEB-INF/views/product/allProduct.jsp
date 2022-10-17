@@ -291,29 +291,32 @@ $.each(list, function(i, product){
 
                 <div class="allproduct-search-box" >	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
-                    <c:if test="${searchType==1 }">
-                    <a href="http://localhost:8090/allproduct/1/1">최신순</a>
-                    <a href="http://localhost:8090/allproduct/1/2">낮은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/1/3">높은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/1/4">인기순</a>
-                    </c:if>
-                    <c:if test="${searchType==2 }">
-                    <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a>
-                    <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/2/4?search=${search}">인기순</a>
-                    </c:if>
-                    <c:if test="${searchType==3 }">
-                    <a href="http://localhost:8090/allproduct/3/1">최신순</a>
-                    <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a>
-                    <a href="http://localhost:8090/allproduct/3/4">인기순</a>
-                    </c:if>
+
 				</div>
                 
                 
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box" id="appendScroll">
+                    <div class="allproduct-item-array">
+                        <c:if test="${searchType==1 }">
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/1">최신순</a>|
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/2">낮은 가격순</a>|
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/3">높은 가격순</a>|
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/4">인기순</a>
+                            </c:if>
+                            <c:if test="${searchType==2 }">
+                            <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a>|
+                            <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/2/4?search=${search}">인기순</a>
+                            </c:if>
+                            <c:if test="${searchType==3 }">
+                            <a href="http://localhost:8090/allproduct/3/1">최신순</a>|
+                            <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a>|
+                            <a href="http://localhost:8090/allproduct/3/4">인기순</a>
+                            </c:if>
+                    </div>
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs" >
                         <div class="product-box-item" >
@@ -394,8 +397,11 @@ $.each(list, function(i, product){
     </div>
     
     <script>
-       
+       let arrayButton = $('.product-array-button');
 
+       arrayButton.eq(0).on('click', function(event){
+        arrayButton[0].style.color="red";
+       })
 
 
  
