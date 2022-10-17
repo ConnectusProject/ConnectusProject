@@ -36,6 +36,8 @@ public interface MemberDAO {
 		
 	void updateTempPassword(@Param("userid")String userid, @Param("pw")String pw) throws Exception;
 	
-	public String getRegion(String userid); 
+	public String getRegion(String userid);
+
+	public MemberDTO getUserInfo(String insertedId); 
 
 }

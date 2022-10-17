@@ -11,6 +11,10 @@
     select * from members where userid=#{userid}
 </select>
 
+<select id="getUserInfo" resultType="memberdto" parameterType="String" >
+    select * from members where userid=#{userid}
+</select>
+
 <select id="onemember_check" resultType="memberdto" parameterType="String" >
     select * from members where userid=#{userid}
 </select>
@@ -35,9 +39,9 @@
      ]]>
 </update>
 
-<delete id="deletemember" parameterType="String">
-	delete from members where userid=#{userid}
-</delete>
+<update id="deletemember" parameterType="String">
+	update members set userStatus=9 where userid=#{userid}
+</update>
 
 <select id="findId" resultType="memberdto">
 	select * from members where name=#{name} and phone=#{phone}

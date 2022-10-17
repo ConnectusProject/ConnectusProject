@@ -28,7 +28,7 @@ public class MemberController {
 	MemberService memserv;
 	
 	@Autowired
-	private BCryptPasswordEncoder encoderPassword;
+	private PasswordEncoder encoderPassword;
 
 	
 	//회원가입

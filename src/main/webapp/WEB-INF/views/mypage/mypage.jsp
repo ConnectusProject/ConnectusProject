@@ -40,6 +40,7 @@
                 <div class="mypage-box-title-box">
                     <div class="mypage-title show">내 정보</div>
                     <div class="mypage-title">내 물건</div>
+                    <div class="mypage-title">내가 쓴 글</div>
                     <div class="mypage-title">찜리스트</div>
                     <div class="mypage-title">탈퇴하기</div>
                 </div>
@@ -107,6 +108,37 @@
                     </script>
                 </div>
                 
+                
+                <div class="mypage-container-inner-box close">
+
+                    <p class="myproduct-box-title">내가 쓴 글</p>
+                    <form class="myproduct-box" name="mywrite" method="get">       
+                            <table class="myproduct-box-table">      
+                                    <tr class="myproduct-box-table-title">
+                                        <th style="width : 20%">번호</th>
+                                        <th>제목</th>
+                                        <th>날짜</th>
+                                    </tr>
+                                <tbody>
+                                    <c:forEach items="${allmyboard2}" var="board2" varStatus="vs">
+                                        <fmt:parseDate value="${board2.writingtime}" var="uploadDate"
+                                            pattern="yyyy-MM-dd" />
+                                        <tr>
+                                            <th id="boardid${vs.index}">${board2.seq}</th>
+                                            <th><a href="/product/${board2.seq}">${board2.title}</th>
+                                            <th>${board2.writingtime}</th>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                    </form>
+
+                    <script>
+                        function back() {
+                            history.back();
+                        }
+                    </script>
+                </div>
                 <!-- 찜목록 div 정훈님작업 -->
               
                 <div class="mypage-container-inner-box close">

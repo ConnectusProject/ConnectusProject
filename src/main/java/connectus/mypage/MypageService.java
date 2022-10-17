@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.board.BoardDTO;
+import connectus.comment.CommentDTO;
 import connectus.member.MemberDTO;
 import connectus.product.ProductDTO;
 
@@ -59,8 +60,7 @@ public class MypageService {
 	}
 	
 	//비밀번호(수정)
-	public void passwordModify(MemberDTO memberdto, @RequestParam(value="changePw")String pw) throws Exception {		
-		memberdto.setPw(pw);
+	public void passwordModify(MemberDTO memberdto) throws Exception {		
 		dao.passwordModify(memberdto);
 		return;		
 	}
@@ -73,5 +73,9 @@ public class MypageService {
 	//내가 쓴 글
 	public List<BoardDTO> allMyBoard2(String userid) {
 		return dao.allMyBoard2(userid);
+	}
+
+	public List<CommentDTO> allMyBoard3(String userid) {
+		return dao.allMyBoard3(userid);
 	}
 }

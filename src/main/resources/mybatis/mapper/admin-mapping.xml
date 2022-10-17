@@ -14,4 +14,8 @@
 		update members set userStatus=9 where userid=#{userid}
 	</update>
 	
+	<delete id="deleteProduct">
+		delete from product where id=#{productid}
+	</delete>
+	
 </mapper>

@@ -15,4 +15,5 @@ public interface AdminDAO {
 
 	public List<MemberDTO> allmemList();
 	public void dropUser(String userid);
+	public int deleteProduct(int productid);
 }
