@@ -136,7 +136,7 @@
 		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
-				<a class="loginBtn" href="../login">로그인</a>
+				<a class="loginBtn" href="http://localhost:8090/login">로그인</a>
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
