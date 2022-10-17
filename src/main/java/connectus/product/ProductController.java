@@ -90,10 +90,13 @@ public class ProductController {
 		
 		else if (searchType==2) {
 			// 검색어 순위 
+			
+			if(search!=null && !search.isBlank() && !search.isEmpty()) {
 			if(productService.searchCheck(search)==0) {
 				productService.insertSearch(search);
 			}else if(productService.searchCheck(search)>0) {
 				productService.updateSearchCount(search);
+			}
 			}
 			
 			if(orderType==1) {
@@ -344,7 +347,7 @@ public class ProductController {
 		}
 		
 		// 검색어 순위 반영
-		if(smartSearchDTO.getSmartTitle()!=null) {
+		if(smartSearchDTO.getSmartTitle()!=null && !smartSearchDTO.getSmartTitle().isBlank() && !smartSearchDTO.getSmartTitle().isEmpty()) {
 		String search = smartSearchDTO.getSmartTitle();
 		if(productService.searchCheck(search)==0) {
 			productService.insertSearch(search);
