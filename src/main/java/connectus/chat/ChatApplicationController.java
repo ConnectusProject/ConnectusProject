@@ -24,6 +24,7 @@ import connectus.chat.ChatRoomService;
 import connectus.chat.ChatList;
 import connectus.chat.ChatRoom;
 import connectus.chat.TimeUtils;
+import connectus.product.ProductDAO;
  
 @Controller
 public class ChatApplicationController {
@@ -34,6 +35,9 @@ public class ChatApplicationController {
     
     @Autowired
     private ChatRoomService chatRoomService;
+    
+    @Autowired
+    private ProductDAO productDAO;
  
     //상세페이지에서 채팅방 입장
     @RequestMapping(value="/chatMessage", method=RequestMethod.GET)
@@ -78,7 +82,9 @@ public class ChatApplicationController {
     // 채팅리스트에서 채팅방 입장
     @RequestMapping(value="/chatRoom/{pr_id}/{buyerId}", method=RequestMethod.GET)
 	public String getChatRoom(@PathVariable Map<String, String> requestVar,
-			Model model) throws IOException {
+			Model model, HttpSession session) throws IOException {
+    	
+    	String sessionId = (String)session.getAttribute("sessionid");
 		
 		String buyerId = requestVar.get("buyerId");
 		int pr_id = Integer.parseInt(requestVar.get("pr_id"));
@@ -98,8 +104,10 @@ public class ChatApplicationController {
 		String img4 = chatRoomRead.getImg4();
 		String img5 = chatRoomRead.getImg5();
 		String img6 = chatRoomRead.getImg6();
+		// 세션 위치정보 보내기 
+		String sessionCoords = productDAO.getCoords(sessionId);
 		
-		
+		model.addAttribute("sessionCoords", sessionCoords);
 		model.addAttribute("img1", img1);
 		model.addAttribute("img2", img2);
 		model.addAttribute("img3", img3);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.board.BoardDTO;
+import connectus.comment.CommentDTO;
 import connectus.member.MemberDTO;
 import connectus.product.ProductDTO;
 
@@ -25,4 +26,5 @@ public interface MypageDAO {
 
 	public List<ProductDTO> allMyBoard(String userid);
 	public List<BoardDTO> allMyBoard2(String userid);
+	public List<CommentDTO> allMyBoard3(String userid);
 }

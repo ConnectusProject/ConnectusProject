@@ -40,6 +40,8 @@
                 <div class="mypage-box-title-box">
                     <div class="mypage-title show">내 정보</div>
                     <div class="mypage-title">내 물건</div>
+                    <div class="mypage-title">내가 쓴 글</div>
+                    <div class="mypage-title">찜리스트</div>
                     <div class="mypage-title">탈퇴하기</div>
                 </div>
                 <div class="mypage-container-inner-box">
@@ -81,7 +83,36 @@
                 <div class="mypage-container-inner-box close">
 
                     <p class="myproduct-box-title">My product</p>
-                    <form class="myproduct-box" name="myproduct" action="myProduct" method="get">       
+                    <form class="myproduct-box" name="myproduct" action="myProduct" method="get">     
+                        
+
+                                    <c:forEach items="${allmyboard}" var="board" varStatus="vs">
+                                        <div class="myproduct-box-item">
+                                        <fmt:parseDate value="${board.createdAt}" var="uploadDate"
+                                            pattern="yyyy-MM-dd" />
+                                            
+                                       
+                                            <div class="close" id="boardid${vs.index}">${board.id}</div>
+                                            <div class="myproduct-item-img"><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=200 height=200></a></div>
+                                            <div class="myproduct-item-title"><a href="/product/${board.id}">${board.title}</a></div>
+                                            <div class="myproduct-item-date">${board.createdAt}</div>
+                                        </div>
+                                    </c:forEach>
+                                 
+                    </form>
+
+                    <script>
+                        function back() {
+                            history.back();
+                        }
+                    </script>
+                </div>
+                
+                
+                <div class="mypage-container-inner-box close">
+
+                    <p class="myproduct-box-title">내가 쓴 글</p>
+                    <form class="myproduct-box" name="mywrite" method="get">       
                             <table class="myproduct-box-table">      
                                     <tr class="myproduct-box-table-title">
                                         <th style="width : 20%">번호</th>
@@ -89,13 +120,13 @@
                                         <th>날짜</th>
                                     </tr>
                                 <tbody>
-                                    <c:forEach items="${allmyboard}" var="board" varStatus="vs">
-                                        <fmt:parseDate value="${board.createdAt}" var="uploadDate"
+                                    <c:forEach items="${allmyboard2}" var="board2" varStatus="vs">
+                                        <fmt:parseDate value="${board2.writingtime}" var="uploadDate"
                                             pattern="yyyy-MM-dd" />
                                         <tr>
-                                            <th id="boardid${vs.index}">${board.id}</th>
-                                            <th><a href="/product/${board.id}">${board.title}</th>
-                                            <th>${board.createdAt}</th>
+                                            <th id="boardid${vs.index}">${board2.seq}</th>
+                                            <th><a href="/product/${board2.seq}">${board2.title}</th>
+                                            <th>${board2.writingtime}</th>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -108,12 +139,42 @@
                         }
                     </script>
                 </div>
+                <!-- 찜목록 div 정훈님작업 -->
+              
+                <div class="mypage-container-inner-box close">
+                    <table class="myproduct-zzim-box">      
+                        <tr class="myproduct-box-table-title">
+                            <th style="width : 10%">번호</th>
+                            <th>제목</th>
+                            <th>날짜</th>
+                        </tr>
+              
+                    <tbody>
+                        <c:forEach items="${zzimList}" var="board" varStatus="vs">
+                            <fmt:parseDate value="${board.createdAt}" var="uploadDate"
+                                pattern="yyyy-MM-dd" />
+                            <tr class="myproduct-zzim-item">
+                                <th id="zzimid${vs.index}">${board.id}</th>
+                                <th><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=50 height=50 >${board.title}</a></th>
+                                <th>${board.createdAt}</th>
+                                <th><span class="product-item-zzim" id="zzimSpan${board.id}"><img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'></span></th>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                </div>
+          
+                
+                
+                
 
                 <div class="mypage-container-inner-box close">
                     <jsp:include page="/WEB-INF/views/mypage/delete.jsp">
                         <jsp:param value="false" name="mypage" />
                     </jsp:include>
                 </div>
+
+
 
             </div>
         </div>
@@ -143,6 +204,52 @@
         //     myPageInnerBox.addClass('close');
         //     myPageInnerBox[2].classList.remove('close')
         // })
+        
+        
+        
+        
+          // 찜 기능
+        let zzimlength = '${zzimlength}';
+            for (var i = 0; i < zzimlength; i++) {
+            	(function(i){
+                let eachProductId = $("#zzimid" + i).html();
+                let intProductId = parseInt(eachProductId);
+
+                $("#zzimSpan" + intProductId).on("click", function (e) {
+                    if (sessionId == "") {
+                        alert("로그인이 필요합니다.");
+                        return false;
+                    }
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/product/zzim",
+                        dataType: "json",
+                        data: { 'productseq': intProductId, 'memberid': sessionId },   //sessionId Header에 defined.
+
+                        success: function (resp) {
+                        	
+                            if (resp.result == 0) {
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                            // 찜 작동 시, 해당물품 장바구니에 출력 
+                            //    $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                            }
+                            else if (resp.result == 1) {
+                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                            // 찜 취소 시, 해당물품 장바구니에서 제거
+                            //    $("#spanId" + resp.id).remove();
+                            }
+
+                        } // success 
+                    }); // ajax 
+                }); // 찜 onclick
+            	})(i); // for - ajax 용 function
+            } // for 
+        
+        
+        
+        
     </script>
 
 

@@ -123,16 +123,20 @@
 			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
 			<span class="header-menu-title"><img src="${path}/pictures/logo.png" alt=""> Connect Us</span>
 		</div>
+		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
-				<input class="header-search-input" type="text" class="form-control">
-				<button class="btn btn-outline-secondary header-search-button" type="button"
+			<form action="http://localhost:8090/allproduct/2/1">
+				<input class="header-search-input" type="text" name="search" placeholder="검색">
+				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+			</form>
 			</div>
 		</div>
+		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
-				<a class="loginBtn" href="../login">로그인</a>
+				<a class="loginBtn" href="http://localhost:8090/login">로그인</a>
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
@@ -143,14 +147,14 @@
         			</div>
     			</div>
     			
-    			
     			<div>
     			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
-				
-				
+					<div>
+					<a  class="manager-button"  href="http://localhost:8090/admin_memlist">관리자</a>
+					</div>
 					<a href="/mypage" class="mypage">마이페이지 </a>
-					<a id="logoutchk" href="/logout" class="mypage">로그아웃</a>
+					<a id="logoutchk" href="/logout">로그아웃</a>
 					<% } %>
 		</div>
 	</header>
@@ -165,9 +169,9 @@
 			<div class="basic-menu-box">
 
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
+					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="../login"><img
@@ -203,14 +207,14 @@
 			<% } else { %>
 				<div class="basic-menu-box">
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1">전체 물품</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3"><img
+						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3/1"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3">내 이웃</a></div>
+						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3/1">내 이웃</a></div>
 					</div>
 					<div class="nav-menu-box">
 						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
@@ -264,6 +268,12 @@
 		document.querySelector('.up').addEventListener('click', function(){
 			window.scrollTo(0,0);
 		})
+
+		if(sessionId != "admin1234"){
+			document.querySelector('.manager-button').parentElement.remove();
+		}
+
+
 
 	</script>
 

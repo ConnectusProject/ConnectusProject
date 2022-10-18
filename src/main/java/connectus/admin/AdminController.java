@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import connectus.board.BoardDTO;
+import connectus.comment.CommentDTO;
 import connectus.member.MemberDTO;
 import connectus.mypage.MypageService;
 import connectus.product.ProductDTO;
@@ -39,6 +40,20 @@ public class AdminController {
 		return "admin/admin_memlist";
 	}
 	
+	@GetMapping(value = "/admin_header")
+	public String admin_allmem2(Model model, MemberDTO memberdto) {	
+		System.out.println("role");
+		
+		try {
+			List<MemberDTO> mem = adminserv.allmemList();			
+			model.addAttribute("mem", mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/admin_header";
+	}
+
+	
 	@GetMapping("/admin_write/{userid}")
 	public ModelAndView admin_write(@PathVariable("userid")String userid, Model model) {
 		mav = new ModelAndView("admin/admin_write");
@@ -50,14 +65,6 @@ public class AdminController {
 		model.addAttribute("boardlength", boardlength);
 		model.addAttribute("allmyboard",list);
 		
-		return mav;		
-	}
-	
-	@ResponseBody
-	@GetMapping("admin_board/{userid}")
-	public ModelAndView admin_board(@PathVariable("userid")String userid, Model model) {
-		mav = new ModelAndView("admin/admin_write");
-
 		List<BoardDTO> list2 = myserv.allMyBoard2(userid);
 		
 		int boardlength2 = list2.size();
@@ -65,14 +72,28 @@ public class AdminController {
 		model.addAttribute("boardlength2", boardlength2);
 		model.addAttribute("allmyboard2",list2);
 		
+		List<CommentDTO> list3 = myserv.allMyBoard3(userid);
+		
+		int boardlength3 = list3.size();
+				
+		model.addAttribute("boardlength3", boardlength3);
+		model.addAttribute("allmyboard3",list3);
+
+		
 		return mav;		
 	}
+
 	
 	@ResponseBody
 	@PostMapping("/dropid")
 	public void dropid(String userid) {
-		System.out.println("drop");
 		adminserv.dropUser(userid);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteProduct")
+	public void deleteProduct(int productid) {
+		adminserv.deleteProduct(productid);
 	}
 	
 }

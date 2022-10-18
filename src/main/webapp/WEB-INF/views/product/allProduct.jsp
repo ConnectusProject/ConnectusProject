@@ -20,8 +20,9 @@
             let productlength = '${productlength}';
             let scrollCount = 0;
             let searchType = '${searchType}';
-            let item = '${item}'; 
+            let orderType = '${orderType}';
             let search = '${search}';
+            let searchLankingList = '${searchLankingList}';
 
             let smartTitle = '${smartTitle}'
             let smartRegion = '${smartRegion}'
@@ -30,6 +31,18 @@
             let distanceKm = '${distanceKm}'; 
             let smartPriceMin = '${smartPriceMin}'; 
             let smartPriceMax = '${smartPriceMax}'; 
+            
+            
+            // 검색어 순위 
+            $("#oneRank").on("mouseover",function(){
+            $("#showSearchRank").attr("style", "");
+            });
+            
+            $("#oneRank").on("mouseleave",function(){
+                $("#showSearchRank").attr("style", "display:none");
+                });
+            
+            
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -43,10 +56,9 @@
                 	
                     $.ajax({
                         type: "POST",
-                        url: "/allproduct/ajax/" + searchType,
+                        url: "/allproduct/ajax/" + searchType + "/" + orderType,
                         dataType: "json",
                         data: { 'scrollCount':scrollCount, 
-                     		   	'item':item, 
                         		'search':search, 
                         		'smartTitle' : smartTitle, 
                         		'smartRegion' : smartRegion, 
@@ -168,10 +180,13 @@ $.each(list, function(i, product){
             	}else if(Regionvalue=='모든 동네'){
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='동'>");
             	}else if(Regionvalue=='내 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='smartRegion' value='${region}'>");
             	}else if(Regionvalue=='가까운 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='distanceKm' value='5'>");
             	}else if(Regionvalue=='먼 동네'){
+            		if(sessionId==""){alert("로그인이 필요합니다."); return false;}
             		$("#zzimList").html("<input type='hidden' name='distanceKm' value='15'>");
             	}
             });
@@ -209,7 +224,6 @@ $.each(list, function(i, product){
                         return false;
                     }
 
-
                     $.ajax({
                         type: "POST",
                         url: "/product/zzim",
@@ -219,13 +233,11 @@ $.each(list, function(i, product){
                         success: function (resp) {
                         	
                             if (resp.result == 0) {
-                                alert("찜!");
                                 $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
                                 $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
-                                alert("찜 취소!");
                                 $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                                 $("#spanId" + resp.id).remove();
@@ -290,26 +302,50 @@ $.each(list, function(i, product){
                     </div>
                  </div>
 
-                <form class="allproduct-search-box" action="http://localhost:8090/allproduct/2">	
+                <div class="allproduct-search-box" >	
                     <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
 
-		<!-- 검색기능 -->                    
-                    <div class="allproduct-search-box-input">
-                    <select name="item">
-                        <option value="title">제목</option>
-                        <option value="boardRegion">지역</option>
-                        <option value="userId">오너이름</option>
-                        <option value="contents">내용</option>
-                    </select>
-
-                    <input class="search-box-search-input" type="text" name="search">
-                    <input class="search-box-search-button" type="submit" value="검색">
-                    </div>
-                </form>
+				</div>
                 
                 
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box" id="appendScroll">
+                    <div class="allproduct-item-array">
+                        <c:if test="${searchType==1 }">
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/1">최신순</a> |
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/2">낮은 가격순</a> |
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/3">높은 가격순</a> |
+                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/4">인기순</a>
+                            </c:if>
+                            <c:if test="${searchType==2 }">
+                            <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a> |
+                            <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/2/4?search=${search}">인기순</a>
+                            </c:if>
+                            <c:if test="${searchType==3 }">
+                            <a href="http://localhost:8090/allproduct/3/1">최신순</a> |
+                            <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a> |
+                            <a href="http://localhost:8090/allproduct/3/4">인기순</a>
+                            </c:if>
+                            
+                            
+                            <!-- 검색어순위 -->
+                            <div id="oneRank">
+                            <c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0" end="0">
+                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count}. ${searchString} </a><br> 
+                    		</c:forEach>
+                    		<div id="showSearchRank" style="display:none">
+                    		<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="1" >
+                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count + 1}. ${searchString} </a> <br>  
+                    		</c:forEach>
+                            </div>
+                    		</div>
+                            
+                            
+                            
+                    </div>
 
                     <c:forEach items="${allproduct}" var="product" varStatus="vs" >
                         <div class="product-box-item" >
@@ -390,8 +426,11 @@ $.each(list, function(i, product){
     </div>
     
     <script>
-       
+       let arrayButton = $('.product-array-button');
 
+       arrayButton.eq(0).on('click', function(event){
+        arrayButton[0].style.color="red";
+       })
 
 
  

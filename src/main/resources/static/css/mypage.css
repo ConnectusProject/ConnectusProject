@@ -123,15 +123,62 @@ a {
   width: 35rem;
 }
 
-.myproduct-box-table {
+.myproduct-box-item {
   width: 100%;
+  height: 5rem;
+  position: relative;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.myproduct-item-img {
+  position: absolute;
+  left: 10px;
+  width: 10%;
+  height: 80%;
+  top: 10%;
+}
+
+.myproduct-item-img a {
+  width: 100%;
+  height: 100%;
+}
+
+.myproduct-item-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.myproduct-item-title {
+  position: absolute;
+  left: 15%;
+  top: 10%;
+  font-size: 1.3rem;
+}
+
+.myproduct-item-date {
+  position: absolute;
+  left: 15%;
+  bottom: 10%;
+}
+
+.myproduct-zzim-box {
+  width: 40rem;
   text-align: center;
 }
 
+.myproduct-zzim-box img {
+  margin-right: 1rem;
+}
+
+.myproduct-zzim-item {
+  margin: 1rem;
+}
+
 .myproduct-box-table-title {
-  width: 100%;
+  height: 3rem;
   border-bottom: solid 2px #6462cb;
-  text-align: center;
 }
 
 .mypage-delete-title {
@@ -169,6 +216,55 @@ a {
   border: none;
   background-color: #6462cb;
   border-radius: 7px;
+  color: white;
+}
+
+.mypage-modify-title {
+  width: 100%;
+  height: 3rem;
+  border-bottom: solid 3px #6462cb;
+  font-size: 2rem;
+}
+
+.modify-box input {
+  width: 15rem;
+  height: 2.5rem;
+  margin: 5px;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  border-bottom: solid 2px #6462cb;
+}
+
+.modify-box p {
+  margin: 0%;
+  margin-left: 5px;
+}
+
+#mypage-modify-button {
+  width: 31rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6462cb;
+  color: white;
+}
+
+#mypage-modify-pw-button {
+  margin-top: 10px;
+  width: 21rem;
+  height: 3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6462cb;
+  color: white;
+}
+
+#mypage-modify-address-button {
+  margin-top: 10px;
+  width: 8rem;
+  height: 2.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6462cb;
   color: white;
 }
 

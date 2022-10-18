@@ -106,14 +106,13 @@ li {
 
 .header-search-input {
   width: 10vw;
-  border: solid 2px #6462cb;
+  border: solid 3px #6462cb;
   border-radius: 5px;
-  height: 2.4rem;
   transition: all 0.5s;
 }
 
 .header-search-input:focus {
-  width: 20vw;
+  width: 25vw;
 }
 
 .header-search-input:focus {
@@ -159,6 +158,12 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.admin {
+  width: 5rem;
+  height: 2rem;
+  background-color: red;
 }
 
 .nav-box {

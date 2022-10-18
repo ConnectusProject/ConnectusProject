@@ -5,6 +5,7 @@
 
 <mapper namespace="connectus.product.ProductDAO">
 
+	<!-- 전체 물품 -->
 	<select id="allProduct" resultType="productdto">
 		select * from product order by id desc limit 0, 20
 	</select>
@@ -12,6 +13,36 @@
 	<select id="scrollProduct" resultType="productdto">
 		select * from product order by id desc limit #{limit}, 20
 	</select>
+	
+	<!-- 전체 낮은가격순 -->
+	<select id="allProductOrderByLowPrice" resultType="productdto">
+		select * from product order by price asc limit 0, 20
+	</select>
+	
+	<select id="scrollProductOrderByLowPrice" resultType="productdto">
+		select * from product order by price asc limit #{limit}, 20
+	</select>
+	
+	<!-- 전체 높은가격순 -->
+	<select id="allProductOrderByHighPrice" resultType="productdto">
+		select * from product order by price desc limit 0, 20
+	</select>
+	
+	<select id="scrollProductOrderByHighPrice" resultType="productdto">
+		select * from product order by price desc limit #{limit}, 20
+	</select>
+	
+	<!-- 전체 조회순 -->
+	<select id="allProductOrderByCount" resultType="productdto">
+		select * from product order by viewCount desc limit 0, 20
+	</select>
+	
+	<select id="scrollProductOrderByCount" resultType="productdto">
+		select * from product order by viewCount desc limit #{limit}, 20
+	</select>
+
+
+
 
 
 	<select id="oneProduct" resultType="productdto">
@@ -46,19 +77,74 @@
 	</update>
 	
 	
-	<!-- 검색 -->
+	<!-- 검색 deprecated -->
 	<select id="searchList" resultType="productdto" >
 	 	select * from product where ${item} like concat('%', #{search}, '%') 
 	 	order by id desc limit #{limit}, 20
 	 </select>
 	 
+	 <!-- Nav 검색 -->
+	 <select id="navSearch" resultType="productdto">
+	 	select * from product 
+			where title like concat('%', #{search}, '%') 
+			or contents like concat('%', #{search}, '%') 
+			or boardRegion like concat('%', #{search}, '%') 
+			or userid like concat('%', #{search}, '%')
+			order by id desc limit #{limit}, 20
+	 </select>
+	 
+	 <select id="navSearchOrderByLowPrice" resultType="productdto">
+	 	select * from product 
+			where title like concat('%', #{search}, '%') 
+			or contents like concat('%', #{search}, '%') 
+			or boardRegion like concat('%', #{search}, '%') 
+			or userid like concat('%', #{search}, '%')
+			order by price asc limit #{limit}, 20
+	 </select>
+	 
+	 <select id="navSearchOrderByHighPrice" resultType="productdto">
+	 	select * from product 
+			where title like concat('%', #{search}, '%') 
+			or contents like concat('%', #{search}, '%') 
+			or boardRegion like concat('%', #{search}, '%') 
+			or userid like concat('%', #{search}, '%')
+			order by price desc limit #{limit}, 20
+	 </select>
+	 
+	 <select id="navSearchOrderByCount" resultType="productdto">
+	 	select * from product 
+			where title like concat('%', #{search}, '%') 
+			or contents like concat('%', #{search}, '%') 
+			or boardRegion like concat('%', #{search}, '%') 
+			or userid like concat('%', #{search}, '%')
+			order by viewCount desc limit #{limit}, 20
+	 </select>
+	 
+	 
+	 
 	 
 	 <!-- 이웃 검색 -->
-	<select id="neighborList" resultType="productdto">
+	 <select id="neighborList" resultType="productdto">
 	 	select * from product where boardRegion = #{boardRegion}
 	 	order by id desc limit #{limit}, 20
 	 </select>
+
+	 <select id="neighborListOrderByLowPrice" resultType="productdto">
+	 	select * from product where boardRegion = #{boardRegion}
+	 	order by price asc limit #{limit}, 20
+	 </select>
+	
+	 <select id="neighborListOrderByHighPrice" resultType="productdto">
+	 	select * from product where boardRegion = #{boardRegion}
+	 	order by price desc limit #{limit}, 20
+	 </select>
 	 
+	  <select id="neighborListOrderByCount" resultType="productdto">
+	 	select * from product where boardRegion = #{boardRegion}
+	 	order by viewCount desc limit #{limit}, 20
+	 </select>
+	  
+	  	 
 	 
 	 <!-- 렌탈중 표시 -->
 	 <update id="checkReservation">
@@ -74,11 +160,11 @@
 	 
 	 <!-- 찜 목록 가져오기 -->
 	 <select id="getZzimProducts" resultType="productdto">
-	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by zzim.seq desc;
+	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by product.id desc;
 	 </select>
 
 <!-- 스마트 검색 -->
-	<!-- 키워드, 지역 검색 -->
+	<!-- 키워드, 지역, 가격 검색 -->
 	<select id="searchByTitle_Region" resultType="Integer">
 	select product.id from product where product.title like concat('%', #{title}, '%')
 	and product.boardRegion like concat('%', #{region}, '%')
@@ -92,7 +178,6 @@
 	<select id="NoLimitTitle_Region" resultType="Integer">
 	select product.id from product 
 	where product.title like concat('%', #{title}, '%')
-	and product.boardRegion like concat('%', #{region}, '%')
 	and product.price &gt; #{minPrice} -1
 	and product.price &lt; #{maxPrice} +1
 	order by id desc  
@@ -145,7 +230,23 @@ and
 	<select id="getCoords" resultType="String">
 	select coords from members where userid = #{userId} 
 	</select>
+	
+	<!-- 검색어 순위 -->	
+	<select id="searchCheck" resultType="int">
+	select count(*) from search where keyword=#{keyword}
+	</select>
 	 
+	<insert id="insertSearch">
+	insert into search (keyword) values(#{keyword})
+	</insert>
+	
+	<update id="updateSearchCount">
+	update search set searchCount = searchCount+1 where keyword=#{keyword}
+	</update>
+	
+	<select id="searchLanking" resultType="String">
+	select keyword from search order by searchCount desc limit 0,10;
+	</select>
 	 
 
 </mapper>

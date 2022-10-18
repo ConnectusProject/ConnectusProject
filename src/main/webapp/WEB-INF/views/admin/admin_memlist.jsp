@@ -35,11 +35,16 @@
 							<td id=userid >${mem.userid}</td>
 							<td>${mem.phone}</td>
 							<td>${mem.email}</td>
-							<td><a href="/admin_write/${mem.userid}">게시글 보기</a>
+							<td><a href="/admin_write/${mem.userid}">작성글 모두 보기</a></td>
 							<td>
 							<c:choose>
-								<c:when test="${mem.userStatus==0}">일반회원</c:when>
-								<c:when test="${mem.userStatus==1}">관리자</c:when>
+								<c:when test="${mem.userStatus==0}">
+									<c:choose>
+										<c:when test="${mem.role=='ADMIN'}">관리자</c:when>	
+										<c:when test="${mem.role=='USER'}">일반회원</c:when>
+									</c:choose>
+								</c:when>
+								
 								<c:when test="${mem.userStatus==9}">추방회원</c:when>
 							</c:choose>
 							</td>
@@ -65,6 +70,8 @@
 </body>
  
 <script>
+console.log()
+
 
 $(document).ready(function(){
 	$(".drop_btn").on('click',function(e){
@@ -77,9 +84,7 @@ $(document).ready(function(){
 		$.ajax({
 			type : 'post',
 			url : "dropid",
-			data : {
-				userid:dropid,
-			},
+			data : { userid:dropid },
 			success : function(data){
 				console.log(data);
 				location.reload();				
@@ -88,8 +93,6 @@ $(document).ready(function(){
 		
 	})
 })
-
-
 </script>
 
 

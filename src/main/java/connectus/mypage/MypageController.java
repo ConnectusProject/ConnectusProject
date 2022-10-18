@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import connectus.board.BoardDTO;
 import connectus.board.BoardService;
 import connectus.member.MemberDTO;
 import connectus.member.MemberService;
 import connectus.product.ProductDAO;
 import connectus.product.ProductDTO;
+import connectus.product.ProductService;
 
 @Controller
 public class MypageController {
@@ -31,10 +34,13 @@ public class MypageController {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	ProductService productService;
+	
 	ModelAndView mav = new ModelAndView();
 	
 	@Autowired
-	private BCryptPasswordEncoder encoderPassword;
+	private PasswordEncoder encoderPassword;
 	
 	//마이페이지
 	@GetMapping("/mypage")
@@ -46,6 +52,18 @@ public class MypageController {
 		List<ProductDTO> list = myserv.allMyBoard(userid);		
 		int boardlength = list.size();
 		
+		//커뮤티니
+		List<BoardDTO> list2 = myserv.allMyBoard2(userid);		
+		int boardlength2 = list2.size();
+		
+		model.addAttribute("boardlength2", boardlength2);
+		model.addAttribute("allmyboard2",list2);
+		//찜목록
+		List<ProductDTO> zzimList = productService.getZzimProducts(userid);
+		int zzimlength = zzimList.size();
+		model.addAttribute("zzimlength", zzimlength);
+		model.addAttribute("sessionId", userid);
+		model.addAttribute("zzimList", zzimList);
 		model.addAttribute("boardlength", boardlength);
 		model.addAttribute("allmyboard",list);
 		
@@ -122,7 +140,7 @@ public class MypageController {
 		session = request.getSession();
 		session.removeAttribute("sessionid");
 		memberdto.setPw(pw);
-		myserv.passwordModify(memberdto, pw);
+		myserv.passwordModify(memberdto);
 		return mav = new ModelAndView("member/login");		
 	}
 	
