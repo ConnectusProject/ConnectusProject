@@ -174,9 +174,9 @@
 					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img
+					<span class="menu-icon"><a href="http://localhost:8090/login"><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
-					<div class="menu-title close"><a href="../login">내 이웃</a></div>
+					<div class="menu-title close"><a href="http://localhost:8090/login">내 이웃</a></div>
 				</div>
 				<div class="nav-menu-box">
 
@@ -185,14 +185,14 @@
 					<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/chat.png"
+					<span class="menu-icon"><a href="http://localhost:8090/login"><img src="${path}/pictures/chat.png"
 								alt=""></a></span>
-					<span class="menu-title close"><a href="../login">채팅리스트</a></span>
+					<span class="menu-title close"><a href="http://localhost:8090/login">채팅리스트</a></span>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/mypage.png"
+					<span class="menu-icon"><a href="http://localhost:8090/login"><img src="${path}/pictures/mypage.png"
 								alt=""></a></span>
-					<span class="menu-title close"><a href="../login">마이페이지</a></span>
+					<span class="menu-title close"><a href="http://localhost:8090/login">마이페이지</a></span>
 				</div>
 			</div>
 			

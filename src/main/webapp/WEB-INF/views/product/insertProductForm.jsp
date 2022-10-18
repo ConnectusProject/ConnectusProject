@@ -73,7 +73,7 @@
 		$(document).ready(function () {
 			// 이미지 업로드 
 			$("#imgFile").change(function (e) {
-				e.preventDefault();
+				//e.preventDefault();
 				$("#cancleNoti").attr("style", "display:unset");
 
 				var form = $("#uploadForm")[0];
