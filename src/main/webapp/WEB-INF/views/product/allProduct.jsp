@@ -391,15 +391,16 @@ $.each(list, function(i, product){
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
                                     <a href="/product/${product.id}">
-                                    <img alt="사진이 없어요" width=100% height=60%
+                                    <img width=100% height=60%
                                         src="http://localhost:8090/upload/${product.img1}"></a>
                                 </div>
                             </c:if>
 
                             <c:if test="${empty product.img1}">
                                 <div class="product-item-img">
+                                <a href="/product/${product.id}">
                                     <img alt="사진이 없어요" width=100% height=60%
-                                        src="http://localhost:8090/upload/noimg.png">
+                                        src="http://localhost:8090/pictures/noimg.png"></a>
                                 </div>
                             </c:if>
 
