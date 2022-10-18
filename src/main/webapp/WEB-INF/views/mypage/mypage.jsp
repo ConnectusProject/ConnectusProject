@@ -115,9 +115,9 @@
                     <form class="myproduct-box" name="mywrite" method="get">       
                             <table class="myproduct-box-table">      
                                     <tr class="myproduct-box-table-title">
-                                        <th style="width : 20%">번호</th>
-                                        <th>제목</th>
-                                        <th>날짜</th>
+                                        <th style="width : 10%">번호</th>
+                                        <th style="width : 45%">제목</th>
+                                        <th style="width : 45%">날짜</th>
                                     </tr>
                                 <tbody>
                                     <c:forEach items="${allmyboard2}" var="board2" varStatus="vs">

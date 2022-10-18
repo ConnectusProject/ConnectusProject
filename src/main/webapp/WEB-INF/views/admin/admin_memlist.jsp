@@ -6,10 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/header.css">
+<link rel="stylesheet" href="${path}/css/admin.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
+    <div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
+
+
+
+
 <form action="admin_memlist" method="get">
 	<input type="text" id="mem_text" name="mem_text" /> <input
 	type="submit" value="찾기" />
@@ -65,7 +78,8 @@
 			</table>		
 		</form>
 
-	
+</div>
+</div>	
 
 </body>
  
