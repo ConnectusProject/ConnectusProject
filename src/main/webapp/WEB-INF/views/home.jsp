@@ -41,6 +41,8 @@ $(document).ready(function(){
 
 <a href="http://localhost:8090/boardstart">커뮤니티 이동</a>
 
+<a href="http://localhost:8090/reportregister">신고하기</a>
+
 <br>
 
 

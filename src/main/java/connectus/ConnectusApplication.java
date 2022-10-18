@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 
 @ComponentScan
+@ComponentScan(basePackages = "connectus.report")
 @ComponentScan(basePackages = "connectus.member")
 @ComponentScan(basePackages = "connectus.board")
 @ComponentScan(basePackages = "connectus.product")
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @ComponentScan(basePackages = "connectus.location")
+@MapperScan(basePackages = "connectus.report")
 @MapperScan(basePackages = "connectus.comment")
 @MapperScan(basePackages = "connectus.member")
 @MapperScan(basePackages = "connectus.board")

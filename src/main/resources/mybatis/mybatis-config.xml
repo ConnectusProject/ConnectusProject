@@ -12,7 +12,7 @@
 	<typeAlias type="connectus.notice.NoticeDTO" alias="noticedto"/>
 	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
 	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
-	
+	<typeAlias type="connectus.report.ReportDTO" alias="reportdto"/>
 	<typeAlias type="connectus.chat.ChatRoom" alias="ChatRoom" />
 </typeAliases>
 

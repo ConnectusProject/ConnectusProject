@@ -14,15 +14,8 @@
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
 
 	<script>
-	$(function (){
-		$("#register").on("click", function(e){
-		let sessionId = '<%=session.getAttribute("sessionid")%>';
-			if(sessionId == 0){
-				alert("로그인 후 이용해주세요");
-				e.preventDefault();
-			}
-	})
-});
+
+
 	</script>
 
 </head>
@@ -46,7 +39,7 @@
 					<p>사진은 *.png, *.jpeg만 가능합니다</p>
 					<textarea class="write-form-textarea"  rows=10 name="contents" placeholder="내용을 입력하세요."></textarea>
 					<input class="write-form-writer mt-2 mb-2" type=text name="writer" placeholder="Writer" value="${sessionid }" readonly>
-					<input class="write-form-password"  type=password name="pw" placeholder="Password" readonly>
+					<input class="write-form-password"  type=password name="pw" placeholder="Password">
 					<br>
 					<input id="register" class="write-form-button" type=submit value="글쓰기">
 				</form>

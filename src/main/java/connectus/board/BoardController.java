@@ -59,8 +59,8 @@ public class BoardController {
 		
 		
 		
-//	String savePath = "/Users/youngban/upload/";
-	String savePath = "c:/upload/";
+	String savePath = "/Users/youngban/upload/";
+//	String savePath = "c:/upload/";
 
 		String newname = null;
 //		System.out.println(file1);
