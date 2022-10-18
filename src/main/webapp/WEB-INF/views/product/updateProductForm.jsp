@@ -88,6 +88,7 @@ $(document).ready(function(){
   var img4 = '${updateProduct.img4}'; 
   var img5 = '${updateProduct.img5}'; 
   var img6 = '${updateProduct.img6}'; 
+  var video = '${updateProduct.video}';
   
   // 기존 이미지 file 에 등록 
   if( img1 != ""){
@@ -103,9 +104,23 @@ $(document).ready(function(){
   if( img6 != ""){
 	  $("#file6").val(img6); }
   
+  // 기존 동영상 file 에 등록 
+  if( video!="" ){
+	  video.substring();
+	$("#videoTitle").val(video);  
+  }
+  
+  
+  $("#video1").change(function(e) {
+	  let video1 = $("#video1").val();
+	  $("#videoTitle").val("");
+	  $("#videoTitle").attr("style","display:none");
+	  $("#newVideoTitle").val(video1);
+	  $("#newVideoTitle").attr("style", "display:unset");
+  });
+  
   // 이미지 파일 업로드 
   $("#imgFile").change(function(e) {
-		e.preventDefault();
 		var Imgcount = $("#count").html();
 		
 		// 이미지 파일 개수 count  
@@ -186,45 +201,6 @@ $(document).ready(function(){
 
 		<h1 class="insertproduct-title" class="title"> 게시물 수정</h1> 
 
-<!-- 기존 이미지 파일들 불러오기 -->		
-<!-- <div id="here">
-<c:if test="${!empty updateProduct.img1}" >
-<span>
-<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="1"/>
-</c:if>
-<c:if test="${!empty updateProduct.img2}" >
-<span>
-<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="2"/>
-</c:if>
-<c:if test="${!empty updateProduct.img3}" >
-<span>
-<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="3"/>
-</c:if>
-<c:if test="${!empty updateProduct.img4}" >
-<span>
-<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="4"/>
-</c:if>
-<c:if test="${!empty updateProduct.img5}" >
-<span>
-<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="5"/>
-</c:if>
-<c:if test="${!empty updateProduct.img6}" >
-<span>
-<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
-</span>
-<c:set var="count" value="6"/>
-</c:if>
-</div> -->
 
 <div id="count" class="close">${count}</div>
 
@@ -236,9 +212,9 @@ $(document).ready(function(){
 <input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
-
-<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label>
-<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile">
+<br>
+<img src="http://localhost:8090/pictures/jpgicon.png" height=50 width=50>이미지<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"> <br>
 <input id="file1" type="text" style="display:none" name="file1">
 <input id="file2" type="text" style="display:none" name="file2">
 <input id="file3" type="text" style="display:none" name="file3">
@@ -286,6 +262,16 @@ $(document).ready(function(){
 	<c:set var="count" value="6"/>
 	</c:if>
 	</div>
+	
+	<br> 
+	<br>
+	<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50>동영상 &nbsp; 
+	<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
+	<label class="insertproduct-label-button mt-2" for="video1">파일선택</label>
+	<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
+	<input id="newVideoTitle" type="text" style="display:none" name="NewvideoTitle" readonly>
+	<br>
+	<br>					
 
 
 <input id="updateproduct-button"  type="submit" value="수정" name="update" id="updatebtn">

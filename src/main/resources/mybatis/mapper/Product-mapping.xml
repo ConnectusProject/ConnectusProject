@@ -50,8 +50,8 @@
 	</select>
 	
 	<insert id="insertProduct">
-		insert into product (userid, title, contents, boardRegion, createdAt, price, img1, img2, img3, img4, img5, img6) 
-		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{price}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5},#{img6})
+		insert into product (userid, title, contents, boardRegion, createdAt, price, img1, img2, img3, img4, img5, img6, video) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{price}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5},#{img6}, #{video})
 	</insert>
 	
 	<!-- 예약 리스트 -->
@@ -67,7 +67,7 @@
 
 	<update id="updateProduct">
 		update product set title=#{title}, contents=#{contents}, price=#{price},
-		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6} 
+		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6}, video=#{video} 
 		where id = #{id}
 	</update>
 	

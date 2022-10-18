@@ -558,7 +558,22 @@ public class ProductController {
 		if(uploaddto.getFile6()!=null) {
 			dto.setImg6(uploaddto.getFile6());
 		}
-			
+		
+		String savePath = "c:/upload/";
+		MultipartFile viedoFile = uploaddto.getVideo1();
+		
+		String originalname1 = viedoFile.getOriginalFilename();
+		if(originalname1 != null && !originalname1.isEmpty()) {
+		System.out.println("오리지널 :"+originalname1);
+		String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
+		String extname = originalname1.substring(originalname1.indexOf("."));
+		String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
+		File serverfile1 = new File(savePath + newname);
+		viedoFile.transferTo(serverfile1);
+		
+			dto.setVideo(newname);
+		}
+		
 			productService.insertProduct(dto);
 		return "redirect:/allproduct/1/1";
 	}
@@ -625,6 +640,24 @@ public class ProductController {
 		productDTO.setImg6(uploaddto.getFile6());
 	}
 	
+	if(uploaddto.getVideoTitle()!=null && uploaddto.getVideoTitle()!="" && !uploaddto.getVideoTitle().isEmpty()) {
+		productDTO.setVideo(uploaddto.getVideoTitle());
+	}else {
+	String savePath = "c:/upload/";
+	MultipartFile viedoFile = uploaddto.getVideo1();
+	
+	String originalname1 = viedoFile.getOriginalFilename();
+	if(originalname1 != null && !originalname1.isEmpty()) {
+	System.out.println("오리지널 :"+originalname1);
+	String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
+	String extname = originalname1.substring(originalname1.indexOf("."));
+	String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
+	File serverfile1 = new File(savePath + newname);
+	viedoFile.transferTo(serverfile1);
+	
+		productDTO.setVideo(newname);
+	}
+	}
 		
 		// update 실행 
 		int updateResult = productService.updateProduct(productDTO);
