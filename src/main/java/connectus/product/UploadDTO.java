@@ -1,5 +1,6 @@
 package connectus.product;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class UploadDTO {
 	
@@ -9,8 +10,26 @@ public class UploadDTO {
 	String file4;
 	String file5;
 	String file6;
+	String videoTitle;
+	MultipartFile video1;
 	
 	
+	
+	
+	
+	
+	public String getVideoTitle() {
+		return videoTitle;
+	}
+	public void setVideoTitle(String videoTitle) {
+		this.videoTitle = videoTitle;
+	}
+	public MultipartFile getVideo1() {
+		return video1;
+	}
+	public void setVideo1(MultipartFile video1) {
+		this.video1 = video1;
+	}
 	public String getFile1() {
 		return file1;
 	}

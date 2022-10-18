@@ -71,13 +71,36 @@
 		} //delImg
 
 		$(document).ready(function () {
+			
+			// 동영상 업로드 
+			$("#video1").change(function(e) {
+				var videoSize = document.getElementById("video1").files[0].size;
+				if(videoSize > 1024 * 1024 * 10){
+					// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+					alert('10MB 이하 동영상만 등록할 수 있습니다.\n\n' + '현재파일 용량 : ' + (Math.round(videoSize / 1024 / 1024 * 100) / 100) + 'MB');
+					$("#video1").val("");
+					return false;
+				}
+			}); // onchange 
+			
+			
+			
 			// 이미지 업로드 
-			$("#imgFile").change(function (e) {
-				//e.preventDefault();
+			$("#imgFile").change(function(e) {
 				$("#cancleNoti").attr("style", "display:unset");
 
 				var form = $("#uploadForm")[0];
 				var data = new FormData(form);
+				
+				
+				var fileSize = document.getElementById("imgFile").files[0].size;
+				if(fileSize > 1024 * 1024 * 2){
+					// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+					alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' + '현재파일 용량 : ' + (Math.round(fileSize / 1024 / 1024 * 100) / 100) + 'MB');
+					return false;
+				}
+								
+				
 
 				$.ajax({
 					url: "ajaxUpload",
@@ -160,16 +183,24 @@
 					</div>
 
 
-					물품사진 : <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> [최대 6개 가능]
-					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile"><br>
+					<br>
+					<img src="http://localhost:8090/pictures/jpgicon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
 					<input id="file3" type="text" style="display:none" name="file3">
 					<input id="file4" type="text" style="display:none" name="file4">
 					<input id="file5" type="text" style="display:none" name="file5">
 					<input id="file6" type="text" style="display:none" name="file6">
+					이미지
 					<div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
 					<div class="insertproduct-upload-result mt-2" id="here"></div>
+					<br>
+					<br>
+					<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50> &nbsp; <input type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
+					<br>
+					동영상
+					<br>
 					<br>
 					<input class="insertproduct-button" type="submit" value="물품등록" class="product-insert-button">
 				</form>

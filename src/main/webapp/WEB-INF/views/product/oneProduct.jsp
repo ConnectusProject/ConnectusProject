@@ -316,6 +316,9 @@
                         <span  class="detail-title-price">1일 ${oneProduct.price}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
+                        <c:if test="${!empty oneProduct.video}">
+                        <div><video src="http://localhost:8090/upload/${oneProduct.video}" controls="controls" width=500 height=500></video></div>
+                        </c:if>
                     </div>
                     <div class="product-detail-content-button">
 
