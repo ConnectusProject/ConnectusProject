@@ -120,7 +120,7 @@ a {
 }
 
 .myproduct-box {
-  width: 35rem;
+  width: 40rem;
 }
 
 .myproduct-box-item {
@@ -266,6 +266,11 @@ a {
   border-radius: 10px;
   background-color: #6462cb;
   color: white;
+}
+
+.myproduct-box-table {
+  width: 100%;
+  text-align: center;
 }
 
 .show {
