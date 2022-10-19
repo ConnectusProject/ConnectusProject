@@ -126,12 +126,31 @@
 		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
-			<form action="http://localhost:8090/allproduct/2/1">
+			<form action="http://localhost:8090/allproduct/2/1" class="header-search-box-inner2">
 				<input class="header-search-input" type="text" name="search" placeholder="검색">
+		
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+
+				<div class="rank-container overflow" id="oneRank">
+					<div class="rank-box2 close">
+						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
+						<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
+						</c:forEach>
+
+						</div>
+					<div class="rank-box">
+						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
+						<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
+						</c:forEach>
+
+						</div>
+
+					</div>
+					
 			</form>
-			</div>
+			
+		</div>
 		</div>
 		
 		<div class="header-sign-box">
@@ -273,6 +292,56 @@
 			document.querySelector('.manager-button').parentElement.remove();
 		}
 
+
+		let rankBox = document.querySelector('.rank-box');
+		let rankBox2 = document.querySelector('.rank-box2');
+		let rankContainer = document.querySelector('.rank-container');
+
+		let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
+
+		for(let i = 1; i < rank.length+1; i ++){
+				
+				setTimeout(function (){
+			rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+		},2000*i)
+			setTimeout(function(){
+			rankBox.style.transform = 'translateY(0rem)';
+		},2000*10)
+	}
+
+
+	let time=setInterval(function (){
+			for(let i = 1; i < rank.length+1; i ++){
+				
+					setTimeout(function (){
+				rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+			},2000*i)
+				setTimeout(function(){
+				rankBox.style.transform = 'translateY(0rem)';
+			},2000*10)
+		}
+				}, 2000*11)
+
+
+				rankBox.addEventListener('mouseover', function(){
+					rankContainer.classList.remove('overflow');
+					rankBox.classList.add('close');
+					rankBox2.classList.remove('close');
+				})
+
+				rankBox.addEventListener('mouseleave', function(){
+					rankContainer.classList.add('overflow');
+					rankBox.classList.remove('close');
+					rankBox2.classList.add('close');
+
+				})
+				
+			
+
+			
+
+			
+		
 
 
 	</script>

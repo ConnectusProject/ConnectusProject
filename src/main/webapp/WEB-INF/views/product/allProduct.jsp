@@ -34,13 +34,13 @@
             
             
             // 검색어 순위 
-            $("#oneRank").on("mouseover",function(){
-            $("#showSearchRank").attr("style", "");
-            });
+            // $("#oneRank").on("mouseover",function(){
+            // $("#showSearchRank").attr("style", "");
+            // });
             
-            $("#oneRank").on("mouseleave",function(){
-                $("#showSearchRank").attr("style", "display:none");
-                });
+            // $("#oneRank").on("mouseleave",function(){
+            //     $("#showSearchRank").attr("style", "display:none");
+            //     });
             
             
             
@@ -253,6 +253,7 @@ $.each(list, function(i, product){
 </head>
 
 <body>
+    
 
     <div class="main-container">
         <!-- header-section -->
@@ -268,8 +269,8 @@ $.each(list, function(i, product){
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
                 <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
                 <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
-                시작<input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                종료<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                ~<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
@@ -332,7 +333,7 @@ $.each(list, function(i, product){
                             
                             
                             <!-- 검색어순위 -->
-                            <div id="oneRank">
+                            <!-- <div id="oneRank">
                             <c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0" end="0">
                     		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count}. ${searchString} </a><br> 
                     		</c:forEach>
@@ -341,7 +342,7 @@ $.each(list, function(i, product){
                     		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count + 1}. ${searchString} </a> <br>  
                     		</c:forEach>
                             </div>
-                    		</div>
+                    		</div> -->
                             
                             
                             

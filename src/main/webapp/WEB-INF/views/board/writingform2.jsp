@@ -39,11 +39,6 @@
 					<p>사진은 *.png, *.jpeg만 가능합니다</p>
 					<textarea class="write-form-textarea"  rows=10 name="contents" placeholder="내용을 입력하세요."></textarea>
 					<input class="write-form-writer mt-2 mb-2" type=text name="writer" placeholder="Writer" value="${sessionid }" readonly>
-<<<<<<< HEAD
-					<input class="write-form-password"  type=password name="pw" placeholder="Password">
-=======
-					<input class="write-form-password"  type=password name="pw" placeholder="Password" >
->>>>>>> afc8b06f3a3d5054d2d285f122d97b3d1d0fbc4f
 					<br>
 					<input id="register" class="write-form-button" type=submit value="글쓰기">
 				</form>

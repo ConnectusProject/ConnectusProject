@@ -71,6 +71,7 @@
             <!-- 본문 -->
 
             <div class="list-container">
+                <p class="mb-5 list-title">커뮤니티</p>
                 
                     <div class="list-clean-box">
                         <a href="boardlist" id="boardlist">전체</a>
