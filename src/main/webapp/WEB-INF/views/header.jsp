@@ -62,8 +62,9 @@
 			// 채팅 알림
 			
 			if (sessionId != null) {
-							getUnread();
-							getInfiniteUnread(); } 
+							//getUnread();
+							//getInfiniteUnread(); 
+							} 
 			
 			
 				function getUnread() {

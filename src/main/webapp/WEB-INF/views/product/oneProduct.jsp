@@ -261,6 +261,12 @@
                     <div class="product-detail-img">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
+                            	
+                            	<c:if test="${!empty oneProduct.video}">
+                                    <div class="carousel-item">
+                                        <video src="http://localhost:8090/upload/${oneProduct.video}" controls="controls"></video>
+                                    </div>
+                                </c:if>
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
                                         <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img1}">
@@ -291,6 +297,7 @@
                                         <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img6}">
                                     </div>
                                 </c:if>
+                                
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -316,9 +323,6 @@
                         <span  class="detail-title-price">1일 ${oneProduct.price}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
-                        <c:if test="${!empty oneProduct.video}">
-                        <div><video src="http://localhost:8090/upload/${oneProduct.video}" controls="controls" width=500 height=500></video></div>
-                        </c:if>
                     </div>
                     <div class="product-detail-content-button">
 
