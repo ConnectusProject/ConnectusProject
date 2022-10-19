@@ -25,7 +25,7 @@
 				$(_this).parent('span').remove();
 				Imgcount--;
 
-				switch ($(_this).attr('src').substring(29)) {
+				switch ($(_this).attr('src').substring(8)) {
 					case $("#file1").val():
 						$("#file1").val("");
 						// 순서 땡기기 
@@ -125,7 +125,7 @@
 						}
 
 						var str = '<span>';
-						str += "<img src='http://localhost:8090/upload/" + resp.result + "' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
+						str += "<img src='/upload/" + resp.result + "' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
 						str += '</span>';
 
 						$(str).appendTo('#here');
@@ -175,7 +175,7 @@
 
 				<div class="insertproduct-title">물품등록</div>
 
-				<form id="uploadForm" action="http://localhost:8090/registerProduct" method="post"
+				<form id="uploadForm" action="/registerProduct" method="post"
 					enctype="multipart/form-data">
 
 					<div class="product-insert-table">
@@ -189,7 +189,7 @@
 
 
 					<br>
-					<img src="http://localhost:8090/pictures/jpgicon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+					<img src="/pictures/jpgicon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
 					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
@@ -202,7 +202,7 @@
 					<div class="insertproduct-upload-result mt-2" id="here"></div>
 					<br>
 					<br>
-					<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50> &nbsp; 
+					<img src="/pictures/mp4icon.png" height=50 width=50> &nbsp; 
 					<input type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
 					<br>
 					동영상  &nbsp;&nbsp; &nbsp;&nbsp; 

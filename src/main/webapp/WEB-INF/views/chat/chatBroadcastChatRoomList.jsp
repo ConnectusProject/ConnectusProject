@@ -94,11 +94,11 @@ var pr_title = "${pr_title}";
 var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
 
 for(var i= 0; i<img.length; i++){
-if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="http://localhost:8090/upload/'+ img[i] +'" height=100% width=100%></div>'); }
+if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
 }
 
 for(var i= 0; i<img.length; i++){
-if(img[i] !=""){$("#chatImg2").append('<div class="roomPictureB close"><img src="http://localhost:8090/upload/'+ img[i] +'" height=100% width=100%></div>'); }
+if(img[i] !=""){$("#chatImg2").append('<div class="roomPictureB close"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
 }
 
 let chatRoomPictureS = $('.roomPictureS');

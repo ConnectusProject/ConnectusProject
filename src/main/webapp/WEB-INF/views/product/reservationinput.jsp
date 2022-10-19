@@ -27,7 +27,7 @@ $(document).ready(function(){
         <!-- content-section -->
         <div class="content-container">
 
-<form action="http://localhost:8090/product/reservationinput" method="post">
+<form action="/product/reservationinput" method="post">
 
 <table>
 <tr>
@@ -56,7 +56,6 @@ $(document).ready(function(){
 
 
 <br>
-<a href="http://localhost:8090/">홈으로</a>
 
 </div>
 </div>

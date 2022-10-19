@@ -26,8 +26,7 @@ function delImg(_this){
 			$("#count").html(Imgcount);
 
 		
-		
-		switch ($(_this).attr('src').substring(29)) {
+		switch ($(_this).attr('src').substring(8)) {
 	 	case $("#file1").val():
 	 		 $("#file1").val("");
 	 		// 순서 땡기기 
@@ -150,7 +149,7 @@ $(document).ready(function(){
 		var data = new FormData(form);
 
 		$.ajax({
-		url : "http://localhost:8090/ajaxUpload",
+		url : "/ajaxUpload",
 		data : data,
 		type : "post",
 		dataType : "json",
@@ -167,7 +166,7 @@ $(document).ready(function(){
 	//		}
 			
 			var str = '<span>';
-			str += "<img src='http://localhost:8090/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
+			str += "<img src='/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
             str += '</span>';
 
             $(str).appendTo('#here');
@@ -224,7 +223,7 @@ $(document).ready(function(){
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
 <br>
-<img src="http://localhost:8090/pictures/jpgicon.png" height=50 width=50>이미지<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+<img src="/pictures/jpgicon.png" height=50 width=50>이미지<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
 <input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"> <br>
 <input id="file1" type="text" style="display:none" name="file1">
 <input id="file2" type="text" style="display:none" name="file2">
@@ -238,37 +237,37 @@ $(document).ready(function(){
 <div id="here">
 	<c:if test="${!empty updateProduct.img1}" >
 	<span>
-	<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="1"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img2}" >
 	<span>
-	<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="2"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img3}" >
 	<span>
-	<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="3"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img4}" >
 	<span>
-	<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="4"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img5}" >
 	<span>
-	<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="5"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img6}" >
 	<span>
-	<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="http://localhost:8090/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="6"/>
 	</c:if>
@@ -276,7 +275,7 @@ $(document).ready(function(){
 	
 	<br> 
 	<br>
-	<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50>동영상 &nbsp; 
+	<img src="/pictures/mp4icon.png" height=50 width=50>동영상 &nbsp; 
 	<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
 	<label class="insertproduct-label-button mt-2" for="video1">파일선택</label> 
 	<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>

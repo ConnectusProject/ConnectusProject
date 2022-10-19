@@ -87,11 +87,11 @@
                         0
                         if (resp.result == 0) {
                             alert("찜!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
+                            $("#zzimSpan").html("<img src='/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
                             alert("찜 취소!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
+                            $("#zzimSpan").html("<img src='/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
                     } // success 
                 }); // ajax 
@@ -119,11 +119,11 @@
                         success: function (resp) {
                             if (resp.result == 0) {
                                 alert("렌탈이 확정되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             else if (resp.result == 1) {
                                 alert("렌탈이 취소되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             
                             if(resp.reservedNow==0){
@@ -144,7 +144,7 @@
                         return false;
                     }
                     
-                    if ($("#reservCheck" + i).html() == '<img src="http://localhost:8090/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
+                    if ($("#reservCheck" + i).html() == '<img src="/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
                     	alert("렌탈 확정을 취소하고 삭제를 진행해 주세요.")
                     	e.preventDefault();
                     	return false;
@@ -188,7 +188,7 @@
         <div class="content-container">
       
         <!-- 예약 테이블 -->
-            <form class="reserve-box close" action="http://localhost:8090/product/reservationinput" method="post">
+            <form class="reserve-box close" action="/product/reservationinput" method="post">
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
@@ -238,12 +238,12 @@
             <!-- 찜 상태에 따라 이미지 -->
             <c:if test="${oneProduct.zzim == '0'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
+                    value="<img src='/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
             </c:if>
 
             <c:if test="${oneProduct.zzim == '1'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
+                    value="<img src='/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
             </c:if>
 
             <Br>
@@ -264,37 +264,37 @@
                             	
                             	<c:if test="${!empty oneProduct.video}">
                                     <div class="carousel-item">
-                                        <video src="http://localhost:8090/upload/${oneProduct.video}" controls="controls"></video>
+                                        <video src="/upload/${oneProduct.video}" controls="controls"></video>
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img1}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img2}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img2}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img2}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img3}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img3}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img3}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img4}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img4}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img4}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img5}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img5}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img5}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img6}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img6}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
                                     </div>
                                 </c:if>
                                 
@@ -335,9 +335,9 @@
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
 
                         <!-- 수정, 삭제 버튼 -->
-                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
+                        <form id="update" action="/product/${oneProduct.id}/update">
                         </form>
-                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
+                        <form id="delete" action="/product/${oneProduct.id}/delete" method="post">
                         </form>
                
                     </div>
@@ -412,12 +412,12 @@
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
+                        value="<img src='/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
+                        value="<img src='/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
                     
                     
