@@ -83,6 +83,11 @@
 				}
 			}); // onchange 
 			
+			// 동영상 업로드 취소 
+			$("#removeVideo").on("click", function(){
+			$("#video1").val("");
+			});
+			
 			
 			
 			// 이미지 업로드 
@@ -197,10 +202,13 @@
 					<div class="insertproduct-upload-result mt-2" id="here"></div>
 					<br>
 					<br>
-					<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50> &nbsp; <input type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
+					<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50> &nbsp; 
+					<input type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
 					<br>
-					동영상
+					동영상  &nbsp;&nbsp; &nbsp;&nbsp; 
+					<input type="button" id="removeVideo" value="취소">
 					<br>
+					
 					<br>
 					<input class="insertproduct-button" type="submit" value="물품등록" class="product-insert-button">
 				</form>
