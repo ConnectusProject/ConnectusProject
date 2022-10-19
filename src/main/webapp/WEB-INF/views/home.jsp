@@ -24,23 +24,23 @@ $(document).ready(function(){
 
 
 
-<a href="http://localhost:8090/login">로그인페이지 이동</a>
+<a href="/login">로그인페이지 이동</a>
 
 <br>
 
-<a href="http://localhost:8090/mypage">마이페이지</a>
-
-<br>
-<br>
-
-<a href="http://localhost:8090/allproduct/1/1">물품 페이지 이동</a>
+<a href="/mypage">마이페이지</a>
 
 <br>
 <br>
 
-<a href="http://localhost:8090/boardstart">커뮤니티 이동</a>
+<a href="/allproduct/1/1">물품 페이지 이동</a>
 
-<a href="http://localhost:8090/reportregister">신고하기</a>
+<br>
+<br>
+
+<a href="/boardstart">커뮤니티 이동</a>
+
+<a href="/reportregister">신고하기</a>
 
 <br>
 

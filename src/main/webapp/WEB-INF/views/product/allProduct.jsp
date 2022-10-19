@@ -84,11 +84,11 @@ $.each(list, function(i, product){
 	}
 	// 찜 표시 
 	if(product.zzim == 0){
-		var zzim = "<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>"; 
+		var zzim = "<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>"; 
 		
 	}
 	if(product.zzim == 1){
-		var zzim = "<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
+		var zzim = "<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
 	}
 	// 날짜 몇일전으로 설정 
 	let uploadDateString = product.createdAt;
@@ -125,7 +125,7 @@ $.each(list, function(i, product){
     
     // img 가져오기 
     if(product.img1 != ""){
-		$("#product-item-img" + product.id).html('<a href="/product/' + product.id + '"><img alt="사진이 없어요" width=100% height=60% src="http://localhost:8090/upload/' + product.img1 + '"></a>');
+		$("#product-item-img" + product.id).html('<a href="/product/' + product.id + '"><img alt="사진이 없어요" width=100% height=60% src="/upload/' + product.img1 + '"></a>');
 	}
     
 	// append 한 품목에도 찜 효과 적용     
@@ -145,13 +145,13 @@ $.each(list, function(i, product){
             	
                 if (resp.result == 0) {
                     alert("찜!");
-                    $("#zzimSpan" + product.id).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                    $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 작동 시, 해당물품 장바구니에 출력 
-                    $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                    $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                 }
                 else if (resp.result == 1) {
                     alert("찜 취소!");
-                    $("#zzimSpan" + product.id).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                    $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 취소 시, 해당물품 장바구니에서 제거
                     $("#spanId" + resp.id).remove();
                 } 
@@ -233,12 +233,12 @@ $.each(list, function(i, product){
                         success: function (resp) {
                         	
                             if (resp.result == 0) {
-                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
-                                $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                                $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
-                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                                 $("#spanId" + resp.id).remove();
                             }
@@ -264,7 +264,7 @@ $.each(list, function(i, product){
             <div class="allproduct-container">
 
          <!-- 스마트 검색 -->
-                <form class="smart-search-box mb-4" action="http://localhost:8090/smartSearch" method="post">
+                <form class="smart-search-box mb-4" action="/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
                 <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
@@ -294,8 +294,8 @@ $.each(list, function(i, product){
 				    <span id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product">
-                        <a href="http://localhost:8090/product/${zzimProduct.id}">
-                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}"><img src='http://localhost:8090/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+                        <a href="/product/${zzimProduct.id}">
+                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}"><img src='/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
                         </a>
                             </div>
                         </c:forEach>
@@ -304,7 +304,7 @@ $.each(list, function(i, product){
                  </div>
 
                 <div class="allproduct-search-box" >	
-                    <a class="product-register" id="register" href="http://localhost:8090/registerProduct">물품등록</a>
+                    <a class="product-register" id="register" href="/registerProduct">물품등록</a>
 
 				</div>
                 
@@ -313,22 +313,22 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/1">최신순</a> |
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/2">낮은 가격순</a> |
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/3">높은 가격순</a> |
-                            <a class="product-array-button" href="http://localhost:8090/allproduct/1/4">인기순</a>
+                            <a class="product-array-button" href="/allproduct/1/1">최신순</a> |
+                            <a class="product-array-button" href="/allproduct/1/2">낮은 가격순</a> |
+                            <a class="product-array-button" href="/allproduct/1/3">높은 가격순</a> |
+                            <a class="product-array-button" href="/allproduct/1/4">인기순</a>
                             </c:if>
                             <c:if test="${searchType==2 }">
-                            <a href="http://localhost:8090/allproduct/2/1?search=${search}">최신순</a> |
-                            <a href="http://localhost:8090/allproduct/2/2?search=${search}">낮은 가격순</a> |
-                            <a href="http://localhost:8090/allproduct/2/3?search=${search}">높은 가격순</a> |
-                            <a href="http://localhost:8090/allproduct/2/4?search=${search}">인기순</a>
+                            <a href="/allproduct/2/1?search=${search}">최신순</a> |
+                            <a href="/allproduct/2/2?search=${search}">낮은 가격순</a> |
+                            <a href="/allproduct/2/3?search=${search}">높은 가격순</a> |
+                            <a href="/allproduct/2/4?search=${search}">인기순</a>
                             </c:if>
                             <c:if test="${searchType==3 }">
-                            <a href="http://localhost:8090/allproduct/3/1">최신순</a> |
-                            <a href="http://localhost:8090/allproduct/3/2">낮은 가격순</a> |
-                            <a href="http://localhost:8090/allproduct/3/3">높은 가격순</a> |
-                            <a href="http://localhost:8090/allproduct/3/4">인기순</a>
+                            <a href="/allproduct/3/1">최신순</a> |
+                            <a href="/allproduct/3/2">낮은 가격순</a> |
+                            <a href="/allproduct/3/3">높은 가격순</a> |
+                            <a href="/allproduct/3/4">인기순</a>
                             </c:if>
                             
                             
@@ -380,12 +380,12 @@ $.each(list, function(i, product){
                             <!-- 찜 표시 -->
                             <c:if test="${product.zzim == '0'}">
                                 <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>" />
+                                    value="<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>" />
                             </c:if>
 
                             <c:if test="${product.zzim == '1'}">
                                 <c:set var="zzim"
-                                    value="<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>" />
+                                    value="<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>" />
                             </c:if>
 
                             <!-- 대표 이미지 -->
@@ -393,7 +393,7 @@ $.each(list, function(i, product){
                                 <div class="product-item-img">
                                     <a href="/product/${product.id}">
                                     <img width=100% height=60%
-                                        src="http://localhost:8090/upload/${product.img1}"></a>
+                                        src="/upload/${product.img1}"></a>
                                 </div>
                             </c:if>
 
@@ -401,7 +401,7 @@ $.each(list, function(i, product){
                                 <div class="product-item-img">
                                 <a href="/product/${product.id}">
                                     <img alt="사진이 없어요" width=100% height=60%
-                                        src="http://localhost:8090/pictures/noimg.png"></a>
+                                        src="/pictures/noimg.png"></a>
                                 </div>
                             </c:if>
 
