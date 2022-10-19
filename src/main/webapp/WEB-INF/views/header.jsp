@@ -308,10 +308,10 @@
 			setTimeout(function(){
 			rankBox.style.transform = 'translateY(0rem)';
 		},2000*10)
-	}
+		}
 
 
-	let time=setInterval(function (){
+		setInterval(function (){
 			for(let i = 1; i < rank.length+1; i ++){
 				
 					setTimeout(function (){
@@ -321,22 +321,10 @@
 				rankBox.style.transform = 'translateY(0rem)';
 			},2000*10)
 		}
-				}, 2000*11)
+			}, 2000*11)
 
 
-				rankBox.addEventListener('mouseover', function(){
-					rankContainer.classList.remove('overflow');
-					rankBox.classList.add('close');
-					rankBox2.classList.remove('close');
-				})
-
-				rankBox.addEventListener('mouseleave', function(){
-					rankContainer.classList.add('overflow');
-					rankBox.classList.remove('close');
-					rankBox2.classList.add('close');
-
-				})
-				
+	
 			
 
 			
