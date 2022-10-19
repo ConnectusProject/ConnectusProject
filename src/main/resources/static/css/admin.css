@@ -1,1 +1,49 @@
-/*# sourceMappingURL=admin.css.map */
+.admin-container {
+  padding-left: 10%;
+  width: 90%;
+}
+
+.admin-container p {
+  width: 100%;
+  height: 4rem;
+  font-size: 2.5rem;
+  border-bottom: solid 3px #cddfe0;
+}
+
+.admin-input-box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: none;
+}
+
+.admin-input {
+  border: solid 3px #6462cb;
+}
+
+.admin-input-button {
+  border: none;
+  background-color: #6462cb;
+  color: #cddfe0;
+}
+
+.admin-member-box {
+  width: 100%;
+  text-align: center;
+}
+
+.admin-member-box table {
+  width: 100%;
+  border: none;
+}
+
+.admin-member-box-title {
+  border: none;
+  background-color: #6462cb;
+  height: 3rem;
+  color: white;
+}
+
+.admin-member-box-content {
+  height: 2.5rem;
+}/*# sourceMappingURL=admin.css.map */

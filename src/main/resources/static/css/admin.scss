@@ -1,0 +1,56 @@
+@mixin flexbox($justify, $align){
+    display : flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+$color : #6462cb;
+$fontColor :#cddfe0;
+
+.admin-container {
+    padding-left : 10%;
+    width : 90%;
+}
+
+.admin-container p {
+    width : 100%;
+    height : 4rem;
+    font-size: 2.5rem;
+    border-bottom: solid 3px $fontColor;
+}
+
+.admin-input-box {
+    width : 100%;
+    @include flexbox(right, none);
+}
+
+.admin-input {
+    border : solid 3px $color;
+}
+
+.admin-input-button {
+    border : none;
+    background-color: $color;
+    color : $fontColor;
+}
+
+.admin-member-box {
+    width : 100%;
+    text-align: center;
+}
+
+.admin-member-box table {
+    width : 100%;
+    border : none;
+}
+
+.admin-member-box-title {
+    border : none;
+    background-color: $color;
+    height : 3rem;
+    color : white;
+}
+
+.admin-member-box-content{
+    height : 2.5rem;
+}

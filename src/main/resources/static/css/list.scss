@@ -19,6 +19,14 @@ a {
     flex-direction: column;
 }
 
+.list-title {
+    width : 100%;
+    height : 3rem;
+    font-size: 2rem;
+    border-bottom: solid 2px $color;
+    color : $color;
+}
+
 .list-clean-box {
     width : 100%;
     height : 2.5rem;
