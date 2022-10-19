@@ -110,7 +110,7 @@ $(document).ready(function(){
 	$("#videoTitle").val(video);  
   }
   
-  
+  // 새로운 동영상 선택 시, 표기 바꿔주기   
   $("#video1").change(function(e) {
 	  let video1 = $("#video1").val();
 	  $("#videoTitle").val("");
@@ -118,6 +118,17 @@ $(document).ready(function(){
 	  $("#newVideoTitle").val(video1);
 	  $("#newVideoTitle").attr("style", "display:unset");
   });
+  
+	//동영상 업로드 취소 
+	$("#removeVideo").on("click", function(){
+	$("#video1").val("");
+	$("#videoTitle").val("");
+	$("#newVideoTitle").val("");
+
+	});
+  
+  
+  
   
   // 이미지 파일 업로드 
   $("#imgFile").change(function(e) {
@@ -267,9 +278,10 @@ $(document).ready(function(){
 	<br>
 	<img src="http://localhost:8090/pictures/mp4icon.png" height=50 width=50>동영상 &nbsp; 
 	<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
-	<label class="insertproduct-label-button mt-2" for="video1">파일선택</label>
+	<label class="insertproduct-label-button mt-2" for="video1">파일선택</label> 
 	<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
 	<input id="newVideoTitle" type="text" style="display:none" name="NewvideoTitle" readonly>
+	<input type="button" id="removeVideo" value="취소">
 	<br>
 	<br>					
 
