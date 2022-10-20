@@ -83,9 +83,17 @@
 				}
 			}); // onchange 
 			
+			
+			 // 동영상 선택 시 표기 
+			  $("#video1").change(function(e) {
+				  let video1 = $("#video1").val();
+				  $("#videoTitle").val(video1);
+			  });
+			
 			// 동영상 업로드 취소 
 			$("#removeVideo").on("click", function(){
 			$("#video1").val("");
+			$("#videoTitle").val("");
 			});
 			
 			
@@ -206,6 +214,7 @@
 					<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
 					<br>
 					동영상  &nbsp;&nbsp; &nbsp;&nbsp; 
+					<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
 					<input type="button" id="removeVideo" value="취소">
 					<br>
 					
