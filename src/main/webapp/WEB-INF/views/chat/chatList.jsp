@@ -25,8 +25,9 @@
         </jsp:include>
         <!-- content-section -->
         <div class="content-container">
-            <p class="chatTitle">Connect List</p>
+            
     	   <div class="chat-container">
+            <p class="chatTitle">Connect List</p>
     		    <div class="chatlist-box">
      	 	    </div>
       	   </div>

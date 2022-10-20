@@ -1,8 +1,10 @@
 .chat-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: none;
+  flex-direction: column;
+  padding-left: 10%;
 }
 
 .chatTitle {
@@ -138,7 +140,7 @@
 
 .chatroom-content-message {
   width: 100%;
-  height: 35rem;
+  height: 30rem;
   overflow: auto;
   overflow-x: hidden;
   padding: 2%;
@@ -193,28 +195,42 @@
 
 .chatroom-content-input-box {
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   background-color: rgb(224, 224, 224);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   box-shadow: 0px -5px 10px rgb(211, 211, 211);
+  position: relative;
 }
 
 .chatroom-input {
-  width: 70%;
-  height: 60%;
+  position: absolute;
+  width: 75%;
+  height: 40%;
   border-radius: 5px;
   border: none;
+  bottom: 10%;
+  left: 3%;
 }
 
 .chatroom-input-button {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 15%;
+  height: 80%;
   border: none;
   background-color: #6462cb;
   color: white;
   border-radius: 5px;
+  right: 3%;
+  bottom: 10%;
+}
+
+.chatroom-location-button {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  border: none;
+  border-radius: 5px;
+  background-color: #6462cb;
+  color: #cddfe0;
 }
 
 .close {

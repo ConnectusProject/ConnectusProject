@@ -54,6 +54,9 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                 <%--메시지 입력창과 보내기 버튼 --%>
                 <div class="row_3" class="chatroom-content-input">
                     <div class="input_group chatroom-content-input-box" id="sendMessage">
+                        
+                        <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+
                         <input type="text" placeholder="Message" id="message" class="form_control chatroom-input"/>
                         <div class="input_group_append" style="width : 20%; height : 60%">
                             <button id="send" class="chatroom-input-button" onclick="send()">보내기</button>
@@ -72,9 +75,9 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 
 
 <!-- 카카오맵 위치정보 API --> 
-<div>
+<!-- <div>
 <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
-</div>
+</div> -->
 
 <!-- 사진 -->
 <!-- <div id="chatImg" class="chatroom-picture-box">

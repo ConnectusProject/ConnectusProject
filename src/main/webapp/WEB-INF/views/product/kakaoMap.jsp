@@ -150,6 +150,7 @@ function sample6_execDaumPostcode() {
 			
 			
 			
+			
 
 			// 커서를 상세주소 필드로 이동한다.
 
@@ -192,11 +193,11 @@ function KakaoGeocoder() {
 <body>
 
 
-<div id="map" style="width:40%;height:500px;"></div>
+<div class="chatroom-map" id="map" style="width:40%;height:500px;"></div>
 
 	<div>
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
-		gggggggggggggggggggggggggggggggggggg<button id="PlaceBTN" class="signup-check-button" type="button" onclick="sample6_execDaumPostcode()"
+		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"
 			value="주소찾기">약속장소</button>
 	</div>
 		<div>

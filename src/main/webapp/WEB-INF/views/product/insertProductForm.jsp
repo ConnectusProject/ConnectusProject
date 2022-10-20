@@ -202,8 +202,8 @@
 					<div class="insertproduct-upload-result mt-2" id="here"></div>
 					<br>
 					<br>
-					<img src="/pictures/mp4icon.png" height=50 width=50> &nbsp; 
-					<input type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
+					<img src="/pictures/mp4icon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="video1">파일선택</label>
+					<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
 					<br>
 					동영상  &nbsp;&nbsp; &nbsp;&nbsp; 
 					<input type="button" id="removeVideo" value="취소">
