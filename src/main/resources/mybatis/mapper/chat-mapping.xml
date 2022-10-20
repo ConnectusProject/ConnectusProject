@@ -26,26 +26,26 @@
     	SELECT COUNT(*)
     	FROM CHATROOM
     	WHERE PR_ID = #{pr_id} AND
-    	BUYERID = #{buyerId};
+    	buyerid = #{buyerId};
     </select>
 
     <select id="findByChatId" resultType="ChatRoom">
     	SELECT *
     	FROM CHATROOM
     	WHERE PR_ID = #{pr_id} AND
-    	BUYERID = #{buyerId};
+    	buyerid = #{buyerId};
     </select>
 
     <select id="getId" resultType="int">
     	SELECT ID
     	FROM CHATROOM
     	WHERE PR_ID = #{pr_id} AND
-    	BUYERID = #{buyerId};
+    	buyerid = #{buyerId};
     </select>
 
     <update id="updateFileName">
     	UPDATE CHATROOM
-    	SET FILENAME = #{fileName}
+    	SET filename = #{fileName}
     	WHERE ID = #{id};
     </update>
    
@@ -53,28 +53,28 @@
    
    <update id="updateChatReadBuy">
     	UPDATE CHATROOM
-    	SET CHATREADBUY = #{chatReadBuy}
+    	SET chatReadBuy = #{chatReadBuy}
     	WHERE ID = #{id};
     </update>
 
     <update id="updateChatReadSell">
     	UPDATE CHATROOM
-    	SET CHATREADSELL = #{chatReadSell}
+    	SET chatReadSell = #{chatReadSell}
     	WHERE ID = #{id};
     </update>
    
    <select id="getUnreadMessages" resultType="int">
    		SELECT COUNT(id)
    		FROM CHATROOM
-   		WHERE (SELLERID = #{userId} AND CHATREADSELL = 0) OR 
-   		(BUYERID = #{userId} AND CHATREADBUY = 0);
+   		WHERE (sellerid = #{userId} AND chatReadSell = 0) OR 
+   		(buyerid = #{userId} AND chatReadBuy = 0);
    </select>
 
    <select id="getUnreadChatRoom" resultType="int">
    		SELECT id
    		FROM CHATROOM
-   		WHERE (SELLERID = #{userId} AND CHATREADSELL = 0) OR 
-   		(BUYERID = #{userId} AND CHATREADBUY = 0);
+   		WHERE (sellerid = #{userId} AND chatReadSell = 0) OR 
+   		(buyerid = #{userId} AND chatReadBuy = 0);
    </select>
    
    

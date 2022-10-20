@@ -9,20 +9,20 @@
 
 <!-- 찜 조회-->
 <select id="zzimCount" resultType="Object">
-	select zzimCheck from zzim where productseq = #{productseq} and memberid = #{memberId}
+	select zzimCheck from ZZIM where productseq = #{productseq} and memberid = #{memberId}
 </select>
 
 
 <!-- 찜 -->
 <update id="updateZzim" >
-update zzim set 
+update ZZIM set 
 zzimCheck = 1
 where productseq = #{productseq} and memberid = #{memberId}
 </update>
 
 <!-- 찜 취소  -->
 <update id="updateZzimCancel" >
-update zzim set 
+update ZZIM set 
 zzimCheck = 0
 where productseq = #{productseq} and memberid = #{memberId}
 </update>
@@ -30,7 +30,7 @@ where productseq = #{productseq} and memberid = #{memberId}
 
 <!-- 찜 insert -->
 <insert id="insertZzim">
-insert into zzim(productseq, memberid)
+insert into ZZIM(productseq, memberid)
 values(#{productseq} ,#{memberId})
 </insert>
 
@@ -38,13 +38,13 @@ values(#{productseq} ,#{memberId})
 
 <!-- 찜 delete -->
 <delete id="deleteZzim">
-delete from zzim where productseq = #{productseq} and memberid = #{memberId}
+delete from ZZIM where productseq = #{productseq} and memberid = #{memberId}
 </delete>
 
 
 <!-- zzim 중복방지 조회 -->
 <select id="zzimCheck" resultType="int">
-select count(*) from zzim where productseq = #{productseq} and memberid = #{memberId} 
+select count(*) from ZZIM where productseq = #{productseq} and memberid = #{memberId} 
 </select>
 
 

@@ -5,44 +5,44 @@
 <mapper namespace="connectus.mypage.MypageDAO" >
 
 <select id="onemember" resultType="memberdto" parameterType="String" >
-    select * from members where userid=#{userid}
+    select * from MEMBERS where userid=#{userid}
 </select>
 
 <select id="onemember_phone" resultType="memberdto" parameterType="String" >
-    select * from members where phone=#{phone}
+    select * from MEMBERS where phone=#{phone}
 </select>
 
 <select id="memberDetail" resultType="memberdto" parameterType="String" >
-    select * from members where userid=#{userid}
+    select * from MEMBERS where userid=#{userid}
 </select>
 
 
 <update id="memberModify" parameterType="memberdto">
-	update members set phone=#{phone}, name=#{name},  email=#{email}, address=#{address} where userid=#{userid} and pw=#{pw}
+	update MEMBERS set phone=#{phone}, name=#{name},  email=#{email}, address=#{address} where userid=#{userid} and pw=#{pw}
 </update>
 
 <update id="passwordModify" parameterType="memberdto">
-	update members set pw=#{pw}   where userid=#{userid}
+	update MEMBERS set pw=#{pw}   where userid=#{userid}
 </update>
 
 <delete id="deleteMember" parameterType="String">
-	delete from members where userid=#{userid}
+	delete from MEMBERS where userid=#{userid}
 </delete>
 
 
 <select id="myBoard" resultType="productdto">
-	select * from product where userid=#{userid}
+	select * from PRODUCT where userid=#{userid}
 </select>
 
 <select id="allMyBoard" resultType="productdto">
-		select * from product where userid=#{userid} order by createdAt desc
+		select * from PRODUCT where userid=#{userid} order by createdAt desc
 </select>
 
 <select id="allMyBoard2" resultType="boarddto">
-		select * from Board where writer=#{userid} order by writingtime desc
+		select * from BOARD where writer=#{userid} order by writingtime desc
 </select>
 
 <select id="allMyBoard3" resultType="commentdto">
-		select * from Board where writer=#{userid} order by writingtime desc
+		select * from BOARD where writer=#{userid} order by writingtime desc
 </select>
 </mapper>

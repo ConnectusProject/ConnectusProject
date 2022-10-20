@@ -4,28 +4,28 @@
 <mapper namespace="connectus.comment.CommentDAO" >
 	<!-- useGeneratedKeys="true"  -->
 <insert id="insertComment" parameterType="commentDTO"  >
-		insert into boardcomment (seq, contents,  writer, secret, writingtime) 
+		insert into BOARDCOMMENT (seq, contents,  writer, secret, writingtime) 
 		values (#{seq}, #{contents}, #{writer}, #{secret}, now());
 	</insert>
 	
 	<select id="getComment" resultType="commentdto" parameterType="int">
-		select * from boardcomment where comment_seq = #{comment_seq};
+		select * from BOARDCOMMENT where comment_seq = #{comment_seq};
 	</select>
 
 	<select id="getAllComment" resultType="commentdto" parameterType="int">
-		select * from boardcomment where seq = #{seq};
+		select * from BOARDCOMMENT where seq = #{seq};
 	</select>
 	
 	<select id="getCommentseq" resultType="commentdto">
-		select * from boardcomment order by writingtime desc limit 0, 1;
+		select * from BOARDCOMMENT order by writingtime desc limit 0, 1;
 	</select>
 	
 	<update id="updateComment" parameterType="commentDTO">
-		update boardcomment set contents=#{contents}, secret=#{secret} where comment_seq = #{comment_seq}
+		update BOARDCOMMENT set contents=#{contents}, secret=#{secret} where comment_seq = #{comment_seq}
 	</update>
 
 	<delete id="deleteComment" parameterType="int">
-		delete from boardcomment where comment_seq = #{comment_seq}
+		delete from BOARDCOMMENT where comment_seq = #{comment_seq}
 	</delete>
 </mapper>
 
