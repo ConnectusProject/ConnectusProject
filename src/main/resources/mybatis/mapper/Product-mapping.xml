@@ -7,38 +7,38 @@
 
 	<!-- 전체 물품 -->
 	<select id="allProduct" resultType="productdto">
-		select * from product order by id desc limit 0, 20
+		select * from PRODUCT order by id desc limit 0, 20
 	</select>
 	
 	<select id="scrollProduct" resultType="productdto">
-		select * from product order by id desc limit #{limit}, 20
+		select * from PRODUCT order by id desc limit #{limit}, 20
 	</select>
 	
 	<!-- 전체 낮은가격순 -->
 	<select id="allProductOrderByLowPrice" resultType="productdto">
-		select * from product order by price asc limit 0, 20
+		select * from PRODUCT order by price asc limit 0, 20
 	</select>
 	
 	<select id="scrollProductOrderByLowPrice" resultType="productdto">
-		select * from product order by price asc limit #{limit}, 20
+		select * from PRODUCT order by price asc limit #{limit}, 20
 	</select>
 	
 	<!-- 전체 높은가격순 -->
 	<select id="allProductOrderByHighPrice" resultType="productdto">
-		select * from product order by price desc limit 0, 20
+		select * from PRODUCT order by price desc limit 0, 20
 	</select>
 	
 	<select id="scrollProductOrderByHighPrice" resultType="productdto">
-		select * from product order by price desc limit #{limit}, 20
+		select * from PRODUCT order by price desc limit #{limit}, 20
 	</select>
 	
 	<!-- 전체 조회순 -->
 	<select id="allProductOrderByCount" resultType="productdto">
-		select * from product order by viewCount desc limit 0, 20
+		select * from PRODUCT order by viewCount desc limit 0, 20
 	</select>
 	
 	<select id="scrollProductOrderByCount" resultType="productdto">
-		select * from product order by viewCount desc limit #{limit}, 20
+		select * from PRODUCT order by viewCount desc limit #{limit}, 20
 	</select>
 
 
@@ -46,46 +46,46 @@
 
 
 	<select id="oneProduct" resultType="productdto">
-		select * from product where id = #{productid}
+		select * from PRODUCT where id = #{productid}
 	</select>
 	
 	<insert id="insertProduct">
-		insert into product (userid, title, contents, boardRegion, createdAt, price, img1, img2, img3, img4, img5, img6, video) 
-		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{price}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5},#{img6}, #{video})
+		insert into PRODUCT (userid, title, contents, boardRegion, createdAt, price, img1, img2, img3, img4, img5, img6, video) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{price}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6}, #{video})
 	</insert>
 	
 	<!-- 예약 리스트 -->
 	<select id="allReservation" resultType="reservationdto" >
-		select * from reservation where boardid=#{productid} order by id desc; 
+		select * from RESERVATION where boardid=#{productid} order by id desc; 
 	</select>
 	
 	
 	<delete id="deleteProduct">
-		delete from product where id=#{productid}
+		delete from PRODUCT where id=#{productid}
 	</delete>
 
 
 	<update id="updateProduct">
-		update product set title=#{title}, contents=#{contents}, price=#{price},
+		update PRODUCT set title=#{title}, contents=#{contents}, price=#{price},
 		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6}, video=#{video} 
 		where id = #{id}
 	</update>
 	
 	<!-- 조회수 -->
 	<update id="viewCount">
-		update product set viewCount = viewCount + 1 where id = #{productId}
+		update PRODUCT set viewCount = viewCount + 1 where id = #{productId}
 	</update>
 	
 	
 	<!-- 검색 deprecated -->
 	<select id="searchList" resultType="productdto" >
-	 	select * from product where ${item} like concat('%', #{search}, '%') 
+	 	select * from PRODUCT where ${item} like concat('%', #{search}, '%') 
 	 	order by id desc limit #{limit}, 20
 	 </select>
 	 
 	 <!-- Nav 검색 -->
 	 <select id="navSearch" resultType="productdto">
-	 	select * from product 
+	 	select * from PRODUCT 
 			where title like concat('%', #{search}, '%') 
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
@@ -94,7 +94,7 @@
 	 </select>
 	 
 	 <select id="navSearchOrderByLowPrice" resultType="productdto">
-	 	select * from product 
+	 	select * from PRODUCT 
 			where title like concat('%', #{search}, '%') 
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
@@ -103,7 +103,7 @@
 	 </select>
 	 
 	 <select id="navSearchOrderByHighPrice" resultType="productdto">
-	 	select * from product 
+	 	select * from PRODUCT 
 			where title like concat('%', #{search}, '%') 
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
@@ -112,7 +112,7 @@
 	 </select>
 	 
 	 <select id="navSearchOrderByCount" resultType="productdto">
-	 	select * from product 
+	 	select * from PRODUCT 
 			where title like concat('%', #{search}, '%') 
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
@@ -125,22 +125,22 @@
 	 
 	 <!-- 이웃 검색 -->
 	 <select id="neighborList" resultType="productdto">
-	 	select * from product where boardRegion = #{boardRegion}
+	 	select * from PRODUCT where boardRegion = #{boardRegion}
 	 	order by id desc limit #{limit}, 20
 	 </select>
 
 	 <select id="neighborListOrderByLowPrice" resultType="productdto">
-	 	select * from product where boardRegion = #{boardRegion}
+	 	select * from PRODUCT where boardRegion = #{boardRegion}
 	 	order by price asc limit #{limit}, 20
 	 </select>
 	
 	 <select id="neighborListOrderByHighPrice" resultType="productdto">
-	 	select * from product where boardRegion = #{boardRegion}
+	 	select * from PRODUCT where boardRegion = #{boardRegion}
 	 	order by price desc limit #{limit}, 20
 	 </select>
 	 
 	  <select id="neighborListOrderByCount" resultType="productdto">
-	 	select * from product where boardRegion = #{boardRegion}
+	 	select * from PRODUCT where boardRegion = #{boardRegion}
 	 	order by viewCount desc limit #{limit}, 20
 	 </select>
 	  
@@ -148,60 +148,60 @@
 	 
 	 <!-- 렌탈중 표시 -->
 	 <update id="checkReservation">
-	 	update product set reservedNow = 1 where id=#{productId}
+	 	update PRODUCT set reservedNow = 1 where id=#{productId}
 	 </update>
 	 
 	 <!-- 렌탈중 취소 -->
 	 <update id="cancleReservation">
-	 	update product set reservedNow = 0 where id=#{productId}
+	 	update PRODUCT set reservedNow = 0 where id=#{productId}
 	 </update>
 	 
 	 
 	 
 	 <!-- 찜 목록 가져오기 -->
 	 <select id="getZzimProducts" resultType="productdto">
-	 select * from product inner join zzim on product.id=zzim.productseq where zzim.memberid=#{sessionId} and zzim.zzimCheck=1 order by product.id desc;
+	 select * from PRODUCT inner join ZZIM on PRODUCT.id=ZZIM.productseq where ZZIM.memberid=#{sessionId} and ZZIM.zzimCheck=1 order by PRODUCT.id desc;
 	 </select>
 
 <!-- 스마트 검색 -->
 	<!-- 키워드, 지역, 가격 검색 -->
 	<select id="searchByTitle_Region" resultType="Integer">
-	select product.id from product where product.title like concat('%', #{title}, '%')
-	and product.boardRegion like concat('%', #{region}, '%')
-	and product.price &gt; #{minPrice} -1
-	and product.price &lt; #{maxPrice} +1
+	select PRODUCT.id from PRODUCT where PRODUCT.title like concat('%', #{title}, '%')
+	and PRODUCT.boardRegion like concat('%', #{region}, '%')
+	and PRODUCT.price &gt; #{minPrice} -1
+	and PRODUCT.price &lt; #{maxPrice} +1
 	order by id desc  
 	limit #{limit}, 20
 	</select>
 	
 	<!-- 가까운 동네 검색 -->
 	<select id="NoLimitTitle_Region" resultType="Integer">
-	select product.id from product 
-	where product.title like concat('%', #{title}, '%')
-	and product.price &gt; #{minPrice} -1
-	and product.price &lt; #{maxPrice} +1
+	select PRODUCT.id from PRODUCT 
+	where PRODUCT.title like concat('%', #{title}, '%')
+	and PRODUCT.price &gt; #{minPrice} -1
+	and PRODUCT.price &lt; #{maxPrice} +1
 	order by id desc  
 	</select>
 	
 	<select id="searchByTitle_Region_MemberId" resultType="Integer">
-	select product.id from product inner join members on product.userid = members.userid 
-	where product.title like concat('%', #{title}, '%')
-	and product.boardRegion like concat('%', #{region}, '%')
-	and members.id = #{id}
-	order by product.id desc  
+	select PRODUCT.id from PRODUCT inner join MEMBERS on PRODUCT.userid = MEMBERS.userid 
+	where PRODUCT.title like concat('%', #{title}, '%')
+	and PRODUCT.boardRegion like concat('%', #{region}, '%')
+	and MEMBERS.id = #{id}
+	order by PRODUCT.id desc  
 	</select>
 	
 	
 	<!-- start/end Date 검색 (null, 예약없는 경우 포함됨)-->
 	<select id="searchByRentalDate" resultType="Integer">
 	select if(
-((#{startDate} &lt; all(select reservation.startrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} ))
+((#{startDate} &lt; all(select RESERVATION.startrental from RESERVATION inner join PRODUCT on PRODUCT.id = RESERVATION.boardid where RESERVATION.reservCheck=1 and PRODUCT.id = #{productId} ))
 and
-(#{endDate} &lt; all(select reservation.startrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} )))
+(#{endDate} &lt; all(select RESERVATION.startrental from RESERVATION inner join PRODUCT on PRODUCT.id = RESERVATION.boardid where RESERVATION.reservCheck=1 and PRODUCT.id = #{productId} )))
 or
-((#{startDate} &gt; all(select reservation.endrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} ))
+((#{startDate} &gt; all(select RESERVATION.endrental from RESERVATION inner join PRODUCT on PRODUCT.id = RESERVATION.boardid where RESERVATION.reservCheck=1 and PRODUCT.id = #{productId} ))
 and
-(#{endDate} &gt; all(select reservation.endrental from reservation inner join product on product.id = reservation.boardid where reservation.reservCheck=1 and product.id = #{productId} )))
+(#{endDate} &gt; all(select RESERVATION.endrental from RESERVATION inner join PRODUCT on PRODUCT.id = RESERVATION.boardid where RESERVATION.reservCheck=1 and PRODUCT.id = #{productId} )))
 , #{productId}, 0
 );
 	</select>
@@ -209,43 +209,43 @@ and
 	
 	
 	<select id="getMemberProduct" resultType="Integer">
-	select product.id from product inner join members on product.userid = members.userid where members.id = #{id}	 
+	select PRODUCT.id from PRODUCT inner join MEMBERS on PRODUCT.userid = MEMBERS.userid where MEMBERS.id = #{id}	 
 	</select>	 
 	
 	<select id="searchByDistance" resultType="Integer">
 	SELECT  
-    if((6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
-    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))) 
+    if((6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from MEMBERS where userid = #{sellerId} ))
+    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from MEMBERS where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{sellerId}))))) 
     &lt; #{intKm}
-    , (select id from members where userid = #{sellerId}), 0);
+    , (select id from MEMBERS where userid = #{sellerId}), 0);
 	</select>	 
 	
 	<select id="getDistance" resultType="Double">
 	SELECT  
-    (6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{sellerId} ))
-    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from members where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from members where userid = #{sellerId}))))); 
+    (6371*acos(cos(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{buyerId})))*cos(radians(((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{sellerId}))))*cos(radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from MEMBERS where userid = #{sellerId} ))
+    -radians((select substring(coords, locate(',',coords)+2, locate(')',coords)-locate(',',coords) - 2) from MEMBERS where userid = #{buyerId})))+sin(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{buyerId})))*sin(radians((select substring(coords, 2, locate(',',coords)-2) from MEMBERS where userid = #{sellerId}))))); 
 	</select> 
 	
 	
 	<select id="getCoords" resultType="String">
-	select coords from members where userid = #{userId} 
+	select coords from MEMBERS where userid = #{userId} 
 	</select>
 	
 	<!-- 검색어 순위 -->	
 	<select id="searchCheck" resultType="int">
-	select count(*) from search where keyword=#{keyword}
+	select count(*) from SEARCH where keyword=#{keyword}
 	</select>
 	 
 	<insert id="insertSearch">
-	insert into search (keyword) values(#{keyword})
+	insert into SEARCH (keyword) values(#{keyword})
 	</insert>
 	
 	<update id="updateSearchCount">
-	update search set searchCount = searchCount+1 where keyword=#{keyword}
+	update SEARCH set searchCount = searchCount+1 where keyword=#{keyword}
 	</update>
 	
 	<select id="searchLanking" resultType="String">
-	select keyword from search order by searchCount desc limit 0,10;
+	select keyword from SEARCH order by searchCount desc limit 0,10;
 	</select>
 	 
 
