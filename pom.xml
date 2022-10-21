@@ -160,13 +160,13 @@
 		</dependency>		
 		
 		<!-- lombok -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.12</version>
 			<scope>provided</scope>
 		</dependency>
-		
+		 -->
 		
 		
 		
@@ -185,13 +185,31 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	</build> 
+	
+	<!-- <build>
+   <pluginManagement>
+      <plugins>
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+      </plugins>
+   </pluginManagement>
+</build>
+	 -->
+	
+	
+	
+	
+	
+	
 
 </project>
