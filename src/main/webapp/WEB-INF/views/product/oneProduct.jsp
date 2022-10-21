@@ -262,11 +262,47 @@
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
                             	
-                            	<c:if test="${!empty oneProduct.video}">
-                                    <div class="carousel-item">
+                                
+                                <!-- 비디오 있을 때 -->
+                           	        <c:if test="${!empty oneProduct.video}">
+                                    <div class="carousel-item active">
                                         <video src="/upload/${oneProduct.video}" controls="controls"></video>
                                     </div>
+                                
+                                <c:if test="${!empty oneProduct.img1}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
+                                    </div>
                                 </c:if>
+                                <c:if test="${!empty oneProduct.img2}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img2}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img3}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img3}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img4}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img4}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img5}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img5}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img6}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
+                                    </div>
+                                </c:if>
+                                </c:if>
+                                
+                                 <!-- 비디오 없을 때 -->
+                                   <c:if test="${empty oneProduct.video}">
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
                                         <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
@@ -297,6 +333,9 @@
                                         <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
                                     </div>
                                 </c:if>
+                                </c:if>
+                                
+                   
                                 
                             </div>
                             <button class="carousel-control-prev" type="button"
