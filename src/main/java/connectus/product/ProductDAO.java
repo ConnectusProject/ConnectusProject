@@ -32,6 +32,8 @@ public interface ProductDAO {
 	
 	public ProductDTO oneProduct(int productid);
 	
+	public ProductDTO onePrice(int price);
+	
 	public int insertProduct(ProductDTO dto);
 	
 	public List<ReservationDTO> allReservation(int productid);

@@ -20,9 +20,12 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "connectus.location")
 @ComponentScan(basePackages = "connectus.admin")
 @ComponentScan(basePackages = "connectus")
-
+@ComponentScan(basePackages = "test")
+@ComponentScan(basePackages = "connectus.order")
 
 @ComponentScan(basePackages = "connectus.location")
+
+@MapperScan(basePackages = "connectus.order")
 @MapperScan(basePackages = "connectus.report")
 @MapperScan(basePackages = "connectus.comment")
 @MapperScan(basePackages = "connectus.member")

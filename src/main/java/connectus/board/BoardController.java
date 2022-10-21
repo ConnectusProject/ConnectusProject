@@ -59,11 +59,11 @@ public class BoardController {
 		
 		
 		
-//	String savePath = "/Users/youngban/upload/";
-	String savePath = "c:/upload/";
+	String savePath = "/Users/youngban/upload/";
+//	String savePath = "c:/upload/";
 
 		String newname = null;
-//		System.out.println(file1);
+		System.out.println(file1);
 		if(!file1.isEmpty()) {
 			
 			String originalname1 = file1.getOriginalFilename(); //a.txt
@@ -221,8 +221,8 @@ public class BoardController {
 		
 
 
-	//	String savePath = "/Users/youngban/upload/";
-		String savePath = "c:/upload/";
+		String savePath = "/Users/youngban/upload/";
+	//	String savePath = "c:/upload/";
 
 
 		String newname = null;

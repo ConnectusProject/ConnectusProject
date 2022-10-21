@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${path}/css/header.css">
     <link rel="stylesheet" href="${path}/css/product.css">
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
 
 
@@ -178,9 +179,109 @@
         });   // onload
     </script>
 
+
+<script>
+function requestPay(data) {
+	 let producttitle = '${oneProduct.title}';
+	 let sessionId = '${sessionScope.sessionid}';
+	
+  IMP.init('imp02416153'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+  IMP.request_pay({
+    pg: "html5_inicis",
+    orderNum : createOrderNum(),
+    pay_method: "card",
+    merchant_uid : 'merchant_'+new Date().getTime(),
+    name : "producttitle",
+    amount : 1000,
+    buyer_email : 'iamport@siot.do',
+    buyer_name : '구매자',
+    buyer_tel : '010-1234-5678',
+    buyer_addr : '서울특별시 강남구 삼성동',
+    buyer_postcode : '123-456'
+  }, function (rsp) { // callback
+      if (rsp.success) {
+	  ajax({
+		  url: "/payments/complete",
+		  type: 'post',
+		  datatype: 'json',
+		  data: {imp_uid : rsp.imp_uid, imp_title : rsp.imt_title}
+	  }).done(function(data) {
+		  if( finished_logic){
+			  var msg = "결제가 완료되었습니다.";
+			  msg += '\n고유ID :' + rsp.imp_uid;
+			  msg += '\n실대여 ID :' + rsp.merchant_uid;
+			  msg += '\n결제 금액 : ' + rsp.paid_amount;
+			  msg += '카드 승인번호 : ' + rsp.apply_num;
+			  
+			  alert(msg);
+		  }else {
+			//[3] 아직 제대로 결제가 되지 않았습니다.
+  			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+		  }
+	  });
+      } else {
+        var msg = '결제에 실패하였습니다';
+        msg += '에러내용 : ' + rsp.error_msg;
+        // 결제 실패 시 로직,
+        alert(msg);
+      }
+  });
+}
+</script>
+
+<script>
+//주문번호 생성
+function createOrderNum(){
+	const date = new Date();
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	
+	let orderNum = year + month + day;
+		for(let i = 0; i < 10; i++){
+			orderNum += Math.fllor(Math.random( * 8);
+			
+		}
+		return orderNum;
+}
+</script>
+
+<script>
+//계산 완료 - 넘어갔을 때 화면 (꼭 필요 주문상세페이지로 넘어갈예정)
+function paymentComplete(data){
+	
+	$.ajax({
+		url: "/order/payment/complete",
+		method: "POST",
+		data: data,
+	})
+	.done(function(result){
+	messageSend();
+	swal({
+		text: result,
+		closeOnClickOutside : false
+		
+	
+	
+	
+	})
+	.then(function(){
+		location.replace("/orderList");	
+		})
+	}) //done
+	.fail(function(){
+		alert("에러")
+		location.replace("/");
+	})
+
+</script>
+
 </head>
 
 <body>
+
+	
+
 	<div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
@@ -326,6 +427,7 @@
                            
                         </form> -->
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
+                        <button class="payment-on-button" onclick="requestPay()">결제하기</button>
 
                         <!-- 수정, 삭제 버튼 -->
                         <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">

@@ -72,13 +72,16 @@
 
 		$(document).ready(function () {
 			// 이미지 업로드 
+		
 			$("#imgFile").change(function (e) {
+				/* alert(112);
+				alert(e.target); */
 				e.preventDefault();
 				$("#cancleNoti").attr("style", "display:unset");
 
 				var form = $("#uploadForm")[0];
 				var data = new FormData(form);
-
+				/* alert(123); */
 				$.ajax({
 					url: "ajaxUpload",
 					data: data,
