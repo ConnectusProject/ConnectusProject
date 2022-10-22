@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Connect Us</title>
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/stomp.js" type="text/javascript"></script>
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>
@@ -184,24 +184,46 @@ $(document).ready(function(){
 
     <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
+    	
+    	
+        alert(messageObj.sendTime);
+        
+        
+        if(messageObj.sendTime==sessionId){
+    		alert("right!");
+    		  return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
+    	       messageObj.senderId  +
+    	        ']</div><div class="message-time close">' +
+    	        messageObj.sendTime +
+    	        '</div></div><div class="message-content mb-3" style="margin-left : 60%;">' +
+    	        messageObj.content+
+    	        '</div>';
+    	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+    
+        	}else{
+        		alert("left!");
+        		  return '<div class="message-id-time-content" style="width : 100%;  text-align : left;"><div class="message-id" style="width :100%; text-align : left;">[' +
+        	       messageObj.senderId  +
+        	        ']</div><div class="message-time close style="text-align : left;">' +
+        	        messageObj.sendTime +
+        	        '</div></div><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
+        	        messageObj.content+
+        	        '</div>';
+        	        
+        	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+        
+        }
+    	
         console.log("createTextNode");
         console.log("messageObj: " + messageObj.content);
-        return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
-       messageObj.senderId  +
-        ']</div><div class="message-time close">' +
-        messageObj.sendTime +
-        '</div></div><div class="message-content mb-3" style="margin-left : 60%;">' +
-        messageObj.content+
-        '</div>';
-        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+      
 
         if(true){
             chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
         }
-        
-
-    }
     
+}
+	
     <%-- HTML 형태의 메시지를 화면에 출력해줌 --%>
     <%-- 해당되는 id 태그의 모든 하위 내용들을 message가 추가된 내용으로 갱신해줌 --%>
 
@@ -240,11 +262,11 @@ $(document).ready(function(){
 </script>
 
     <script>
+        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
         let messageFormId = document.querySelectorAll('.message-id');
         let messageFormTime = document.querySelectorAll('.message-time');
         let messageFormContent = document.querySelectorAll('.message-content');
         let messageForm = document.querySelectorAll('.message-id-time-content');
-        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
         console.log(sessionId);
         console.log(messageFormId[0].value);
      
@@ -262,7 +284,7 @@ $(document).ready(function(){
             messageFormContent[i].style.textAlign = "left";
             messageFormContent[i].style.backgroundColor = "white";
         }
-        }
+        } 
         chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
 
     </script>

@@ -61,7 +61,10 @@
 			
 			// 채팅 알림
 			
-			if (sessionId != null) {
+			
+			
+			
+			if (sessionId != "") {
 							getUnread();
 							getInfiniteUnread(); 
 							} 
@@ -171,7 +174,7 @@
     			</div>
     			
     			<div>
-    			<a href="/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<a href="/chatList">New 채팅 &nbsp; <span id="messageAlert" style=color:red></span></a>
     			</div>
 					<div>
 					<a  class="manager-button"  href="/admin_memlist">관리자</a>
