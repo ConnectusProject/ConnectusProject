@@ -134,7 +134,7 @@
                 '&nbsp;</span>' +
                 '<span id="title">' + 
                 pr_title +  </span>*/
-                '<span id="message" style="color:red; font-size : 16px; position : absolute; bottom : 10px; left : 500px;" >' + 
+                '<span id="message" style="color:red; font-size : 16px; position : absolute; bottom : 10px; right : 10px;" >' + 
                 messageUnread +'</span></div></a>';
                 
                 //HTML화면의 <div class="wrapSellerTitle0,1,...etc"> 하위에 str 변수를 추가해준다.                  

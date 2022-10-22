@@ -266,7 +266,7 @@
                                 <!-- 비디오 있을 때 -->
                            	        <c:if test="${!empty oneProduct.video}">
                                     <div class="carousel-item active">
-                                        <video src="/upload/${oneProduct.video}" controls="controls"></video>
+                                        <video class="oneproduct-video" src="/upload/${oneProduct.video}" controls="controls"></video>
                                     </div>
                                 
                                 <c:if test="${!empty oneProduct.img1}">

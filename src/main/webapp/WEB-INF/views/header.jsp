@@ -159,6 +159,9 @@
 		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
+				<div>
+					<a  class="manager-button"  href="/admin_memlist">관리자</a>
+				</div>
 				<a class="loginBtn" href="/login">로그인</a>
 				<% } else { %>
 
@@ -217,6 +220,11 @@
 								alt=""></a></span>
 					<span class="menu-title close"><a href="/login">마이페이지</a></span>
 				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="/reportregister"><img src="${path}/pictures/service-center.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="/reportregister">고객센터</a></span>
+				</div>
 			</div>
 			
 
@@ -257,6 +265,11 @@
 						<span class="menu-icon"><a href="/mypage"><img src="${path}/pictures/mypage.png"
 									alt=""></a></span>
 						<span class="menu-title close"><a href="/mypage">마이페이지</a></span>
+					</div>
+					<div class="nav-menu-box">
+						<span class="menu-icon"><a href="/reportregister"><img src="${path}/pictures/service-center.png"
+									alt=""></a></span>
+						<span class="menu-title close"><a href="/reportregister">고객센터</a></span>
 					</div>
 				</div>
 

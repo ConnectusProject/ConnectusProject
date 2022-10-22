@@ -1,0 +1,100 @@
+$color : #6462cb;
+$fontColor :#cddfe0;
+
+
+@mixin flexbox($justify, $align){
+    display : flex;
+    justify-content: $justify;
+    align-items: $align
+}
+
+.allreport-container {
+    width : 100%;
+    padding-left : 10%;
+}
+
+.report-title {
+    width : 100%;
+    height : 3rem;
+    font-size: 2rem;
+    border-bottom: solid 2px $color;
+    color : $color;
+    margin-bottom : 5px;
+}
+
+.customer-notice {
+    width : 100%;
+    @include flexbox(left, center);
+    font-size: 0.8rem;
+}
+
+.customer-notice a {
+    @include flexbox(left, center);
+}
+
+.customer-notice button {
+    width : 5rem;
+    height : 1rem;
+    font-size : 0.5rem;
+    margin-right : 2rem;
+    @include flexbox(center, center);
+    border : none;
+    background-color: $color;
+    color : $fontColor;
+    border-radius: 5px;
+}
+
+.customer-notice span {
+    margin-right : 0.5rem;
+}
+
+
+
+
+.report-form {
+    width : 100%;
+}
+
+.report-form-input{
+    width : 100%;
+    height: 2rem;
+    @include flexbox(left, none);
+}
+
+.report-form-input span {
+    width : 25%;
+    height :100%;
+    @include flexbox(left, center);
+    margin-right : 1rem;
+}
+
+.report-form-input span input {
+    height : 100%;
+    width : 75%;
+    margin-left : 0.5rem;
+    border : none;
+    border-bottom : solid 2px $color;
+    background-color: rgb(230, 230, 230);
+}
+
+.report-form-input span select {
+    height : 100%;
+    width : 75%;
+    margin-left : 0.5rem;
+    border : solid 2px $color;
+}
+
+.report-form-textarea {
+    width : 100%;
+    @include flexbox(left, none);
+    flex-direction: column;
+}
+
+.report-form-textarea input {
+    width : 100%;
+    height : 3rem;
+    border : none;
+    background-color: #6462cb;
+    color : $fontColor;
+    border-radius: 10px;
+}
