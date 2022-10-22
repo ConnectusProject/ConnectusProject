@@ -259,7 +259,7 @@
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
-                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
+                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="false">
                             <div class="carousel-inner detail-carousel">
                             	
                                 
@@ -338,12 +338,12 @@
                    
                                 
                             </div>
-                            <button class="carousel-control-prev" type="button"
+                            <button class="carousel-control-prev carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button"
+                            <button class="carousel-control-next carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                 <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>

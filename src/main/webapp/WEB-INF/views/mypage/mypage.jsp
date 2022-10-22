@@ -151,10 +151,10 @@
                             <fmt:parseDate value="${board.createdAt}" var="uploadDate"
                                 pattern="yyyy-MM-dd" />
                             <tr class="myproduct-zzim-item">
-                                <th id="zzimid${vs.index}">${board.id}</th>
-                                <th><a href="/product/${board.id}"><img src="http://localhost:8090/upload/${board.img1}" width=50 height=50 >${board.title}</a></th>
-                                <th>${board.createdAt}</th>
-                                <th><span class="product-item-zzim" id="zzimSpan${board.id}"><img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'></span></th>
+                                <th style="width:5%" id="zzimid${vs.index}">${board.id}</th>
+                                <th style="width:55%;"><img src="http://localhost:8090/upload/${board.img1}" width=40 height=40 ><a href="/product/${board.id}">${board.title}</a></th>
+                                <th style="width:30%">${board.createdAt}</th>
+                                <th style="width:10%"><span class="product-item-zzim" id="zzimSpan${board.id}"><img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'></span></th>
                             </tr>
                         </c:forEach>
                     </tbody>

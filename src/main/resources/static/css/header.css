@@ -143,6 +143,10 @@ li {
   position: relative;
 }
 
+.header-notice img {
+  margin-right: 10px;
+}
+
 .rank-container {
   width: 5rem;
   position: absolute;
