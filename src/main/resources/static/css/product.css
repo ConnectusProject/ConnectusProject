@@ -89,52 +89,83 @@
   font-size: 1.1rem;
 }
 
-.zzim-title {
-  width: 8rem;
-  color: #6462cb;
-  text-align: center;
-  border: #6462cb 2px solid;
-  background-color: white;
-  box-shadow: 0px 2px 2px rgb(230, 230, 230);
-}
-
 .zzimproduct-list-container {
   position: absolute;
   right: -10rem;
   top: 15rem;
-  width: 15rem;
+  width: 10rem;
   z-index: 9;
 }
 
 .zzimproduct-list-box {
+  width: 10rem;
   position: fixed;
+}
+
+.zzim-title {
   width: 100%;
+  height: 2rem;
+  border: #6462cb solid 3px;
+  border-radius: 5px;
+  background-color: white;
+  color: #6462cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
 }
 
 .zzim-product {
-  width: 10rem;
-  display: flex;
-  justify-content: none;
-  align-items: left;
-  flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
 }
 
-.zzim-product a {
-  margin-bottom: 1rem;
+.zzim-product2 {
   width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  height: 50px;
+}
+
+.zzim-product2 > a {
+  width: 10rem;
+  height: 50px;
 }
 
 .zzim-product-title {
   width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: white;
+}
+
+.zzim-product-title img {
+  border: 3px solid rgb(230, 230, 230);
+}
+
+.zzim-product-title > span {
+  width: 80%;
+  height: 100%;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-top: 12px;
+  padding-left: 5px;
+}
+
+.zzim-product::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.zzim-product::-webkit-scrollbar-track {
+  background-color: #9897c4;
+  border-radius: 10px;
+}
+
+.zzim-product::-webkit-scrollbar-thumb {
+  background-color: #6462cb;
+  border-radius: 10px;
 }
 
 .allproduct-search-box {
@@ -206,9 +237,17 @@
 
 .allproduct-item-array {
   position: absolute;
-  width: 100%;
-  top: -1rem;
+  width: 92%;
+  top: 0rem;
   left: 1rem;
+  padding-left: 1rem;
+  border-radius: 5px;
+  border: #9897c4 3px solid;
+}
+
+.allproduct-item-array a {
+  color: rgb(165, 165, 165);
+  margin-right: 2rem;
 }
 
 .product-box-item {
@@ -342,6 +381,11 @@
 }
 
 .carousel-item img {
+  width: 100%;
+  height: 30rem;
+}
+
+.carousel-item video {
   width: 100%;
   height: 30rem;
 }
