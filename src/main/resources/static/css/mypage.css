@@ -60,6 +60,7 @@ a {
 }
 
 .mypage-container-inner-box {
+  padding-left: 5%;
   position: absolute;
   left: 3rem;
   margin-top: 2rem;
@@ -132,6 +133,25 @@ a {
 
 .myproduct-zzim-item {
   margin: 1rem;
+  width: 100%;
+}
+
+.myproduct-zzim-item th {
+  position: relative;
+  height: 3rem;
+}
+
+.myproduct-zzim-item th > img {
+  position: absolute;
+  left: 0;
+  border: solid 2px rgb(231, 231, 231);
+}
+
+.myproduct-zzim-item th > a {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .myproduct-box-table-title {

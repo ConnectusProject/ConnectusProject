@@ -330,6 +330,7 @@ $fontColor :#cddfe0;
 }
 
 .oneproduct-container{
+    padding-left : 5%;
     z-index: 0;
     width : 75%;
     height : 30rem;
@@ -367,6 +368,11 @@ $fontColor :#cddfe0;
 .carousel-item video {
     width : 100%;
     height : 30rem;
+}
+
+.carousel-control-button {
+    margin-top : 13rem;
+    height : 4rem;
 }
 .oneproduct-detail-textarea {
     width : 50%;
@@ -499,6 +505,7 @@ $fontColor :#cddfe0;
 .reserved-connect-container {
     width : 75%;
     text-align: center;
+    padding-left : 5%;
 }
 
 .reserved-connect {

@@ -162,16 +162,16 @@
 				<a class="loginBtn" href="/login">로그인</a>
 				<% } else { %>
 
-				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
+				<!-- <div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
         			<div class="test2 close" id="noticeinfo">
           
             		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
             								
         			</div>
-    			</div>
+    			</div> -->
     			
-    			<div>
-    			<a href="/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<div class="header-notice">
+    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
 					<div>
 					<a  class="manager-button"  href="/admin_memlist">관리자</a>

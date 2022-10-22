@@ -48,9 +48,6 @@ $fontColor :#cddfe0;
     margin-right : 0.5rem;
 }
 
-
-
-
 .report-form {
     width : 100%;
 }
@@ -90,6 +87,11 @@ $fontColor :#cddfe0;
     flex-direction: column;
 }
 
+.report-form-textarea textarea {
+ width : 100%;
+ height : 25rem;
+}
+
 .report-form-textarea input {
     width : 100%;
     height : 3rem;
@@ -97,4 +99,14 @@ $fontColor :#cddfe0;
     background-color: #6462cb;
     color : $fontColor;
     border-radius: 10px;
+}
+
+.story-container {
+    padding-left : 10%;
+}
+
+.story-box {
+    padding : 5%;
+    background-color: rgb(240, 240, 240);
+    border : solid 2px $color;
 }
