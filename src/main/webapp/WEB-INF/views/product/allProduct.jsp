@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Connect Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/header.css">
@@ -23,14 +23,14 @@
             let orderType = '${orderType}';
             let search = '${search}';
             let searchLankingList = '${searchLankingList}';
-
-            let smartTitle = '${smartTitle}'
-            let smartRegion = '${smartRegion}'
-            let smartStartDate = '${smartStartDate}'
-            let smartEndDate = '${smartEndDate}'
             let distanceKm = '${distanceKm}'; 
-            let smartPriceMin = '${smartPriceMin}'; 
-            let smartPriceMax = '${smartPriceMax}'; 
+
+            let smartTitle = '${smartSearchDTO.smartTitle}'
+            let smartRegion = '${smartSearchDTO.smartRegion}'
+            let smartStartDate = '${smartSearchDTO.smartStartDate}'
+            let smartEndDate = '${smartSearchDTO.smartEndDate}'
+            let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
+            let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
             
             // 검색어 순위 
@@ -144,13 +144,11 @@ $.each(list, function(i, product){
             success: function (resp) {
             	
                 if (resp.result == 0) {
-                    alert("찜!");
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 작동 시, 해당물품 장바구니에 출력 
                     $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                 }
                 else if (resp.result == 1) {
-                    alert("찜 취소!");
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 취소 시, 해당물품 장바구니에서 제거
                     $("#spanId" + resp.id).remove();

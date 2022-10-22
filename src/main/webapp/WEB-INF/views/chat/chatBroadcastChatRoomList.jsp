@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Connect Us</title>
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/stomp.js" type="text/javascript"></script>
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>
@@ -184,9 +184,20 @@ $(document).ready(function(){
 
     <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
+    	
+    	let position = ""; 
+    	alert("세션아이디 : " + sessionId); 
+    	alert("센더: " + messageObj.senderTime);
+    	if(messageObj.senderTime==sessionId){
+    		position = "right"; 
+    		alert("right");
+    	}else{position = "left";
+    	alert("left");}
+    	
+    	
         console.log("createTextNode");
         console.log("messageObj: " + messageObj.content);
-        return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
+        return '<div class="message-id-time-content" style="width : 100%;  text-align :' + position + ';"><div class="message-id" style="width :100%;">[' +
        messageObj.senderId  +
         ']</div><div class="message-time close">' +
         messageObj.sendTime +
