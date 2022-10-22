@@ -146,12 +146,14 @@ $.each(list, function(i, product){
                 if (resp.result == 0) {
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 작동 시, 해당물품 장바구니에 출력 
-                    $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a>");
+                 //   $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a>");
+                    $("#zzimProducts").prepend("<div class=zzim-product2"+resp.id+"><a href=/product/"+resp.id+"><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a></div>");
                 }
                 else if (resp.result == 1) {
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 취소 시, 해당물품 장바구니에서 제거
-                    $("#spanId" + resp.id).remove();
+                    //$("#spanId" + resp.id).remove();
+                    $("#spanId" + resp.id).closest('div').remove();
                 } 
                 
             } // success 
