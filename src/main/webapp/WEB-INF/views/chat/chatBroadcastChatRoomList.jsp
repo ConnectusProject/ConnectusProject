@@ -184,13 +184,8 @@ $(document).ready(function(){
 
     <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
-    	
-    	
-        alert(messageObj.sendTime);
-        
         
         if(messageObj.sendTime==sessionId){
-    		alert("right!");
     		  return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
     	       messageObj.senderId  +
     	        ']</div><div class="message-time close">' +
@@ -201,7 +196,6 @@ $(document).ready(function(){
     	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
     
         	}else{
-        		alert("left!");
         		  return '<div class="message-id-time-content" style="width : 100%;  text-align : left;"><div class="message-id" style="width :100%; text-align : left;">[' +
         	       messageObj.senderId  +
         	        ']</div><div class="message-time close style="text-align : left;">' +
