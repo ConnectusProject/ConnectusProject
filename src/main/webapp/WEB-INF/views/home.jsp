@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Connect Us</title>
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
@@ -39,7 +39,7 @@ $(document).ready(function(){
 <br>
 
 <a href="/boardstart">커뮤니티 이동</a>
-
+<br>
 <a href="/reportregister">신고하기</a>
 
 <br>

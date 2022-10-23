@@ -22,7 +22,9 @@
         <div class="main-container">
     
             <div class="login-container">
+                
                 <div class="login-box">
+                    <div class="home"><a href="/allproduct/1/1"><img src="${path}/pictures/back.png" alt=""></a></div>
                     <div class="login-box-title">
                         <span>Connect Us</span>
                     </div>

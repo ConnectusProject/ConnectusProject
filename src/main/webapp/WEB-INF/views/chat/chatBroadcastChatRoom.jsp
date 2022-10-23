@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Connect Us</title>
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/stomp.js" type="text/javascript"></script>
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>

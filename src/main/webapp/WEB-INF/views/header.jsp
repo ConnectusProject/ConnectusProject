@@ -61,7 +61,10 @@
 			
 			// 채팅 알림
 			
-			if (sessionId != null) {
+			
+			
+			
+			if (sessionId != "") {
 							getUnread();
 							getInfiniteUnread(); 
 							} 
@@ -133,20 +136,22 @@
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
 
-				<div class="rank-container overflow" id="oneRank">
-					<div class="rank-box2 close">
-						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-						<a href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
-						</c:forEach>
+				<div class="rank-container" id="oneRank">
 
-						</div>
 					<div class="rank-box">
 						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-						<a href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
+						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span> </a><br> 
 						</c:forEach>
 
 						</div>
-
+					</div>
+					<div class="rank-container2" id="oneRank">
+						<div class="rank-box2 close">
+							<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
+							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span>  </a><br> 
+							</c:forEach>
+	
+					</div>
 					</div>
 					
 			</form>
@@ -156,19 +161,22 @@
 		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
+				<div>
+					<a  class="manager-button"  href="/admin_memlist">관리자</a>
+				</div>
 				<a class="loginBtn" href="/login">로그인</a>
 				<% } else { %>
 
-				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
+				<!-- <div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
         			<div class="test2 close" id="noticeinfo">
           
             		<span id="submitresult"> ${sessionid}님 ,${oneProduct.title} 예약에 성공하셨습니다. </span><br>
             								
         			</div>
-    			</div>
+    			</div> -->
     			
-    			<div>
-    			<a href="/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<div class="header-notice">
+    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
 					<div>
 					<a  class="manager-button"  href="/admin_memlist">관리자</a>
@@ -214,6 +222,11 @@
 								alt=""></a></span>
 					<span class="menu-title close"><a href="/login">마이페이지</a></span>
 				</div>
+				<div class="nav-menu-box">
+					<span class="menu-icon"><a href="/reportregister"><img src="${path}/pictures/service-center.png"
+								alt=""></a></span>
+					<span class="menu-title close"><a href="/reportregister">고객센터</a></span>
+				</div>
 			</div>
 			
 
@@ -254,6 +267,11 @@
 						<span class="menu-icon"><a href="/mypage"><img src="${path}/pictures/mypage.png"
 									alt=""></a></span>
 						<span class="menu-title close"><a href="/mypage">마이페이지</a></span>
+					</div>
+					<div class="nav-menu-box">
+						<span class="menu-icon"><a href="/reportregister"><img src="${path}/pictures/service-center.png"
+									alt=""></a></span>
+						<span class="menu-title close"><a href="/reportregister">고객센터</a></span>
 					</div>
 				</div>
 
@@ -297,31 +315,76 @@
 		let rankBox = document.querySelector('.rank-box');
 		let rankBox2 = document.querySelector('.rank-box2');
 		let rankContainer = document.querySelector('.rank-container');
+		let rankContainer2 = document.querySelector('.rank-container2');
 
-		let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
+	let setTime=setTimeout(function(){
+			for(let i = 1.5; i<15; i = i + 1.5){
+		setTimeout(function(){
+			rankBox.style.transform='translateY(-'+i+'rem)'
+		}, 1000*i)
+		}
+		}, 500)
 
-		for(let i = 1; i < rank.length+1; i ++){
-				
-				setTimeout(function (){
-			rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
-		},2000*i)
+
+	let setInter = setInterval(function(){
 			setTimeout(function(){
-			rankBox.style.transform = 'translateY(0rem)';
-		},2000*10)
+			for(let i = 0; i<15; i = i + 1.5){
+		setTimeout(function(){
+			rankBox.style.transform='translateY(-'+i+'rem';
+		}, 1000*i)
 		}
+		}, 500)
+		}, 1000*15);
+
+		
+		rankContainer2.addEventListener('mouseover', function(){
+			rankBox2.classList.remove('close');
+		})
+		rankContainer2.addEventListener('mouseout', function(){
+			rankBox2.classList.add('close');
+		})
 
 
-		setInterval(function (){
-			for(let i = 1; i < rank.length+1; i ++){
+
+
+
+
+// clearTimeout(timeoutId);
+
+
+
+
+
+
+
+
+
+
+
+		// let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
+
+		// for(let i = 1; i < rank.length+1; i ++){
 				
-					setTimeout(function (){
-				rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
-			},2000*i)
-				setTimeout(function(){
-				rankBox.style.transform = 'translateY(0rem)';
-			},2000*10)
-		}
-			}, 2000*11)
+		// 		setTimeout(function (){
+		// 	rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+		// },2000*i)
+		// 	setTimeout(function(){
+		// 	rankBox.style.transform = 'translateY(0rem)';
+		// },2000*10)
+		// }
+
+
+		// setInterval(function (){
+		// 	for(let i = 1; i < rank.length+1; i ++){
+				
+		// 			setTimeout(function (){
+		// 		rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+		// 	},2000*i)
+		// 		setTimeout(function(){
+		// 		rankBox.style.transform = 'translateY(0rem)';
+		// 	},2000*10)
+		// }
+		// 	}, 2000*11)
 
 
 	

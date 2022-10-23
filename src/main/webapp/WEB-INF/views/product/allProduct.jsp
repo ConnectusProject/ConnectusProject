@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Connect Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/header.css">
@@ -23,14 +23,14 @@
             let orderType = '${orderType}';
             let search = '${search}';
             let searchLankingList = '${searchLankingList}';
-
-            let smartTitle = '${smartTitle}'
-            let smartRegion = '${smartRegion}'
-            let smartStartDate = '${smartStartDate}'
-            let smartEndDate = '${smartEndDate}'
             let distanceKm = '${distanceKm}'; 
-            let smartPriceMin = '${smartPriceMin}'; 
-            let smartPriceMax = '${smartPriceMax}'; 
+
+            let smartTitle = '${smartSearchDTO.smartTitle}'
+            let smartRegion = '${smartSearchDTO.smartRegion}'
+            let smartStartDate = '${smartSearchDTO.smartStartDate}'
+            let smartEndDate = '${smartSearchDTO.smartEndDate}'
+            let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
+            let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
             
             // 검색어 순위 
@@ -144,16 +144,16 @@ $.each(list, function(i, product){
             success: function (resp) {
             	
                 if (resp.result == 0) {
-                    alert("찜!");
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 작동 시, 해당물품 장바구니에 출력 
-                    $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                 //   $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a>");
+                    $("#zzimProducts").prepend("<div class=zzim-product2"+resp.id+"><a href=/product/"+resp.id+"><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a></div>");
                 }
                 else if (resp.result == 1) {
-                    alert("찜 취소!");
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 취소 시, 해당물품 장바구니에서 제거
-                    $("#spanId" + resp.id).remove();
+                    //$("#spanId" + resp.id).remove();
+                    $("#spanId" + resp.id).closest('div').remove();
                 } 
                 
             } // success 
@@ -235,12 +235,15 @@ $.each(list, function(i, product){
                             if (resp.result == 0) {
                                 $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 작동 시, 해당물품 장바구니에 출력 
-                                $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                                $("#zzimProducts").prepend("<div class=zzim-product2"+resp.id+"><a href=/product/"+resp.id+"><span class=zzim-product-title id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=40 height=40 style='cursor:pointer'><span>" + resp.title+"</span></span></a></div>");
                             }
                             else if (resp.result == 1) {
                                 $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
-                                $("#spanId" + resp.id).remove();
+                            $("#spanId" + resp.id).closest('div').remove();
+                            
+                            
+                       
                             }
 
                         } // success 
@@ -291,15 +294,18 @@ $.each(list, function(i, product){
 
                     <div  class="zzimproduct-list-box">
                     <p class="zzim-title">찜 리스트</p>
-				    <span id="zzimProducts" class="zzim-product">
+				    <div id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
-                            <div class="zzim-product">
+                            <div class="zzim-product2">
                         <a href="/product/${zzimProduct.id}">
-                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}"><img src='/upload/${zzimProduct.img1}' height=50 width=50>${zzimProduct.title }</span>
+                            <span class="zzim-product-title" id = "spanId${zzimProduct.id}">
+                                <img src='/upload/${zzimProduct.img1}' height=40 width=40>
+                                <span>${zzimProduct.title }</span>
+                            </span>
                         </a>
                             </div>
                         </c:forEach>
-                    </span>
+                    </div>
                     </div>
                  </div>
 
@@ -313,22 +319,22 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="/allproduct/1/1">최신순</a> |
-                            <a class="product-array-button" href="/allproduct/1/2">낮은 가격순</a> |
-                            <a class="product-array-button" href="/allproduct/1/3">높은 가격순</a> |
-                            <a class="product-array-button" href="/allproduct/1/4">인기순</a>
+                            <a class="product-array-button" href="/allproduct/1/1">✔ 최신순 </a>
+                            <a class="product-array-button" href="/allproduct/1/2">✔ 낮은 가격순 </a> 
+                            <a class="product-array-button" href="/allproduct/1/3">✔ 높은 가격순 </a>
+                            <a class="product-array-button" href="/allproduct/1/4">✔ 인기순 </a>
                             </c:if>
                             <c:if test="${searchType==2 }">
-                            <a href="/allproduct/2/1?search=${search}">최신순</a> |
-                            <a href="/allproduct/2/2?search=${search}">낮은 가격순</a> |
-                            <a href="/allproduct/2/3?search=${search}">높은 가격순</a> |
-                            <a href="/allproduct/2/4?search=${search}">인기순</a>
+                            <a class="product-array-button" href="/allproduct/2/1?search=${search}">✔ 최신순</a> 
+                            <a class="product-array-button" href="/allproduct/2/2?search=${search}">✔ 낮은 가격순</a>
+                            <a class="product-array-button" href="/allproduct/2/3?search=${search}">✔ 높은 가격순</a>
+                            <a class="product-array-button"href="/allproduct/2/4?search=${search}">✔ 인기순</a>
                             </c:if>
                             <c:if test="${searchType==3 }">
-                            <a href="/allproduct/3/1">최신순</a> |
-                            <a href="/allproduct/3/2">낮은 가격순</a> |
-                            <a href="/allproduct/3/3">높은 가격순</a> |
-                            <a href="/allproduct/3/4">인기순</a>
+                            <a class="product-array-button" href="/allproduct/3/1">✔ 최신순</a>
+                            <a class="product-array-button" href="/allproduct/3/2">✔ 낮은 가격순</a>
+                            <a class="product-array-button" href="/allproduct/3/3">✔ 높은 가격순</a>
+                            <a class="product-array-button" href="/allproduct/3/4">✔ 인기순</a>
                             </c:if>
                             
                             
