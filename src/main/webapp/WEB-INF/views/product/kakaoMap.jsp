@@ -193,8 +193,11 @@ function KakaoGeocoder() {
 <body>
 
 
-<div class="chatroom-map" id="map" style="width:40%;height:500px;"></div>
-
+<div class="chatroom-map" id="map">
+	
+</div>
+<div class="map-tag"><div>M</div><div>A</div><div>P</div>
+	</div>
 	<div>
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"

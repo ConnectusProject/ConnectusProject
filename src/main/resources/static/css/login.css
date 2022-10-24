@@ -104,6 +104,19 @@ a {
   color: white;
 }
 
+.id-check-box {
+  width: 90%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 3rem;
+}
+
+.id-check-box span {
+  margin-left: 0.5rem;
+  margin-bottom: 5px;
+}
+
 .login-box-find-box {
   width: 100%;
   height: 5%;
