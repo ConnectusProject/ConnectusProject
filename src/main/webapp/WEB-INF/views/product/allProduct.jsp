@@ -269,10 +269,12 @@ $.each(list, function(i, product){
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
+                    <!-- <div class="smart-search-box-design"></div> -->
+                 
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
+                <input class="smart-search-width" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
                 <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
-                <input id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
+                <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 ~<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
                 <option>모든 동네</option>
