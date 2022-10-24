@@ -195,7 +195,7 @@
                 <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input class="date1" id='currentDate' type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                <th>렌터 <br>  <input class="date1" type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
                 </tr>
                 <tr>
                 <th>오너<br>  <input class="date2" type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
@@ -207,7 +207,7 @@
                 <th>커넥트종료 <br> <input type="date" name="endRental" required></th> 
                 </tr>
                 <tr>
-                <th>희망비용 <br> <input type="text" name="price" required>원</th> 
+                <th>희망비용 <br> <input type="number" name="price" step="500" required>원</th> 
                 </tr>
                 <tr>
                 <th><input type="submit" value="예약" id="reserve-off-button"></th>
@@ -233,6 +233,8 @@
                 <c:set var="dateDiffShow" value="오늘" />
             </c:if>
             
+            <!-- 가격 format -->
+            <fmt:formatNumber var="priceFormat" value="${oneProduct.price}" pattern="#,###" />
             
 
             <!-- 찜 상태에 따라 이미지 -->
@@ -338,12 +340,12 @@
                    
                                 
                             </div>
-                            <button class="carousel-control-prev carousel-control-button" type="button"
+                            <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next carousel-control-button" type="button"
+                            <button class="carousel-control-next" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                 <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>
@@ -359,7 +361,7 @@
                         <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
-                        <span  class="detail-title-price">1일 ${oneProduct.price}원</span>
+                        <span  class="detail-title-price">1일 ${priceFormat}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
@@ -458,6 +460,8 @@
                     <c:set var="reservation"
                         value="<img src='/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
+                
+                <fmt:formatNumber var="ReservPriceFormat" value="${reserv.price}" pattern="#,###" />
                     
                     
                     
@@ -465,7 +469,7 @@
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
-                            <td>${reserv.price}원</td>
+                            <td>${ReservPriceFormat}원</td>
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
@@ -508,7 +512,7 @@
         };
 
 
-        document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+        //document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 
 
     </script>
