@@ -19,6 +19,13 @@
 	</properties>
 	<dependencies>
 	
+	<!-- 암호화 -->
+	<dependency>
+<groupId>com.github.ulisesbocchio</groupId>
+<artifactId>jasypt-spring-boot-starter</artifactId>
+<version>2.1.2</version>
+</dependency>
+	
 	
 	<!-- users 추가된거  -->
 	 <dependency>
@@ -121,7 +128,24 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		 
+	<!-- 	 <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+
+	<scope>test</scope>
+	    <exclusions>
+	        <exclusion>
+	            <groupId>com.vaadin.external.google</groupId>
+	            <artifactId>android-json</artifactId>
+	        </exclusion>
+	    </exclusions>
+		</dependency> -->
+		 
+		 
+		 
+		 
+		 
 		<!-- websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -176,13 +200,31 @@
 		
 	</dependencies>
 
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	</build> 
+	
+	<!-- <build>
+   <pluginManagement>
+      <plugins>
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+      </plugins>
+   </pluginManagement>
+</build>
+	 -->
+	
+	
+	
+	
+	
+	
 
 </project>

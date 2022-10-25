@@ -530,8 +530,8 @@ public class ProductController {
 			dto.setImg6(uploaddto.getFile6());
 		}
 		
-//		String savePath = "/Users/youngban/upload/";
-		String savePath = "c:/upload/";
+//		String savePath = "c:/upload/";
+		String savePath = "/upload/";
 		MultipartFile viedoFile = uploaddto.getVideo1();
 		
 		String originalname1 = viedoFile.getOriginalFilename();
@@ -556,7 +556,8 @@ public class ProductController {
 	public String uploadajax(MultipartFile imgFile) throws IOException {
 		
 	//	String savePath = "/Users/youngban/upload/";
-		String savePath = "c:/upload/";					
+//		String savePath = "c:/upload/";					
+		String savePath = "/upload/";					
 
 		String originalname1 = imgFile.getOriginalFilename();
 		String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
@@ -616,8 +617,8 @@ public class ProductController {
 		productDTO.setVideo(uploaddto.getVideoTitle());
 	}else {
 		
-//	String savePath = "/Users/youngban/upload/";
-	String savePath = "c:/upload/";
+//	String savePath = "c:/upload/";
+	String savePath = "/upload/";
 	MultipartFile viedoFile = uploaddto.getVideo1();
 	
 	String originalname1 = viedoFile.getOriginalFilename();

@@ -4,6 +4,7 @@ package connectus.member;
 import org.springframework.data.annotation.Id;
 
 
+//import lombok.Builder;
 
 //@Builder
 public class MemberDTO {
