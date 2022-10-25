@@ -19,8 +19,6 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import lombok.Getter;
-import lombok.ToString;
 
 @Service
 public class OrderService {
@@ -31,19 +29,8 @@ public class OrderService {
 	@Value("${imp_secret}")
 	private String impSecret;
 	
-	@ToString
-	@Getter
-	private class Response{
-		private PaymentInfo response;
 
-		
-	}
-	
-	@ToString
-	@Getter
-	private class PaymentInfo{
-		private int amount;
-	}
+
 	
 	@Autowired
 	OrderDAO orderDAO;
