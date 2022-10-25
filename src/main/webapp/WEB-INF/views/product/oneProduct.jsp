@@ -5,7 +5,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Connect Us</title>
@@ -16,24 +15,17 @@
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
-
-
-
-
-
     <script>
-
+    // 상세페이지 채팅하기 입장
         function chatSubmit(e) {
 			document.getElementById('chatSubmit_form').submit();
         }
-        
 
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productseq = '${oneProduct.id}';
             let userId = '${oneProduct.userId}';
             let reservLength = '${reservLength}';
-            
 
             // 세션과 일치할 시, 수정 삭제 버튼 생성 
             $("#update").append(
@@ -87,11 +79,9 @@
                     success: function (resp) {
                         0
                         if (resp.result == 0) {
-                            alert("찜!");
                             $("#zzimSpan").html("<img src='/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
-                            alert("찜 취소!");
                             $("#zzimSpan").html("<img src='/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
                     } // success 
@@ -189,16 +179,13 @@ function paymentComplete(data){
 	$.ajax({
 		url: "/order/payment/complete/{orderNum}",
 		method: "POST",
-		data: data,
-	})
-	.done(function(result){
+		data: data
+	
+	/* .done(function(result){
 	messageSend();
 	swal({
 		text: result,
 		closeOnClickOutside : false
-		
-	
-	
 	
 	})
 	.then(function(){
@@ -208,18 +195,15 @@ function paymentComplete(data){
 	.fail(function(){
 		alert("에러")
 		location.replace("/");
-	})
+	}) */
 
+	}); //ajax 
+	}
 </script>
-
-
-
 </head>
 
+
 <body>
-
-	
-
 	<div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
@@ -254,8 +238,6 @@ function paymentComplete(data){
                 </table>
                 </form>
   
-      
-            
 
             <!-- 날짜 몇일전으로 변환 -->
             <fmt:parseDate value="${oneProduct.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
@@ -303,7 +285,6 @@ function paymentComplete(data){
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="false">
                             <div class="carousel-inner detail-carousel">
                             	
-                                
                                 <!-- 비디오 있을 때 -->
                            	        <c:if test="${!empty oneProduct.video}">
                                     <div class="carousel-item active">
@@ -375,10 +356,8 @@ function paymentComplete(data){
                                     </div>
                                 </c:if>
                                 </c:if>
-                                
-                   
-                                
                             </div>
+                            
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="next-icon" aria-hidden="true">◀</span>
@@ -392,6 +371,7 @@ function paymentComplete(data){
                         </div>
                     </div>
 
+
                     <!-- 상세페이지 내용 -->
                     <div class="oneproduct-detail-textarea">
                     <div class="product-detail-content">
@@ -404,18 +384,17 @@ function paymentComplete(data){
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
+                    
                     <div class="product-detail-content-button">
-
-                                            <!-- 예약 버튼 -->
                     <div class="goods-detail-button-box">
-                        <!-- <form action="http://localhost:8090/product/${oneProduct.id}/reservationinput" method="post">
-                            <input type="hidden" value="${oneProduct.userId}" name="userId">
-                           
-                        </form> -->
+
+                        <!-- 예약버튼 -->
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        <form action="http://localhost:8090/orderpaywritingform" method="post">
+                     
+                     	<!-- 결제하기 -->
+                        <form action="/orderpaywritingform" method="post">
                         <input type="hidden" value="${oneProduct.title}" name="producttitle" readonly>
-                       <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
+                        <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
                         <input type="submit" class="payment-on-button"  value="결제하기">
 						</form>
 						
@@ -460,29 +439,18 @@ function paymentComplete(data){
                             <c:if test="${sessionid == oneProduct.userId && not empty sessionid }">
                                <button class="chat-on-button" id="Owner_FakeChatBTN">채팅하기</button>
                             </c:if>
-                            
-                            
-
-                            <!-- 찜 버튼 -->
-                         
                         </div>
                     </div>
-
-
-
                 </div>
             </div> 
 
         
             <div class="reserved-connect-container mt-5">
-            
                 <h4>예약목록</h4>
-                
                 <table class="reserved-connect">
-    
                     <tr class="reserved-table-title">
                         <th>번호</th>
-                        <th readonly>예약시작</th>
+                        <th>예약시작</th>
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
@@ -525,9 +493,7 @@ function paymentComplete(data){
     
                 </table>
             </div>
-
         </div>
-        
 </div> 
         
             <!-- 예약 테이블 노출 설정 -->

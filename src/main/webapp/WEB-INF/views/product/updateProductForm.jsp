@@ -13,19 +13,19 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <link rel="stylesheet" href="${path}/css/product.css">
 <script src="${path}/js/jquery-3.6.0.min.js"></script>
 <script>
+
 //사진 업로드 취소
 function delImg(_this){
 	//기존 이미지 개수 
 	var Imgcount = $("#count").html();
-
-	 if(!confirm("이 사진을 지울까요?")){
+	 
+	if(!confirm("이 사진을 지울까요?")){
 		 return false; 
 		} else{  
 			$(_this).parent('span').remove();
 			Imgcount--;
 			$("#count").html(Imgcount);
 
-		
 		switch ($(_this).attr('src').substring(8)) {
 	 	case $("#file1").val():
 	 		 $("#file1").val("");
@@ -36,7 +36,6 @@ function delImg(_this){
 	 		$("#file4").val($("#file5").val());
 	 		$("#file5").val($("#file6").val());
 	 		$("#file6").val("");
-	 		
 	 	    break;
 	    case $("#file2").val():
 	 		 $("#file2").val("");
@@ -79,7 +78,6 @@ $(document).ready(function(){
       e.preventDefault();
     }else {alert("수정이 완료되었습니다.")}
   }); //on updatebutton
-
  
   var img1 = '${updateProduct.img1}'; 
   var img2 = '${updateProduct.img2}'; 
@@ -123,10 +121,7 @@ $(document).ready(function(){
 	$("#video1").val("");
 	$("#videoTitle").val("");
 	$("#newVideoTitle").val("");
-
 	});
-  
-  
   
   
   // 이미지 파일 업로드 
@@ -135,15 +130,13 @@ $(document).ready(function(){
 		
 		// 이미지 파일 개수 count  
 		if(Imgcount>=6){
-			alert("사진은 6개까지! ");
+			alert("사진은 6개까지 등록 가능합니다.");
 			return false;
 		}
 		if(Imgcount<6){
 		 	Imgcount++;
 		 	$("#count").html(Imgcount);
 			}
-		
-		
 
 		var form = $("#uploadForm")[0];
 		var data = new FormData(form);
@@ -158,12 +151,12 @@ $(document).ready(function(){
 		processData : false,  
 		contentType : false,  
 
-		success : function(resp){ 
+	 	success : function(resp){ 
 			
 	//		if(Imgcount>6){
 	//			alert("사진은 6개 까지만 등록 가능합니다.")
 	//			return false;
-	//		}
+	//		} 
 			
 			var str = '<span>';
 			str += "<img src='/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
@@ -212,7 +205,7 @@ $(document).ready(function(){
 		<h1 class="insertproduct-title" class="title"> 게시물 수정</h1> 
 
 
-<div id="count" class="close">${count}</div>
+
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 
@@ -272,6 +265,9 @@ $(document).ready(function(){
 	<c:set var="count" value="6"/>
 	</c:if>
 	</div>
+	
+	<!-- 기존 IMG 카운트 위치 c set 이후에 나와야합니다. -->
+	<div id="count" class="close">${count}</div>
 	
 	<br> 
 	<br>

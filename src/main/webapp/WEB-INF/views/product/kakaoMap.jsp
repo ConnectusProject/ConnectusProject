@@ -21,42 +21,39 @@ if(storageCoords != "" && storageCoords != null){
 	storageLon = storageCoords.substring(storageCoords.indexOf(',')+1, storageCoords.length);
 }
 
+// session 좌표 
 let sessionCoords = '${sessionCoords}';
         var sessionLat = sessionCoords.substring(1, sessionCoords.indexOf(','));
         var sessionLon = sessionCoords.substring(sessionCoords.indexOf(',')+2, sessionCoords.length-1);
 
 
 
-	function kakaoMap(meetingLat, meetingLon){
+// KAKAO MAP         
+function kakaoMap(meetingLat, meetingLon){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)), // 지도의 중심좌표
         level: 10 // 지도의 확대 레벨
     };
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 // 마커가 표시될 위치입니다 
-var markerPosition1  = new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)); 
-var markerPosition2  = new kakao.maps.LatLng(Number(meetingLat), Number(meetingLon)); 
+	var markerPosition1  = new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)); 
+	var markerPosition2  = new kakao.maps.LatLng(Number(meetingLat), Number(meetingLon)); 
 
 // 마커를 생성합니다
-var marker1 = new kakao.maps.Marker({
-    position: markerPosition1
-});
+	var marker1 = new kakao.maps.Marker({
+    	position: markerPosition1
+	});
 
-var marker2 = new kakao.maps.Marker({
-    position: markerPosition2
-});
-
-
-
+	var marker2 = new kakao.maps.Marker({
+    	position: markerPosition2
+	});
+	
 // 마커가 지도 위에 표시되도록 설정합니다
 marker1.setMap(map);
 marker2.setMap(map);
-
-	
 
 //마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
 var iwContent1 = '<div style="width:100%; padding:2px;">내 위치</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
@@ -101,13 +98,7 @@ kakao.maps.event.addListener(map, 'mouseout', function() {
 	
 
 
-
-
-
-
-
-
-
+// DAUM 주소찾기 
 function sample6_execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete: function (data) {
@@ -152,13 +143,12 @@ function sample6_execDaumPostcode() {
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById('sample6_postcode').value = data.zonecode;
 			document.getElementById("sample6_address").value = addr;
+
+			// 주소값으로 geocoder 실행 
 			adress = addr;
-			
-			 
 			KakaoGeocoder();
 
-			// 커서를 상세주소 필드로 이동한다.
-
+			// 커서를 상세주소 필드로 이동
 			document.getElementById("sample6_detailAddress").focus();
 			document.getElementById("sample6_detailAddress").value = detailAddr;
 			$("#address").val(addr);
@@ -168,6 +158,7 @@ function sample6_execDaumPostcode() {
 } //Daum 주소찾기
 
 	
+// KAKAO GEOCODER
 function KakaoGeocoder() {
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
@@ -177,12 +168,12 @@ function KakaoGeocoder() {
 
 		// 정상적으로 검색이 완료됐으면 
 		if (status === kakao.maps.services.Status.OK) {
-
 			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 			var strCoords = coords.toString(); 
 			var meetingLat = strCoords.substring(1, strCoords.indexOf(','));
 			var meetingLon = strCoords.substring(strCoords.indexOf(',')+2, strCoords.length-1);
 			
+			// 약속장소 Localstorage 저장
 			let meetingcoords = [];
 			meetingcoords.push(meetingLat);
 			meetingcoords.push(meetingLon);
@@ -194,22 +185,11 @@ function KakaoGeocoder() {
 	}); // addressSearch     
 } // kakaoGeocoder
 	
-	
-	
-	
-
-	
-	
-
 </script>
-
-
 </head>
+
 <body>
-
-
 <div class="chatroom-map" id="map">
-	
 </div>
 <div class="map-tag"><div>M</div><div>A</div><div>P</div>
 	</div>
@@ -234,7 +214,7 @@ function KakaoGeocoder() {
 	</div>
 
 <script>
-// LocalStorage 맵 띄우기 
+// LocalStorage 맵 띄우기
 if(storageCoords != "" && storageCoords != null){
 	$("#storageBTN").on("click", function(){
 		kakaoMap(storageLat, storageLon);

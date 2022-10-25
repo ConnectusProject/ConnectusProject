@@ -32,18 +32,6 @@
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
-            
-            // 검색어 순위 
-            // $("#oneRank").on("mouseover",function(){
-            // $("#showSearchRank").attr("style", "");
-            // });
-            
-            // $("#oneRank").on("mouseleave",function(){
-            //     $("#showSearchRank").attr("style", "display:none");
-            //     });
-            
-            
-            
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
                 var scrollHeight = $(window).scrollTop() + $(window).height();
@@ -142,7 +130,6 @@ $.each(list, function(i, product){
             data: { 'productseq': product.id, 'memberid': sessionId },
 
             success: function (resp) {
-            	
                 if (resp.result == 0) {
                     $("#zzimSpan" + product.id).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                 // 찜 작동 시, 해당물품 장바구니에 출력 
@@ -200,9 +187,6 @@ $.each(list, function(i, product){
             	$("#smartStartDate").attr("required", "required");
             });
             
-            
-            
-            
             // 물품등록시 로그인 필요
             $("#register").on("click", function (e) {
                 if (sessionId == "") {
@@ -210,7 +194,6 @@ $.each(list, function(i, product){
                     alert("로그인이 필요합니다.");
                 }
             });
-            
 
             // 찜 기능
             for (var i = 0; i < productlength; i++) {
@@ -241,9 +224,6 @@ $.each(list, function(i, product){
                                 $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                             $("#spanId" + resp.id).closest('div').remove();
-                            
-                            
-                       
                             }
 
                         } // success 
@@ -256,20 +236,15 @@ $.each(list, function(i, product){
 </head>
 
 <body>
-    
-
     <div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
         <div class="content-container">
-
             <div class="allproduct-container">
-
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
                     <div class="smart-search-title">스마트 검색</div>
-                    <!-- <div class="smart-search-box-design"></div> -->
                  
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
                 <input class="smart-search-width" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
@@ -287,13 +262,11 @@ $.each(list, function(i, product){
                 <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 <div class="smart-search-result-box">
-
                 </div>
                 
 
                 		<!-- 찜상품 띄우기 -->
                  <div class="zzimproduct-list-container">
-
                     <div  class="zzimproduct-list-box">
                     <p class="zzim-title">찜 리스트</p>
 				    <div id="zzimProducts" class="zzim-product">
@@ -313,9 +286,7 @@ $.each(list, function(i, product){
 
                 <div class="allproduct-search-box" >	
                     <a class="product-register" id="register" href="/registerProduct">물품등록</a>
-
 				</div>
-                
                 
                 <!-- allproduct-product-box -->
                 <div class="allproduct-product-box" id="appendScroll">
@@ -338,24 +309,10 @@ $.each(list, function(i, product){
                             <a class="product-array-button" href="/allproduct/3/3">✔ 높은 가격순</a>
                             <a class="product-array-button" href="/allproduct/3/4">✔ 인기순</a>
                             </c:if>
-                            
-                            
-                            <!-- 검색어순위 -->
-                            <!-- <div id="oneRank">
-                            <c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0" end="0">
-                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count}. ${searchString} </a><br> 
-                    		</c:forEach>
-                    		<div id="showSearchRank" style="display:none">
-                    		<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="1" >
-                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count + 1}. ${searchString} </a> <br>  
-                    		</c:forEach>
-                            </div>
-                    		</div> -->
-                            
-                            
-                            
                     </div>
 
+				
+				<!-- 모든 물품 -->
                     <c:forEach items="${allproduct}" var="product" varStatus="vs" >
                         <div class="product-box-item" >
 
@@ -402,20 +359,21 @@ $.each(list, function(i, product){
                             <c:if test="${!empty product.img1}">
                                 <div class="product-item-img">
                                     <a href="/product/${product.id}">
-                                    <img width=100% height=60%
-                                        src="/upload/${product.img1}"></a>
+                                    <img width=100% height=60% src="/upload/${product.img1}">
+                                    </a>
                                 </div>
                             </c:if>
 
                             <c:if test="${empty product.img1}">
                                 <div class="product-item-img">
                                 <a href="/product/${product.id}">
-                                    <img alt="사진이 없어요" width=100% height=60%
-                                        src="/pictures/noimg.png"></a>
+                                    <img alt="사진이 없어요" width=100% height=60% src="/pictures/noimg.png">
+                                </a>
                                 </div>
                             </c:if>
-
-                             <span class="reserved" style=color:red>${reservedNowImg} </span>
+                            
+						<!-- 상품 정보 -->
+                        <span class="reserved" style=color:red>${reservedNowImg} </span>
                             <div class="product-item-title"> <a href="/product/${product.id}"> ${product.title}</a></div>
                             <div class="product-item-date">${dateDiffShow}</div>
                             <div class="product-item-num" id="productid${vs.index}" style="display:none">${product.id}</div>
@@ -423,34 +381,21 @@ $.each(list, function(i, product){
                             <div class="product-item-location"> <img src="${path}/pictures/location.png" alt="">${product.boardRegion} </div>
                             <div class="product-item-price">1일가격 : ${priceFormat}원</div>
                             <div class="product-item-owner close">${product.userId}</div>
-                            <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
+                        <span class="product-item-zzim" id="zzimSpan${product.id}">${zzim}</span>
                         </div>
-
                     </c:forEach>
-                    
 
-</div>
-                <!-- <a href="http://localhost:8090/">홈으로</a> -->
-            
+				</div>
             </div>
-
         </div>
     </div>
     
     <script>
        let arrayButton = $('.product-array-button');
-
        arrayButton.eq(0).on('click', function(event){
         arrayButton[0].style.color="red";
        })
-
-
- 
     </script>
-
-
-
-
 
     <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
