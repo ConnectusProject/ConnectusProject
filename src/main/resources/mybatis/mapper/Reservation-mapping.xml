@@ -8,27 +8,27 @@
 
 	<!-- 예약 추가 -->
 	<insert id="insertReservation" >
-		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
+		insert into RESERVATION (buyerId, sellerId, startRental, endRental, boardId, price )
 		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
 	
 	<!-- 예약 삭제 -->
 	<delete id="deleteReservation">
-		delete from reservation where id = #{reservId}
+		delete from RESERVATION where id = #{reservId}
 	</delete>
 	
 	
 	
 	<!-- 예약 수락 -->
 	<update id="checkReservation" >
-		update reservation set 
+		update RESERVATION set 
 		reservCheck = 1
 		where id = #{reservId}
 	</update>
 
 	<!--  에약 수락 취소 -->
 	<update id="cancleReservation" >
-		update reservation set 
+		update RESERVATION set 
 		reservCheck = 0
 		where id = #{reservId}
 	</update>
@@ -36,19 +36,19 @@
 	
 	<!-- 예약 상태 조회 -->
 	<select id="countReservation" resultType="int">
-		select reservCheck from reservation where id = #{reservId}
+		select reservCheck from RESERVATION where id = #{reservId}
 	</select>
 	
 	
 	<!-- 수락된 예약 리스트 가져오기 -->
 	<select id="getReservationDate" resultType="reservationdto">
-		select * from reservation where boardid = #{productId} and reservCheck=1;
+		select * from RESERVATION where boardid = #{productId} and reservCheck=1;
 	</select>
 	
 	
 	<!-- 예약된 prodcut Id 가져오기 -->
 	<select id="getProductId" resultType="int">
-		select boardid from reservation where id = #{reservId}
+		select boardid from RESERVATION where id = #{reservId}
 	</select>
 	
 

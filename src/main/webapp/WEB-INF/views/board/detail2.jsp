@@ -195,12 +195,12 @@
 					</form>
 					</div>
 					<div class="detail-title-box">
-						<div class="detail-title">
+						<div class="detail-title mt-1">
 							${seqList.title}
 						</div>
 						<div>
-							<span>${seqList.writer} |</span>
-							<span>조회수 ${seqList.viewcount } |</span>
+							<span>${seqList.writer} </span>|
+							<span>조회수 ${seqList.viewcount } </span>|
 							<span>${seqList.writingtime }</span>
 							<span id="commentNum">댓글 0</span>
 						</div>
@@ -218,7 +218,7 @@
 
 
 				<div class="detail-comment-container mt-5">
-					<div id="commentNum">댓글 0</div>
+					<div id="commentNum" class="close">댓글 0</div>
 
 					<form class="detail-comment-box" action="${param.seq }" method="post">
 						<% if (session.getAttribute("sessionid") !=null) { %>
@@ -232,20 +232,22 @@
 								<input id="boardSeq" type="hidden" name="boardSeq" value="${param.seq}"> <input
 									id="writer" type="hidden" name="writer" value="${param.writer}">
 								</div>
-							</div>
+						
 							<% } else { %>
 								<textarea placeholder="로그인 후 작성해주세요." width="300px" readonly></textarea>
 								<% } %>
-					</form>
 
+								
+					</form>
 					<ul id="comment" class="detail-comment-box2 mt-3"></ul>
+					
 				</div>
 
 
 			</div>
 
 		</div>
-	</div>
+		</div>
 
 
 

@@ -4,21 +4,21 @@
 <mapper namespace="connectus.report.ReportDAO" >
 	
 	<insert id="insertReport" parameterType="reportdto" >
-	insert into report(senderreport, receivereport, reporttime, reportkind, reportcontents, img1, img2, img3)
+	insert into REPORT(senderreport, receivereport, reporttime, reportkind, reportcontents, img1, img2, img3)
 	values( #{senderreport}, #{receivereport}, now(), #{reportkind}, #{reportcontents}, #{img1}, #{img2}, #{img3} )
 	
 	</insert>
 	
 	<select id="getAllSeq" resultType="reportdto" parameterType="int">
-	select * from report where report_seq = #{report_seq}
+	select * from REPORT where report_seq = #{report_seq}
 	</select>
 	
 	<select id="getAll" resultType="reportdto">
-	select * from report
+	select * from REPORT
 	</select>
 	
 	<update id="changeReport" parameterType="reportdto">
-	update report
+	update REPORT
 	   set reportkind = #{reportkind}
 	   	  ,reportcontents = #{reportcontents}
 	   	  ,img1 = #{img1}
@@ -29,6 +29,6 @@
 	</update> 
 	
 	<delete id="deleteReport" parameterType="int">
-		delete from report where report_seq = #{report_seq}
+		delete from REPORT where report_seq = #{report_seq}
 	</delete>
 </mapper>

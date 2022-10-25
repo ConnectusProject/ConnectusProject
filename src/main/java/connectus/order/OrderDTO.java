@@ -4,42 +4,32 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository
+@Repository("orderdao")
 public class OrderDTO {
-	private String name;
-	private String retalid;
-	private int paymentnum;
-	private String title;
+	private int order_num;
+	private String userid;
+	private String productname;
 	private String paymethod;
-	private String phonenumber;
+	private String phone;
 	private int totalprice;
-	private boolean request;
-	private String impUid;
-	
-	
-	public String getName() {
-		return name;
+	private int paystatus;
+	public int getOrder_num() {
+		return order_num;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
 	}
-	public String getRetalid() {
-		return retalid;
+	public String getUserid() {
+		return userid;
 	}
-	public void setRetalid(String retalid) {
-		this.retalid = retalid;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public int getPaymentnum() {
-		return paymentnum;
+	public String getProductname() {
+		return productname;
 	}
-	public void setPaymentnum(int paymentnum) {
-		this.paymentnum = paymentnum;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
 	public String getPaymethod() {
 		return paymethod;
@@ -47,11 +37,11 @@ public class OrderDTO {
 	public void setPaymethod(String paymethod) {
 		this.paymethod = paymethod;
 	}
-	public String getPhonenumber() {
-		return phonenumber;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public int getTotalprice() {
 		return totalprice;
@@ -59,43 +49,34 @@ public class OrderDTO {
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
 	}
-	public boolean isRequest() {
-		return request;
+	public int getPaystatus() {
+		return paystatus;
 	}
-	public void setRequest(boolean request) {
-		this.request = request;
+	public void setPaystatus(int paystatus) {
+		this.paystatus = paystatus;
 	}
-	public String getImpUid() {
-		return impUid;
-	}
-	public void setImpUid(String impUid) {
-		this.impUid = impUid;
-	}
-	
 	@Override
 	public String toString() {
-		return "OrderDTO [name=" + name + ", retalid=" + retalid + ", paymentnum=" + paymentnum + ", title=" + title
-				+ ", paymethod=" + paymethod + ", phonenumber=" + phonenumber + ", totalprice=" + totalprice
-				+ ", request=" + request + ", impUid=" + impUid + "]";
+		return "OrderDTO [order_num=" + order_num + ", userid=" + userid + ", productname=" + productname
+				+ ", paymethod=" + paymethod + ", phone=" + phone + ", totalprice=" + totalprice + ", paystatus="
+				+ paystatus + "]";
 	}
-	
-	
-	
-	public OrderDTO(String name, String retalid, int paymentnum, String title, String paymethod, String phonenumber,
-			int totalprice, boolean request, String impUid) {
+	public OrderDTO(int order_num, String userid, String productname, String paymethod, String phone, int totalprice,
+			int paystatus) {
 		super();
-		this.name = name;
-		this.retalid = retalid;
-		this.paymentnum = paymentnum;
-		this.title = title;
+		this.order_num = order_num;
+		this.userid = userid;
+		this.productname = productname;
 		this.paymethod = paymethod;
-		this.phonenumber = phonenumber;
+		this.phone = phone;
 		this.totalprice = totalprice;
-		this.request = request;
-		this.impUid = impUid;
+		this.paystatus = paystatus;
 	}
+
+	
 	public OrderDTO() {
 		
 	}
+	
 	
 }

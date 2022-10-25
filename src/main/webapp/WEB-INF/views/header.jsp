@@ -63,7 +63,8 @@
 			
 			if (sessionId != null) {
 							getUnread();
-							getInfiniteUnread(); } 
+							getInfiniteUnread(); 
+							} 
 			
 			
 				function getUnread() {
@@ -126,17 +127,36 @@
 		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
-			<form action="http://localhost:8090/allproduct/2/1">
+			<form action="/allproduct/2/1" class="header-search-box-inner2">
 				<input class="header-search-input" type="text" name="search" placeholder="검색">
+		
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+
+				<div class="rank-container overflow" id="oneRank">
+					<div class="rank-box2 close">
+						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
+						<a href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
+						</c:forEach>
+
+						</div>
+					<div class="rank-box">
+						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
+						<a href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span> ${searchString} </a><br> 
+						</c:forEach>
+
+						</div>
+
+					</div>
+					
 			</form>
-			</div>
+			
+		</div>
 		</div>
 		
 		<div class="header-sign-box">
 			<% if(session.getAttribute("sessionid")==null) { %>
-				<a class="loginBtn" href="http://localhost:8090/login">로그인</a>
+				<a class="loginBtn" href="/login">로그인</a>
 				<% } else { %>
 
 				<div class="test"  id="noticeimage" position : relative; "><img src="/pictures/notice.png" width="50"></img>
@@ -148,10 +168,10 @@
     			</div>
     			
     			<div>
-    			<a href="http://localhost:8090/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<a href="/chatList">New 채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
     			</div>
 					<div>
-					<a  class="manager-button"  href="http://localhost:8090/admin_memlist">관리자</a>
+					<a  class="manager-button"  href="/admin_memlist">관리자</a>
 					</div>
 					<a href="/mypage" class="mypage">마이페이지 </a>
 					<a id="logoutchk" href="/logout">로그아웃</a>
@@ -164,35 +184,35 @@
 		<div class="up">
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
-		<span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span>
+		<span><img src="${path}/pictures/menu-icon.png" class="header-menu-button"></span>
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
+					<span class="menu-icon"><a href="/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
+					<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img
+					<span class="menu-icon"><a href="/login"><img
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
-					<div class="menu-title close"><a href="../login">내 이웃</a></div>
+					<div class="menu-title close"><a href="/login">내 이웃</a></div>
 				</div>
 				<div class="nav-menu-box">
 
-					<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
+					<span class="menu-icon"><a href="/boardstart"><img
 								src="${path}/pictures/community.png" alt=""></a></span>
-					<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
+					<span class="menu-title close"><a href="/boardstart">커뮤니티</a></span>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/chat.png"
+					<span class="menu-icon"><a href="/login"><img src="${path}/pictures/chat.png"
 								alt=""></a></span>
-					<span class="menu-title close"><a href="../login">채팅리스트</a></span>
+					<span class="menu-title close"><a href="/login">채팅리스트</a></span>
 				</div>
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="../login"><img src="${path}/pictures/mypage.png"
+					<span class="menu-icon"><a href="/login"><img src="${path}/pictures/mypage.png"
 								alt=""></a></span>
-					<span class="menu-title close"><a href="../login">마이페이지</a></span>
+					<span class="menu-title close"><a href="/login">마이페이지</a></span>
 				</div>
 			</div>
 			
@@ -207,33 +227,33 @@
 			<% } else { %>
 				<div class="basic-menu-box">
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/1/1"><img
+						<span class="menu-icon"><a href="/allproduct/1/1"><img
 									src="${path}/pictures/home.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/1/1">전체 물품</a></div>
+						<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div>
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/allproduct/3/1"><img
+						<span class="menu-icon"><a href="/allproduct/3/1"><img
 									src="${path}/pictures/neighbor.png" alt=""></a></span>
-						<div class="menu-title close"><a href="http://localhost:8090/allproduct/3/1">내 이웃</a></div>
+						<div class="menu-title close"><a href="/allproduct/3/1">내 이웃</a></div>
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/boardstart"><img
+						<span class="menu-icon"><a href="/boardstart"><img
 									src="${path}/pictures/community.png" alt=""></a></span>
-						<span class="menu-title close"><a href="http://localhost:8090/boardstart">커뮤니티</a></span>
+						<span class="menu-title close"><a href="/boardstart">커뮤니티</a></span>
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/chatList"><img src="${path}/pictures/chat.png"
+						<span class="menu-icon"><a href="/chatList"><img src="${path}/pictures/chat.png"
 									alt=""></a></span>
-						<span class="menu-title close"><a href="http://localhost:8090/chatList">채팅리스트</a></span>
+						<span class="menu-title close"><a href="/chatList">채팅리스트</a></span>
 						
 						
 						
 						
 					</div>
 					<div class="nav-menu-box">
-						<span class="menu-icon"><a href="http://localhost:8090/mypage"><img src="${path}/pictures/mypage.png"
+						<span class="menu-icon"><a href="/mypage"><img src="${path}/pictures/mypage.png"
 									alt=""></a></span>
-						<span class="menu-title close"><a href="http://localhost:8090/mypage">마이페이지</a></span>
+						<span class="menu-title close"><a href="/mypage">마이페이지</a></span>
 					</div>
 				</div>
 
@@ -273,6 +293,44 @@
 			document.querySelector('.manager-button').parentElement.remove();
 		}
 
+
+		let rankBox = document.querySelector('.rank-box');
+		let rankBox2 = document.querySelector('.rank-box2');
+		let rankContainer = document.querySelector('.rank-container');
+
+		let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
+
+		for(let i = 1; i < rank.length+1; i ++){
+				
+				setTimeout(function (){
+			rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+		},2000*i)
+			setTimeout(function(){
+			rankBox.style.transform = 'translateY(0rem)';
+		},2000*10)
+		}
+
+
+		setInterval(function (){
+			for(let i = 1; i < rank.length+1; i ++){
+				
+					setTimeout(function (){
+				rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
+			},2000*i)
+				setTimeout(function(){
+				rankBox.style.transform = 'translateY(0rem)';
+			},2000*10)
+		}
+			}, 2000*11)
+
+
+	
+			
+
+			
+
+			
+		
 
 
 	</script>

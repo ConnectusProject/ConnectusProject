@@ -14,6 +14,7 @@ public class ProductDTO {
 	private String img4; 
 	private String img5; 
 	private String img6; 
+	private String video;
 	private int zzim; 
 	private int reservedNow;
 	private int viewCount;
@@ -30,7 +31,7 @@ public class ProductDTO {
 				+ ", reservedNow=" + reservedNow + "]";
 	}
 	public ProductDTO() {}
-	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, int price, String img1, String img2, String img3, String img4, String img5, String img6,  int zzim, int reservedNow, int viewCount) {
+	public ProductDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, int price, String img1, String img2, String img3, String img4, String img5, String img6, String video, int zzim, int reservedNow, int viewCount) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -44,6 +45,7 @@ public class ProductDTO {
 		this.img4 = img4;
 		this.img5 = img5;
 		this.img6 = img6;
+		this.video = video; 
 		this.zzim = zzim; 
 		this.reservedNow = reservedNow;
 		this.viewCount = viewCount;
@@ -55,6 +57,12 @@ public class ProductDTO {
 	
 	
 	
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
+	}
 	public int getPrice() {
 		return price;
 	}

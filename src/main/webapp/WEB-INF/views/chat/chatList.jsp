@@ -25,8 +25,9 @@
         </jsp:include>
         <!-- content-section -->
         <div class="content-container">
-            <p class="chatTitle">Connect List</p>
+            
     	   <div class="chat-container">
+            <p class="chatTitle">Connect List</p>
     		    <div class="chatlist-box">
      	 	    </div>
       	   </div>
@@ -53,7 +54,7 @@
             	}else {
             		opponent = sellerId; 
             	}
-                $(chatList).prepend('<div class=chat-list-box chatMessageInfo' + i + '><div class="chatbox wrapPr_img"><img height=100% width=67 class="chatbox-img" src="http://localhost:8090/upload/' + img1 + '"><a href="http://localhost:8090/chatRoom/' + pr_id + '/' + buyerId  + '"><div class=chat-title>'+ pr_title+'</div><div class=chat-name><span style="color:orange; font-size:15px; font-weight : bold;">'+ opponent + '</span>  님 과의 채팅방'+'</div> <div class="wrapSellerTitle' + i +'"></div></div>');
+                $(chatList).prepend('<div class=chat-list-box chatMessageInfo' + i + '><div class="chatbox wrapPr_img"><img height=100% width=67 class="chatbox-img" src="/upload/' + img1 + '"><a href="/chatRoom/' + pr_id + '/' + buyerId  + '"><div class=chat-title>'+ pr_title+'</div><div class=chat-name><span style="color:orange; font-size:15px; font-weight : bold;">'+ opponent + '</span>  님 과의 채팅방'+'</div> <div class="wrapSellerTitle' + i +'"></div></div>');
             }
     
             //페이지가 로드되는 시점 한 번만 출력하면 되는 div, img를 출력하는 메서드
@@ -134,7 +135,7 @@
                 '<span id="title">' + 
                 pr_title +  </span>*/
                 '<span id="message" style="color:red; font-size : 16px; position : absolute; bottom : 10px; left : 500px;" >' + 
-                messageUnread+'</span></div></a>';
+                messageUnread +'</span></div></a>';
                 
                 //HTML화면의 <div class="wrapSellerTitle0,1,...etc"> 하위에 str 변수를 추가해준다.                  
                  $('.wrapSellerTitle' + idx).append(str);

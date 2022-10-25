@@ -13,6 +13,7 @@
 	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
 	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
 	<typeAlias type="connectus.report.ReportDTO" alias="reportdto"/>
+	<typeAlias type="connectus.order.OrderDTO" alias="orderdto"/>
 	<typeAlias type="connectus.chat.ChatRoom" alias="ChatRoom" />
 </typeAliases>
 

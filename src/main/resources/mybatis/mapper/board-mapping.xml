@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="connectus.board.BoardDAO" >
 	<insert id="insertBoard" parameterType="boarddto">
-		insert into board(title, contents, writer, pw, viewcount, writingtime, img)
+		insert into BOARD(title, contents, writer, pw, viewcount, writingtime, img)
 		values(#{title}, #{contents}, #{writer}, #{pw}, 0, now(), #{img})
 	</insert>
 	
@@ -13,65 +13,65 @@
 	</insert>
 		
 	<select id="boardcount" resultType="int">
-		select count(1) from board
+		select count(1) from BOARD
 	</select>
 	
 	<select id="getTitleCount" parameterType="String" resultType="int">
-		select count(1) from board order by seq desc
+		select count(1) from BOARD order by seq desc
 	</select>
 	
 	<select id="getWriterCount" parameterType="String" resultType="int">
-		select count(1) from board order by seq desc
+		select count(1) from BOARD order by seq desc
 	</select>
 	
 	<select id="getTotalBoard2" resultType="int" parameterType="String">
-		select count(1) from board where contents = #{contents}
+		select count(1) from BOARD where contents = #{contents}
 	</select>
 	
 	<select id="getTotalTitleBoard2" resultType="int" parameterType="String">
-		select count(1) from board where title = #{title}
+		select count(1) from BOARD where title = #{title}
 	</select>
 	
 	<select id="getTotalWriterBoard2" resultType="int" parameterType="String">
-		select count(1) from board where writer = #{writer}
+		select count(1) from BOARD where writer = #{writer}
 	</select>
 	
 	
 	<select id="pagingList" resultType="boarddto"  >
-	select * from board order by writingtime desc limit 
+	select * from BOARD order by writingtime desc limit 
 	<foreach collection="array" item="num" separator=",">
 	#{num}
 	</foreach>
 	</select>
 	
 	<select id="pagingTitleList" resultType="boarddto"  >
-	select * from board order by title asc, writingtime desc limit 
+	select * from BOARD order by title asc, writingtime desc limit 
 	<foreach collection="array" item="num" separator=",">
 	#{num}
 	</foreach>
 	</select>
 	
 	<select id="pagingWriterList" resultType="boarddto"  >
-	select * from board order by writer asc, writingtime desc limit 
+	select * from BOARD order by writer asc, writingtime desc limit 
 	<foreach collection="array" item="num" separator=",">
 	#{num}
 	</foreach>
 	</select>
 	
 	<update id="updateSeq" parameterType="int">
-		update board set viewcount = viewcount + 1 where seq = #{seq}
+		update BOARD set viewcount = viewcount + 1 where seq = #{seq}
 	</update>
 	
 	<select id="getBoardSeqLst" parameterType="int" resultType="boarddto">
-		select * from board where seq = #{seq}
+		select * from BOARD where seq = #{seq}
 	</select>
 	
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where seq = #{seq}
+		delete from BOARD where seq = #{seq}
 	</delete>
 	
 	<update id="updateBoard" parameterType="boarddto">
-		update board 
+		update BOARD 
 		   set title    = #{title}
 		      ,contents = #{contents}
 		      ,img = #{img}
@@ -79,27 +79,27 @@
 	</update>
 	
 	<update id="updateimg">
-		update board 
+		update BOARD 
 		set img=#{img}
 	</update>
 	
 	
 	<select id="pagingList2" resultType="boarddto" parameterType="Map" >
-	select * from board where contents=#{param2} order by writingtime desc limit 
+	select * from BOARD where contents=#{param2} order by writingtime desc limit 
 	<foreach collection="param1" item="num" separator=",">
 	#{num}
 	</foreach>
 	</select>
 	
 	<select id="pagingTitleList2" resultType="boarddto" parameterType="Map" >
-	select * from board where title=#{param2} order by writingtime desc limit 
+	select * from BOARD where title=#{param2} order by writingtime desc limit 
 	<foreach collection="param1" item="num" separator=",">
 	#{num}
 	</foreach>
 	</select>
 	
 	<select id="pagingWriterlist2" resultType="boarddto" parameterType="Map" >
-	select * from board where writer=#{param2} order by writingtime desc limit 
+	select * from BOARD where writer=#{param2} order by writingtime desc limit 
 	<foreach collection="param1" item="num" separator=",">
 	#{num}
 	</foreach>

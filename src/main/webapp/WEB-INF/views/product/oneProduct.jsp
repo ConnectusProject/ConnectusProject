@@ -88,11 +88,11 @@
                         0
                         if (resp.result == 0) {
                             alert("찜!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
+                            $("#zzimSpan").html("<img src='/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
                             alert("찜 취소!");
-                            $("#zzimSpan").html("<img src='http://localhost:8090/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
+                            $("#zzimSpan").html("<img src='/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
                     } // success 
                 }); // ajax 
@@ -120,11 +120,11 @@
                         success: function (resp) {
                             if (resp.result == 0) {
                                 alert("렌탈이 확정되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='/pictures/check-on.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             else if (resp.result == 1) {
                                 alert("렌탈이 취소되었습니다.");
-                                $("#reservCheck" + i).html("<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#reservCheck" + i).html("<img src='/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>")
                             }
                             
                             if(resp.reservedNow==0){
@@ -145,7 +145,7 @@
                         return false;
                     }
                     
-                    if ($("#reservCheck" + i).html() == '<img src="http://localhost:8090/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
+                    if ($("#reservCheck" + i).html() == '<img src="/pictures/check-on.png" width="30" height="30" style="cursor:pointer">'){
                     	alert("렌탈 확정을 취소하고 삭제를 진행해 주세요.")
                     	e.preventDefault();
                     	return false;
@@ -180,78 +180,14 @@
     </script>
 
 
-<script>
-function requestPay(data) {
-	 let producttitle = '${oneProduct.title}';
-	 let sessionId = '${sessionScope.sessionid}';
-	
-  IMP.init('imp02416153'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
-  IMP.request_pay({
-    pg: "html5_inicis",
-    orderNum : createOrderNum(),
-    pay_method: "card",
-    merchant_uid : 'merchant_'+new Date().getTime(),
-    name : "producttitle",
-    amount : 1000,
-    buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자',
-    buyer_tel : '010-1234-5678',
-    buyer_addr : '서울특별시 강남구 삼성동',
-    buyer_postcode : '123-456'
-  }, function (rsp) { // callback
-      if (rsp.success) {
-	  ajax({
-		  url: "/payments/complete",
-		  type: 'post',
-		  datatype: 'json',
-		  data: {imp_uid : rsp.imp_uid, imp_title : rsp.imt_title}
-	  }).done(function(data) {
-		  if( finished_logic){
-			  var msg = "결제가 완료되었습니다.";
-			  msg += '\n고유ID :' + rsp.imp_uid;
-			  msg += '\n실대여 ID :' + rsp.merchant_uid;
-			  msg += '\n결제 금액 : ' + rsp.paid_amount;
-			  msg += '카드 승인번호 : ' + rsp.apply_num;
-			  
-			  alert(msg);
-		  }else {
-			//[3] 아직 제대로 결제가 되지 않았습니다.
-  			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-		  }
-	  });
-      } else {
-        var msg = '결제에 실패하였습니다';
-        msg += '에러내용 : ' + rsp.error_msg;
-        // 결제 실패 시 로직,
-        alert(msg);
-      }
-  });
-}
-</script>
 
-<script>
-//주문번호 생성
-function createOrderNum(){
-	const date = new Date();
-	const year = date.getFullYear();
-	const month = String(date.getMonth() + 1).padStart(2, "0");
-	const day = String(date.getDate()).padStart(2, "0");
-	
-	let orderNum = year + month + day;
-		for(let i = 0; i < 10; i++){
-			orderNum += Math.fllor(Math.random( * 8);
-			
-		}
-		return orderNum;
-}
-</script>
 
 <script>
 //계산 완료 - 넘어갔을 때 화면 (꼭 필요 주문상세페이지로 넘어갈예정)
 function paymentComplete(data){
 	
 	$.ajax({
-		url: "/order/payment/complete",
+		url: "/order/payment/complete/{orderNum}",
 		method: "POST",
 		data: data,
 	})
@@ -276,6 +212,8 @@ function paymentComplete(data){
 
 </script>
 
+
+
 </head>
 
 <body>
@@ -289,7 +227,7 @@ function paymentComplete(data){
         <div class="content-container">
       
         <!-- 예약 테이블 -->
-            <form class="reserve-box close" action="http://localhost:8090/product/reservationinput" method="post">
+            <form class="reserve-box close" action="/product/reservationinput" method="post">
                 <div class="reserve-box-close-button">X</div>
                 <table>
                 <tr>
@@ -339,12 +277,12 @@ function paymentComplete(data){
             <!-- 찜 상태에 따라 이미지 -->
             <c:if test="${oneProduct.zzim == '0'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
+                    value="<img src='/pictures/heart.png' width=30 height=30 style='cursor:pointer'>" />
             </c:if>
 
             <c:if test="${oneProduct.zzim == '1'}">
                 <c:set var="zzim"
-                    value="<img src='http://localhost:8090/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
+                    value="<img src='/pictures/heart2.png' width=30 height='30' style='cursor:pointer'>" />
             </c:if>
 
             <Br>
@@ -362,36 +300,43 @@ function paymentComplete(data){
                     <div class="product-detail-img">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
                             <div class="carousel-inner detail-carousel">
+                            	
+                            	<c:if test="${!empty oneProduct.video}">
+                                    <div class="carousel-item">
+                                        <video src="/upload/${oneProduct.video}" controls="controls"></video>
+                                    </div>
+                                </c:if>
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img1}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img2}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img2}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img2}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img3}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img3}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img3}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img4}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img4}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img4}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img5}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img5}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img5}">
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty oneProduct.img6}">
                                     <div class="carousel-item">
-                                        <img alt="상품이미지가 없습니다." src="http://localhost:8090/upload/${oneProduct.img6}">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
                                     </div>
                                 </c:if>
+                                
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -427,12 +372,16 @@ function paymentComplete(data){
                            
                         </form> -->
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        <button class="payment-on-button" onclick="requestPay()">결제하기</button>
-
+                        <form action="http://localhost:8090/orderpaywritingform" method="post">
+                        <input type="hidden" value="${oneProduct.title}" name="producttitle" readonly>
+                       <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
+                        <input type="submit" class="payment-on-button"  value="결제하기">
+						</form>
+						
                         <!-- 수정, 삭제 버튼 -->
-                        <form id="update" action="http://localhost:8090/product/${oneProduct.id}/update">
+                        <form id="update" action="/product/${oneProduct.id}/update">
                         </form>
-                        <form id="delete" action="http://localhost:8090/product/${oneProduct.id}/delete" method="post">
+                        <form id="delete" action="/product/${oneProduct.id}/delete" method="post">
                         </form>
                
                     </div>
@@ -507,12 +456,12 @@ function paymentComplete(data){
                 <!-- 예약 수락상태 이미지 -->
                 <c:if test="${reserv.reservCheck == '0'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
+                        value="<img src='/pictures/check-off.png' width=30 height=30 style='cursor:pointer'>" />
                 </c:if>
     
                 <c:if test="${reserv.reservCheck== '1'}">
                     <c:set var="reservation"
-                        value="<img src='http://localhost:8090/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
+                        value="<img src='/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
                     
                     

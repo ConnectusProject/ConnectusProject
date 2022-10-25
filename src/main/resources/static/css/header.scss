@@ -1,11 +1,6 @@
 $color : #6462cb;
 $fontColor :#cddfe0;
 
-// $color : rgb(142,191,188);
-
-// rgb(55,198,208);
-
-
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -116,15 +111,12 @@ li {
 }
 
 .header-search-input {
-    width : 10vw;
+    width : 15vw;
     border : solid 3px $color;
     border-radius: 5px;
     transition: all 0.5s;
 }
 
-.header-search-input:focus {
-    width : 25vw;
-}
 .header-search-input:focus {
     outline-style: solid;
     outline-color: $color;
@@ -144,8 +136,48 @@ li {
 .header-search-box-inner {
     width : 30vw;
     @include flexbox(center, none);
-
+    position : relative;
 }
+
+
+.header-search-box-inner2 {
+    width : 100%;
+    @include flexbox(center, none);
+    position : relative;
+}
+
+.rank-container {
+    width : 5rem;
+    position : absolute;
+    top : 10%;
+    right : 0;
+    height : 1.5rem;
+}
+
+
+.rank-box{
+    width : 100%;
+    transition: all 0.5s;
+    z-index: 13;
+}
+
+.rank-box2 {
+    position : absolute;
+    width : 100%;
+    background-color: red;
+    z-index: 15;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.rank-container span {
+    font-weight: 700;
+    margin-right : 5px;
+    font-style: italic;
+}
+
 
 .header-sign-box {
     width : 30%;
