@@ -122,7 +122,7 @@
                                             pattern="yyyy-MM-dd" />
                                         <tr>
                                             <th id="boardid${vs.index}">${board2.seq}</th>
-                                            <th><a href="/product/${board2.seq}">${board2.title}</th>
+                                            <th><a href="/boarddetail?seq=${board2.seq}">${board2.title}</a></th>
                                             <th>${board2.writingtime}</th>
                                         </tr>
                                     </c:forEach>

@@ -12,6 +12,14 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74ad1a98ca11a868e151320c03495af6&libraries=services"></script>
 
 <script>
+// LocalStorage 사용 맵 약속장소 저장 
+let storageCoords = localStorage.getItem('mapAddress'+ ${sessionCoords} + ${id});
+let storageLat = "";
+let storageLon = "";
+if(storageCoords != "" && storageCoords != null){
+ 	storageLat = storageCoords.substring(0, storageCoords.indexOf(','));
+	storageLon = storageCoords.substring(storageCoords.indexOf(',')+1, storageCoords.length);
+}
 
 let sessionCoords = '${sessionCoords}';
         var sessionLat = sessionCoords.substring(1, sessionCoords.indexOf(','));
@@ -145,12 +153,9 @@ function sample6_execDaumPostcode() {
 			document.getElementById('sample6_postcode').value = data.zonecode;
 			document.getElementById("sample6_address").value = addr;
 			adress = addr;
-			KakaoGeocoder();
+			
 			 
-			
-			
-			
-			
+			KakaoGeocoder();
 
 			// 커서를 상세주소 필드로 이동한다.
 
@@ -159,7 +164,8 @@ function sample6_execDaumPostcode() {
 			$("#address").val(addr);
 		}
 	}).open();
-}
+
+} //Daum 주소찾기
 
 	
 function KakaoGeocoder() {
@@ -177,12 +183,21 @@ function KakaoGeocoder() {
 			var meetingLat = strCoords.substring(1, strCoords.indexOf(','));
 			var meetingLon = strCoords.substring(strCoords.indexOf(',')+2, strCoords.length-1);
 			
-			kakaoMap(meetingLat, meetingLon);
-
+			let meetingcoords = [];
+			meetingcoords.push(meetingLat);
+			meetingcoords.push(meetingLon);
+			localStorage.setItem('mapAddress' + ${sessionCoords} + ${id}, meetingcoords);
 			
+			kakaoMap(meetingLat, meetingLon);
 		}
+		
 	}); // addressSearch     
-}
+} // kakaoGeocoder
+	
+	
+	
+	
+
 	
 	
 
@@ -202,6 +217,11 @@ function KakaoGeocoder() {
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"
 			value="주소찾기">약속장소</button>
+		
+		<!-- 맵 LocalStorage 버튼 여기! -->	
+		<br>gggggggggggggggggggggggggggg
+		<input id="storageBTN" type="button" value="storage장소">
+			
 	</div>
 		<div>
 		<input type="hidden" id="sample6_address" placeholder="주소">
@@ -213,7 +233,15 @@ function KakaoGeocoder() {
 		<input type="hidden" id="placecoords" name="coords">
 	</div>
 
+<script>
+// LocalStorage 맵 띄우기 
+if(storageCoords != "" && storageCoords != null){
+	$("#storageBTN").on("click", function(){
+		kakaoMap(storageLat, storageLon);
+	});
+}
 
+</script>
 
 
 </body>
