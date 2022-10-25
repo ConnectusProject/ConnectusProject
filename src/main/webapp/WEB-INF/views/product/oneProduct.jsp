@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Connect Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/header.css">
@@ -234,7 +234,7 @@ function paymentComplete(data){
                 <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
                 </tr>
                 <tr>
-                <th>렌터 <br>  <input class="date1" id='currentDate' type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
+                <th>렌터 <br>  <input class="date1" type="text" name="buyerId" value="${sessionScope.sessionid}" readonly></th> 
                 </tr>
                 <tr>
                 <th>오너<br>  <input class="date2" type="text" name="sellerId" value="${oneProduct.userId}" readonly></th> 
@@ -246,7 +246,7 @@ function paymentComplete(data){
                 <th>커넥트종료 <br> <input type="date" name="endRental" required></th> 
                 </tr>
                 <tr>
-                <th>희망비용 <br> <input type="text" name="price" required>원</th> 
+                <th>희망비용 <br> <input type="number" name="price" step="500" required>원</th> 
                 </tr>
                 <tr>
                 <th><input type="submit" value="예약" id="reserve-off-button"></th>
@@ -272,6 +272,8 @@ function paymentComplete(data){
                 <c:set var="dateDiffShow" value="오늘" />
             </c:if>
             
+            <!-- 가격 format -->
+            <fmt:formatNumber var="priceFormat" value="${oneProduct.price}" pattern="#,###" />
             
 
             <!-- 찜 상태에 따라 이미지 -->
@@ -298,14 +300,50 @@ function paymentComplete(data){
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
-                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="true">
+                        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="false">
                             <div class="carousel-inner detail-carousel">
                             	
-                            	<c:if test="${!empty oneProduct.video}">
+                                
+                                <!-- 비디오 있을 때 -->
+                           	        <c:if test="${!empty oneProduct.video}">
+                                    <div class="carousel-item active">
+                                        <video class="oneproduct-video" src="/upload/${oneProduct.video}" controls="controls"></video>
+                                    </div>
+                                
+                                <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item">
-                                        <video src="/upload/${oneProduct.video}" controls="controls"></video>
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
                                     </div>
                                 </c:if>
+                                <c:if test="${!empty oneProduct.img2}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img2}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img3}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img3}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img4}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img4}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img5}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img5}">
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty oneProduct.img6}">
+                                    <div class="carousel-item">
+                                        <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
+                                    </div>
+                                </c:if>
+                                </c:if>
+                                
+                                 <!-- 비디오 없을 때 -->
+                                   <c:if test="${empty oneProduct.video}">
                                 <c:if test="${!empty oneProduct.img1}">
                                     <div class="carousel-item active">
                                         <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img1}">
@@ -336,6 +374,9 @@ function paymentComplete(data){
                                         <img alt="상품이미지가 없습니다." src="/upload/${oneProduct.img6}">
                                     </div>
                                 </c:if>
+                                </c:if>
+                                
+                   
                                 
                             </div>
                             <button class="carousel-control-prev" type="button"
@@ -359,7 +400,7 @@ function paymentComplete(data){
                         <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
-                        <span  class="detail-title-price">1일 ${oneProduct.price}원</span>
+                        <span  class="detail-title-price">1일 ${priceFormat}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
                         <div class="product-detail-text">${oneProduct.contents}</div>
                     </div>
@@ -463,6 +504,8 @@ function paymentComplete(data){
                     <c:set var="reservation"
                         value="<img src='/pictures/check-on.png' width=30 height='30' style='cursor:pointer'>" />
                 </c:if>
+                
+                <fmt:formatNumber var="ReservPriceFormat" value="${reserv.price}" pattern="#,###" />
                     
                     
                     
@@ -470,7 +513,7 @@ function paymentComplete(data){
                             <td id="reservId${vs.index}">${reserv.id}</td>
                             <td>${reserv.startRental}</td>
                             <td>${reserv.endRental}</td>
-                            <td>${reserv.price}원</td>
+                            <td>${ReservPriceFormat}원</td>
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
@@ -513,7 +556,7 @@ function paymentComplete(data){
         };
 
 
-        document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+        //document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 
 
     </script>

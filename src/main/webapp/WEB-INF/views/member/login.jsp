@@ -22,7 +22,9 @@
         <div class="main-container">
     
             <div class="login-container">
+                
                 <div class="login-box">
+                    <div class="home"><a href="/allproduct/1/1"><img src="${path}/pictures/back.png" alt=""></a></div>
                     <div class="login-box-title">
                         <span>Connect Us</span>
                     </div>
@@ -35,8 +37,11 @@
                         </div>
                     </div>
                     <form class="login-box-form" action="login" method="post">
-                        <input class="login-input" type="text" name="userid" id="userid" autocomplete="off" placeholder="ID"><br>
+                        <input class="login-input rememeber-login-id" type="text" name="userid" id="userid" autocomplete="off" placeholder="ID"><br>
                         <input class="login-input" type="password" name="pw" id="pw" autocomplete="off" placeholder="PASSWORD"><br>
+                        <div class="id-check-box"><input class="remember-id mb-2" type="checkbox"><span>아이디 기억하기</span>
+                        </div>
+                        
                         <input class="login-button" type="submit" id="btn" value="login">
                     </form>
                     <div class="login-box-find-box mt-2">                  
@@ -61,6 +66,39 @@
         </div>
         </div>
         
+        <script>
+            let rememberId = document.querySelector('.rememeber-login-id');
+            let remembercheck = document.querySelector('.remember-id');
+            let loginButton = document.querySelector('.login-button');
+
+            let count = 0;
+
+            let localId = [];
+
+            remembercheck.addEventListener('click', function(){
+                count++;
+                console.log(remembercheck.value);
+                console.log(count);
+            })
+
+            loginButton.addEventListener('click', function(e){
+                if(count%2 !=0 ){               
+                localId = [];
+                localId.push(rememberId.value);
+                console.log(localId);
+                localStorage.setItem('ID', localId);
+                rememberId.value = localStorage.getItem('ID');
+            }
+
+            })
+
+            rememberId.value = localStorage.getItem('ID');
+
+
+           
+
+        </script>
+
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -70,4 +108,6 @@
             crossorigin="anonymous"></script>
     </body>
     
+
+
     </html>

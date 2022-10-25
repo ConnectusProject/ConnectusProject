@@ -61,86 +61,71 @@ public class ProductController {
 		if(extraaddr != null) {
 		region = extraaddr.substring(2,extraaddr.length()-1); }
 		
-
 		List<ProductDTO> list = new ArrayList<>();
-		
 		// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 ) 
 		if(searchType==1) {
+			model.addAttribute("searchType", 1);
 			if(orderType==1) {
 		list = productService.allProduct(); 
-		model.addAttribute("searchType", 1);
 		model.addAttribute("orderType", 1);
 			}
 			else if(orderType==2) {
 		list = productService.allProductOrderByLowPrice();
-		model.addAttribute("searchType",1);
 		model.addAttribute("orderType", 2);
 			}
 			else if(orderType==3) {
 		list = productService.allProductOrderByHighPrice();
-		model.addAttribute("searchType",1);
 		model.addAttribute("orderType", 3);
 			}
 			else if(orderType==4) {
 		list = productService.allProductOrderByCount();
-		model.addAttribute("searchType", 1);
 		model.addAttribute("orderType", 4);
 			}
 		}
-		
+
 		else if (searchType==2) {
-			// 검색어 순위 
-			
+			model.addAttribute("searchType", 2);
+			model.addAttribute("search", search);
+			// 검색어 순위 적용
 			if(search!=null && !search.isBlank() && !search.isEmpty()) {
-			if(productService.searchCheck(search)==0) {
+				if(productService.searchCheck(search)==0) {
 				productService.insertSearch(search);
-			}else if(productService.searchCheck(search)>0) {
+				}else if(productService.searchCheck(search)>0) {
 				productService.updateSearchCount(search);
-			}
+				}
 			}
 			
 			if(orderType==1) {
 				list = productService.navSearch(search, 0);
-				model.addAttribute("search", search);
-				model.addAttribute("searchType", 2); 
 				model.addAttribute("orderType", 1);
 			}
 			else if(orderType==2) {
 				list = productService.navSearchOrderByLowPrice(search, 0);
-				model.addAttribute("search", search);
-				model.addAttribute("searchType", 2); 
 				model.addAttribute("orderType", 2);
 			}
 			else if(orderType==3) {
 				list = productService.navSearchOrderByHighPrice(search, 0);
-				model.addAttribute("search", search);
-				model.addAttribute("searchType", 2); 
 				model.addAttribute("orderType", 3);
 				}
 			else if(orderType==4) {
 				list = productService.navSearchOrderByCount(search, 0);
-				model.addAttribute("search", search);
-				model.addAttribute("searchType", 2); 
 				model.addAttribute("orderType", 4);
 				}
 		}
 	
 		else if (searchType==3) {
+			model.addAttribute("searchType", 3);
 			if(orderType==1) {
 				list = productService.neighborList(region, 0);
-				model.addAttribute("searchType", 3);
 				model.addAttribute("orderType", 1);
 			}else if(orderType==2) {
 				list = productService.neighborListOrderByLowPrice(region, 0);
-				model.addAttribute("searchType", 3);
 				model.addAttribute("orderType", 2);
 			}else if(orderType==3) {
 				list = productService.neighborListOrderByHighPrice(region, 0);
-				model.addAttribute("searchType", 3);
 				model.addAttribute("orderType", 3);
 			}else if(orderType==4) {
 				list = productService.neighborListOrderByCount(region, 0);
-				model.addAttribute("searchType", 3);
 				model.addAttribute("orderType", 4);
 			}
 		}
@@ -155,7 +140,6 @@ public class ProductController {
 			if(zzimcheck!=null) {
 				zzim = 1; 
 			}
-			
 			dto.setZzim(zzim);
 			
 			// 렌탈중 표시 set ( 조회하는 시점에서 확인 ) 
@@ -262,7 +246,6 @@ public class ProductController {
 				// 제목,지역,가격 으로 검색한 상품리스트
 				List<Integer> titleRegion = productService.searchByTitle_Region(smartSearchDTO.getSmartTitle(), smartSearchDTO.getSmartRegion(),smartSearchDTO.getSmartPriceMin(), smartSearchDTO.getSmartPriceMax(), limit);
 				
-				
 				if(distanceKm!=null && (distanceKm.equals("5") || distanceKm.equals("15"))) {
 					return null;
 				}
@@ -285,8 +268,7 @@ public class ProductController {
 				
 				// 찾은 상품 번호로 상품 list 를 불러옴 
 				for(int i = 0; i < selectedList.size(); i++) {
-				ProductDTO searchedOne = productService.oneProduct(selectedList.get(i));
-				list.add(searchedOne);
+				list.add(productService.oneProduct(selectedList.get(i)));
 				}
 			}
 			
@@ -417,38 +399,27 @@ public class ProductController {
 		// 찾은 상품 번호로 상품 list 를 불러옴 
 		for(int i = 0; i < selectedList.size(); i++) {
 		ProductDTO searchedOne = productService.oneProduct(selectedList.get(i));
+		//찜세팅 
+		int zzim = 0; 
+		Object zzimcheck = productService.zzimCount((int)searchedOne.getId(), sessionid);
+		if(zzimcheck!=null) {
+			zzim = 1; 
+		}
+		searchedOne.setZzim(zzim);
+		
 		list.add(searchedOne);
 		}
-		System.out.println(smartSearchDTO.toString());
-		
-		// 찜 set 
-				for (ProductDTO dto : list) {
-					int productseq = (int)dto.getId();
-					
-					int zzim = 0; 
-					Object zzimcheck = productService.zzimCount(productseq, sessionid);
-					if(zzimcheck!=null) {
-						zzim = 1; 
-					}
-					
-					dto.setZzim(zzim);
-				} // for 
 		
 		// 상품 개수 
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
+
 		model.addAttribute("orderType", 1);
-		model.addAttribute("smartPriceMin", smartSearchDTO.getSmartPriceMin());
-		model.addAttribute("smartPriceMax", smartSearchDTO.getSmartPriceMax());
-		model.addAttribute("smartTitle", smartSearchDTO.getSmartTitle());
-		model.addAttribute("smartRegion", smartSearchDTO.getSmartRegion());
-		model.addAttribute("smartStartDate", smartSearchDTO.getSmartStartDate());
-		model.addAttribute("smartEndDate", smartSearchDTO.getSmartEndDate());
-		
-		model.addAttribute("distanceKm", distanceKm);
-		
 		model.addAttribute("searchType", 4);	
+
+		model.addAttribute("smartSearchDTO", smartSearchDTO);		
+		model.addAttribute("distanceKm", distanceKm);
 		model.addAttribute("zzimProducts", zzimProducts);	
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
@@ -457,7 +428,7 @@ public class ProductController {
 		return "product/allProduct";
 	}
 	
-
+	
 	
 	
 	// 물품 상세페이지 
