@@ -135,7 +135,7 @@ $(document).ready(function(){
 		
 		// 이미지 파일 개수 count  
 		if(Imgcount>=6){
-			alert("사진은 6개까지! ");
+			alert("사진은 6개까지 등록 가능합니다.");
 			return false;
 		}
 		if(Imgcount<6){
@@ -160,10 +160,6 @@ $(document).ready(function(){
 
 		success : function(resp){ 
 			
-	//		if(Imgcount>6){
-	//			alert("사진은 6개 까지만 등록 가능합니다.")
-	//			return false;
-	//		}
 			
 			var str = '<span>';
 			str += "<img src='/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
@@ -212,7 +208,6 @@ $(document).ready(function(){
 		<h1 class="insertproduct-title" class="title"> 게시물 수정</h1> 
 
 
-<div id="count" class="close">${count}</div>
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 
@@ -272,6 +267,9 @@ $(document).ready(function(){
 	<c:set var="count" value="6"/>
 	</c:if>
 	</div>
+	
+	<!--c:set 이후 쥐치 필요  -->
+	<div id="count" class="close">${count}</div>
 	
 	<br> 
 	<br>

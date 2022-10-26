@@ -268,7 +268,7 @@ $.each(list, function(i, product){
 
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
-                    <div class="smart-search-title">스마트 검색</div>
+                    <div class="smart-search-title">Connect</div>
                     <!-- <div class="smart-search-box-design"></div> -->
                  
                 <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
