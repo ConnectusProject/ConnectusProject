@@ -1,5 +1,6 @@
 package connectus.order;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import connectus.product.ProductDAO;
 import connectus.product.ProductService;
@@ -41,6 +44,20 @@ public class OrderController {
 	public String Orderform() {
 		return "order/orderpayment";
 	}
+	
+	
+	//html code 
+	@RequestMapping(value = "orderlist/order/payment/complete", method = RequestMethod.POST)
+	public ModelAndView noworderlist(HttpSession session, String producttitle, String productprice) throws IOException{
+		String sessionid = (String)session.getAttribute("sessionid");	
+		ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("Result");
+			modelAndView.addObject("response", producttitle);
+			modelAndView.addObject("response", sessionid);
+			modelAndView.addObject("response", productprice);
+			return modelAndView;
+	}
+	
 	
 	
 	//결제하기 폼 만들기
