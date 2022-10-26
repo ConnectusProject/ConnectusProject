@@ -13,7 +13,6 @@ $(document).ready(function(){
 });
 </script>
 
-<link rel="shortcut icon" href="#">
 </head>
 <body>
 <h1> ConnectUS 홈페이지 전체</h1>
