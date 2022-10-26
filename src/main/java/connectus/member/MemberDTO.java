@@ -1,18 +1,47 @@
 package connectus.member;
 
+
+import org.springframework.data.annotation.Id;
+
+
+//import lombok.Builder;
+
+//@Builder
 public class MemberDTO {
-	String userid, pw , name, phone, email, address;
-	 
+	@Id
+	String userid;
+	String pw , name, phone, email, address, region, coords,userStatus;	
+	String role;
+
 	
-	public MemberDTO() {}
-	
-	public MemberDTO(String userid, String pw, String name, String phone, String email, String address) {
-		this.userid = userid;
-		this.pw = pw;
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-		this.address = address;
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	public String getCoords() {
+		return coords;
+	}
+	public void setCoords(String coords) {
+		this.coords = coords;
+	}
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getUserid() {

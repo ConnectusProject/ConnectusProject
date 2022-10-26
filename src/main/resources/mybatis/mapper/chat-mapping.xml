@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="connectus.chat.ChatRoomMapper">
+
+
+
+   <insert id="addChatRoom" parameterType="ChatRoom">
+    	INSERT INTO 
+    	CHATROOM(pr_id, sellerId, buyerId, fileName, createdDate, pr_title, img1, img2, img3, img4, img5, img6)
+    	VALUES (#{pr_id}, #{sellerId}, #{buyerId}, #{fileName}, #{createdDate}, #{pr_title}, #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6});
+    </insert>
+    
+    <select id="findByUserId" resultType="connectus.chat.ChatList">
+    	SELECT *
+    	FROM CHATROOM AS c
+    	JOIN PRODUCT as p
+    	ON c.pr_id = p.id
+    	WHERE c.sellerid = #{userId}
+   		OR c.buyerid = #{userId};
+    </select>
+   
+    <select id="countByChatId" resultType="int">
+    	SELECT COUNT(*)
+    	FROM CHATROOM
+    	WHERE PR_ID = #{pr_id} AND
+    	buyerid = #{buyerId};
+    </select>
+
+    <select id="findByChatId" resultType="ChatRoom">
+    	SELECT *
+    	FROM CHATROOM
+    	WHERE PR_ID = #{pr_id} AND
+    	buyerid = #{buyerId};
+    </select>
+
+    <select id="getId" resultType="int">
+    	SELECT ID
+    	FROM CHATROOM
+    	WHERE PR_ID = #{pr_id} AND
+    	buyerid = #{buyerId};
+    </select>
+
+    <update id="updateFileName">
+    	UPDATE CHATROOM
+    	SET filename = #{fileName}
+    	WHERE ID = #{id};
+    </update>
+   
+   <!-- 알림 -->
+   
+   <update id="updateChatReadBuy">
+    	UPDATE CHATROOM
+    	SET chatReadBuy = #{chatReadBuy}
+    	WHERE ID = #{id};
+    </update>
+
+    <update id="updateChatReadSell">
+    	UPDATE CHATROOM
+    	SET chatReadSell = #{chatReadSell}
+    	WHERE ID = #{id};
+    </update>
+   
+   <select id="getUnreadMessages" resultType="int">
+   		SELECT COUNT(id)
+   		FROM CHATROOM
+   		WHERE (sellerid = #{userId} AND chatReadSell = 0) OR 
+   		(buyerid = #{userId} AND chatReadBuy = 0);
+   </select>
+
+   <select id="getUnreadChatRoom" resultType="int">
+   		SELECT id
+   		FROM CHATROOM
+   		WHERE (sellerid = #{userId} AND chatReadSell = 0) OR 
+   		(buyerid = #{userId} AND chatReadBuy = 0);
+   </select>
+   
+   
+           
+
+</mapper>

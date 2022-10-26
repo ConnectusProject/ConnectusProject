@@ -2,18 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.connenctus.mypage" >
+<mapper namespace="connectus.mypage.MypageDAO" >
 
-<select id="memberDetail" parameterType="String" resultType="memberdto">
-	select * from members where userid= #{userid}
+<select id="onemember" resultType="memberdto" parameterType="String" >
+    select * from MEMBERS where userid=#{userid}
 </select>
 
-<update id="updatemember" parameterType="memberdto">
-	update members set name=#{name}, phone=#{phone}, email=#{email}, address=#{address} where userid=#{userid} , pw=#{pw}
+<select id="onemember_phone" resultType="memberdto" parameterType="String" >
+    select * from MEMBERS where phone=#{phone}
+</select>
+
+<select id="memberDetail" resultType="memberdto" parameterType="String" >
+    select * from MEMBERS where userid=#{userid}
+</select>
+
+
+<update id="memberModify" parameterType="memberdto">
+	update MEMBERS set phone=#{phone}, name=#{name},  email=#{email}, address=#{address} where userid=#{userid} and pw=#{pw}
 </update>
 
-<delete id="deletemember" parameterType="String">
-	delete from members where userid=#{userid}
+<update id="passwordModify" parameterType="memberdto">
+	update MEMBERS set pw=#{pw}   where userid=#{userid}
+</update>
+
+<delete id="deleteMember" parameterType="String">
+	delete from MEMBERS where userid=#{userid}
 </delete>
 
+
+<select id="myBoard" resultType="productdto">
+	select * from PRODUCT where userid=#{userid}
+</select>
+
+<select id="allMyBoard" resultType="productdto">
+		select * from PRODUCT where userid=#{userid} order by createdAt desc
+</select>
+
+<select id="allMyBoard2" resultType="boarddto">
+		select * from BOARD where writer=#{userid} order by writingtime desc
+</select>
+
+<select id="allMyBoard3" resultType="commentdto">
+		select * from BOARD where writer=#{userid} order by writingtime desc
+</select>
 </mapper>

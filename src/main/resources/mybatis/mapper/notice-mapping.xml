@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="connectus.product.ProductDAO" >
+	<select id="selectNotice" parameterType="productdto" resultType="productdto">
+		select * from product where title = #{title};
+	
+	</select>
+	
+	<insert id="insertNotice" parameterType="noticeDTO" >
+		insert into notice (receiveid, noticeinfo, isalarm, created_at, updated_at) 
+		values (#{receiveid}, #{noticeinfo}, #{isAlarm}, now(), now());
+	</insert>
+</mapper>

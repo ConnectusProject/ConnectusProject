@@ -4,29 +4,61 @@
 <mapper namespace="connectus.member.MemberDAO" >
 	
 <select id="memberlist" resultType="memberdto" >
-	select * from members 
+	select * from MEMBERS 
 </select>
 
 <select id="onemember" resultType="memberdto" parameterType="String" >
-    select * from members where userid=#{userid}
+    select * from MEMBERS where userid=#{userid}
+</select>
+
+<select id="getUserInfo" resultType="memberdto" parameterType="String" >
+    select * from MEMBERS where userid=#{userid}
+</select>
+
+<select id="onemember_check" resultType="memberdto" parameterType="String" >
+    select * from MEMBERS where userid=#{userid}
 </select>
 
 <select id="onemember_phone" resultType="memberdto" parameterType="String" >
-    select * from members where phone=#{phone}
+    select * from MEMBERS where phone=#{phone}
 </select>
 
 <select id="login" resultType="memberdto"  parameterType="java.util.Map"  >
-			select * from members
+			select * from MEMBERS
 			 where userid=#{userid}
 			 and pw=#{pw}			
 </select>
 
 <insert id="insertMember" parameterType="memberdto" >
- insert into members(userid,pw,name,phone,email,address) values(#{userid},#{pw},#{name},#{phone},#{email},#{address}) 
+	 insert into MEMBERS(userid,pw,name,phone,email,address,region,coords,userStatus) values(#{userid},#{pw},#{name},#{phone},#{email},#{address},#{region},#{coords},0) 
 </insert>
+
+
+<update id="updateTempPassword">
+ <![CDATA[
+     update MEMBERS set pw=#{pw} where userid=#{userid}
+     ]]>
+</update>
+
+<update id="deletemember" parameterType="String">
+	update MEMBERS set userStatus=9 where userid=#{userid}
+</update>
+
+<select id="findId" resultType="memberdto">
+	select * from MEMBERS where name=#{name} and phone=#{phone}
+</select>
+
+<select id="getRegion" resultType="String">
+	select region from MEMBERS where userid=#{userid}
+</select>
+
+
+
+
 
 <select id="memberDetail" parameterType="String" resultType="memberdto">
 	select * from members where userid= #{userid}
 </select>
+
 
 </mapper>

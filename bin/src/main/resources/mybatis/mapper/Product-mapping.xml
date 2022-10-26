@@ -5,33 +5,33 @@
 
 <mapper namespace="connectus.product.ProductDAO">
 
-	<select id="allBoard" resultType="productdto">
+	<select id="allProduct" resultType="productdto">
 		select * from product order by createdAt desc
 	</select>
 
-	<select id="oneBoard" resultType="productdto">
-		select * from product where id = #{id}
+	<select id="oneProduct" resultType="productdto">
+		select * from product where id = #{productid}
 	</select>
 	
-	<insert id="insertBoard">
-		insert into product (userid, title, contents, boardRegion, createdAt, img) 
-		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img})
+	<insert id="insertProduct">
+		insert into product (userid, title, contents, boardRegion, createdAt, img1, img2, img3, img4, img5, img6) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img1}, #{img2}, #{img3}, #{img4}, #{img5}, #{img6})
 	</insert>
 	
 	
 	<select id="allReservation" resultType="reservationdto" >
-		select * from reservation where boardid=#{boardId} 
+		select * from reservation where boardid=#{productid} 
 	</select>
 	
 	
-	<delete id="deleteBoard">
-		delete from product where id=#{boardId}
+	<delete id="deleteProduct">
+		delete from product where id=#{productid}
 	</delete>
 
 
-	<update id="updateBoard">
+	<update id="updateProduct">
 		update product set title=#{title}, contents=#{contents},
-		img=#{img}
+		img1=#{img1}, img2=#{img2}, img3=#{img3}, img4=#{img4}, img5=#{img5}, img6=#{img6} 
 		where id = #{id}
 	</update>
 	
@@ -41,12 +41,15 @@
 	 	select * from product where ${item} like concat('%', #{search}, '%') 
 	 	order by createdAt desc 
 	 </select>
-	
-	
-	
-	
-	
-	
-	
+	 
+	 
+	 <!-- 이웃 검색 -->
+	<select id="neighborList" resultType="productdto">
+	 	select * from product where boardRegion = #{boardRegion}
+	 	order by createdAt desc 
+	 </select>
+	 
+	 
+	 
 
 </mapper>

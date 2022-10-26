@@ -1,0 +1,270 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.login-container {
+  z-index: 11;
+  position: absolute;
+  top: 0%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-box {
+  background-color: white;
+  width: 25rem;
+  height: 30rem;
+  border-radius: 10px;
+  position: relative;
+}
+
+.home {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 3rem;
+  height: 3rem;
+}
+
+.home a {
+  width: 100%;
+  height: 100%;
+}
+
+.home img {
+  width: 100%;
+  height: 100%;
+}
+
+.login-box-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box-title span {
+  margin: 1rem;
+  font-size: 2rem;
+  color: #6462cb;
+}
+
+.login-box-sign-box {
+  width: 100%;
+  height: 13%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box-sign-box > div {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box-signin-button {
+  height: 100%;
+  border-bottom: solid 3px #6462cb;
+  color: #6462cb;
+}
+
+.login-box-form {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  line-height: 0.5;
+}
+
+.login-input {
+  width: 90%;
+  height: 3rem;
+  border: none;
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+  padding-left: 1rem;
+}
+
+.login-button {
+  width: 90%;
+  height: 3rem;
+  border: none;
+  background-color: #6462cb;
+  color: white;
+}
+
+.id-check-box {
+  width: 90%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 3rem;
+}
+
+.id-check-box span {
+  margin-left: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.login-box-find-box {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box-find-box button {
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.login-box-kakao-naver {
+  margin-top: 1rem;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-box-kakao-naver > div {
+  padding: 3px;
+  width: 90%;
+  box-shadow: 0px 5px 5px rgb(228, 228, 228);
+}
+
+.login-box-kakao-naver img {
+  width: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.signup-box {
+  background-color: white;
+  width: 28rem;
+  border-radius: 5px;
+}
+
+.signup-box-title {
+  border-radius: 5px;
+  background-color: white;
+  width: 28rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6462cb;
+  margin-bottom: -15px;
+}
+
+.signup-box-title span {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.signup-box-sign-box {
+  width: 28rem;
+  z-index: 1;
+  margin-bottom: -7px;
+  background-color: white;
+  height: 8%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box-sign-box > div {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-box-signup-button {
+  height: 70%;
+  border-bottom: solid 3px #6462cb;
+  color: #6462cb;
+}
+
+.signup-box-signup-button a {
+  color: #6462cb;
+}
+
+.signup-box input {
+  margin: 0.5rem;
+  background-color: rgb(230, 230, 230);
+  border: none;
+  border-radius: 5px;
+  padding-left: 0.5rem;
+}
+
+.signup-check-button {
+  margin: 0.5rem;
+  border-radius: 5px;
+  width: 20%;
+  border: none;
+  background-color: #6462cb;
+  color: white;
+}
+
+.signup-button {
+  margin: 0.5rem;
+  width: 95%;
+  height: 2.5rem;
+  border: none;
+  background-color: #6462cb;
+  color: white;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline-style: solid;
+  outline-width: 3px;
+  outline-color: #6462cb;
+}
+
+.mypage-find {
+  width: 25rem;
+  height: 15rem;
+}
+
+.mypage-find p {
+  text-align: center;
+  font-size: 2rem;
+  color: #6462cb;
+}
+
+.mypage-find input {
+  width: 25rem;
+  height: 3rem;
+  border: solid 2px #6462cb;
+  border-radius: 5px;
+}
+
+.mypage-find button {
+  margin-top: 1rem;
+  width: 12rem;
+  height: 3rem;
+  border: none;
+  background-color: #6462cb;
+  color: white;
+  border-radius: 5px;
+}/*# sourceMappingURL=login.css.map */

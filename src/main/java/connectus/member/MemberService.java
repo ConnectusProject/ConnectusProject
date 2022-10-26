@@ -53,5 +53,29 @@ public class MemberService  {
 		return true;
 	}
 	
+	public MemberDTO findId(String name, String phone) throws Exception {
+		MemberDTO member = memberDAO.findId(name,phone);
+		if(member!=null) {
+			return member;
+		}
+		return null;
+	}
+	
+	public boolean emailCheck(String userid,String email) {
+		MemberDTO member = (MemberDTO) memberDAO.onemember_check(userid);
+		if(member!=null && member.getUserid().equals(userid)) {
+			if(member.getEmail().equals(email)) {
+			return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
 	
 }

@@ -1,0 +1,181 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "배민체";
+  src: url(../fonts/BMYEONSUNG_ttf.ttf);
+}
+body {
+  margin: 0;
+  font-family: "배민체";
+  background-color: rgb(239, 253, 247);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.login-container {
+  width: 100vw;
+  position: relative;
+}
+
+.container-left {
+  position: absolute;
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-left > img {
+  width: 100%;
+  height: 100%;
+}
+
+.container-left > p {
+  position: absolute;
+  font-size: 5vw;
+  top: 20%;
+  color: rgb(45, 133, 37);
+}
+
+.container-right {
+  position: absolute;
+  width: 60%;
+  height: 100vh;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right-title {
+  font-size: 4vw;
+}
+
+.right-id {
+  width: 30vw;
+  height: 9vh;
+  border: solid 6px rgb(222, 247, 223);
+  border-radius: 50px;
+  font-size: 2vw;
+  padding-left: 2vw;
+}
+
+.right-pw {
+  width: 30vw;
+  height: 9vh;
+  border: solid 6px rgb(222, 247, 223);
+  border-radius: 50px;
+  margin-top: 1vh;
+  font-size: 2vw;
+  padding-left: 2vw;
+}
+
+.right-login-btn {
+  width: 33vw;
+  height: 9vh;
+  border: solid 6px rgb(183, 250, 185);
+  border-radius: 50px;
+  background-color: rgb(45, 133, 37);
+  font-size: 1.8vw;
+  color: white;
+  margin-top: 1vh;
+}
+
+.kakao-naver-login > img {
+  width: 3vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 3vh;
+}
+
+.right-findpw {
+  margin-left: 15vw;
+  margin-top: 2vh;
+}
+
+.right-findpw > span {
+  font-size: 1.2vw;
+  margin-left: 2vw;
+}
+
+.login-container {
+  width: 100vw;
+}
+
+.signup-container {
+  right: 0%;
+  width: 60vw;
+  height: 100vh;
+  background-color: rgb(239, 253, 247);
+  padding-left: 2vw;
+  position: absolute;
+}
+
+.signup-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 15vw;
+  top: 15vh;
+}
+
+.signup-container input {
+  width: 15vw;
+  height: 3vh;
+  margin: 0.2vw;
+  border: solid 3px rgb(45, 133, 37);
+  border-radius: 10px;
+  background-color: rgb(219, 243, 219);
+}
+
+.signup-container > div {
+  line-height: 0.1;
+}
+
+.signup-box > p {
+  position: absolute;
+  font-size: 1.2vw;
+  top: -6vh;
+}
+
+.signup-container p {
+  font-size: 1.2vw;
+  margin: 0;
+  margin-bottom: 1.5vh;
+  margin-top: 3vh;
+}
+
+.check-address-button {
+  height: 3.4vh;
+  margin-left: 0.2vw;
+  border: solid 3px rgb(45, 133, 37);
+  border-radius: 10px;
+  background-color: rgb(16, 80, 16);
+  color: white;
+  font-size: 0.7vw;
+}
+
+.signup-container-button {
+  margin-left: 0.2vw;
+  border: solid 3px rgb(45, 133, 37);
+  border-radius: 10px;
+  background-color: rgb(16, 80, 16);
+  color: white;
+  font-size: 0.7vw;
+  width: 8vw;
+  height: 5vh;
+  font-size: 1vw;
+  margin-top: 1vh;
+}
+
+.close {
+  display: none;
+}/*# sourceMappingURL=sign.css.map */

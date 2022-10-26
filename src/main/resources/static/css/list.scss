@@ -1,0 +1,281 @@
+$color : #6462cb;
+$fontColor :#cddfe0;
+
+a {
+    text-decoration: none;
+    color : black;
+}
+
+@mixin flexbox($justify, $align){
+    display : flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.list-container {
+    margin-left : 10%;
+    width : 80%;
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.list-title {
+    width : 100%;
+    height : 3rem;
+    font-size: 2rem;
+    border-bottom: solid 2px $color;
+    color : $color;
+}
+
+.list-clean-box {
+    width : 100%;
+    height : 2.5rem;
+    @include flexbox(left, center );
+}
+
+.list-clean-box > a {
+    width : 8%;
+    height : 80%;
+    background-color: $color;
+    border : none;
+    color : white;
+    @include flexbox(center, center );
+    margin : 5px;
+    border-radius: 5px;
+}
+
+.list-table {
+    width : 100%;
+    text-align: center;
+}
+
+.list-table-title {
+    height : 3rem;
+    border-top : 3px solid $color;
+    border-bottom : 1px solid $color;
+}
+
+.list-search-form {
+    width : 100%;
+    height : 2.2rem;
+    @include flexbox(center, center);
+    position : relative;
+}
+
+.list-search-form-select {
+    height : 100%;
+    width : 5rem;
+    margin-right : 1rem;
+    border : 2px solid $color;
+    border-radius: 5px;
+}
+
+.list-search-form > input {
+    border : 2px solid $color;
+    border-radius: 5px;
+    height : 100%;
+}
+
+.list-search-form-button {
+    background-color: $color;
+    color : white;
+    width : 5%;
+}
+
+.list-search-form-write-button {
+    position : absolute;
+    border : 2px solid $color;
+    border-radius: 5px;
+    right : 0;
+    color : white;
+    width : 10%;
+    background-color: $color;
+    height : 100%;
+    @include flexbox(center, center);
+}
+
+.list-search-form-write-button a{
+    color : white;
+}
+
+.list-list > td {
+    font-size: 0.8rem;
+}
+
+.list-list  a {
+    font-size: 1rem;
+}
+
+
+.write-form  {
+    width : 100%;
+}
+
+.write-form-title {
+    border : none;
+    width : 100%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+.write-form-textarea {
+    border : none;
+    width : 100%;
+    border : solid 2px $color;
+}
+.write-form-textarea:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: $color;
+}
+
+.write-form-writer {
+    border : none;
+    width : 25%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+
+.write-form-password {
+    border : none;
+    width : 25%;
+    height : 2.5rem;
+    border-bottom : solid 2px $color;
+    background-color: rgb(248, 248, 248);
+}
+
+.write-form-button {
+    width : 25%;
+    height : 2.5rem;
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius: 5px;
+}
+
+.write-form input:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: $color;
+}
+
+
+.detail-box {
+    width : 100%;
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.detail-delete-box {
+    width : 100%;
+    border-bottom: $color solid 2px;
+    @include flexbox(right, center);
+}
+
+.detail-title-box {
+    width : 100%;
+    height : 5rem;
+    background-color: rgb(243, 243, 243);
+}
+
+.detail-title-box > div {
+height : 50%;
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left : 5px;
+}
+
+.detail-title-box span {
+    font-size: 0.8rem;
+    color : rgb(73, 73, 73);
+    margin-right : 5px;
+    margin-left : 5px;
+}
+
+.detail-content-box {
+    width : 100%;
+    padding : 5px;
+}
+
+
+.detail-comment-container {
+    width : 100%;
+    background-color: rgb(243, 243, 243);
+    @include flexbox(left, center);
+    flex-direction: column;
+    padding-top : 20px;
+}
+
+.detail-comment-container textarea{
+    border : 3px solid rgb(238, 238, 238);
+}
+
+.detail-comment-box {
+    width : 95%;
+}
+.detail-comment-box2 {
+    width : 100%;
+
+}
+
+.detail-comment-box textarea {
+    width : 100%;
+}
+
+.commentListAll {
+    position : relative;
+    width : 100%;
+    margin-top : 0.5rem;
+}
+
+.deleteBtn {
+    position : absolute;
+    right : 3%;
+    top : 0%;
+    border : none;
+    background: none;
+    font-size: 0.8rem;
+}
+
+.updateBtn {
+    position : absolute;
+    right : 7%;
+    top : 0%;
+    border : none;
+    background: none;
+    font-size: 0.8rem;
+}
+
+.detail-delete-box input {
+ width : 4rem;
+ border-radius: 3px;
+ border : none;
+ background-color: $color;
+ color : white;
+ margin : 0.5rem;
+}
+
+.comment-button {
+    width : 5rem;
+    border-radius: 3px;
+    border : none;
+    background-color: $color;
+    color : white;
+    margin : 0.5rem;
+}
+
+.writer {
+    font-size: 1rem;
+}
+
+.date {
+    font-size: 0.7rem;
+    margin-left: 1rem;
+    color: grey;
+}
+
+
