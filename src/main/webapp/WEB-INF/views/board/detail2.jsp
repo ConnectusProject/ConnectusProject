@@ -71,7 +71,6 @@
 				let secret;
 				let sessionId = '<%=session.getAttribute("sessionid")%>';
 				let seq = '<%=request.getParameter("seq")%>';
-				 alert(seq); 
 				if ($("#contents").val() != '') {
 					if ($("#secretCheckBtn").is(":checked") == true) { secret = 1 } else { secret = 0 };
 
@@ -82,9 +81,7 @@
 						type: 'post',
 						dataType: 'json',
 						success: function (res) {
-							alert("check");
 							$("#comment").append("<li></li>");
-
 							let listNum = document.querySelectorAll("#comment li").length;
 
 							$("#comment li:last-child").addClass("commentList" + listNum);
@@ -97,6 +94,7 @@
 									: (res.secret != 1 ? "<p class='contents'>" + res.contents + "</p>" : ""))
 
 								+ "<input class='commentSeq' type='hidden' name='commentSeq' value=" + res.commentSeq + ">"
+// === 여기 수정삭제 버튼 입니다 ===
 								+ (sessionId == res.writer ? "<div class='detail-comment-button'><input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'></div>" : "")
 							);
 							$("#commentNum").html("댓글 " + listNum);
