@@ -12,54 +12,110 @@
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script src="${path}/js/stomp.js" type="text/javascript"></script>
 <script src="${path}/js/sockjs.js" type="text/javascript"></script>
-	
-
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/css/header.css">
+<link rel="stylesheet" href="${path}/css/chat.css">
+<script src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div class="main-container">
+        <!-- header-section -->
+        <jsp:include page="/WEB-INF/views/header.jsp">
+            <jsp:param value="false" name="mypage" />
+        </jsp:include>
+        <!-- content-section -->
+        <div class="content-container">
+            
+            <div id="chatImg" class="chatroom-picture-box mb-3">
+                
+                <p>클릭시 확대</p>
+            </div>
+            
+            
+            
 
-
-  <div class="container">
-        <div class="title_text">
-            <h2>${pr_title}</h2>
-        </div>
-        <div class="row">    
+  <div class="chatroom-container">
+    <div id="chatImg2" class="chatroom-picture-box2 ">
+      
+    </div>
+        <p class="chatroom-title">${pr_title}</p>
+        <div class="chatroom-content-box">    
                 <%--chatHistory와 member가 실시간 입력하는 메시지 출력 --%>
-                <div id="content">
+                <div id="content" class="chatroom-content-message">
                     <c:forEach var="chatRoom" items="${chatHistory}">
-                        <p>
-                            <span id="chatRoomSenderId">${chatRoom.senderId}</span><br>
-                            <span id="chatRoomContent">${chatRoom.content}</span><br>
-                            <span id="chatRoomSendTime">${chatRoom.sendTime}</span><br>
+                        <p class="message-id-time-content">
+                            <input class="message-id" id="chatRoomSenderId" value="${chatRoom.senderId}" disabled>
+                            <input class="message-time" id="chatRoomSendTime" value="${chatRoom.sendTime}" disabled>
+                            <div class="message-content" id="chatRoomContent">${chatRoom.content}</div>
                         </p>    
                     </c:forEach>
                 </div>
                 <%--메시지 입력창과 보내기 버튼 --%>
-                <div class="row_3">
-                    <div class="input_group" id="sendMessage">
-                        <input type="text" placeholder="Message" id="message" class="form_control"/>
-                        <div class="input_group_append">
-                            <button id="send" class="btn btn-primary" onclick="send()">보내기</button>
-                            <input id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
+                <div class="row_3" class="chatroom-content-input">
+                    <div class="input_group chatroom-content-input-box" id="sendMessage">
+                        
+                        <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+
+                        <input type="text" placeholder="Message" id="message" class="form_control chatroom-input"/>
+                        <div class="input_group_append" style="width : 20%; height : 60%">
+                            <button id="send" class="chatroom-input-button" onclick="send()">보내기</button>
+                         
+                            <%-- <input class=input-id id="buyerId" type="hidden" value="${chatRoomInfo.buyerId}" />
                             <input id="sellerId" type="hidden" value="${chatRoomInfo.sellerId}" />
                             <input id="pr_id" type="hidden" value="${chatRoomInfo.pr_id}" />
-                            <input id="id" type="hidden" value="${chatRoomInfo.id}" />                        
-                        </div>                    
+                            <input id="id" type="hidden" value="${chatRoomInfo.id}" /> --%>                        
+                         </div>                    
                     </div>                
                 </div>
             </div>
-    </div>
+  	  </div>	
+</div>
+</div>
+
+
+<!-- 카카오맵 위치정보 API --> 
+<!-- <div>
+<jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+</div> -->
+
+<!-- 사진 -->
+<!-- <div id="chatImg" class="chatroom-picture-box">
+
+</div>
+ -->
+
 <script>
 
 var stompClient = null;
-var buyerId = "${chatRoomInfo.buyerId}";
-var sellerId = "${chatRoomInfo.sellerId}";    
-var senderId = "${chatRoomInfo.buyerId}";
-var pr_id = "${chatRoomInfo.pr_id}";
-var id = "${chatRoomInfo.id}";
-//var sessionId = '${sessionid}';
+var buyerId = "${buyerId}";
+var sellerId = "${sellerId}";    
+var pr_id = "${pr_id}";
+var id = "${id}";
+var pr_title = "${pr_title}";
 
-console.log(sellerId);
+var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
+
+for(var i= 0; i<img.length; i++){
+if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
+}
+
+for(var i= 0; i<img.length; i++){
+if(img[i] !=""){$("#chatImg2").append('<div class="roomPictureB close"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
+}
+
+let chatRoomPictureS = $('.roomPictureS');
+let chatRoomPictureB = $('.roomPictureB');
+
+for(let i = 0; i< chatRoomPictureS.length; i++){
+
+    chatRoomPictureS[i].addEventListener('click', function(){
+    chatRoomPictureB.addClass('close');
+    chatRoomPictureB.eq(i).removeClass('close');
+})
+
+}
+
 
 
 
@@ -68,7 +124,6 @@ $(document).ready(function(){
     connect();
     ajaxChatRead();
 });
-
     
     function connect() {
         <%-- map URL using SockJS--%>
@@ -109,7 +164,7 @@ $(document).ready(function(){
             'buyerId': buyerId, 
             'sellerId': sellerId,
             'pr_id': pr_id,
-            'senderId': senderId	//상세페이지에서 입장 ( senderId = buyerId)
+            'senderId': sessionId    //채팅리스트에서 입장하는 것  
             });
         $('#message').val("");
     }
@@ -126,36 +181,57 @@ $(document).ready(function(){
             send();
         }
     });
-    
-    <%-- 입력한 메시지를 HTML 형태로 가공 --%>
+
+    <%-- 입력한 메시지를 HTML 형태로 가공 --%> // 꾸미기 
     function createTextNode(messageObj) {
+        
+        if(messageObj.sendTime==sessionId){
+    		  return '<div class="message-id-time-content" style="width : 100%;  text-align : right;"><div class="message-id" style="width :100%;">[' +
+    	       messageObj.senderId  +
+    	        ']</div><div class="message-time close">' +
+    	        messageObj.sendTime +
+    	        '</div></div><div class="message-content mb-3" style="margin-left : 60%;">' +
+    	        messageObj.content+
+    	        '</div>';
+    	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+    
+        	}else{
+        		  return '<div class="message-id-time-content" style="width : 100%;  text-align : left;"><div class="message-id" style="width :100%; text-align : left;">[' +
+        	       messageObj.senderId  +
+        	        ']</div><div class="message-time close style="text-align : left;">' +
+        	        messageObj.sendTime +
+        	        '</div></div><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
+        	        messageObj.content+
+        	        '</div>';
+        	        
+        	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+        
+        }
+    	
         console.log("createTextNode");
         console.log("messageObj: " + messageObj.content);
-        return '<p><div class="row alert alert-info"><div class="col_8">' +
-        messageObj.senderId +
-        '</div><div class="col_4 text-right">' +
-        messageObj.content+
-        '</div><div>[' +
-        messageObj.sendTime +
-        ']</div></p>';
-    }
+      
+
+        if(true){
+            chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+        }
     
+}
+	
     <%-- HTML 형태의 메시지를 화면에 출력해줌 --%>
     <%-- 해당되는 id 태그의 모든 하위 내용들을 message가 추가된 내용으로 갱신해줌 --%>
+
     function showBroadcastMessage(message) {
         $("#content").html($("#content").html() + message);
+        
+        
+        if(true){
+            chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+        }
     }
     
 
-	
-    
-/* 	function clearBroadcast() {
-		$('#content').html("");
-	}
- 지우기 */
- 
- 
- <%-- 읽음처리 상세페이지에서 --%>
+	<%-- 읽음처리 상세페이지에서 --%>
 	function ajaxChatRead() {
 		console.log("hi");
 		
@@ -171,15 +247,56 @@ $(document).ready(function(){
 		});
 	}
 
-    
-    
-    
-	
-	
+
 
 </script>
 
+    <script>
+        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
+        let messageFormId = document.querySelectorAll('.message-id');
+        let messageFormTime = document.querySelectorAll('.message-time');
+        let messageFormContent = document.querySelectorAll('.message-content');
+        let messageForm = document.querySelectorAll('.message-id-time-content');
+        console.log(sessionId);
+        console.log(messageFormId[0].value);
+     
+
+        for(let i = 0; i<messageForm.length; i++){
+            if(messageFormId[i].value == sessionId) {
+            messageForm[i].style.textAlign = "right";
+            messageFormId[i].style.display = "none";
+            messageFormTime[i].style.textAlign = "right";
+            messageFormContent[i].style.marginLeft = "60%";
+        }else {
+            messageForm[i].style.textAlign = "left";
+            messageFormId[i].style.textAlign = "left";
+            messageFormTime[i].style.textAlign = "left";
+            messageFormContent[i].style.textAlign = "left";
+            messageFormContent[i].style.backgroundColor = "white";
+        }
+        } 
+        chatroomContentMessage.scrollTop = chatroomContentMessage.scrollHeight;
+
+    </script>
+
+    <script>
+        let mapTag = document.querySelector('.map-tag');
+        let map = document.querySelector('.chatroom-map');
+
+        mapTag.addEventListener('click', function(){
+            map.style.opacity = 1;
+        })
 
 
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
 </body>
 </html>

@@ -211,8 +211,8 @@ $(document).ready(function(){
 
 <form class="product-insert-table" id="uploadForm" action="/product/${updateProduct.id}/updateprocess" method="post" enctype="multipart/form-data">
 
-<input type="text" name="title" value="${updateProduct.title}" required> 
-<textarea name="contents" rows="15" cols="60" required>${updateProduct.contents}</textarea> 
+<input type="text" name="title" value="${updateProduct.title}" required maxlength="30"> 
+<textarea name="contents" rows="15" cols="60" required maxlength="3000">${updateProduct.contents}</textarea> 
 <input type="number" name="price" value="${updateProduct.price}" required step="500">	
 <input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 

@@ -187,9 +187,9 @@
 					enctype="multipart/form-data">
 
 					<div class="product-insert-table">
-						<input type="text" name="title" placeholder="제목" required="required">
+						<input type="text" name="title" placeholder="제목" required="required" maxlength="30">
 						<textarea id="contents" name="contents" rows="15" cols="60" placeholder="내용"
-							required="required"></textarea>
+							required="required" maxlength="3000"></textarea>
 						<input type="number" name="price" placeholder="1일 가격" required step="500">	
 						<input type="text" name="boardRegion" value="${region}" placeholder="사는 곳" readonly>
 						<input type="text" name="userId" value="${sessionScope.sessionid }" placeholder="작성자" readonly>

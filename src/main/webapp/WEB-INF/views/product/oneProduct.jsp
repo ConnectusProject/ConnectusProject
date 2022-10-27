@@ -209,7 +209,7 @@ function paymentComplete(data){
 		alert("에러")
 		location.replace("/");
 	})
-
+}
 </script>
 
 

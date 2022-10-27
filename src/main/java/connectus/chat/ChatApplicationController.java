@@ -42,12 +42,6 @@ public class ChatApplicationController {
     //상세페이지에서 채팅방 입장
     @RequestMapping(value="/chatMessage", method=RequestMethod.GET)
     public String getWebSocketWithSockJs(ChatRoom chatRoom, Model model, HttpSession session ) throws IOException {
-        //productInfo화면에서 Chat화면에 전달해줄 parameter
-        
-//        String buyerId = (String) session.getAttribute("sessionid");
-//        chatRoom.setBuyerId(buyerId); < 이거 체크 필요
-    	
-   
         
         //이미 chatRoom이 만들어져있는지 확인
         if (chatRoomService.countByChatId(chatRoom.getPr_id(), chatRoom.getBuyerId()) > 0) {
@@ -71,6 +65,37 @@ public class ChatApplicationController {
             
             System.out.println("모델 : "+chatRoom.toString());
 
+            // 정보보내기 
+            String sessionId = (String)session.getAttribute("sessionid");
+    		
+    		String buyerId = sessionId;
+    		int pr_id = chatRoom.getPr_id();
+    		int id = chatRoomService.getId(pr_id, buyerId);
+    		String pr_title = chatRoom.getPr_title();
+    		String sellerId = chatRoom.getSellerId();
+
+    		String img1 = chatRoom.getImg1();
+    		String img2 = chatRoom.getImg2();
+    		String img3 = chatRoom.getImg3();
+    		String img4 = chatRoom.getImg4();
+    		String img5 = chatRoom.getImg5();
+    		String img6 = chatRoom.getImg6();
+    		// 세션 위치정보 보내기 
+    		String sessionCoords = productDAO.getCoords(sessionId);
+
+    		model.addAttribute("sessionCoords", sessionCoords);
+    		model.addAttribute("img1", img1);
+    		model.addAttribute("img2", img2);
+    		model.addAttribute("img3", img3);
+    		model.addAttribute("img4", img4);
+    		model.addAttribute("img5", img5);
+    		model.addAttribute("img6", img6);
+    		model.addAttribute("id", id);
+    		model.addAttribute("pr_id", pr_id);
+    		model.addAttribute("buyerId", buyerId);
+    		model.addAttribute("sellerId", sellerId);
+    		model.addAttribute("pr_title", pr_title);
+            
             //chatRoom 객체 Model에 저장해 view로 전달
             model.addAttribute("chatRoomInfo", chatRoom);
         
