@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Connect Us</title>
@@ -31,16 +29,6 @@
             let smartEndDate = '${smartSearchDTO.smartEndDate}'
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
-            
-            
-            // 검색어 순위 
-            // $("#oneRank").on("mouseover",function(){
-            // $("#showSearchRank").attr("style", "");
-            // });
-            
-            // $("#oneRank").on("mouseleave",function(){
-            //     $("#showSearchRank").attr("style", "display:none");
-            //     });
             
             
             
@@ -241,9 +229,6 @@ $.each(list, function(i, product){
                                 $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                             // 찜 취소 시, 해당물품 장바구니에서 제거
                             $("#spanId" + resp.id).closest('div').remove();
-                            
-                            
-                       
                             }
 
                         } // success 
@@ -295,7 +280,7 @@ $.each(list, function(i, product){
                  <div class="zzimproduct-list-container">
 
                     <div  class="zzimproduct-list-box">
-                    <p class="zzim-title">찜 리스트</p>
+                    <p class="zzim-title" id="zzimListLink"><a href="/mypage?zzimListLink=1">찜 리스트</a></p>
 				    <div id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product2">
@@ -338,21 +323,6 @@ $.each(list, function(i, product){
                             <a class="product-array-button" href="/allproduct/3/3">✔ 높은 가격순</a>
                             <a class="product-array-button" href="/allproduct/3/4">✔ 인기순</a>
                             </c:if>
-                            
-                            
-                            <!-- 검색어순위 -->
-                            <!-- <div id="oneRank">
-                            <c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0" end="0">
-                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count}. ${searchString} </a><br> 
-                    		</c:forEach>
-                    		<div id="showSearchRank" style="display:none">
-                    		<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="1" >
-                    		<a href="http://localhost:8090/allproduct/2/1?search=${searchString}" >${vs.count + 1}. ${searchString} </a> <br>  
-                    		</c:forEach>
-                            </div>
-                    		</div> -->
-                            
-                            
                             
                     </div>
 
@@ -427,10 +397,8 @@ $.each(list, function(i, product){
                         </div>
 
                     </c:forEach>
-                    
 
 </div>
-                <!-- <a href="http://localhost:8090/">홈으로</a> -->
             
             </div>
 
@@ -444,12 +412,8 @@ $.each(list, function(i, product){
         arrayButton[0].style.color="red";
        })
 
-
  
     </script>
-
-
-
 
 
     <script src="${path}/js/allproduct.js"></script>
