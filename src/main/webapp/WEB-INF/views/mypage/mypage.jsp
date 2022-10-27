@@ -17,7 +17,13 @@
 
     <script>
         $(document).ready(function () {
-
+        	  let zzimlink = '${zzimListLink}'; 
+               if(zzimlink == "1"){
+                      myPageTitle.removeClass('show');
+                      myPageTitle.eq(3).addClass('show');
+                      myPageInnerBox.addClass('close');
+                      myPageInnerBox.eq(3).removeClass('close');
+              }  
         });
     </script>
 
@@ -186,11 +192,13 @@
             myPageTitle.removeClass('show');
             myPageTitle.eq(i).addClass('show');
             myPageInnerBox.addClass('close');
-            myPageInnerBox.eq(i).removeClass('close')
-        })
+            myPageInnerBox.eq(i).removeClass('close');
+        });
         }
 
 
+        
+       
 
         // myPageTitle[1].addEventListener('click', function(){
         //     myPageInnerBox.addClass('close');
