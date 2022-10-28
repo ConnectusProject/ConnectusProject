@@ -447,10 +447,12 @@ public class ProductController {
 			distance = "(알수없는 위치)";
 		}else if(distance_double!=null) {
 			IntDistance = distance_double.intValue();
-			if(IntDistance==0) {
-				distance = "(1km 이내)";
+			if(IntDistance==0 || IntDistance <= 1) {
+				distance = "<span style=color:#32CD32>(1km 이내)</span>";
+			}else if(IntDistance <= 5) {
+				distance = "<span style=color:orange>(" + IntDistance + "km 거리)</span>";	
 			}else {
-			distance = "(" + IntDistance + "km 거리)";
+				distance = "<span style=color:#FF4500>(" + IntDistance + "km 거리)</span>";
 			}
 		}
 		

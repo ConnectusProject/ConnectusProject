@@ -464,10 +464,6 @@ function paymentComplete(data){
                             <c:if test="${sessionid == oneProduct.userId && not empty sessionid }">
                                <button class="chat-on-button" id="Owner_FakeChatBTN">채팅하기</button>
                             </c:if>
-                            
-                            
-
-                            <!-- 찜 버튼 -->
                          
                         </div>
                     </div>
@@ -487,7 +483,7 @@ function paymentComplete(data){
     
                     <tr class="reserved-table-title">
                         <th>번호</th>
-                        <th readonly>예약시작</th>
+                        <th>예약시작</th>
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>

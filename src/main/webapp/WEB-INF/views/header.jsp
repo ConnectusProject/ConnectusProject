@@ -148,7 +148,7 @@
 
 					<div class="rank-box">
 						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span> </a><br> 
+						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span style=color:orange>${vs.count}</span><span>${searchString}</span> </a><br> 
 						</c:forEach>
 
 						</div>
@@ -156,7 +156,7 @@
 					<div class="rank-container2" id="oneRank">
 						<div class="rank-box2 close">
 							<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span>  </a><br> 
+							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span style=color:orange>${vs.count}</span><span>${searchString}</span>  </a><br> 
 							</c:forEach>
 	
 					</div>
@@ -184,7 +184,7 @@
     			</div> -->
     			
     			<div class="header-notice">
-    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:orange></span></a>
     			</div>
 					<div>
 					<a  class="manager-button"  href="/admin_memlist">관리자</a>
