@@ -424,6 +424,14 @@ $.each(list, function(i, product){
 
  
     </script>
+    
+    	<script>
+		window.addEventListener('scroll', function(){
+
+			console.log(scrollY);
+		})
+
+	</script>
 
 
     <script src="${path}/js/allproduct.js"></script>

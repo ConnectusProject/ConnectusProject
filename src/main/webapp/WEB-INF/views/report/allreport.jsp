@@ -23,6 +23,14 @@
 	</script>
 
 	<script>
+		window.addEventListener('scroll', function(){
+
+			console.log(scrollY);
+		})
+
+	</script>
+
+	<script>
 		$(document).ready(function () {
 			$("#register").on('click', function () {
 				alert("성공적으로 접수되었습니다.")
