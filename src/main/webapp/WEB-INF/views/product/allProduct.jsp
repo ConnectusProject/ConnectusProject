@@ -14,14 +14,6 @@
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
     
     <script>
-    window.addEventListener("scroll", function(){
-    	console.log(scrollY);
-    });
-    
-    
-    </script>
-    
-    <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
             let productlength = '${productlength}';
@@ -45,7 +37,7 @@
             $(window).scroll(function () {
                 var scrollHeight = $(window).scrollTop() + $(window).height();
                 var documentHeight = $(document).height();
-                if (scrollHeight == documentHeight || scrollY > (scrollCount+1) * 2400 ) {
+                if (scrollHeight == documentHeight) {   // || scrollY > (scrollCount+1) * 2400
                 	// 스크롤 수 => limit 시작 index로 가져옴 
                 	scrollCount++; 
                 	
