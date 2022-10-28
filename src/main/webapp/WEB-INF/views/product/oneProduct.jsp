@@ -417,7 +417,7 @@ function paymentComplete(data){
                            
                         </form> -->
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        <form action="http://localhost:8090/orderpaywritingform" method="post">
+                        <form action="/orderpaywritingform" method="post">
                         <input type="hidden" value="${oneProduct.title}" name="producttitle" readonly>
                        <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
                         <input class="pay-on-button" type="submit" class="payment-on-button"  value="결제하기">

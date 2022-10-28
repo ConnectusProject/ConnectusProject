@@ -27,7 +27,7 @@
 		<jsp:include page="/WEB-INF/views/header.jsp">
 			<jsp:param value="false" name="mypage" />
 		</jsp:include>
-		<a href=http://localhost:8083/boardlist>리스트보기</a>
+		<a href="/boardlist">리스트보기</a>
 		<!-- content-section -->
 		<div class="content-container">
 			<!-- 본문 -->

@@ -205,7 +205,7 @@
 					</div>
 					<div class="detail-content-box">
 						<div>
-							<img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${seqList.img }">
+							<img alt="사진이 없어요" width=200 height=200 src="/upload/${seqList.img }">
 						</div>
 						
 						${seqList.contents }
