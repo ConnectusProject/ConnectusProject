@@ -55,7 +55,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                 <div class="row_3" class="chatroom-content-input">
                     <div class="input_group chatroom-content-input-box" id="sendMessage">
                         
-                        <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+                      
 
                         <input type="text" placeholder="Message" id="message" class="form_control chatroom-input"/>
                         <div class="input_group_append" style="width : 20%; height : 60%">
@@ -68,6 +68,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                          </div>                    
                     </div>                
                 </div>
+                <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
             </div>
   	  </div>	
 </div>
@@ -196,11 +197,11 @@ $(document).ready(function(){
     	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
     
         	}else{
-        		  return '<div class="message-id-time-content" style="width : 100%;  text-align : left;"><div class="message-id" style="width :100%; text-align : left;">[' +
-        	       messageObj.senderId  +
-        	        ']</div><div class="message-time close style="text-align : left;">' +
+        		  return '<span class="message-id-time-content" style="width : 20%;  text-align : left;"><span class="message-time style="text-align : left;">' +
         	        messageObj.sendTime +
-        	        '</div></div><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
+        	        '</span><span class="message-id" style="width :20%; text-align : left; margin-left : 20px">[' +
+        	       messageObj.senderId  +
+        	        ']</span></span><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
         	        messageObj.content+
         	        '</div>';
         	        
@@ -283,19 +284,7 @@ $(document).ready(function(){
 
     </script>
 
-    <script>
-        let mapTag = document.querySelector('.map-tag');
-        let map = document.querySelector('.chatroom-map');
-
-        mapTag.addEventListener('click', function(){
-            map.style.opacity = 1;
-        })
-
-
-
-
-    </script>
-
+ 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>

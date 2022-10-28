@@ -368,6 +368,7 @@
 .product-detail-img {
   width: 50%;
   height: 30rem;
+  position: relative;
 }
 
 .carousel-box {
@@ -416,24 +417,31 @@
   position: relative;
 }
 
-.detail-title-title {
+.detail-title {
   position: absolute;
   left: 3%;
   top: 0%;
   width: 94%;
   height: 18%;
   font-size: 1.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   border-bottom: 2px solid #6462cb;
-  padding-top: 0.8rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.detail-title-title {
+  white-space: wrap;
+  width: 80%;
 }
 
 .detail-title-reserved {
-  position: absolute;
-  top: 28%;
-  left: 3%;
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .detail-title-hour {
@@ -466,8 +474,8 @@
 
 .detail-title-price {
   position: absolute;
-  top: 20%;
-  right: 50%;
+  top: 28%;
+  left: 3%;
 }
 
 .product-detail-text {
@@ -496,7 +504,7 @@
   position: absolute;
   padding-left: 3%;
   padding-right: 3%;
-  width: 50%;
+  width: 80%;
   height: 10%;
   display: flex;
   justify-content: left;
@@ -525,7 +533,17 @@
   font-size: 1rem;
 }
 
-.goods-detail-button-box button {
+.reserve-on-button {
+  margin-right: 1rem;
+  border: none;
+  background-color: #6462cb;
+  color: #cddfe0;
+  border-radius: 5px;
+  width: 7rem;
+}
+
+.pay-on-button {
+  width: 7rem;
   margin-right: 1rem;
   border: none;
   background-color: #6462cb;
@@ -689,6 +707,10 @@
   position: absolute;
   right: 12%;
   top: -50%;
+}
+
+.carousel-control-button {
+  height: 3rem;
 }
 
 .close {

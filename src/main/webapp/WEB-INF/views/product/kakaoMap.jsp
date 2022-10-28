@@ -208,19 +208,16 @@ function KakaoGeocoder() {
 <body>
 
 
-<div class="chatroom-map" id="map">
-	
-</div>
-<div class="map-tag"><div>M</div><div>A</div><div>P</div>
-	</div>
+<div class="chatroom-map" id="map"></div>
+	<input class="chatroom-location-input map-in-out" id="storageBTN" type="button" value="만나는 곳">
 	<div>
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
+		
 		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"
 			value="주소찾기">약속장소</button>
-		<!-- 상문님 TEST 확인 -->
+		
 		<!-- 맵 LocalStorage 버튼 여기! -->	
-		<br>gggggggggggggggggggggggggggg
-		<input id="storageBTN" type="button" value="storage장소">
+		
 			
 	</div>
 		<div>
@@ -240,6 +237,54 @@ if(storageCoords != "" && storageCoords != null){
 		kakaoMap(storageLat, storageLon);
 	});
 }
+
+</script>
+
+<script>
+	let location2 = document.querySelector('.chatroom-location-input');
+	let button = document.querySelector('.map-in-out');
+	let map = document.querySelector('.chatroom-map');
+
+	let count = 0;
+
+
+
+	
+
+
+
+
+	button.addEventListener('click', function(){
+		count ++;
+		console.log(count);
+		if(map.innerText == ""){
+			button.style.transform = 'translateX(0px)';
+		map.style.transform = 'translateX(0px)';
+		alert('위치가 선택되지 않았습니다.')
+		}else{
+			if(count%2 !=0 ){
+				setTimeout(()=>{
+					button.style.transform = 'translateX(504px)';
+		map.style.transform = 'translateX(504px)';
+				},100)
+
+				setTimeout(()=>{
+					button.style.transform = 'translateX(454px)';
+		map.style.transform = 'translateX(454px)';
+				}, 500)
+
+		}else{
+			button.style.transform = 'translateX(0px)';
+		map.style.transform = 'translateX(0px)';
+		}
+		}
+
+
+
+
+
+
+	})
 
 </script>
 

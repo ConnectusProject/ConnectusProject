@@ -91,7 +91,7 @@
                             $("#zzimSpan").html("<img src='/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
-                            alert("찜 취소!");
+                          
                             $("#zzimSpan").html("<img src='/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
                     } // success 
@@ -300,7 +300,9 @@ function paymentComplete(data){
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
+                       
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="false">
+                            
                             <div class="carousel-inner detail-carousel">
                             	
                                 
@@ -379,12 +381,12 @@ function paymentComplete(data){
                    
                                 
                             </div>
-                            <button class="carousel-control-prev" type="button"
+                            <button class="carousel-control-prev carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button"
+                            <button class="carousel-control-next carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                 <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>
@@ -396,8 +398,10 @@ function paymentComplete(data){
                     <div class="oneproduct-detail-textarea">
                     <div class="product-detail-content">
                         <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
-                        <span class="detail-title-title"> ${oneProduct.title}</span>
-                        <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
+                        <span class="detail-title"> 
+                        <div id="reservedNowSpan" class="detail-title-reserved" style="color:red"> ${reservedNowImg}  </div> 
+                        <div class="detail-title-title"> ${oneProduct.title}</div>
+                        </span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
                         <span  class="detail-title-price">1일 ${priceFormat}원</span>
@@ -416,7 +420,7 @@ function paymentComplete(data){
                         <form action="http://localhost:8090/orderpaywritingform" method="post">
                         <input type="hidden" value="${oneProduct.title}" name="producttitle" readonly>
                        <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
-                        <input type="submit" class="payment-on-button"  value="결제하기">
+                        <input class="pay-on-button" type="submit" class="payment-on-button"  value="결제하기">
 						</form>
 						
                         <!-- 수정, 삭제 버튼 -->
@@ -529,6 +533,8 @@ function paymentComplete(data){
         </div>
         
 </div> 
+
+
         
             <!-- 예약 테이블 노출 설정 -->
     <script>
@@ -561,6 +567,20 @@ function paymentComplete(data){
 
     </script>
 
+
+    <script>
+        let reserve = document.querySelector('.detail-title-reserved');
+        let oneProductTitle = document.querySelector('.detail-title-title');
+
+        console.log(reserve.innerText)
+
+        if(reserve.innerText == ""){
+            reserve.classList.add('close');
+            oneProductTitle.style.width = "100%";
+        }
+
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
