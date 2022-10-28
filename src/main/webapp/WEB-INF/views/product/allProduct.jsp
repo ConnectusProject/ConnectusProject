@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${path}/css/header.css">
     <link rel="stylesheet" href="${path}/css/product.css">
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
+    
     <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -36,7 +37,7 @@
             $(window).scroll(function () {
                 var scrollHeight = $(window).scrollTop() + $(window).height();
                 var documentHeight = $(document).height();
-                if (scrollHeight == documentHeight) {
+                if (scrollHeight == documentHeight) {   // || scrollY > (scrollCount+1) * 2400
                 	// 스크롤 수 => limit 시작 index로 가져옴 
                 	scrollCount++; 
                 	

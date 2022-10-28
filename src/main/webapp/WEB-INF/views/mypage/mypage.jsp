@@ -96,7 +96,7 @@
 
                                 <div class="close" id="boardid${vs.index}">${board.id}</div>
                                 <div class="myproduct-item-img"><a href="/product/${board.id}"><img
-                                            src="http://localhost:8090/upload/${board.img1}" width=200 height=200></a>
+                                            src="/upload/${board.img1}" width=200 height=200></a>
                                 </div>
                                 <div class="myproduct-item-title"><a href="/product/${board.id}">${board.title}</a>
                                 </div>
@@ -160,11 +160,11 @@
                                 <fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
                                 <tr class="myproduct-zzim-item">
                                     <th style="width:5%" id="zzimid${vs.index}">${board.id}</th>
-                                    <th style="width:55%;"><img src="http://localhost:8090/upload/${board.img1}"
+                                    <th style="width:55%;"><img src="/upload/${board.img1}"
                                             width=40 height=40><a href="/product/${board.id}">${board.title}</a></th>
                                     <th style="width:30%">${board.createdAt}</th>
                                     <th style="width:10%"><span class="product-item-zzim" id="zzimSpan${board.id}"><img
-                                                src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30
+                                                src='/pictures/zzim-on.png' width=30 height=30
                                                 style='cursor:pointer'></span></th>
                                 </tr>
                             </c:forEach>
@@ -173,19 +173,13 @@
                 </div>
 
 
-
-
-
                 <div class="mypage-container-inner-box close">
                     <p class="myproduct-box-title">탈퇴하기</p>
                     <jsp:include page="/WEB-INF/views/mypage/delete.jsp">
                         <jsp:param value="false" name="mypage" />
                     </jsp:include>
                 </div>
-
-
-
-         </div>
+       	    </div>
         </div>
     </div>
 
@@ -203,22 +197,6 @@
                 myPageInnerBox.eq(i).removeClass('close');
             });
         }
-
-
-
-
-
-        // myPageTitle[1].addEventListener('click', function(){
-        //     myPageInnerBox.addClass('close');
-        //     myPageInnerBox[1].classList.remove('close')
-        // })
-
-        // myPageTitle[2].addEventListener('click', function(){
-        //     myPageInnerBox.addClass('close');
-        //     myPageInnerBox[2].classList.remove('close')
-        // })
-
-
 
 
         // 찜 기능
@@ -244,12 +222,12 @@
                         success: function (resp) {
 
                             if (resp.result == 0) {
-                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>")
                                 // 찜 작동 시, 해당물품 장바구니에 출력 
-                                //    $("#zzimProducts").prepend("<a href='http://localhost:8090/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='http://localhost:8090/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
+                                //    $("#zzimProducts").prepend("<a href='/product/" + resp.id + "'><span id='spanId"+ resp.id +"'><img src='/upload/"+ resp.img1 +"' width=50 height=50 style='cursor:pointer'>" + resp.title+"</span></a>");
                             }
                             else if (resp.result == 1) {
-                                $("#zzimSpan" + intProductId).html("<img src='http://localhost:8090/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
+                                $("#zzimSpan" + intProductId).html("<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>")
                                 // 찜 취소 시, 해당물품 장바구니에서 제거
                                 //    $("#spanId" + resp.id).remove();
                             }
