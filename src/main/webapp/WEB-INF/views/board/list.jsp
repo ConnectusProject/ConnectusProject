@@ -94,7 +94,7 @@
 
                             <td>${board.seq }</td>
                             <td><img alt="상품이미지가없습니다." width=50 height=50
-                                src="http://localhost:8090/upload/${board.img }"></td>
+                                src="/upload/${board.img }"></td>
 
                             <td><a href="boarddetail?seq=${board.seq }">${board.title }</a>
                                 
