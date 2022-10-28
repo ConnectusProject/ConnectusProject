@@ -217,7 +217,7 @@ function KakaoGeocoder() {
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"
 			value="주소찾기">약속장소</button>
-		
+		<!-- test -->
 		<!-- 맵 LocalStorage 버튼 여기! -->	
 		<br>gggggggggggggggggggggggggggg
 		<input id="storageBTN" type="button" value="storage장소">
