@@ -264,14 +264,9 @@ if(storageCoords != "" && storageCoords != null){
 		}else{
 			if(count%2 !=0 ){
 				setTimeout(()=>{
-					button.style.transform = 'translateX(504px)';
-		map.style.transform = 'translateX(504px)';
-				},100)
-
-				setTimeout(()=>{
-					button.style.transform = 'translateX(454px)';
-		map.style.transform = 'translateX(454px)';
-				}, 500)
+					button.style.transform = 'translateX(545%)';
+		map.style.transform = 'translateX(101%)';
+				},10)
 
 		}else{
 			button.style.transform = 'translateX(0px)';

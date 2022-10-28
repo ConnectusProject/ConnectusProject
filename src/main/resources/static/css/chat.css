@@ -1,12 +1,10 @@
 .chat-container {
-  width: 100%;
+  width: 1280px;
   display: flex;
   justify-content: left;
   align-items: none;
   flex-direction: column;
-  padding-left: 10%;
   position: relative;
-  z-index: 5;
 }
 
 .chatTitle {
@@ -17,7 +15,7 @@
 }
 
 .chatlist-box {
-  width: 40%;
+  width: 50%;
   margin-right: 2%;
   display: flex;
   justify-content: left;
@@ -51,6 +49,10 @@
   top: 15%;
   left: 15%;
   font-size: 1.2rem;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-name {
@@ -66,9 +68,9 @@
 }
 
 .chatroom-picture-box {
+  margin-left: -40%;
   padding: 5px;
-  margin-left: 5rem;
-  width: 35%;
+  width: 25%;
   height: 6rem;
   background-color: rgb(236, 236, 236);
   display: flex;
@@ -95,8 +97,8 @@
 
 .chatroom-container {
   position: relative;
-  margin-left: 5rem;
-  width: 35%;
+  width: 25%;
+  margin-left: -40%;
   display: flex;
   justify-content: left;
   align-items: center;

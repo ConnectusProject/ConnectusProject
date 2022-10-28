@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
-  font-weight: 400;
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
 }
 @font-face {
@@ -10,10 +10,18 @@
   font-weight: normal;
   font-style: normal;
 }
+div {
+  box-sizing: border-box;
+}
+
+span {
+  box-sizing: border-box;
+}
+
 body {
   margin: 1;
   padding: 1;
-  font-family: "Pretendard-Regular";
+  font-family: "SpoqaHanSansNeo-Regular";
   position: relative;
 }
 
@@ -32,10 +40,13 @@ li {
 }
 
 .content-container {
-  width: 1600px;
+  width: 100%;
   padding-top: 10rem;
-  padding-left: 10rem;
-  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+  min-width: 1280px;
 }
 
 .up {
@@ -55,7 +66,7 @@ li {
 .header-box {
   position: fixed;
   width: 100%;
-  height: 4rem;
+  height: 3.5rem;
   background-color: rgb(255, 255, 255);
   z-index: 9;
   display: flex;
@@ -65,13 +76,11 @@ li {
 }
 
 .header-menu-button {
-  position: absolute;
   cursor: pointer;
-  top: 2%;
-  left: 1.5rem;
 }
 
 .header-menu-logo-box {
+  padding-left: 0.2rem;
   width: 25rem;
   display: flex;
   justify-content: left;
@@ -84,11 +93,10 @@ li {
 }
 
 .header-menu-title {
-  margin-left: 3rem;
   width: 20rem;
   font-size: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   font-family: "ImcreSoojin";
 }
@@ -115,6 +123,7 @@ li {
   outline-style: solid;
   outline-color: #6462cb;
   outline-width: 2px;
+  width: 20vw;
 }
 
 .header-search-button {
@@ -128,9 +137,9 @@ li {
 }
 
 .header-search-box-inner {
-  width: 30vw;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: none;
   position: relative;
 }
@@ -138,7 +147,7 @@ li {
 .header-search-box-inner2 {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: none;
   position: relative;
 }
@@ -147,21 +156,21 @@ li {
   margin-right: 10px;
 }
 
+.search-input {
+  width: 50%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 .rank-container {
-  width: 7rem;
+  padding-left: 8%;
+  width: 50%;
   position: absolute;
   top: 10%;
   right: 0;
   height: 1.5rem;
   overflow: hidden;
-}
-
-.rank-container2 {
-  width: 7rem;
-  position: absolute;
-  top: 10%;
-  right: 0;
-  height: 1.5rem;
 }
 
 .rank-box {
@@ -171,14 +180,21 @@ li {
   z-index: 13;
 }
 
+.rank-container2 {
+  padding-left: 8%;
+  width: 50%;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  height: 1.5rem;
+}
+
 .rank-box2 {
   padding-left: 0.5rem;
   background-color: white;
   border: solid 2px rgb(226, 226, 226);
   top: 0;
-  left: 0;
-  position: absolute;
-  width: 200%;
+  width: 10vw;
   z-index: 15;
 }
 
@@ -235,13 +251,12 @@ li {
 }
 
 .nav-box {
+  z-index: 5;
   margin-left: 1px;
   position: fixed;
   height: 100vh;
-  background-color: #6462cb;
-  z-index: 10;
-  box-shadow: 5px 0px 2px #6462cb;
-  border-radius: 50px;
+  background-color: white;
+  box-shadow: 5px 0px 10px rgb(218, 218, 218);
 }
 
 .nav-box img {
@@ -266,10 +281,6 @@ li {
   margin-bottom: 15px;
 }
 
-.nav-menu-box:hover {
-  background-color: #6462cb;
-}
-
 .menu-icon {
   width: 5rem;
   height: 3rem;
@@ -288,6 +299,11 @@ li {
   height: 2rem;
 }
 
+.menu-icon > a > img:hover {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .menu-title {
   width: 8rem;
   text-align: left;
@@ -297,11 +313,11 @@ li {
 }
 
 .menu-title a {
-  color: #cddfe0;
+  color: #6462cb;
 }
 
-.menu-title > a:hover {
-  color: white;
+.menu-title a:hover {
+  font-size: 1.2rem;
 }
 
 .nav-sub-menu-box {
@@ -324,4 +340,10 @@ li {
 
 .close {
   display: none;
+}
+
+@media screen and (max-width: 1300px) {
+  .content-container {
+    padding-left: 10rem;
+  }
 }/*# sourceMappingURL=header.css.map */

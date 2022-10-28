@@ -476,6 +476,7 @@ function paymentComplete(data){
 
                 </div>
             </div> 
+            <br>
 
         
             <div class="reserved-connect-container mt-5">

@@ -45,10 +45,12 @@
 
 <body>
 	<div class="main-container">
+	
 		<!-- header-section -->
 		<jsp:include page="/WEB-INF/views/header.jsp">
 			<jsp:param value="false" name="mypage" />
 		</jsp:include>
+		<div class="background-bg"></div>
 		<!-- content-section -->
 		<div class="content-container">
 			<div class="allreport-container">

@@ -133,7 +133,7 @@
 						}
 
 						var str = '<span>';
-						str += "<img src='/upload/" + resp.result + "' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
+						str += "<img src='/upload/" + resp.result + "' height=65 width=65 style='cursor:pointer' onclick='delImg(this)' >";
 						str += '</span>';
 
 						$(str).appendTo('#here');
@@ -183,8 +183,7 @@
 
 				<div class="insertproduct-title">물품등록</div>
 
-				<form id="uploadForm" action="/registerProduct" method="post"
-					enctype="multipart/form-data">
+				<form id="uploadForm" action="/registerProduct" method="post" enctype="multipart/form-data">
 
 					<div class="product-insert-table">
 						<input type="text" name="title" placeholder="제목" required="required" maxlength="30">
@@ -197,7 +196,9 @@
 
 
 					<br>
-					<img src="/pictures/jpgicon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+					<div class="product-insert-insert-file-box">
+					<span >
+					<img src="/pictures/jpgicon.png" height=40 width=40> &nbsp; <label class="insertproduct-label-button" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
 					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
@@ -205,19 +206,20 @@
 					<input id="file4" type="text" style="display:none" name="file4">
 					<input id="file5" type="text" style="display:none" name="file5">
 					<input id="file6" type="text" style="display:none" name="file6">
-					이미지
+
 					<div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
-					<div class="insertproduct-upload-result mt-2" id="here"></div>
-					<br>
-					<br>
-					<img src="/pictures/mp4icon.png" height=50 width=50> &nbsp; <label class="insertproduct-label-button mt-2" for="video1">파일선택</label>
+					<div class="insertproduct-upload-result" id="here"></div>
+					</span>
+					<span>
+					<img src="/pictures/mp4icon.png" height=40 width=40><label class="insertproduct-label-button" for="video1">파일선택</label>
 					<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
+					<input id="insertproduct-upload-button2" type="button" id="removeVideo" value="취소">
 					<br>
-					동영상  &nbsp;&nbsp; &nbsp;&nbsp; 
-					<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
-					<input type="button" id="removeVideo" value="취소">
-					<br>
+					<input  class="insertproduct-upload-result2" id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
 					
+	
+					</span>
+					</div>
 					<br>
 					<input class="insertproduct-button" type="submit" value="물품등록" class="product-insert-button">
 				</form>
