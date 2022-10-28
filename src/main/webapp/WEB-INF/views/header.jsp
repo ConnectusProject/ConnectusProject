@@ -123,18 +123,26 @@
 
 	<!--Header-->
 	<header class="header-box">
+		
 		<div class="header-menu-logo-box">
+			
 			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
-			<span class="header-menu-title"><img src="${path}/pictures/logo.png" alt=""> Connect Us</span>
+			<span class="header-menu-title">
+				<img src="${path}/pictures/menu-icon.png" class="header-menu-button">
+				<img src="${path}/pictures/logo.png" alt="">
+				<span style="color:#6462cb;">C</span> onnect <span style="color:#6462cb; margin-left:0.5rem;"> U</span>s
+			</span>
 		</div>
 		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
 			<form action="/allproduct/2/1" class="header-search-box-inner2">
+				<div class="search-input">
 				<input class="header-search-input" type="text" name="search" placeholder="검색">
 		
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+				</div>
 
 				<div class="rank-container" id="oneRank">
 
@@ -192,7 +200,6 @@
 		<div class="up">
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
-		<span><img src="${path}/pictures/menu-icon.png" class="header-menu-button"></span>
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 

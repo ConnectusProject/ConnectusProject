@@ -247,6 +247,7 @@ $.each(list, function(i, product){
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
+        <div class="background-bg"></div>
         <div class="content-container">
 
             <div class="allproduct-container">

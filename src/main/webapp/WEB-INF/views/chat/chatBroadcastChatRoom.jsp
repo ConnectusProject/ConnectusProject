@@ -55,7 +55,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                 <div class="row_3" class="chatroom-content-input">
                     <div class="input_group chatroom-content-input-box" id="sendMessage">
                         
-                        <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
+                      
 
                         <input type="text" placeholder="Message" id="message" class="form_control chatroom-input"/>
                         <div class="input_group_append" style="width : 20%; height : 60%">
@@ -68,6 +68,7 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                          </div>                    
                     </div>                
                 </div>
+                <jsp:include page="/WEB-INF/views/product/kakaoMap.jsp"></jsp:include>
             </div>
   	  </div>	
 </div>

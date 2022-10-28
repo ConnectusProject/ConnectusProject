@@ -217,8 +217,9 @@ $(document).ready(function(){
 <input type="text" name="boardRegion" value="${updateProduct.boardRegion}" readonly > 
 <input type="text" name="userId" value="${updateProduct.userId}" readonly > 
 
-<br>
-<img src="/pictures/jpgicon.png" height=50 width=50>이미지<label class="insertproduct-label-button mt-2" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+<div class="product-insert-insert-file-box">
+<span>
+<img src="/pictures/jpgicon.png" height=40 width=40><label class="insertproduct-label-button " for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
 <input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"> <br>
 <input id="file1" type="text" style="display:none" name="file1">
 <input id="file2" type="text" style="display:none" name="file2">
@@ -229,59 +230,58 @@ $(document).ready(function(){
 <span>(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</span>
  
 <!-- 기존 이미지 파일들 불러오기 -->	
-<div id="here">
+<div class="insertproduct-upload-result" id="here">
 	<c:if test="${!empty updateProduct.img1}" >
 	<span>
-	<img id="img1" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img1" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img1}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="1"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img2}" >
 	<span>
-	<img id="img2" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img2" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img2}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="2"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img3}" >
 	<span>
-	<img id="img3" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img3" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img3}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="3"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img4}" >
 	<span>
-	<img id="img4" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img4" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img4}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="4"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img5}" >
 	<span>
-	<img id="img5" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img5" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img5}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="5"/>
 	</c:if>
 	<c:if test="${!empty updateProduct.img6}" >
 	<span>
-	<img id="img6" alt="상품이미지가 없습니다." width=100 height=100 src="/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
+	<img id="img6" alt="상품이미지가 없습니다." width=65 height=65 src="/upload/${updateProduct.img6}" style='cursor:pointer' onclick='delImg(this)'>
 	</span>
 	<c:set var="count" value="6"/>
 	</c:if>
 	</div>
-	
+</span>
 	<!--c:set 이후 쥐치 필요  -->
 	<div id="count" class="close">${count}</div>
 	
-	<br> 
-	<br>
-	<img src="/pictures/mp4icon.png" height=50 width=50>동영상 &nbsp; 
+
+	<span>
+	<img src="/pictures/mp4icon.png" height=40 width=40><label class="insertproduct-label-button mt-2" for="video1">파일선택</label> 
 	<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
-	<label class="insertproduct-label-button mt-2" for="video1">파일선택</label> 
+	<input id="insertproduct-upload-button2" type="button" id="removeVideo" value="취소">
 	<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
 	<input id="newVideoTitle" type="text" style="display:none" name="NewvideoTitle" readonly>
-	<input type="button" id="removeVideo" value="취소">
-	<br>
-	<br>					
-
+	
+</span>		
+</div>
 
 <input id="updateproduct-button"  type="submit" value="수정" name="update" id="updatebtn">
 

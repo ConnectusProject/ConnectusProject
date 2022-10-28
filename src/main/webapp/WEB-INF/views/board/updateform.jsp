@@ -26,7 +26,8 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
                 <input type=hidden name="seq" value=${updated_board.seq } readonly="readonly">
                 <input class="write-form-title mb-2" type="text" name="title" value=${updated_board.title }>
                 <br>
-                <input type="file" name="file1">
+                <label class="list-update-file-button" for="file1">파일선택</label>
+                <input class="close" id="file1" type="file" name="file1">
                 <textarea class="write-form-textarea mt-2"  rows=10 name="contents" >${updated_board.contents }</textarea>
                 <input class="write-form-button"  type="submit" class="update-button" value="수정완료">
             </form>

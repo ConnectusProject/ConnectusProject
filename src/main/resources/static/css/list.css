@@ -4,8 +4,7 @@ a {
 }
 
 .list-container {
-  margin-left: 10%;
-  width: 80%;
+  width: 1280px;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -282,4 +281,28 @@ a {
   font-size: 0.7rem;
   margin-left: 1rem;
   color: grey;
+}
+
+.list-update-file-button {
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #6462cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-write-file-button {
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #6462cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=list.css.map */
