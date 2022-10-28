@@ -32,6 +32,11 @@
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
             
+            if(orderType==1){$(".orderOne").attr("style","color:orange");}
+            if(orderType==2){$(".orderTwo").attr("style","color:orange");}
+            if(orderType==3){$(".orderThree").attr("style","color:orange");}
+            if(orderType==4){$(".orderFour").attr("style","color:orange");}
+            
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
@@ -308,22 +313,22 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="/allproduct/1/1">✔ 최신순 </a>
-                            <a class="product-array-button" href="/allproduct/1/2">✔ 낮은 가격순 </a> 
-                            <a class="product-array-button" href="/allproduct/1/3">✔ 높은 가격순 </a>
-                            <a class="product-array-button" href="/allproduct/1/4">✔ 인기순 </a>
+                            <a class="product-array-button" href="/allproduct/1/1"><span class="orderOne">✔ 최신순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/2"><span class="orderTwo">✔ 낮은 가격순</span></a> 
+                            <a class="product-array-button" href="/allproduct/1/3"><span class="orderThree">✔ 높은 가격순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/4"><span class="orderFour">✔ 인기순</span> </a>
                             </c:if>
                             <c:if test="${searchType==2 }">
-                            <a class="product-array-button" href="/allproduct/2/1?search=${search}">✔ 최신순</a> 
-                            <a class="product-array-button" href="/allproduct/2/2?search=${search}">✔ 낮은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/2/3?search=${search}">✔ 높은 가격순</a>
-                            <a class="product-array-button"href="/allproduct/2/4?search=${search}">✔ 인기순</a>
+                            <a class="product-array-button" href="/allproduct/2/1?search=${search}"><span class="orderOne">✔ 최신순</span></a> 
+                            <a class="product-array-button" href="/allproduct/2/2?search=${search}"><span class="orderTwo">✔ 낮은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/2/3?search=${search}"><span class="orderThree">✔ 높은 가격순</span></a>
+                            <a class="product-array-button"href="/allproduct/2/4?search=${search}"><span class="orderFour">✔ 인기순</span></a>
                             </c:if>
                             <c:if test="${searchType==3 }">
-                            <a class="product-array-button" href="/allproduct/3/1">✔ 최신순</a>
-                            <a class="product-array-button" href="/allproduct/3/2">✔ 낮은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/3/3">✔ 높은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/3/4">✔ 인기순</a>
+                            <a class="product-array-button" href="/allproduct/3/1"><span class="orderOne">✔ 최신순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/2"><span class="orderTwo">✔ 낮은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/3"><span class="orderThree">✔ 높은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/4"><span class="orderFour">✔ 인기순</span></a>
                             </c:if>
                             
                     </div>
