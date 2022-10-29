@@ -127,6 +127,13 @@
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  position: relative;
+}
+
+.zzim-link {
+  position: absolute;
+  right: 0.5rem;
+  color: #6462cb;
 }
 
 .zzim-product {
@@ -492,6 +499,23 @@
   position: absolute;
   top: 40%;
   height: 75%;
+  border: none;
+  background-color: white;
+  resize: none;
+}
+
+.product-detail-text::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.product-detail-text::-webkit-scrollbar-track {
+  background-color: #b0b0c0;
+  border-radius: 10px;
+}
+
+.product-detail-text::-webkit-scrollbar-thumb {
+  background-color: #6462cb;
+  border-radius: 10px;
 }
 
 .product-detail-content-button {
@@ -681,6 +705,21 @@
   border: 2px solid #6462cb;
   background-color: rgb(243, 243, 243);
   border-radius: 5px;
+  resize: none;
+}
+
+.product-insert-table textarea::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.product-insert-table textarea::-webkit-scrollbar-track {
+  background-color: #b0b0c0;
+  border-radius: 10px;
+}
+
+.product-insert-table textarea::-webkit-scrollbar-thumb {
+  background-color: #6462cb;
+  border-radius: 10px;
 }
 
 .insertproduct-button {

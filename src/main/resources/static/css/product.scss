@@ -144,6 +144,13 @@ $fontColor :#cddfe0;
     color : $color;
     @include flexbox(center, center);
     font-size: 1rem;
+    position : relative;
+}
+
+.zzim-link {
+    position:absolute;
+    right : 0.5rem;
+    color : $color;
 }
 
 .zzim-product {
@@ -469,8 +476,25 @@ $fontColor :#cddfe0;
     position : absolute;
     top : 40%;
     height : 75%;
-
+    border : none;
+    background-color: white;
+    resize: none;
 }
+
+.product-detail-text::-webkit-scrollbar {
+    width : 1rem;
+}
+
+.product-detail-text::-webkit-scrollbar-track {
+    background-color:#b0b0c0;
+    border-radius: 10px;
+}
+
+.product-detail-text::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 10px;
+}
+
 
 .product-detail-content-button {
     width : 100%;
@@ -655,6 +679,21 @@ $fontColor :#cddfe0;
     border : 2px solid $color;
     background-color: rgb(243, 243, 243);
     border-radius: 5px;
+    resize: none;
+}
+
+.product-insert-table textarea::-webkit-scrollbar {
+    width : 1rem;
+}
+
+.product-insert-table textarea::-webkit-scrollbar-track {
+    background-color:#b0b0c0;
+    border-radius: 10px;
+}
+
+.product-insert-table textarea::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 10px;
 }
 
 .insertproduct-button {

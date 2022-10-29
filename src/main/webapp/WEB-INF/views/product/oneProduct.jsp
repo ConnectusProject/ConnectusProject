@@ -406,7 +406,7 @@ function paymentComplete(data){
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
                         <span  class="detail-title-price">1일 ${priceFormat}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
-                        <div class="product-detail-text">${oneProduct.contents}</div>
+                        <textarea class="product-detail-text" disabled>${oneProduct.contents}</textarea>
                     </div>
                     <div class="product-detail-content-button">
 

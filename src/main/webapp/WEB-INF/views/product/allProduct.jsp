@@ -31,11 +31,16 @@
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
+
             
-            if(orderType==1){$(".orderOne").attr("style","color:orange");}
-            if(orderType==2){$(".orderTwo").attr("style","color:orange");}
-            if(orderType==3){$(".orderThree").attr("style","color:orange");}
-            if(orderType==4){$(".orderFour").attr("style","color:orange");}
+            if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
+            if(orderType==1){$(".orderOne2").attr("style","font-weight:700; color: black");}
+            if(orderType==2){$(".orderTwo").attr("style","font-weight:800; color:green");}
+            if(orderType==2){$(".orderTwo2").attr("style","font-weight:700; color: black");}
+            if(orderType==3){$(".orderThree").attr("style","font-weight:800; color:green");}
+            if(orderType==3){$(".orderThree2").attr("style","font-weight:700; color: black");}
+            if(orderType==4){$(".orderFour").attr("style","font-weight:800; color:green");}
+            if(orderType==4){$(".orderFour2").attr("style","font-weight:700; color: black");}
             
             
             // 스크롤로 물건 가져오기 
@@ -287,7 +292,7 @@ $.each(list, function(i, product){
                  <div class="zzimproduct-list-container">
 
                     <div  class="zzimproduct-list-box">
-                    <p class="zzim-title" id="zzimListLink"><a href="/mypage?zzimListLink=1">찜 리스트</a></p>
+                    <p class="zzim-title" id="zzimListLink">찜 리스트<a class="zzim-link" href="/mypage?zzimListLink=1">></a></p>
 				    <div id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product2">
@@ -313,10 +318,10 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="/allproduct/1/1"><span class="orderOne">✔ 최신순</span> </a>
-                            <a class="product-array-button" href="/allproduct/1/2"><span class="orderTwo">✔ 낮은 가격순</span></a> 
-                            <a class="product-array-button" href="/allproduct/1/3"><span class="orderThree">✔ 높은 가격순</span> </a>
-                            <a class="product-array-button" href="/allproduct/1/4"><span class="orderFour">✔ 인기순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/1"><span class="orderOne">✔ </span><span class="orderOne2">최신순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/2"><span class="orderTwo">✔ </span><span class="orderTwo2">낮은 가격순</span></a> 
+                            <a class="product-array-button" href="/allproduct/1/3"><span class="orderThree">✔ </span><span class="orderThree2">높은 가격순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/4"><span class="orderFour">✔ </span><span class="orderFour2">인기순</span> </a>
                             </c:if>
                             <c:if test="${searchType==2 }">
                             <a class="product-array-button" href="/allproduct/2/1?search=${search}"><span class="orderOne">✔ 최신순</span></a> 

@@ -148,15 +148,16 @@
 
 					<div class="rank-box">
 						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span style=color:orange>${vs.count}</span><span>${searchString}</span> </a><br> 
+						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span class="rank-item-num" style=color:orange>${vs.count}</span><span id="rank-item2">${searchString}</span> </a><br> 
 						</c:forEach>
 
 						</div>
 					</div>
 					<div class="rank-container2" id="oneRank">
 						<div class="rank-box2 close">
+							<p>실시간 검색어</p>
 							<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span style=color:orange>${vs.count}</span><span>${searchString}</span>  </a><br> 
+							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span class="rank-item-num"  style=color:orange>${vs.count}</span><span id="rank-item2">${searchString}</span>  </a><br> 
 							</c:forEach>
 	
 					</div>
