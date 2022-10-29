@@ -23,6 +23,8 @@
             let search = '${search}';
             let searchLankingList = '${searchLankingList}';
             let distanceKm = '${distanceKm}'; 
+            let regionOption = '${regionOption}';
+            let region = '${region}';
 
             let smartTitle = '${smartSearchDTO.smartTitle}'
             let smartRegion = '${smartSearchDTO.smartRegion}'
@@ -36,12 +38,24 @@
             
             
             $("#smartTitle").val(smartTitle);
-            $("#smartRegion").val(smartRegion);
             $("#smartStartDate").val(smartStartDate);
             $("#smartEndDate").val(smartEndDate);
             $("#smartPriceMin").val(smartPriceMin);
             $("#smartPriceMax").val(smartPriceMax);
 
+            if(regionOption=="1"){
+            	$("#allRegion").attr("selected", "selected");
+            }else if(regionOption=="2"){
+            	$("#myRegion").attr("selected", "selected");
+            }else if(regionOption=="3"){
+            	$("#nearRegion").attr("selected", "selected");
+            }else if(regionOption=="4"){
+            	$("#farRegion").attr("selected", "selected");
+            }else if(regionOption=="5"){
+            	$("#searchRegion").attr("selected", "selected");
+            	$("#zzimList").html("<input type='text' name='smartRegion' value='"+ smartRegion +"'>");
+            }
+            
             
             if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
             if(orderType==1){$(".orderOne2").attr("style","font-weight:700; color: black");}
@@ -284,11 +298,11 @@ $.each(list, function(i, product){
                 <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
                 ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
-                <option>모든 동네</option>
-                <option>내 동네</option>
-                <option>가까운 동네</option>
-                <option>먼 동네</option>
-                <option>동네 검색</option>
+                <option id="allRegion">모든 동네</option>
+                <option id="myRegion">내 동네</option>
+                <option id="nearRegion">가까운 동네</option>
+                <option id="farRegion">먼 동네</option>
+                <option id="searchRegion">동네 검색</option>
                 </select>
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="검색">
