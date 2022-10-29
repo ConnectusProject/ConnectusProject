@@ -208,8 +208,12 @@ function KakaoGeocoder() {
 <body>
 
 
-<div class="chatroom-map" id="map"></div>
+<div class="chatroom-map" id="map">
+</div>
+<div class="chatroom-map2">
 	<input class="chatroom-location-input map-in-out" id="storageBTN" type="button" value="만나는 곳">
+</div>
+	
 	<div>
 		<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 		
@@ -244,6 +248,7 @@ if(storageCoords != "" && storageCoords != null){
 	let location2 = document.querySelector('.chatroom-location-input');
 	let button = document.querySelector('.map-in-out');
 	let map = document.querySelector('.chatroom-map');
+	let map2 = document.querySelector('.chatroom-map2');
 
 	let count = 0;
 
@@ -258,19 +263,19 @@ if(storageCoords != "" && storageCoords != null){
 		count ++;
 		console.log(count);
 		if(map.innerText == ""){
-			button.style.transform = 'translateX(0px)';
 		map.style.transform = 'translateX(0px)';
+		map2.style.transform = 'translateX(0px)';
 		alert('위치가 선택되지 않았습니다.')
 		}else{
 			if(count%2 !=0 ){
 				setTimeout(()=>{
-					button.style.transform = 'translateX(545%)';
 		map.style.transform = 'translateX(101%)';
+		map2.style.transform = 'translateX(101%)';
 				},10)
 
 		}else{
-			button.style.transform = 'translateX(0px)';
 		map.style.transform = 'translateX(0px)';
+		map2.style.transform = 'translateX(0px)';
 		}
 		}
 

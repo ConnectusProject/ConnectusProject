@@ -32,10 +32,10 @@
 			<div class="content-container">
 
 				<div class="mypage-container">
-					<p class="mypage-modify-title">나의 정보 수정</p>
-
+					
 
 					<form class="modify-box" name="modifyForm" action="mypageModify" method="post">
+						<p class="mypage-modify-title">나의 정보 수정</p>
 						<div>
 							<p>아이디</p>
 							<input type=text name=userid id=userid value="${member.userid}" readonly>

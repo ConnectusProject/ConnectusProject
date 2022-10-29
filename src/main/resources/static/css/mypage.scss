@@ -35,7 +35,7 @@ li {
 }
 
 .mypage-box-title-box {
-    margin-right : 10rem;
+    margin-right : 7rem;
     width : 10%;
 }
 
@@ -231,10 +231,15 @@ li {
     font-size: 2rem;
 }
 
+.modify-box {
+    margin-top : -5rem;
+    width : 100%;
+}
+
 .modify-box input {
     width : 15rem;
     height : 2.5rem;
-    margin : 5px;
+    margin : 3px;
     border : none;
     background-color: rgb(241, 241, 241);
     border-bottom: solid 2px $color;
@@ -276,6 +281,11 @@ margin-left : 5px;
 .myproduct-box-table {
     width : 100%;
     text-align: center;
+}
+
+.mypage-mywrite {
+    height : 2rem;
+    border-bottom : solid 1px rgb(238, 238, 238);
 }
 
 

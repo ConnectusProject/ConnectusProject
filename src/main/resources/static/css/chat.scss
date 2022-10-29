@@ -276,12 +276,22 @@ $fontColor :#cddfe0;
     transition: all 0.5s;
     top : 0rem;
 }
+.chatroom-map2 {
+    position: absolute;
+    border : solid 10px rgb(235, 235, 235);
+    right : 0rem;
+    width : 90%;
+    height : 550px;
+    z-index: 1;
+    transition: all 0.5s;
+    top : 0rem;
+}
 
 .map-in-out {
     position : absolute;
     width : 5rem;
     height : 10rem;
-    right : -5rem;
+    right : -5.7rem;
     transition: all 0.5s;
 }
 

@@ -76,7 +76,7 @@
                     <div class="mypage-info-button-box mt-1">
                         <input class="mypage-info-button" type="button"
                             onclick="location.href='mypageModify?userid=${sessionid}'" value="수정하기">
-                        <input class="mypage-info-button" type="button" onclick="location.href='delete'" value="회원탈퇴">
+                        <!-- <input class="mypage-info-button" type="button" onclick="location.href='delete'" value="회원탈퇴"> -->
                         <input class="mypage-info-button" type="button" onclick="location.href='passwordModify'"
                             value="비밀번호 변경">
                         <input class="mypage-info-button" type="button" onclick="back()" value="뒤로">
@@ -128,7 +128,7 @@
                                 <c:forEach items="${allmyboard2}" var="board2" varStatus="vs">
                                     <fmt:parseDate value="${board2.writingtime}" var="uploadDate"
                                         pattern="yyyy-MM-dd" />
-                                    <tr>
+                                    <tr class="mypage-mywrite">
                                         <th id="boardid${vs.index}">${board2.seq}</th>
                                         <th><a href="/boarddetail?seq=${board2.seq}">${board2.title}</a></th>
                                         <th>${board2.writingtime}</th>
