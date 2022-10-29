@@ -70,7 +70,7 @@
 .chatroom-picture-box {
   margin-left: -40%;
   padding: 5px;
-  width: 25%;
+  width: 30rem;
   height: 6rem;
   background-color: rgb(236, 236, 236);
   display: flex;
@@ -97,7 +97,7 @@
 
 .chatroom-container {
   position: relative;
-  width: 25%;
+  width: 30rem;
   margin-left: -40%;
   display: flex;
   justify-content: left;
