@@ -31,6 +31,16 @@
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
+            if(smartPriceMin==0){smartPriceMin = '';}
+            if(smartPriceMax==100000000){smartPriceMax = '';}
+            
+            
+            $("#smartTitle").val(smartTitle);
+            $("#smartRegion").val(smartRegion);
+            $("#smartStartDate").val(smartStartDate);
+            $("#smartEndDate").val(smartEndDate);
+            $("#smartPriceMin").val(smartPriceMin);
+            $("#smartPriceMax").val(smartPriceMax);
 
             
             if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
@@ -268,11 +278,11 @@ $.each(list, function(i, product){
                     <div class="smart-search-title">Connect</div>
                     <!-- <div class="smart-search-box-design"></div> -->
                  
-                <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input class="smart-search-width" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
-                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
+                <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
+                <input type="number" name="smartPriceMax" id="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
                 <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                ~<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
                 <option>모든 동네</option>
                 <option>내 동네</option>
@@ -280,7 +290,7 @@ $.each(list, function(i, product){
                 <option>먼 동네</option>
                 <option>동네 검색</option>
                 </select>
-                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
+                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 <div class="smart-search-result-box">
@@ -427,15 +437,7 @@ $.each(list, function(i, product){
  
     </script>
     
-    	<script>
-		window.addEventListener('scroll', function(){
-
-			console.log(scrollY);
-		})
-
-	</script>
-
-
+    
     <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
