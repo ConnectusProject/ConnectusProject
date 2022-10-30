@@ -120,6 +120,10 @@ $.each(list, function(i, product){
 	if(product.zzim == 1){
 		var zzim = "<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
 	}
+	
+	// 가격 1000단위 format (regEx)
+	let formatPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
 	// 날짜 몇일전으로 설정 
 	let uploadDateString = product.createdAt;
 	let uploadDate = new Date(uploadDateString);
@@ -147,7 +151,7 @@ $.each(list, function(i, product){
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
                             + '<div class="product-item-date">' + dateDiffShow + '</div>'
                             + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
-                            + '<div class="product-item-price">1일가격 : ' + product.price + '원</div>'
+                            + '<div class="product-item-price">1일가격 : ' + formatPrice + '원</div>'
                             + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
                             + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'

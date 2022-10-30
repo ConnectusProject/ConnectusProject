@@ -378,6 +378,13 @@ function paymentComplete(data){
                                 </c:if>
                                 </c:if>
                                 
+                                
+                                 
+                                <c:if test="${empty oneProduct.img1}">
+                                    <div class="carousel-item active">
+                                        <img alt="상품이미지가 없습니다." src="/pictures/noimg.png">
+                                    </div>
+                                </c:if>
                    
                                 
                             </div>
