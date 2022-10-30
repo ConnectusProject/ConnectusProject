@@ -117,7 +117,7 @@
 			<div class="input-group header-search-box-inner">
 			<form action="/allproduct/2/1" class="header-search-box-inner2">
 				<div class="search-input">
-				<input class="header-search-input" type="text" name="search" placeholder="검색">
+				<input class="header-search-input" type="text" id="search" name="search" placeholder="검색">
 		
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>

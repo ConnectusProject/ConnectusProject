@@ -33,10 +33,17 @@
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
+            
+            // nav바 검색어 유지
+            if(search != ""){
+            	$("#search").val(search);
+            }
+            
+            // 스마트 검색 가격 입력 없을 시, 빈값으로 유지( parse 안되는 것 이용 )
             if(smartPriceMin==0){smartPriceMin = '';}
             if(smartPriceMax==100000000){smartPriceMax = '';}
             
-            
+            // 스마트 검색 입력값 유지해서 표기 
             $("#smartTitle").val(smartTitle);
             $("#smartStartDate").val(smartStartDate);
             $("#smartEndDate").val(smartEndDate);
@@ -56,7 +63,7 @@
             	$("#zzimList").html("<input type='text' name='smartRegion' value='"+ smartRegion +"'>");
             }
             
-            
+            // 최신순, 가격순, 조회순 선택 시 css 적용
             if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
             if(orderType==1){$(".orderOne2").attr("style","font-weight:700; color: black");}
             if(orderType==2){$(".orderTwo").attr("style","font-weight:800; color:green");}
