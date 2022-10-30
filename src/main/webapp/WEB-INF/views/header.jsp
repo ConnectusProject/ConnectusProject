@@ -60,67 +60,46 @@
 			
 			
 			// 채팅 알림
+	if (sessionId != "") {
+			getUnread();
+			getInfiniteUnread(); 
+		} 
 			
+	function getUnread() {
+			$.ajax({
+					url: "/chatUnreadAlert/ajax",
+					type: "POST",
+					data: JSON.stringify({
+					sessionId: sessionId}) ,
+					dataType: "json",
+					contentType: "application/json",
+					success: function(result) {
+						if (result >= 1) {
+							showUnread(result);
+						} else {
+							showUnread('');
+						}
+					} //success
+				});  //ajax
+			} // getUnread
 			
+	function getInfiniteUnread() {
+			setInterval(() => {
+					getUnread();}, 1000);
+			}
 			
+	function showUnread(result) {
+			$('#messageAlert').html(result);
+			}
 			
-			if (sessionId != "") {
-							getUnread();
-							getInfiniteUnread(); 
-							} 
-			
-			
-				function getUnread() {
-										$.ajax({
-											url: "/chatUnreadAlert/ajax",
-											type: "POST",
-											data: JSON.stringify({
-												sessionId: sessionId
-											}) ,
-											dataType: "json",
-											contentType: "application/json",
-											success: function(result) {
-												if (result >= 1) {
-													showUnread(result);
-													
-												} else {
-													showUnread('');
-												}
-											}
-										});
-									}
-									
-									function getInfiniteUnread() {
-										setInterval(() => {
-											getUnread();
-										}, 1000);
-									}
-									
-									function showUnread(result) {
-										$('#messageAlert').html(result);
-									}
-			
-			
-			
-			
-			
-			
-			
-		});
-	</script>
+		});  //onload
+	
+		</script>
+		
 	<title>ConnectUs</title>
-
-	<script>
-		$(document).ready(function () {
-
-		});
-	</script>
 </head>
 
 <body>
-
-
-
 	<!--Header-->
 	<header class="header-box">
 		
@@ -352,22 +331,7 @@
 			rankBox2.classList.add('close');
 		})
 
-
-
-
-
-
 // clearTimeout(timeoutId);
-
-
-
-
-
-
-
-
-
-
 
 		// let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
 
@@ -393,16 +357,6 @@
 		// 	},2000*10)
 		// }
 		// 	}, 2000*11)
-
-
-	
-			
-
-			
-
-			
-		
-
 
 	</script>
 

@@ -130,7 +130,7 @@
                             if(resp.reservedNow==0){
                             	$("#reservedNowSpan").html("");
                             }else if(resp.reservedNow==1){
-                            	$("#reservedNowSpan").html("렌탈중");
+                            	$("#reservedNowSpan").html("렌탈중 &nbsp;");
                             }
 
                         } // success 
@@ -291,7 +291,7 @@ function paymentComplete(data){
 			
 			<!-- 예약중 표시 -->
             <c:if test="${oneProduct.reservedNow==1 }">
-            <c:set var="reservedNowImg" value="렌탈중"/>
+            <c:set var="reservedNowImg" value="렌탈중 &nbsp;"/>
             </c:if>
             <c:if test="${oneProduct.reservedNow==0 }">
             <c:set var="reservedNowImg" value=""/>
@@ -399,8 +399,10 @@ function paymentComplete(data){
                     <div class="product-detail-content">
                         <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
                         <span class="detail-title"> 
-                        <div id="reservedNowSpan" class="detail-title-reserved" style="color:red"> ${reservedNowImg}  </div> 
-                        <div class="detail-title-title"> ${oneProduct.title}</div>
+                        <%-- <div id="reservedNowSpan" class="detail-title-reserved" style="color:red"> ${reservedNowImg}  </div>  --%>
+                        <div class="detail-title-title"> 
+                        <span id="reservedNowSpan" style="color:red"> ${reservedNowImg}  </span>  ${oneProduct.title}
+                        </div>
                         </span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
@@ -566,7 +568,7 @@ function paymentComplete(data){
 
 
     <script>
-        let reserve = document.querySelector('.detail-title-reserved');
+        /* let reserve = document.querySelector('.detail-title-reserved');
         let oneProductTitle = document.querySelector('.detail-title-title');
 
         console.log(reserve.innerText)
@@ -575,7 +577,7 @@ function paymentComplete(data){
             reserve.classList.add('close');
             oneProductTitle.style.width = "100%";
         }
-
+ */
 
     </script>
 

@@ -119,7 +119,7 @@ $(document).ready(function(){
   });
   
 	//동영상 업로드 취소 
-	$("#removeVideo").on("click", function(){
+	$("#insertproduct-upload-button2").on("click", function(){
 	$("#video1").val("");
 	$("#videoTitle").val("");
 	$("#newVideoTitle").val("");
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			
 			
 			var str = '<span>';
-			str += "<img src='/upload/"+resp.result+"' height=100 width=100 style='cursor:pointer' onclick='delImg(this)' >";
+			str += "<img src='/upload/"+resp.result+"' height=65 width=65 style='cursor:pointer' onclick='delImg(this)' >";
             str += '</span>';
 
             $(str).appendTo('#here');
@@ -276,7 +276,7 @@ $(document).ready(function(){
 	<span>
 	<img src="/pictures/mp4icon.png" height=40 width=40><label class="insertproduct-label-button mt-2" for="video1">파일선택</label> 
 	<input class="insertproduct-upload-button" type="file" name="video1" id="video1" accept=".mp4, .mov, .wmv, .avi, .avchd, .flv, .f4v, .swf, .mkv, .webm, .html5, .mpeg-2, .ogv">
-	<input id="insertproduct-upload-button2" type="button" id="removeVideo" value="취소">
+	<input id="insertproduct-upload-button2" type="button" value="취소">
 	<input id="videoTitle" type="text" style="display:unset" name="videoTitle" readonly>
 	<input id="newVideoTitle" type="text" style="display:none" name="NewvideoTitle" readonly>
 	
