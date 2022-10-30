@@ -105,18 +105,35 @@ $(document).ready(function(){
   
   // 기존 동영상 file 에 등록 
   if( video!="" ){
-	  video.substring();
-	$("#videoTitle").val(video);  
+	  let onlyVideoName = video.substring(0,video.indexOf("(")) + video.substring(video.indexOf(")")+1) ;
+	$("#videoTitle").val(onlyVideoName);  
   }
   
   // 새로운 동영상 선택 시, 표기 바꿔주기   
   $("#video1").change(function(e) {
+	  //용량제한
+	  var videoSize = document.getElementById("video1").files[0].size;
+		if(videoSize > 1024 * 1024 * 10){
+			// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+			alert('10MB 이하 동영상만 등록할 수 있습니다.\n\n' + '현재파일 용량 : ' + (Math.round(videoSize / 1024 / 1024 * 100) / 100) + 'MB');
+			$("#video1").val("");
+			$("#videoTitle").val("");
+			$("#newVideoTitle").val("");
+			return false;
+		}
+	  
+	  // 표기 바꾸기
 	  let video1 = $("#video1").val();
 	  $("#videoTitle").val("");
 	  $("#videoTitle").attr("style","display:none");
 	  $("#newVideoTitle").val(video1);
 	  $("#newVideoTitle").attr("style", "display:unset");
   });
+  
+  
+  
+  
+  
   
 	//동영상 업로드 취소 
 	$("#insertproduct-upload-button2").on("click", function(){
