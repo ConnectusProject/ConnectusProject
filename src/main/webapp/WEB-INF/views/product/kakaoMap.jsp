@@ -27,87 +27,83 @@ let sessionCoords = '${sessionCoords}';
 
 
 
-	function kakaoMap(meetingLat, meetingLon){
+// 카카오맵 API
+function kakaoMap(meetingLat, meetingLon){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)), // 지도의 중심좌표
         level: 10 // 지도의 확대 레벨
     };
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 
-// 마커가 표시될 위치입니다 
-var markerPosition1  = new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)); 
-var markerPosition2  = new kakao.maps.LatLng(Number(meetingLat), Number(meetingLon)); 
-
-// 마커를 생성합니다
-var marker1 = new kakao.maps.Marker({
-    position: markerPosition1
-});
-
-var marker2 = new kakao.maps.Marker({
-    position: markerPosition2
-});
-
-
-
-// 마커가 지도 위에 표시되도록 설정합니다
-marker1.setMap(map);
-marker2.setMap(map);
-
+	// 마커가 표시될 위치입니다 
+	var markerPosition1  = new kakao.maps.LatLng(Number(sessionLat), Number(sessionLon)); 
+	var markerPosition2  = new kakao.maps.LatLng(Number(meetingLat), Number(meetingLon)); 
 	
-
-//마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-var iwContent1 = '<div style="width:100%; padding:2px;">내 위치</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-var iwContent2 = '<div style="width:100%; padding:2px;">약속장소</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-
-var infowindow1 = new kakao.maps.InfoWindow({
-    content : iwContent1
-    
-});
-
-var infowindow2 = new kakao.maps.InfoWindow({
-    content : iwContent2
-});
-
-
-
-// 마커에 마우스오버 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'mouseover', function() {
-  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-    infowindow1.open(map, marker1);
-});
-kakao.maps.event.addListener(map, 'mouseover', function() {
-	  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-	    infowindow2.open(map, marker2);
+	// 마커를 생성합니다
+	var marker1 = new kakao.maps.Marker({
+	    position: markerPosition1
 	});
-
-
-
-
-// 마커에 마우스아웃 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'mouseout', function() {
-    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-    infowindow1.close();
-});
-//마커에 마우스아웃 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'mouseout', function() {
-    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-    infowindow2.close();
-});
 	
-	}// kakaoMap 
+	var marker2 = new kakao.maps.Marker({
+	    position: markerPosition2
+	});
 	
+	
+	
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker1.setMap(map);
+	marker2.setMap(map);
+	
+		
+	
+	//마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+	var iwContent1 = '<div style="width:100%; padding:2px;">내 위치</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	var iwContent2 = '<div style="width:100%; padding:2px;">약속장소</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	
+	var infowindow1 = new kakao.maps.InfoWindow({
+	    content : iwContent1
+	    
+	});
+	
+	var infowindow2 = new kakao.maps.InfoWindow({
+	    content : iwContent2
+	});
+	
+	
+	
+	// 마커에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'mouseover', function() {
+	  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+	    infowindow1.open(map, marker1);
+	});
+	kakao.maps.event.addListener(map, 'mouseover', function() {
+		  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		    infowindow2.open(map, marker2);
+		});
+	
+	
+	
+	
+	// 마커에 마우스아웃 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'mouseout', function() {
+	    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+	    infowindow1.close();
+	});
+	//마커에 마우스아웃 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'mouseout', function() {
+	    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+	    infowindow2.close();
+	});
+		
+		}// kakaoMap 
+		
 
 
 
-
-
-
-
-
-
+// 다음 주소찾기 API
 function sample6_execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete: function (data) {
@@ -168,6 +164,7 @@ function sample6_execDaumPostcode() {
 } //Daum 주소찾기
 
 	
+// 카카오 geoCoder API 	
 function KakaoGeocoder() {
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
@@ -193,21 +190,11 @@ function KakaoGeocoder() {
 		
 	}); // addressSearch     
 } // kakaoGeocoder
-	
-	
-	
-	
-
-	
-	
 
 </script>
-
-
 </head>
+
 <body>
-
-
 <div class="chatroom-map" id="map">
 </div>
 <div class="chatroom-map2">
@@ -219,9 +206,6 @@ function KakaoGeocoder() {
 		
 		<button id="PlaceBTN" class="signup-check-button chatroom-location-button" type="button" onclick="sample6_execDaumPostcode()"
 			value="주소찾기">약속장소</button>
-		
-		<!-- 맵 LocalStorage 버튼 여기! -->	
-		
 			
 	</div>
 		<div>
@@ -248,16 +232,10 @@ if(storageCoords != "" && storageCoords != null){
 	let location2 = document.querySelector('.chatroom-location-input');
 	let button = document.querySelector('.map-in-out');
 	let map = document.querySelector('.chatroom-map');
+	// 여기 map2 선언하면 지도 확대나 사용이 안됩니다. 확인필요!
 	let map2 = document.querySelector('.chatroom-map2');
 
 	let count = 0;
-
-
-
-	
-
-
-
 
 	button.addEventListener('click', function(){
 		count ++;
@@ -272,20 +250,12 @@ if(storageCoords != "" && storageCoords != null){
 		map.style.transform = 'translateX(101%)';
 		map2.style.transform = 'translateX(101%)';
 				},10)
-
-		}else{
-		map.style.transform = 'translateX(0px)';
-		map2.style.transform = 'translateX(0px)';
+			}else{
+			map.style.transform = 'translateX(0px)';
+			map2.style.transform = 'translateX(0px)';
+			}
 		}
-		}
-
-
-
-
-
-
 	})
-
 </script>
 
 
