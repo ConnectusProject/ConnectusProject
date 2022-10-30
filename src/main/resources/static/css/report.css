@@ -1,6 +1,5 @@
 .allreport-container {
-  width: 100%;
-  padding-left: 10%;
+  width: 1280px;
 }
 
 .report-title {
@@ -101,10 +100,6 @@
   background-color: #6462cb;
   color: #cddfe0;
   border-radius: 10px;
-}
-
-.story-container {
-  padding-left: 10%;
 }
 
 .story-box {

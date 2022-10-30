@@ -28,9 +28,10 @@
 		<div class="content-container">
 
 			<div class="mypage-container">
-				<p class="mypage-modify-title">비밀번호 변경</p>
+				
 				<form class="modify-box" name="passwordModifyForm" action="passwordModify" method="post">
-					<table>
+					<p class="mypage-modify-title">비밀번호 변경</p>
+					<table style="margin-top : 3rem">
 						<tr>
 							<td>아이디</td>
 							<td><input type=text name=userid id=userid value="${member.userid }" readonly></td>

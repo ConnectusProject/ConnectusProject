@@ -91,7 +91,7 @@
                             $("#zzimSpan").html("<img src='/pictures/heart2.png' style=cursor:pointer; width=30; height=30'>")
                         }
                         else if (resp.result == 1) {
-                            alert("찜 취소!");
+                          
                             $("#zzimSpan").html("<img src='/pictures/heart.png'style=cursor:pointer; width=30; height=30'>")
                         }
                     } // success 
@@ -130,7 +130,7 @@
                             if(resp.reservedNow==0){
                             	$("#reservedNowSpan").html("");
                             }else if(resp.reservedNow==1){
-                            	$("#reservedNowSpan").html("렌탈중");
+                            	$("#reservedNowSpan").html("렌탈중 &nbsp;");
                             }
 
                         } // success 
@@ -291,7 +291,7 @@ function paymentComplete(data){
 			
 			<!-- 예약중 표시 -->
             <c:if test="${oneProduct.reservedNow==1 }">
-            <c:set var="reservedNowImg" value="렌탈중"/>
+            <c:set var="reservedNowImg" value="렌탈중 &nbsp;"/>
             </c:if>
             <c:if test="${oneProduct.reservedNow==0 }">
             <c:set var="reservedNowImg" value=""/>
@@ -300,7 +300,9 @@ function paymentComplete(data){
             <!-- 이미지 carousel 로 띄우기 -->
             <div class="oneproduct-container">
                     <div class="product-detail-img">
+                       
                         <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="false">
+                            
                             <div class="carousel-inner detail-carousel">
                             	
                                 
@@ -376,15 +378,22 @@ function paymentComplete(data){
                                 </c:if>
                                 </c:if>
                                 
+                                
+                                 
+                                <c:if test="${empty oneProduct.img1}">
+                                    <div class="carousel-item active">
+                                        <img alt="상품이미지가 없습니다." src="/pictures/noimg.png">
+                                    </div>
+                                </c:if>
                    
                                 
                             </div>
-                            <button class="carousel-control-prev" type="button"
+                            <button class="carousel-control-prev carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="next-icon" aria-hidden="true">◀</span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button"
+                            <button class="carousel-control-next carousel-control-button" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                 <span class="next-icon" aria-hidden="true">▶</span>
                                 <span class="visually-hidden">Next</span>
@@ -396,13 +405,17 @@ function paymentComplete(data){
                     <div class="oneproduct-detail-textarea">
                     <div class="product-detail-content">
                         <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
-                        <span class="detail-title-title"> ${oneProduct.title}</span>
-                        <span id="reservedNowSpan" class="detail-title-reserved" style=color:red>${reservedNowImg}</span>
+                        <span class="detail-title"> 
+                        <%-- <div id="reservedNowSpan" class="detail-title-reserved" style="color:red"> ${reservedNowImg}  </div>  --%>
+                        <div class="detail-title-title"> 
+                        <span id="reservedNowSpan" style="color:red"> ${reservedNowImg}  </span>  ${oneProduct.title}
+                        </div>
+                        </span>
                         <span class="detail-title-hour">${dateDiffShow} (${oneProduct.createdAt})</span>
                         <span class="detail-title-location">${oneProduct.boardRegion} ${distance}</span>
                         <span  class="detail-title-price">1일 ${priceFormat}원</span>
                         <span class="detail-title-owner">${oneProduct.userId}</span>
-                        <div class="product-detail-text">${oneProduct.contents}</div>
+                        <textarea class="product-detail-text" disabled>${oneProduct.contents}</textarea>
                     </div>
                     <div class="product-detail-content-button">
 
@@ -413,10 +426,10 @@ function paymentComplete(data){
                            
                         </form> -->
                         <button class="reserve-on-button" id="reserve" type="submit" value="예약하기">예약하기</button>
-                        <form action="http://localhost:8090/orderpaywritingform" method="post">
+                        <form action="/orderpaywritingform" method="post">
                         <input type="hidden" value="${oneProduct.title}" name="producttitle" readonly>
                        <input type="hidden" value="${oneProduct.price}" name="price1" readonly>
-                        <input type="submit" class="payment-on-button"  value="결제하기">
+                        <input class="pay-on-button" type="submit" class="payment-on-button"  value="결제하기">
 						</form>
 						
                         <!-- 수정, 삭제 버튼 -->
@@ -460,10 +473,6 @@ function paymentComplete(data){
                             <c:if test="${sessionid == oneProduct.userId && not empty sessionid }">
                                <button class="chat-on-button" id="Owner_FakeChatBTN">채팅하기</button>
                             </c:if>
-                            
-                            
-
-                            <!-- 찜 버튼 -->
                          
                         </div>
                     </div>
@@ -472,6 +481,7 @@ function paymentComplete(data){
 
                 </div>
             </div> 
+            <br>
 
         
             <div class="reserved-connect-container mt-5">
@@ -482,7 +492,7 @@ function paymentComplete(data){
     
                     <tr class="reserved-table-title">
                         <th>번호</th>
-                        <th readonly>예약시작</th>
+                        <th>예약시작</th>
                         <th>예약종료</th>
                         <th>희망비용</th>
                         <th>빌리는사람</th>
@@ -529,6 +539,8 @@ function paymentComplete(data){
         </div>
         
 </div> 
+
+
         
             <!-- 예약 테이블 노출 설정 -->
     <script>
@@ -561,6 +573,20 @@ function paymentComplete(data){
 
     </script>
 
+
+    <script>
+        /* let reserve = document.querySelector('.detail-title-reserved');
+        let oneProductTitle = document.querySelector('.detail-title-title');
+
+        console.log(reserve.innerText)
+
+        if(reserve.innerText == ""){
+            reserve.classList.add('close');
+            oneProductTitle.style.width = "100%";
+        }
+ */
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

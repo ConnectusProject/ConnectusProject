@@ -9,12 +9,10 @@ $fontColor :#cddfe0;
 
 
 .chat-container {
-    width: 100%;
+    width: 1280px;
     @include flexbox(left, none);
     flex-direction: column;
-    padding-left : 10%;
     position : relative;
-    z-index: 5;
 }
 
 .chatTitle {
@@ -25,7 +23,7 @@ $fontColor :#cddfe0;
 }
 
 .chatlist-box {
-    width: 40%;
+    width: 50%;
     margin-right: 2%;
     @include flexbox(left, none);
     flex-direction: column;
@@ -57,6 +55,10 @@ $fontColor :#cddfe0;
     top: 15%;
     left: 15%;
     font-size: 1.2rem;
+    width : 80%;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chat-name {
@@ -72,9 +74,9 @@ $fontColor :#cddfe0;
 }
 
 .chatroom-picture-box {
+    margin-left : -40%;
     padding : 5px;
-    margin-left : 5rem;
-    width : 35%;
+    width : 30rem;
     height : 6rem;
     background-color: rgb(236, 236, 236);
     @include flexbox(left, center);
@@ -101,8 +103,8 @@ $fontColor :#cddfe0;
 
 .chatroom-container {
     position : relative;
-    margin-left : 5rem;
-    width: 35%;
+    width: 30rem;
+    margin-left : -40%;
     @include flexbox(left, center);
     flex-direction: column;
     background-color: rgb(215, 233, 245);
@@ -110,6 +112,7 @@ $fontColor :#cddfe0;
 }
 
 .chatroom-picture-box2 {
+    
     position : absolute;
     width : 50rem;
     height : 50rem;
@@ -142,15 +145,20 @@ $fontColor :#cddfe0;
 
 .chatroom-content-box {
     width: 100%;
+    height :35rem;
+    position: relative;
    
 }
 
 .chatroom-content-message {
+    background-color:  rgb(215, 233, 245);;
+    position: absolute;
     width: 100%;
     height: 30rem;
     overflow: auto;
     overflow-x: hidden;
     padding : 2%;
+    z-index: 4;
 }
 
 .chatroom-content-message::-webkit-scrollbar {
@@ -197,8 +205,10 @@ $fontColor :#cddfe0;
 }
 
 .chatroom-content-input {
+    position : absolute;
     width : 100%;
     height : 5rem;
+    top : 20rem;
 }
 
 .chatroom-content-input-box {
@@ -209,6 +219,7 @@ $fontColor :#cddfe0;
  box-shadow: 0px -5px 10px rgb(211, 211, 211);
  position: absolute;
  z-index: 4;
+ top : 30rem;
 }
 
 .chatroom-input {
@@ -220,6 +231,7 @@ $fontColor :#cddfe0;
     bottom : 10%;
     left : 3%;
 }
+
 
 .chatroom-input-button {
     position : absolute;
@@ -241,16 +253,45 @@ $fontColor :#cddfe0;
     border-radius: 5px;
     background-color: $color;
     color: $fontColor;
+    margin-top : 27.5rem;
+    z-index: 5;
+}
+
+.chatroom-location-input {
+    width : 100%;
+    border : none;
+    border-radius: 5px;
+    background-color: $color;
+    color: $fontColor;
+    z-index: 5;
 }
 
 .chatroom-map {
-    position : absolute;
-    top :-500px;
-    right : 0%;
+    position: absolute;
+    border : solid 10px rgb(235, 235, 235);
+    right : 0rem;
     width : 90%;
-    margin : 0;
-    height : 400px;
-    opacity: 0;
+    height : 550px;
+    z-index: 1;
+    transition: all 0.5s;
+    top : 0rem;
+}
+.chatroom-map2 {
+    position: absolute;
+    border : solid 10px rgb(235, 235, 235);
+    right : 0rem;
+    width : 90%;
+    height : 550px;
+    z-index: 1;
+    transition: all 0.5s;
+    top : 0rem;
+}
+
+.map-in-out {
+    position : absolute;
+    width : 5rem;
+    height : 10rem;
+    right : -5.7rem;
     transition: all 0.5s;
 }
 

@@ -23,6 +23,14 @@
 	</script>
 
 	<script>
+		window.addEventListener('scroll', function(){
+
+			console.log(scrollY);
+		})
+
+	</script>
+
+	<script>
 		$(document).ready(function () {
 			$("#register").on('click', function () {
 				alert("성공적으로 접수되었습니다.")
@@ -45,10 +53,12 @@
 
 <body>
 	<div class="main-container">
+	
 		<!-- header-section -->
 		<jsp:include page="/WEB-INF/views/header.jsp">
 			<jsp:param value="false" name="mypage" />
 		</jsp:include>
+		<div class="background-bg"></div>
 		<!-- content-section -->
 		<div class="content-container">
 			<div class="allreport-container">

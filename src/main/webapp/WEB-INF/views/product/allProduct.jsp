@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${path}/css/header.css">
     <link rel="stylesheet" href="${path}/css/product.css">
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
+    
     <script>
         $(document).ready(function () {
             let sessionId = '${sessionScope.sessionid}';
@@ -22,6 +23,8 @@
             let search = '${search}';
             let searchLankingList = '${searchLankingList}';
             let distanceKm = '${distanceKm}'; 
+            let regionOption = '${regionOption}';
+            let region = '${region}';
 
             let smartTitle = '${smartSearchDTO.smartTitle}'
             let smartRegion = '${smartSearchDTO.smartRegion}'
@@ -31,12 +34,51 @@
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
             
             
+            // nav바 검색어 유지
+            if(search != ""){
+            	$("#search").val(search);
+            }
+            
+            // 스마트 검색 가격 입력 없을 시, 빈값으로 유지( parse 안되는 것 이용 )
+            if(smartPriceMin==0){smartPriceMin = '';}
+            if(smartPriceMax==100000000){smartPriceMax = '';}
+            
+            // 스마트 검색 입력값 유지해서 표기 
+            $("#smartTitle").val(smartTitle);
+            $("#smartStartDate").val(smartStartDate);
+            $("#smartEndDate").val(smartEndDate);
+            $("#smartPriceMin").val(smartPriceMin);
+            $("#smartPriceMax").val(smartPriceMax);
+
+            if(regionOption=="1"){
+            	$("#allRegion").attr("selected", "selected");
+            }else if(regionOption=="2"){
+            	$("#myRegion").attr("selected", "selected");
+            }else if(regionOption=="3"){
+            	$("#nearRegion").attr("selected", "selected");
+            }else if(regionOption=="4"){
+            	$("#farRegion").attr("selected", "selected");
+            }else if(regionOption=="5"){
+            	$("#searchRegion").attr("selected", "selected");
+            	$("#zzimList").html("<input type='text' name='smartRegion' value='"+ smartRegion +"'>");
+            }
+            
+            // 최신순, 가격순, 조회순 선택 시 css 적용
+            if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
+            if(orderType==1){$(".orderOne2").attr("style","font-weight:700; color: black");}
+            if(orderType==2){$(".orderTwo").attr("style","font-weight:800; color:green");}
+            if(orderType==2){$(".orderTwo2").attr("style","font-weight:700; color: black");}
+            if(orderType==3){$(".orderThree").attr("style","font-weight:800; color:green");}
+            if(orderType==3){$(".orderThree2").attr("style","font-weight:700; color: black");}
+            if(orderType==4){$(".orderFour").attr("style","font-weight:800; color:green");}
+            if(orderType==4){$(".orderFour2").attr("style","font-weight:700; color: black");}
+            
             
             // 스크롤로 물건 가져오기 
             $(window).scroll(function () {
                 var scrollHeight = $(window).scrollTop() + $(window).height();
                 var documentHeight = $(document).height();
-                if (scrollHeight == documentHeight) {
+                if (scrollHeight == documentHeight) {   // || scrollY > (scrollCount+1) * 2400
                 	// 스크롤 수 => limit 시작 index로 가져옴 
                 	scrollCount++; 
                 	
@@ -78,6 +120,10 @@ $.each(list, function(i, product){
 	if(product.zzim == 1){
 		var zzim = "<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
 	}
+	
+	// 가격 1000단위 format (regEx)
+	let formatPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
 	// 날짜 몇일전으로 설정 
 	let uploadDateString = product.createdAt;
 	let uploadDate = new Date(uploadDateString);
@@ -105,7 +151,7 @@ $.each(list, function(i, product){
                             + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
                             + '<div class="product-item-date">' + dateDiffShow + '</div>'
                             + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
-                            + '<div class="product-item-price">1일가격 : ' + product.price + '원</div>'
+                            + '<div class="product-item-price">1일가격 : ' + formatPrice + '원</div>'
                             + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
                             + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
                         + '</div>'
@@ -247,6 +293,7 @@ $.each(list, function(i, product){
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
+        <div class="background-bg"></div>
         <div class="content-container">
 
             <div class="allproduct-container">
@@ -256,19 +303,19 @@ $.each(list, function(i, product){
                     <div class="smart-search-title">Connect</div>
                     <!-- <div class="smart-search-box-design"></div> -->
                  
-                <input class="smart-keyword" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input class="smart-search-width" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
-                <input type="number" name="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
+                <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
+                <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
+                <input type="number" name="smartPriceMax" id="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
                 <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                ~<input id="smartEndDate" class="smart-keyword" onchange="printName2()" type="date" name="smartEndDate">
+                ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" onchange="printName2()" type="date" name="smartEndDate">
                 <select id="regionSelect">
-                <option>모든 동네</option>
-                <option>내 동네</option>
-                <option>가까운 동네</option>
-                <option>먼 동네</option>
-                <option>동네 검색</option>
+                <option id="allRegion">모든 동네</option>
+                <option id="myRegion">내 동네</option>
+                <option id="nearRegion">가까운 동네</option>
+                <option id="farRegion">먼 동네</option>
+                <option id="searchRegion">동네 검색</option>
                 </select>
-                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" name="smartRegion" value="동"></span>
+                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 <div class="smart-search-result-box">
@@ -280,7 +327,7 @@ $.each(list, function(i, product){
                  <div class="zzimproduct-list-container">
 
                     <div  class="zzimproduct-list-box">
-                    <p class="zzim-title" id="zzimListLink"><a href="/mypage?zzimListLink=1">찜 리스트</a></p>
+                    <p class="zzim-title" id="zzimListLink">찜 리스트<a class="zzim-link" href="/mypage?zzimListLink=1">></a></p>
 				    <div id="zzimProducts" class="zzim-product">
                         <c:forEach items="${zzimProducts}" var="zzimProduct" varStatus="status">
                             <div class="zzim-product2">
@@ -306,22 +353,22 @@ $.each(list, function(i, product){
                 <div class="allproduct-product-box" id="appendScroll">
                     <div class="allproduct-item-array">
                         <c:if test="${searchType==1 }">
-                            <a class="product-array-button" href="/allproduct/1/1">✔ 최신순 </a>
-                            <a class="product-array-button" href="/allproduct/1/2">✔ 낮은 가격순 </a> 
-                            <a class="product-array-button" href="/allproduct/1/3">✔ 높은 가격순 </a>
-                            <a class="product-array-button" href="/allproduct/1/4">✔ 인기순 </a>
+                            <a class="product-array-button" href="/allproduct/1/1"><span class="orderOne">✔ </span><span class="orderOne2">최신순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/2"><span class="orderTwo">✔ </span><span class="orderTwo2">낮은 가격순</span></a> 
+                            <a class="product-array-button" href="/allproduct/1/3"><span class="orderThree">✔ </span><span class="orderThree2">높은 가격순</span> </a>
+                            <a class="product-array-button" href="/allproduct/1/4"><span class="orderFour">✔ </span><span class="orderFour2">인기순</span> </a>
                             </c:if>
                             <c:if test="${searchType==2 }">
-                            <a class="product-array-button" href="/allproduct/2/1?search=${search}">✔ 최신순</a> 
-                            <a class="product-array-button" href="/allproduct/2/2?search=${search}">✔ 낮은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/2/3?search=${search}">✔ 높은 가격순</a>
-                            <a class="product-array-button"href="/allproduct/2/4?search=${search}">✔ 인기순</a>
+                            <a class="product-array-button" href="/allproduct/2/1?search=${search}"><span class="orderOne">✔ 최신순</span></a> 
+                            <a class="product-array-button" href="/allproduct/2/2?search=${search}"><span class="orderTwo">✔ 낮은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/2/3?search=${search}"><span class="orderThree">✔ 높은 가격순</span></a>
+                            <a class="product-array-button"href="/allproduct/2/4?search=${search}"><span class="orderFour">✔ 인기순</span></a>
                             </c:if>
                             <c:if test="${searchType==3 }">
-                            <a class="product-array-button" href="/allproduct/3/1">✔ 최신순</a>
-                            <a class="product-array-button" href="/allproduct/3/2">✔ 낮은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/3/3">✔ 높은 가격순</a>
-                            <a class="product-array-button" href="/allproduct/3/4">✔ 인기순</a>
+                            <a class="product-array-button" href="/allproduct/3/1"><span class="orderOne">✔ 최신순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/2"><span class="orderTwo">✔ 낮은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/3"><span class="orderThree">✔ 높은 가격순</span></a>
+                            <a class="product-array-button" href="/allproduct/3/4"><span class="orderFour">✔ 인기순</span></a>
                             </c:if>
                             
                     </div>
@@ -414,8 +461,8 @@ $.each(list, function(i, product){
 
  
     </script>
-
-
+    
+    
     <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

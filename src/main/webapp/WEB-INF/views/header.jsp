@@ -60,95 +60,83 @@
 			
 			
 			// 채팅 알림
+	if (sessionId != "") {
+			getUnread();
+			getInfiniteUnread(); 
+		} 
 			
+	function getUnread() {
+			$.ajax({
+					url: "/chatUnreadAlert/ajax",
+					type: "POST",
+					data: JSON.stringify({
+					sessionId: sessionId}) ,
+					dataType: "json",
+					contentType: "application/json",
+					success: function(result) {
+						if (result >= 1) {
+							showUnread(result);
+						} else {
+							showUnread('');
+						}
+					} //success
+				});  //ajax
+			} // getUnread
 			
+	function getInfiniteUnread() {
+			setInterval(() => {
+					getUnread();}, 1000);
+			}
 			
+	function showUnread(result) {
+			$('#messageAlert').html(result);
+			}
 			
-			if (sessionId != "") {
-							getUnread();
-							getInfiniteUnread(); 
-							} 
-			
-			
-				function getUnread() {
-										$.ajax({
-											url: "/chatUnreadAlert/ajax",
-											type: "POST",
-											data: JSON.stringify({
-												sessionId: sessionId
-											}) ,
-											dataType: "json",
-											contentType: "application/json",
-											success: function(result) {
-												if (result >= 1) {
-													showUnread(result);
-													
-												} else {
-													showUnread('');
-												}
-											}
-										});
-									}
-									
-									function getInfiniteUnread() {
-										setInterval(() => {
-											getUnread();
-										}, 1000);
-									}
-									
-									function showUnread(result) {
-										$('#messageAlert').html(result);
-									}
-			
-			
-			
-			
-			
-			
-			
-		});
-	</script>
+		});  //onload
+	
+		</script>
+		
 	<title>ConnectUs</title>
-
-	<script>
-		$(document).ready(function () {
-
-		});
-	</script>
 </head>
 
 <body>
-
-
-
 	<!--Header-->
 	<header class="header-box">
+		
 		<div class="header-menu-logo-box">
+			
 			<!-- <span><img src="../../../pictures/menu-icon.png" class="header-menu-button"></span> -->
-			<span class="header-menu-title"><img src="${path}/pictures/logo.png" alt=""> Connect Us</span>
+			<span class="header-menu-title">
+				<img src="${path}/pictures/menu-icon.png" class="header-menu-button">
+				<img src="${path}/pictures/logo.png" alt="">
+				<span style="color:#6462cb;">C</span> onnect <span style="color:#6462cb; margin-left:0.5rem;"> U</span>s
+			</span>
 		</div>
 		<!-- navSearch -->
 		<div class="header-search-box">
 			<div class="input-group header-search-box-inner">
 			<form action="/allproduct/2/1" class="header-search-box-inner2">
-				<input class="header-search-input" type="text" name="search" placeholder="검색">
+				<div class="search-input">
+				<input class="header-search-input" type="text" id="search" name="search" placeholder="검색">
 		
 				<button class="btn btn-outline-secondary header-search-button close" type="submit"
 					id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+				</div>
 
 				<div class="rank-container" id="oneRank">
 
 					<div class="rank-box">
 						<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span> </a><br> 
+						<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span class="rank-item-num" style=color:orange>${vs.count}</span><span id="rank-item2">${searchString}</span> </a><br> 
 						</c:forEach>
 
 						</div>
 					</div>
 					<div class="rank-container2" id="oneRank">
 						<div class="rank-box2 close">
+							<p>실시간 검색어</p>
 							<c:forEach items="${searchLankingList}" var="searchString" varStatus="vs" begin="0">
-							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span>${vs.count}</span><span>${searchString}</span>  </a><br> 
+							<a class="rank-item" href="/allproduct/2/1?search=${searchString}" ><span class="rank-item-num"  style=color:orange>${vs.count}</span><span id="rank-item2">${searchString}</span>  </a><br> 
 							</c:forEach>
 	
 					</div>
@@ -176,7 +164,7 @@
     			</div> -->
     			
     			<div class="header-notice">
-    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:red></span></a>
+    			<a href="/chatList"><img src="/pictures/notice.png" width="23">채팅 &nbsp <span id="messageAlert" style=color:orange></span></a>
     			</div>
 					<div>
 					<a  class="manager-button"  href="/admin_memlist">관리자</a>
@@ -192,7 +180,6 @@
 		<div class="up">
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
-		<span><img src="${path}/pictures/menu-icon.png" class="header-menu-button"></span>
 		<% if(session.getAttribute("sessionid")==null) { %>
 			<div class="basic-menu-box">
 
@@ -344,22 +331,7 @@
 			rankBox2.classList.add('close');
 		})
 
-
-
-
-
-
 // clearTimeout(timeoutId);
-
-
-
-
-
-
-
-
-
-
 
 		// let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
 
@@ -385,16 +357,6 @@
 		// 	},2000*10)
 		// }
 		// 	}, 2000*11)
-
-
-	
-			
-
-			
-
-			
-		
-
 
 	</script>
 

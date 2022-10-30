@@ -328,6 +328,27 @@ public class ProductController {
 			smartSearchDTO.setSmartRegion("동");
 		}
 		
+		// 검색조건 넘기기 
+		String regionOption = "";
+		if(smartSearchDTO.getSmartRegion().equals("동")) {
+			regionOption = "1";
+		}else if( !region.equals("동") && smartSearchDTO.getSmartRegion().equals(region)) {
+			regionOption = "2"; 
+		}else if(!smartSearchDTO.getSmartRegion().equals("동") && !smartSearchDTO.getSmartRegion().equals(region)) {
+			regionOption = "5";
+		}
+		
+		if(distanceKm != null) {
+			if( distanceKm.equals("5")) {
+			regionOption ="3";
+			}
+			if(distanceKm.equals("15")) {
+			regionOption ="4";
+			}
+		}
+			
+		
+		
 		// 검색어 순위 반영
 		if(smartSearchDTO.getSmartTitle()!=null && !smartSearchDTO.getSmartTitle().isBlank() && !smartSearchDTO.getSmartTitle().isEmpty()) {
 		String search = smartSearchDTO.getSmartTitle();
@@ -418,6 +439,7 @@ public class ProductController {
 		model.addAttribute("orderType", 1);
 		model.addAttribute("searchType", 4);	
 
+		model.addAttribute("regionOption", regionOption);
 		model.addAttribute("smartSearchDTO", smartSearchDTO);		
 		model.addAttribute("distanceKm", distanceKm);
 		model.addAttribute("zzimProducts", zzimProducts);	
@@ -447,10 +469,12 @@ public class ProductController {
 			distance = "(알수없는 위치)";
 		}else if(distance_double!=null) {
 			IntDistance = distance_double.intValue();
-			if(IntDistance==0) {
-				distance = "(1km 이내)";
+			if(IntDistance==0 || IntDistance <= 1) {
+				distance = "<span style=color:#32CD32>(1km 이내)</span>";
+			}else if(IntDistance <= 5) {
+				distance = "<span style=color:orange>(" + IntDistance + "km 거리)</span>";	
 			}else {
-			distance = "(" + IntDistance + "km 거리)";
+				distance = "<span style=color:#FF4500>(" + IntDistance + "km 거리)</span>";
 			}
 		}
 		
@@ -536,7 +560,6 @@ public class ProductController {
 		
 		String originalname1 = viedoFile.getOriginalFilename();
 		if(originalname1 != null && !originalname1.isEmpty()) {
-		System.out.println("오리지널 :"+originalname1);
 		String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
 		String extname = originalname1.substring(originalname1.indexOf("."));
 		String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;
@@ -622,7 +645,6 @@ public class ProductController {
 	
 	String originalname1 = viedoFile.getOriginalFilename();
 	if(originalname1 != null && !originalname1.isEmpty()) {
-	System.out.println("오리지널 :"+originalname1);
 	String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
 	String extname = originalname1.substring(originalname1.indexOf("."));
 	String newname = onlyfilename + "(" + UUID.randomUUID().toString()+")" + extname;

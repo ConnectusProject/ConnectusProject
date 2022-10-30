@@ -13,8 +13,7 @@ a {
 }
 
 .list-container {
-    margin-left : 10%;
-    width : 80%;
+    width : 1280px;
     @include flexbox(left, center);
     flex-direction: column;
 }
@@ -276,6 +275,26 @@ height : 50%;
     font-size: 0.7rem;
     margin-left: 1rem;
     color: grey;
+}
+
+.list-update-file-button {
+    border : none;
+    width : 5rem;
+    height : 2rem;
+    border-radius: 5px;
+    color : white;
+    background-color: $color;
+    @include flexbox(center, center);
+}
+
+.list-write-file-button {
+    border : none;
+    width : 5rem;
+    height : 2rem;
+    border-radius: 5px;
+    color : white;
+    background-color: $color;
+    @include flexbox(center, center);
 }
 
 
