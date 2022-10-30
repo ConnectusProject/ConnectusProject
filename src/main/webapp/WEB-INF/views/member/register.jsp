@@ -405,25 +405,31 @@
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					$("#coords").val(coords);
 		/* console.log(coords); */			
-					  locationarea(); 
+					  
+			var strCoords = coords.toString(); 
+	        var registerX = strCoords.substring(1, strCoords.indexOf(','));
+	        var registerY = strCoords.substring(strCoords.indexOf(',')+2, strCoords.length-1);
+        	locationarea(registerX, registerY); 
 					
 				}
 			}); // addressSearch     
 		}
 		
+		
+		
 <%-- 		<%@include file="/WEB-INF/views/maps/keywordList.jsp"%> - --%>
-		 function locationarea(){
+		 function locationarea(registerX, registerY){
 			
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(Number(registerX), Number(registerY)), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
 		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+		var markerPosition  = new kakao.maps.LatLng(Number(registerX), Number(registerY)); 
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({

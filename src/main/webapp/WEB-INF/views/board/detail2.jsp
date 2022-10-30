@@ -11,6 +11,7 @@
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<link rel="stylesheet" href="${path}/css/header.css">
 	<link rel="stylesheet" href="${path}/css/list.css">
+	<link rel="stylesheet" href="${path}/css/comment.css">
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
 	<script>
 
@@ -95,7 +96,7 @@
 
 								+ "<input class='commentSeq' type='hidden' name='commentSeq' value=" + res.commentSeq + ">"
 // === 여기 수정삭제 버튼 입니다 ===
-								+ (sessionId == res.writer ? "<div class='detail-comment-button'><input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'></div>" : "")
+								+ (sessionId == res.writer ? "<input class='updateBtn' type='button' value='수정'><input class='deleteBtn' type='button' value='삭제'>" : "")
 							);
 							$("#commentNum").html("댓글 " + listNum);
 							$("#contents").val('');
