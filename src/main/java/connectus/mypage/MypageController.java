@@ -56,6 +56,10 @@ public class MypageController {
 		List<BoardDTO> list2 = myserv.allMyBoard2(userid);		
 		int boardlength2 = list2.size();
 		
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
+				
+		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("boardlength2", boardlength2);
 		model.addAttribute("allmyboard2",list2);
 		//찜목록

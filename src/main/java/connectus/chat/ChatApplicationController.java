@@ -82,7 +82,11 @@ public class ChatApplicationController {
     		String img6 = chatRoom.getImg6();
     		// 세션 위치정보 보내기 
     		String sessionCoords = productDAO.getCoords(sessionId);
-
+    		
+    		// 검색랭킹 
+    		List<String> searchLankingList = productDAO.searchLanking();
+    		
+    		model.addAttribute("searchLankingList", searchLankingList);
     		model.addAttribute("sessionCoords", sessionCoords);
     		model.addAttribute("img1", img1);
     		model.addAttribute("img2", img2);
@@ -132,6 +136,10 @@ public class ChatApplicationController {
 		// 세션 위치정보 보내기 
 		String sessionCoords = productDAO.getCoords(sessionId);
 		
+		// 검색랭킹 
+		List<String> searchLankingList = productDAO.searchLanking();
+				
+		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("sessionCoords", sessionCoords);
 		model.addAttribute("img1", img1);
 		model.addAttribute("img2", img2);
@@ -153,6 +161,9 @@ public class ChatApplicationController {
     // 채팅방 리스트 
     @RequestMapping(value="/chatList", method=RequestMethod.GET)
    	public String getChatList(Model model, HttpSession session) {
+    	// 검색랭킹 
+    	List<String> searchLankingList = productDAO.searchLanking();
+    	model.addAttribute("searchLankingList", searchLankingList);
 
    		 return "chat/chatList";
    	}
