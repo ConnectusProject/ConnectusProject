@@ -54,12 +54,14 @@ public class ProductController {
 	// 물품 조회
 	@GetMapping("/allproduct/{searchType}/{orderType}")
 	public String allProduct(Model model, HttpSession session, String item, String search, @PathVariable("searchType")int searchType, @PathVariable("orderType")int orderType) throws Exception {
-		// 지역 set 
-		String sessionid = (String)session.getAttribute("sessionid");
-		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = "동"; 
-		if(extraaddr != null) {
-		region = extraaddr.substring(2,extraaddr.length()-1); }
+		String sessionid = null;
+		// 지역 set 
+		if(session.getAttribute("sessionid")!=null) {
+		sessionid = (String)session.getAttribute("sessionid");
+		String extraaddr = memberDAO.getRegion(sessionid);
+		region = extraaddr.substring(2,extraaddr.length()-1); 
+		}
 		
 		List<ProductDTO> list = new ArrayList<>();
 		// 조회 Type set ( 1 = 전체 | 2 = nav검색 | 3 = 내동네 검색 ) 
@@ -131,6 +133,7 @@ public class ProductController {
 		}
 		
 		
+		if(sessionid != null) {
 		// 찜 set 
 		for (ProductDTO dto : list) {
 			int productseq = (int)dto.getId();
@@ -168,6 +171,7 @@ public class ProductController {
 				}
 			} // inner for 
 		} //  outer for 
+	} // if 
 		
 		// 상품개수 
 		int productlength = list.size();
