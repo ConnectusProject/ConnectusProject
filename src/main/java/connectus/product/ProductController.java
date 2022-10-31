@@ -435,7 +435,10 @@ public class ProductController {
 		int productlength = list.size();
 		// 찜목록 리스트   
 		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
-
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
+		
+		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("orderType", 1);
 		model.addAttribute("searchType", 4);	
 
@@ -495,6 +498,10 @@ public class ProductController {
 		List<ReservationDTO> reservList = productService.allReservation(productid);
 		int reservLength = reservList.size();
 		
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
+				
+		model.addAttribute("searchLankingList", searchLankingList);		
 		model.addAttribute("sessionCoords", sessionCoords);
 		model.addAttribute("distance", distance);
 		model.addAttribute("reservLength", reservLength);
@@ -525,6 +532,11 @@ public class ProductController {
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = extraaddr.substring(2,extraaddr.length()-1);
+		
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
+				
+		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("region", region);
 		
 		return "product/insertProductForm";
@@ -607,6 +619,10 @@ public class ProductController {
 	@GetMapping("/product/{productid}/update")
 	public String updateProduct(@PathVariable("productid")int productid, Model model) {
 		model.addAttribute("updateProduct", productService.oneProduct(productid));
+		// 검색랭킹 
+		List<String> searchLankingList = productService.searchLanking();
+				
+		model.addAttribute("searchLankingList", searchLankingList);
 		return "product/updateProductForm";
 	}
 
