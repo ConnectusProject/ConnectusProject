@@ -514,7 +514,7 @@ $fontColor :#cddfe0;
     position : absolute;
     padding-left : 0%;
     padding-right : 0%;
-    width : 100%;
+    width : 70%;
     height : 10%;
     @include flexbox(left, center);
     bottom : 3rem;
@@ -627,6 +627,10 @@ $fontColor :#cddfe0;
     position : absolute;
     right : 6%;
     top : 0%;
+}
+
+.zzim-button {
+    z-index: 10;
 }
 
 .insertproduct-container {

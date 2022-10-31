@@ -535,7 +535,7 @@
   position: absolute;
   padding-left: 0%;
   padding-right: 0%;
-  width: 100%;
+  width: 70%;
   height: 10%;
   display: flex;
   justify-content: left;
@@ -650,6 +650,10 @@
   position: absolute;
   right: 6%;
   top: 0%;
+}
+
+.zzim-button {
+  z-index: 10;
 }
 
 .insertproduct-container {
