@@ -1,0 +1,44 @@
+.paymentlist {
+  width: 1280px;
+}
+
+.order-form-title {
+  width: 50%;
+  border-bottom: solid 2px #6462cb;
+  font-size: 1.5rem;
+  height: 3.5rem;
+}
+
+.order-form-content-box {
+  width: 50%;
+  border-bottom: solid 2px #6462cb;
+  padding-bottom: 3rem;
+  height: 9rem;
+}
+
+.order-form-content-box > p {
+  font-size: 0.8rem;
+  width: 10rem;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.order-form-content-box input {
+  border: none;
+  width: 50%;
+  font-size: 0.8;
+}
+
+.order-sub-title {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.order-form-button {
+  width: 10rem;
+  height: 2.5rem;
+  border: none;
+  background-color: #6462cb;
+  color: white;
+  border-radius: 10px;
+}/*# sourceMappingURL=order.css.map */
