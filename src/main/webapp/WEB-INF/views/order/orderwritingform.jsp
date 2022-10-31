@@ -27,7 +27,7 @@
     pay_method: "card",
     merchant_uid : 'merchant_'+new Date().getTime(),
     name : producttitle,
-    amount :100,
+    amount :productprice,
     buyer_email : "yjs7298@naver.com",
     buyer_name : sessionId,
     buyer_tel : '010-1234-5678',
