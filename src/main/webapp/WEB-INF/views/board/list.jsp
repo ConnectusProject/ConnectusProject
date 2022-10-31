@@ -12,6 +12,8 @@
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/header.css">
     <link rel="stylesheet" href="${path}/css/list.css">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+    
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
     <title>커뮤니티</title>
     <script>
@@ -86,8 +88,11 @@
                         <td style="width : 15%" ></td>
                         <td >제목</td>
                         <td style="width : 10%">작성자</td>
+                        <td style="width : 1%">작성시간</td>
                 
                     </tr>
+                    
+                    
                     <c:forEach items="${boardlst }" var="board">
 
                         <tr class="list-list">
@@ -95,11 +100,16 @@
                             <td>${board.seq }</td>
                             <td><img alt="상품이미지가없습니다." width=50 height=50
                                 src="/upload/${board.img }"></td>
-
+							
                             <td><a href="boarddetail?seq=${board.seq }">${board.title }</a>
-                                
                             </td>
                             <td>${board.writer }</td>
+                            <fmt:parseDate value="${board.writingtime}" var="now" pattern="yyyy-MM-dd" />
+                            <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="currentForm" />
+                            <td>${currentForm }</td>
+                            <%-- <fmt:formatDate var="formatRegDate" value="${writingtime}" pattern="yyyy.MM.dd"/>  --%>
+             
+             				
                         </tr>
                     </c:forEach>
                 </table>

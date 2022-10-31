@@ -46,15 +46,15 @@ $(document).ready(function() {
   <ul id="faqs-list">
       <li class="related-faq">
         <a class="faq-link" href="https://www.daangn.com/wv/faqs/103?type=karrot">
-          Q. 당근마켓 뜻이 뭔가요? (왜 당근마켓인가요?)
+          
 </a>      </li>
       <li class="related-faq">
         <a class="faq-link" href="https://www.daangn.com/wv/faqs/71?type=karrot">
-          Q. 알림은 어디서 확인하나요?
+          
 </a>      </li>
       <li class="related-faq">
         <a class="faq-link" href="https://www.daangn.com/wv/faqs/35?type=karrot">
-          Q. 알림이 안 와요!
+         
 </a>      </li>
   </ul>
     <a id="faq-category-more" href="/wv/faqs?kind=etc&amp;type=karrot">

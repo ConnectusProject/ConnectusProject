@@ -161,11 +161,11 @@ $('#requesttype').on("click", function(res){
 			
 		</div>
 		
-		<div id="div1">
-			<div id="username">${sessionid }</div>
-			<div id="userproduct1">${producttitle }</div>
-			<div id="userprice1">${price1 }</div>
-		</div>
+		<%-- <div id="div1">
+			<div type="hidden" id="username">${sessionid }</div>
+			<div type="hidden" id="userproduct1">${producttitle }</div>
+			<div type="hidden" id="userprice1">${price1 }</div>
+		</div> --%>
 	</div>
 </body>
 </html>
