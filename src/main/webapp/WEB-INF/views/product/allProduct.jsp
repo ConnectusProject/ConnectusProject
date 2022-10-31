@@ -293,7 +293,36 @@ $.each(list, function(i, product){
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
         <!-- content-section -->
-        <div class="background-bg"></div>
+        <div class="background-bg">
+
+            <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner carousel-box2">
+                  <div class="carousel-item active" id="carousel-box3">
+                    <img id="carousel-box4" src="${path}/pictures/bg1.png" >
+                  </div>
+                  <div class="carousel-item" id="carousel-box3">
+                    <img id="carousel-box4" src="${path}/pictures/bg2.png"  >
+                  </div>
+                  <div class="carousel-item " id="carousel-box3">
+                    <img id="carousel-box4" src="${path}/pictures/bg3.png"  >
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+        </div>
         <div class="content-container">
 
             <div class="allproduct-container">

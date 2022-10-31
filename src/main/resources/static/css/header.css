@@ -5,10 +5,15 @@
   font-style: normal;
 }
 @font-face {
-  font-family: "ImcreSoojin";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff") format("woff");
-  font-weight: normal;
+  font-family: "NanumBarunGothic";
   font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix") format("embedded-opentype"), url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff") format("woff"), url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf") format("truetype");
+}
+@font-face {
+  font-family: "MalgunGothic";
+  src: url(../fonts/MalgunGothic.eot);
 }
 div {
   box-sizing: border-box;
@@ -98,7 +103,8 @@ li {
   display: flex;
   justify-content: left;
   align-items: center;
-  font-family: "ImcreSoojin";
+  font-family: "MalgunGothic";
+  font-weight: 600;
 }
 
 .header-menu-title img {
