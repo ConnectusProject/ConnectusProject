@@ -22,33 +22,29 @@
             let orderType = '${orderType}';
             let search = '${search}';
             let searchLankingList = '${searchLankingList}';
-            let distanceKm = '${distanceKm}'; 
-            let regionOption = '${regionOption}';
             let region = '${region}';
+         	let distanceKm = '${distanceKm}'; 
 
-            let smartTitle = '${smartSearchDTO.smartTitle}'
-            let smartRegion = '${smartSearchDTO.smartRegion}'
-            let smartStartDate = '${smartSearchDTO.smartStartDate}'
-            let smartEndDate = '${smartSearchDTO.smartEndDate}'
+         	let regionOption = '${regionOption}';
+            let smartTitle = '${smartSearchDTO.smartTitle}';
+            let smartRegion = '${smartSearchDTO.smartRegion}';
+            let smartStartDate = '${smartSearchDTO.smartStartDate}';
+            let smartEndDate = '${smartSearchDTO.smartEndDate}';
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}'; 
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}'; 
-            
-            
-            // nav바 검색어 유지
-            if(search != ""){
-            	$("#search").val(search);
-            }
-            
-            // 스마트 검색 가격 입력 없을 시, 빈값으로 유지( parse 안되는 것 이용 )
+
             if(smartPriceMin==0){smartPriceMin = '';}
             if(smartPriceMax==100000000){smartPriceMax = '';}
             
+        if(searchType == '4'){
             // 스마트 검색 입력값 유지해서 표기 
             $("#smartTitle").val(smartTitle);
             $("#smartStartDate").val(smartStartDate);
             $("#smartEndDate").val(smartEndDate);
             $("#smartPriceMin").val(smartPriceMin);
             $("#smartPriceMax").val(smartPriceMax);
+            // 스마트 검색 가격 입력 없을 시, 빈값으로 유지( parse 안되는 것 이용 )
+            
 
             if(regionOption=="1"){
             	$("#allRegion").attr("selected", "selected");
@@ -62,16 +58,28 @@
             	$("#searchRegion").attr("selected", "selected");
             	$("#zzimList").html("<input type='text' name='smartRegion' value='"+ smartRegion +"'>");
             }
+        }
+            
+            // nav바 검색어 유지
+            if(search != ""){
+            	$("#search").val(search);
+            }
+            
             
             // 최신순, 가격순, 조회순 선택 시 css 적용
-            if(orderType==1){$(".orderOne").attr("style","font-weight:800; color:green");}
-            if(orderType==1){$(".orderOne2").attr("style","font-weight:700; color: black");}
-            if(orderType==2){$(".orderTwo").attr("style","font-weight:800; color:green");}
-            if(orderType==2){$(".orderTwo2").attr("style","font-weight:700; color: black");}
-            if(orderType==3){$(".orderThree").attr("style","font-weight:800; color:green");}
-            if(orderType==3){$(".orderThree2").attr("style","font-weight:700; color: black");}
-            if(orderType==4){$(".orderFour").attr("style","font-weight:800; color:green");}
-            if(orderType==4){$(".orderFour2").attr("style","font-weight:700; color: black");}
+            if(orderType==1){
+            	$(".orderOne").attr("style","font-weight:800; color:green");
+            	$(".orderOne2").attr("style","font-weight:700; color: black");}
+            if(orderType==2){
+            	$(".orderTwo").attr("style","font-weight:800; color:green");
+            	$(".orderTwo2").attr("style","font-weight:700; color: black");}
+            if(orderType==3){
+            	$(".orderThree").attr("style","font-weight:800; color:green");
+            	$(".orderThree2").attr("style","font-weight:700; color: black");}
+            if(orderType==4){
+            	$(".orderFour").attr("style","font-weight:800; color:green");
+            	$(".orderFour2").attr("style","font-weight:700; color: black");}
+            
             
             
             // 스크롤로 물건 가져오기 
@@ -282,13 +290,11 @@ $.each(list, function(i, product){
                 }); // 찜 onclick
             	})(i); // for - ajax 용 function
             } // for 
-        }); // onload 
+    }); // onload 
     </script>
 </head>
 
 <body>
-    
-
     <div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
