@@ -173,7 +173,7 @@
 					<a id="logoutchk" href="/logout">로그아웃</a>
 					<% } %>
 		</div>
-	</header>
+	</header>                                                                                                                                                    
 	<!--Navbar-->
 	<nav class="nav-box">
 		
@@ -181,15 +181,15 @@
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
 		<% if(session.getAttribute("sessionid")==null) { %>
-			<div class="basic-menu-box">
+			<div class="basic-menu-box">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div>
-				</div>
+					<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div> 
+				</div> 
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="/login"><img
+					<span class="menu-icon"><a href="/login"><img                                                                                                                                                                                                                                                                                                                                                                                             
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="/login">내 이웃</a></div>
 				</div>
