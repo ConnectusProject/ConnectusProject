@@ -175,13 +175,15 @@ public class ProductController {
 		
 		// 상품개수 
 		int productlength = list.size();
-		// 찜목록 리스트   
-		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
 		// 검색랭킹 
 		List<String> searchLankingList = productService.searchLanking();
+
+		// 찜목록 리스트
+		if(sessionid != null) {
+		List<ProductDTO> zzimProducts = productService.getZzimProducts(sessionid);
+		model.addAttribute("zzimProducts", zzimProducts); }
 		
 		model.addAttribute("searchLankingList", searchLankingList);
-		model.addAttribute("zzimProducts", zzimProducts);
 		model.addAttribute("region", region);
 		model.addAttribute("productlength", productlength);
 		model.addAttribute("allproduct", list);
