@@ -157,7 +157,7 @@ $('#requesttype').on("click", function(res){
 			
 		</form>
 		<div id=payment1>
-			<button onclick="requestPay()" id= "requesttype">결제하기test</button>
+			<button onclick="requestPay()" id= "requesttype">결제하기</button>
 			
 		</div>
 		
