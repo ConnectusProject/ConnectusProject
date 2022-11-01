@@ -106,7 +106,10 @@ $(document).ready(function(){
   // 기존 동영상 file 에 등록 
   if( video!="" ){
 	  let onlyVideoName = video.substring(0,video.indexOf("(")) + video.substring(video.indexOf(")")+1) ;
-	$("#videoTitle").val(onlyVideoName);  
+	  $("#videoTitle").val(video);  
+	  $("#newVideoTitle").val(onlyVideoName);  
+	  $("#videoTitle").attr("style","display:none");
+	  $("#newVideoTitle").attr("style", "display:unset");
   }
   
   // 새로운 동영상 선택 시, 표기 바꿔주기   
