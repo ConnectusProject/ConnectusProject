@@ -76,16 +76,21 @@
 }
 
 .smart-search-title {
-  width: 12%;
+  width: 18%;
   position: absolute;
   background-color: white;
   border: 2px solid #6462cb;
-  left: 44%;
+  left: 41%;
   top: -1.2rem;
   font-size: 1.5rem;
   text-align: center;
   border-radius: 50px;
   z-index: 2;
+  font-weight: 700;
+}
+
+.smart-search-title span {
+  color: #6462cb;
 }
 
 .smart-search-width {
@@ -97,27 +102,8 @@
   border: none;
   border-radius: 5px;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   box-shadow: 0px 3px 5px rgb(196, 196, 196);
-}
-
-.smart-search-result-box {
-  width: 100%;
-  height: 3rem;
-  background-color: #6462cb;
-  border-radius: 10px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  position: absolute;
-  left: 0%;
-  top: 5rem;
-  color: #cddfe0;
-  box-shadow: 0px 3px 5px rgb(196, 196, 196);
-}
-
-.smart-search-result-box div {
-  margin-left: 2rem;
 }
 
 .closebutton {
@@ -130,7 +116,7 @@
 .zzimproduct-list-container {
   position: absolute;
   right: -7rem;
-  top: 13rem;
+  top: 11rem;
   width: 10rem;
   z-index: 9;
 }
@@ -217,7 +203,7 @@
   width: 100%;
   position: absolute;
   left: 0;
-  top: 9rem;
+  top: 7rem;
   display: flex;
   justify-content: space-between;
   align-items: none;
@@ -257,11 +243,12 @@
 }
 
 .product-register {
-  width: 10rem;
+  width: 100%;
   height: 2rem;
   border-radius: 50px;
-  border: solid 2px #6462cb;
-  color: #6462cb;
+  border: none;
+  background-color: #6462cb;
+  color: white;
   top: 9.5rem;
   left: 0;
   text-align: center;
@@ -269,10 +256,14 @@
   box-shadow: 0px 3px 5px rgb(196, 196, 196);
 }
 
+.product-register:hover {
+  color: white;
+}
+
 .allproduct-product-box {
-  padding-left: 5%;
+  padding-left: 9%;
   position: absolute;
-  top: 13rem;
+  top: 11rem;
   left: 1rem;
   width: 100%;
   display: flex;
@@ -282,6 +273,7 @@
 }
 
 .allproduct-item-array {
+  margin-left: 1%;
   position: absolute;
   width: 92%;
   top: 0rem;
@@ -303,7 +295,7 @@
   position: relative;
   border: 2px solid rgb(230, 230, 230);
   border-radius: 10px;
-  box-shadow: 0px 5px 8px rgb(216, 216, 216);
+  box-shadow: 0px 5px 5px 5px rgb(214, 214, 214);
   overflow: hidden;
 }
 
@@ -397,6 +389,7 @@
 }
 
 .oneproduct-container {
+  margin-top: -3rem;
   width: 1280px;
   height: 30rem;
   display: flex;
@@ -592,7 +585,7 @@
   margin-right: 1rem;
   border: none;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   border-radius: 5px;
   width: 7rem;
 }
@@ -602,18 +595,80 @@
   margin-right: 1rem;
   border: none;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   border-radius: 5px;
+}
+
+.oneproduct-reserved-title-button {
+  background-color: #6462cb;
+  color: white;
 }
 
 .reserved-connect-container {
   width: 1280px;
   text-align: center;
+  position: relative;
+}
+
+.reserved-connect-container2 {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+
+.caution-box {
+  position: absolute;
+  width: 100%;
+  height: 10rem;
+  background-color: white;
+}
+
+.caution-table {
+  width: 100%;
+}
+
+.caution-table img {
+  width: 60%;
+  height: 60%;
+}
+
+.caution-table tr {
+  width: 100%;
+  height: 8rem;
+  border-bottom: solid 2px rgb(233, 233, 233);
+}
+
+.caution-table div {
+  width: 100%;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .reserved-connect {
   width: 100%;
   text-align: center;
+}
+
+.oneproduct-reserved-title-button-box {
+  width: 1280px;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oneproduct-reserved-title-button-box span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  border-bottom: solid 2px #6462cb;
+}
+
+.oneproduct-reserved-title-button {
+  border-right: solid 2px #6462cb;
 }
 
 .reserve-box {
@@ -629,9 +684,24 @@
   padding: 5px;
 }
 
+.reserve-box p {
+  width: 70%;
+  height: 10%;
+  border-bottom: solid #6462cb 2px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
 .reserve-box table {
   width: 100%;
-  height: 100%;
+  height: 85%;
+}
+
+.reserve-box table th {
+  font-size: 0.8rem;
 }
 
 .reserve-box table input {
@@ -645,7 +715,7 @@
 #reserve-off-button {
   border: none;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   width: 100%;
   border-radius: 5px;
 }
@@ -664,7 +734,7 @@
   bottom: 0%;
   border: none;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   width: 94%;
   height: 3rem;
   border-radius: 5px;

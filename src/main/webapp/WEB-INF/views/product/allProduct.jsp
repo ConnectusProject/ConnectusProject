@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Connect Us</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/pictures/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="${path}/css/header.css">
@@ -335,7 +336,7 @@ $.each(list, function(i, product){
 
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
-                    <div class="smart-search-title">Connect</div>
+                    <div class="smart-search-title"><span>C</span>onnect <span style="margin-left:5px">S</span>earch</div>
                     <!-- <div class="smart-search-box-design"></div> -->
                  
                 <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
@@ -353,9 +354,6 @@ $.each(list, function(i, product){
                 <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="검색">
                 </form>
-                <div class="smart-search-result-box">
-
-                </div>
                 
 
                 		<!-- 찜상품 띄우기 -->

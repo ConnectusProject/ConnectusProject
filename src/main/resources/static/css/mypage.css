@@ -51,6 +51,10 @@ li {
   font-weight: 600;
 }
 
+.mypage-title:hover {
+  cursor: pointer;
+}
+
 .mypage-info {
   width: 25rem;
   border-radius: 8px;
