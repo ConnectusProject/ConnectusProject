@@ -229,6 +229,7 @@ function paymentComplete(data){
         <!-- 예약 테이블 -->
             <form class="reserve-box close" action="/product/reservationinput" method="post">
                 <div class="reserve-box-close-button">X</div>
+                <p>예약하기</p>
                 <table>
                 <tr>
                 <th>번호 <br>  <input type="text" name="boardId" value="${oneProduct.id}" readonly></th>
@@ -482,11 +483,18 @@ function paymentComplete(data){
                 </div>
             </div> 
             <br>
-
-        
+            <div class="oneproduct-reserved-title-button-box">
+            <span class="oneproduct-reserved-title-button">예약목록</span>
+            <span class="oneproduct-reserved-title-button2">렌탈시 주의사항</span>
+            </div>
             <div class="reserved-connect-container mt-5">
-            
-                <h4>예약목록</h4>
+                <div class="caution-box close">
+                    <jsp:include page="/WEB-INF/views/product/caution.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
+    
+                </div>
+            <div class="reserved-connect-container2 ">
+
+                
                 
                 <table class="reserved-connect">
     
@@ -535,7 +543,7 @@ function paymentComplete(data){
     
                 </table>
             </div>
-
+        </div>
         </div>
         
 </div> 
@@ -575,19 +583,34 @@ function paymentComplete(data){
 
 
     <script>
-        /* let reserve = document.querySelector('.detail-title-reserved');
-        let oneProductTitle = document.querySelector('.detail-title-title');
+        let reservedButton = document.querySelector('.oneproduct-reserved-title-button');
+        let cautionButton = document.querySelector('.oneproduct-reserved-title-button2');
+        let reservedContainer = document.querySelector('.reserved-connect-container');
+        let reservedContainer2 = document.querySelector('.reserved-connect-container2');
+        let cautionBox = document.querySelector('.caution-box');
 
-        console.log(reserve.innerText)
+        cautionButton.addEventListener('click', function(){
+            cautionBox.classList.remove('close');
+            reservedContainer2.classList.add('close')
+            cautionButton.style.backgroundColor="#6462cb";
+            cautionButton.style.color="white";
+            reservedButton.style.backgroundColor="white";
+            reservedButton.style.color = "#6462cb";
 
-        if(reserve.innerText == ""){
-            reserve.classList.add('close');
-            oneProductTitle.style.width = "100%";
-        }
- */
+        })
+        reservedButton.addEventListener('click', function(){
+            reservedContainer2.classList.remove('close');
+            cautionBox.classList.add('close')
+            reservedButton.style.backgroundColor="#6462cb";
+            reservedButton.style.color="white";
+            cautionButton.style.backgroundColor="white";
+            cautionButton.style.color = "#6462cb";
+        })
+
+
 
     </script>
-
+    <script src="${path}/js/oneproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
