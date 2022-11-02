@@ -93,19 +93,11 @@
                 var scrollHeight = $(window).scrollTop() + $(window).height();
                 var documentHeight = $(document).height();
                 if (scrollHeight == documentHeight) {   // || scrollY > (scrollCount+1) * 2400
-<<<<<<< HEAD
-                	// 스크롤 수 => limit 시작 index로 가져옴 
-                	scrollCount++; 
-
-                	let list = [];
-                	
-=======
                     // 스크롤 수 => limit 시작 index로 가져옴 
                     scrollCount++;
 
                     let list = [];
 
->>>>>>> front
                     $.ajax({
                         type: "POST",
                         url: "/allproduct/ajax/" + searchType + "/" + orderType,
@@ -123,72 +115,7 @@
                         },
 
                         success: function (resp) {
-<<<<<<< HEAD
-                        	list = resp; 
-                        	
-// javascript each 반복문 돌려서 => forEach문과 같은기능을 하도록 만듬. 
-// list 는 scrollCount 를 이용해서 limit 으로 조회한 12개의 list 
-$.each(list, function(i, product){
-	//렌탈중 표시 	
-	if(product.reservedNow==1){
-		var reservedNowImg = "렌탈중"
-	}
-	if(product.reservedNow==0){
-		var reservedNowImg = ""
-	}
-	// 찜 표시 
-	if(product.zzim == 0){
-		var zzim = "<img src='/pictures/zzim-off.png' width=30 height=30 style='cursor:pointer'>"; 
-		
-	}
-	if(product.zzim == 1){
-		var zzim = "<img src='/pictures/zzim-on.png' width=30 height=30 style='cursor:pointer'>"; 
-	}
-	
-	// 가격 1000단위 format (regEx)
-	let formatPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	
-	// 날짜 몇일전으로 설정 
-	let uploadDate = new Date(product.createdAt);
-	let todayDateString = new Date().toISOString().substring(0,10);
-	let todayDate = new Date(todayDateString);
-	
-	let dateDiff = Math.abs((todayDate.getTime() - uploadDate.getTime())/(1000 * 60 * 60 *24));
-	let dateDiffShow = dateDiff + '일전';
-	
-	if(dateDiffShow=='0일전'){
-		dateDiffShow = '오늘'; 
-	}
-	
-// append 로 붙이기	
-    $("#appendScroll").append(
-    			'<div class="product-box-item" >'
-    			+ '<div id="product-item-img' + product.id + '" class="product-item-img">'
-    			+ '</div>'
-                        	+ '<span class="reserved" style=color:red>' + reservedNowImg + '</span>'
-                            + '<div class="product-item-title"> <a href="/product/' + product.id + '">' + product.title + '</a></div>'
-                            + '<div class="product-item-date">' + dateDiffShow + '</div>'
-                            + '<div class="product-item-location"><img src="${path}/pictures/location.png" alt="">' + product.boardRegion + '</div>'
-                            + '<div class="product-item-price">1일가격 : ' + formatPrice + '원</div>'
-                            + '<div class="product-item-owner" style="display:none">' + product.userId + '</div>'
-                            + '<span class="product-item-zzim" id="zzimSpan' +product.id + '">' + zzim + '</span>'
-                        + '</div>'
-    ); //append 
-    
-    // img 가져오기 
-    if(product.img1 != ""){
-		$("#product-item-img" + product.id).html('<a href="/product/' + product.id + '"><img alt="사진이 없어요" width=100% height=60% src="/upload/' + product.img1 + '"></a>');
-	}
-    
-	// append 한 품목에도 찜 효과 적용     
-    $("#zzimSpan" + product.id).on("click", function (e) {
-        if (sessionId == "") {
-            alert("로그인이 필요합니다.");
-            return false;
-        }
-=======
                             list = resp;
->>>>>>> front
 
                             // javascript each 반복문 돌려서 => forEach문과 같은기능을 하도록 만듬. 
                             // list 는 scrollCount 를 이용해서 limit 으로 조회한 20개의 list 
@@ -422,24 +349,6 @@ $.each(list, function(i, product){
 
                 <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
-<<<<<<< HEAD
-                    <div class="smart-search-title"><span>C</span>onnect <span style="margin-left:5px">S</span>earch</div>
-                 
-                <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" placeholder="검색">
-                <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin" placeholder="최소가격(₩)" step="500">
-                <input type="number" name="smartPriceMax" id="smartPriceMax" placeholder="최대가격(₩)" step="500">
-                <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" type="date" name="smartStartDate">
-                ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" type="date" name="smartEndDate">
-                <select id="regionSelect">
-                <option id="allRegion">모든 동네</option>
-                <option id="myRegion">내 동네</option>
-                <option id="nearRegion">가까운 동네</option>
-                <option id="farRegion">먼 동네</option>
-                <option id="searchRegion">동네 검색</option>
-                </select>
-                <span id="zzimList"><input class="smart-keyword" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
-                <input class="smart-search-button" type="submit" value="검색">
-=======
                     <div class="smart-search-title"><span>C</span>onnect <span style="margin-left:5px">S</span>earch
                     </div>
                     <!-- <div class="smart-search-box-design"></div> -->
@@ -464,7 +373,6 @@ $.each(list, function(i, product){
                     <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden"
                             id="smartRegion" name="smartRegion" value="동"></span>
                     <input class="smart-search-button" type="submit" value="검색">
->>>>>>> front
                 </form>
 
 
@@ -709,9 +617,6 @@ $.each(list, function(i, product){
 
         </div>
     </div>
-<<<<<<< HEAD
-    
-=======
 
     <script>
         let arrayButton = $('.product-array-button');
@@ -724,7 +629,6 @@ $.each(list, function(i, product){
     </script>
 
 
->>>>>>> front
     <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
