@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="halfresult" resultType="orderdto">
-	select * from where userid = #{userid} and productname = #{productname} and totalprice = #{totalprice}
+	select * from pay where userid = #{memberid} and productname = #{productname} and totalprice = #{productprice}
 	</select>
 	
 	<select id="orderNumber" parameterType="int">
