@@ -21,7 +21,7 @@ public interface OrderDAO {
 	
 	public int Ordertotal(int ordertotal);
 	
-	public List<OrderDTO> halfresult(String memberid, String productname, String productprice);
+	public OrderDTO halfresult(String memberid, String productname, String productprice);
 	
 	public List<OrderDTO> paymentComplete(OrderDTO dto);
 	
