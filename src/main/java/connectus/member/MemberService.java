@@ -35,6 +35,16 @@ public class MemberService  {
 			return 0;
 		}
 	}
+	
+	public int insertMember_kakao(MemberDTO dto) {
+		List<MemberDTO> list = memberDAO.onemember(dto.getUserid());
+		if(list == null || list.size() == 0) {
+			return memberDAO.insertMember_kakao(dto);
+		}
+		else {
+			return 0;
+		}
+	}
 
 	
 	public boolean idCheck(String userid) throws Exception{

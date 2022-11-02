@@ -30,21 +30,39 @@ public class MemberController {
 	@Autowired
 	private PasswordEncoder encoderPassword;
 
-	
-	//회원가입
-	@GetMapping("/register")
-	public String registerform() {
-		return "member/register";
+	//카카오 로그인 클릭
+	@GetMapping(value="login-kakao")
+	public String sign_in(@RequestParam("userid")String userid) {				
+		try {
+			List<MemberDTO> list = memserv.onemember(userid);
+			if(list.size()!= 0) {
+				System.out.println(userid);
+				session.setAttribute("sessionid", userid);
+				return "/home";
+			}else {
+				return "redirect:/registerform_kakao?userid="+userid;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "member/login";
+		}
 	}
 	
-	@PostMapping("/register")
-	public String register(@ModelAttribute MemberDTO dto) {
-		String pw = encoderPassword.encode(dto.getPw());
-		dto.setPw(pw);
-		memserv.insertMember(dto);
-		return "redirect:/login";
-		
+	@GetMapping(value = "registerform_kakao")
+	public String registerform_kakao(@RequestParam("userid")String userid,Model model) {
+		model.addAttribute("userid",userid);
+		return "member/register_kakao";
 	}
+	
+	@PostMapping(value = "registerform_kakao")
+	public String register_kakao(@ModelAttribute MemberDTO mem) {
+		try {
+			memserv.insertMember_kakao(mem);
+		} catch (Exception e) {
+		}
+		return "member/login";
+	}
+	
 	//로그인
 	@GetMapping("/login")
 	public String loginform() {
@@ -60,17 +78,29 @@ public class MemberController {
 			return "member/login";
 		}
 		else {
-			String dbpassword = list.get(0).getPw();
-			System.out.println(dbpassword);
-			if(encoderPassword.matches(pw,dbpassword)) {
-				session.setAttribute("sessionid", userid);
-				System.out.println(session.getAttribute("sessionid"));
-				return  "/home";				
+			String type = list.get(0).getUserStatus();
+			
+			if(type.equals(0)) {
+				String dbpassword = list.get(0).getPw();
+				System.out.println(dbpassword);
+				if(encoderPassword.matches(pw,dbpassword)) {
+					session.setAttribute("sessionid", userid);
+					System.out.println(session.getAttribute("sessionid"));
+					return  "/home";				
+				}
+				else {
+					System.out.println("비밀번호를 확인하세요");
+					request.setAttribute("msg", "비밀번호를 확인하세요");
+					request.setAttribute("url", "/member/login");
+					return  "redirect:/login";
+				}
 			}
 			else {
-				System.out.println("비밀번호를 확인하세요");				
-				return  "redirect:/login";
+				System.out.println("로그인 방식 확인");
+				request.setAttribute("msg", "로그인 방식을 확인해주세요");
+				return "redirect:/login";
 			}
+			
 		}
 	}
 	
@@ -87,6 +117,20 @@ public class MemberController {
 	
 	
 	//회원가입
+
+	@GetMapping("/register")
+	public String registerform() {
+		return "member/register";
+	}
+	
+	@PostMapping("/register")
+	public String register(@ModelAttribute MemberDTO dto) {
+		String pw = encoderPassword.encode(dto.getPw());
+		dto.setPw(pw);
+		memserv.insertMember(dto);
+		return "redirect:/login";		
+	}
+	
 	@ResponseBody
 	@PostMapping(value="/idCheck")
 	public String idCheck(@RequestParam(value="userid",required=true)String userid) {		

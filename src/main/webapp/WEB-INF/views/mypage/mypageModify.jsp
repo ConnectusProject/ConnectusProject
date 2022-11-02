@@ -48,7 +48,7 @@
 
 						<div>
 							<p>이메일</p>
-							<input type=text name=email id=email value="${member.email}" required oninput=emailcheck()>
+							<input type=text name=email id=email value="${member.email}" oninput=emailcheck()>
 						</div>
 						<div id="email_check"></div>
 
@@ -64,21 +64,18 @@
 
 						<div>
 							<p>전화번호</p>
-							<input type=text name=phone id=phone value="${member.phone}" required>
+							<input type=text name=phone id=phone value="${member.phone}" >
 						</div>
 						<div id="phone_check"></div>
 
 						<p class="mt-3">정보 수정을 위해 비밀번호를 입력해주세요</p>
 						<div>
-							<input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required
-								oninput="pwcheck()">
+							<input type=password name=pw id=pw placeholder="비밀번호를 입력하세요" >
 						</div>
-						<div id="pw_check"></div>
 
 
 						<div>
-							<input id="mypage-modify-button" type="submit" id="btn" value="수정하기" disabled><br>
-							<!-- <input type="button" onclick="back()" value="뒤로가기"> -->
+							<input type=button id="mypage-modify-button" value="수정하기" onclick="check()">
 						</div>
 					</form>
 
@@ -95,47 +92,11 @@
 			history.back();
 		}
 
-
-
-		let pw = $('#pw');
-		let pw2 = $('#pw2');
 		let email = $('#email');
 		let name = $('#name');
-		let btn = $('#btn');
 
-		let pw_check = false;
-		let pw2_check = false;
 		let email_check = false;
 		let name_check = false;
-
-		function pwcheck() {
-			var pw = $('#pw').val();
-			if (pw == '') {
-				$('#pw_check').text("패스워드를 입력하세요");
-				$('#pw_check').css("color", "red");
-				pw_check = false;
-				$('#btn').attr('disabled', true);
-			} else if (pw.length < 8 || pw.length > 17) {
-				$('#pw_check').text("패스워드 길이는 8자이상 16자이하 입니다");
-				$('#pw_check').css("color", "red");
-				pw_check = false;
-				$('#btn').attr('disabled', true);
-			} else if (pw.search(/\s/) != -1) {
-				$('#pw_check').text("패스워드는 공백을 포함할 수 없습니다");
-				$('#pw_check').css("color", "red");
-				pw_check = false;
-				$('#btn').attr('disabled', true);
-			} else {
-				$('#pw_check').text("패스워드 사용가능");
-				$('#pw_check').css("color", "green");
-				pw_check = true;
-				if (pw_check == true && email_check == true) {
-					$('#btn').attr('disabled', false);
-				}
-			}
-		}
-
-
 
 
 		function emailcheck() {
@@ -143,17 +104,46 @@
 			if (email == '') {
 				$('#email_check').text("이메일을 입력하세요");
 				$('#email_check').css("color", "red");
-				phone_check = false;
-				$('#btn').attr('disabled', true);
+				
 			} else {
-				email_check = true;
-				if (pw_check == true && email_check == true) {
-					$('#btn').attr('disabled', false);
-				}
+				$('#phone_check').text("사용가능한 이메일 입니다");
+				$('#phone_check').css("color", "green");
 			}
-
 		}
-		s
+
+		
+		
+		function phonecheck() {
+			var phone = $('#phone').val();
+			var regTel = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
+
+			if (phone == '') {
+				$('#phone_check').text("전화번호를 입력하세요");
+				$('#phone_check').css("color", "red");
+				
+			} else if (!regTel.test(phone)) {
+				$('#phone_check').text("올바른 전화번호를 입력하세요. ex)01012345678, 021231234");
+				$('#phone_check').css("color", "red");
+
+			} else {
+				console.log("asd");
+				$.ajax({
+					url: "phoneCheck",
+					type: 'post',
+					data: { phone: phone },
+					success: function (data) {
+						if (data == 'true') {
+							$('#phone_check').text("이미 사용중인 번호 입니다");
+							$('#phone_check').css("color", "red");
+
+						} else {
+							$('#phone_check').text("사용가능한 번호 입니다");
+							$('#phone_check').css("color", "green");
+						}
+					}					
+				});
+			}
+		}
 
 		function sample6_execDaumPostcode() {
 			new daum.Postcode({
@@ -211,7 +201,36 @@
 
 		}
 
+		function check(){
+			var df = document.modifyForm;
 
+			if(df.email.value == ""){
+				alert("이메일을 입력하세요");
+				df.sample6_postcode.focus();
+				return;
+			}
+			if(df.phone.value == ""){
+				alert("전화번호를 입력하세요 ('-'는 제외)");
+				df.phone.focus();
+				return;
+			}
+			
+			if(df.address.value == ""){
+				alert("주소를 입력하세요");
+				df.sample6_postcode.focus();
+				return;
+			}
+			if(df.pw.value == ""){
+				alert("비밀번호를 입력하세요");				
+				df.pw.focus();
+				return;
+			}
+			
+			else{
+			alert("수정되었습니다.")
+			$("form").submit();
+			}
+		}
 
 	</script>
 

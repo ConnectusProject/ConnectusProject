@@ -18,4 +18,12 @@
 		delete from PRODUCT where id=#{productid}
 	</delete>
 	
+	<delete id="deleteBoard">
+		delete from board where seq=#{boardseq}
+	</delete>
+
+	<delete id="deleteComment">
+		delete from comment where comment_seq=#{commentseq} 
+	</delete>
+	
 </mapper>
