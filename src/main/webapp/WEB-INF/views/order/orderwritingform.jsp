@@ -17,7 +17,7 @@
 
 	<script>
 
-		let sessionId = '${sessionid}';
+		//let sessionId = '${sessionid}';
 		let producttitle = '${producttitle}';
 		let productprice = '${price1}';
 		let list = [];
@@ -38,47 +38,55 @@
 				buyer_tel: '010-1234-5678',
 				buyer_addr: '서울특별시 강남구 삼성동',
 				buyer_postcode: '123-456',
-				/*  requestPay.orderNum = createOrderNum();   */
+				/* requestPay.orderNum = createOrderNum();   */
 			}, function (rsp) { // callback
+				if(rsp.success)
+			 	{ 	var msg = "성공시";
+			 		alert(msg);
+			 		
+			 		$.ajax({
+						url: "/payments/complete",
+						type: 'post',
+						datatype: 'json',
+						data: { 'memberid': sessionId, 'productname': producttitle, 'productprice': productprice },
+						success: function(resp){
+		//					list = resp;
+		alert(resp);
+								var msg = "결제가 완료되었습니다";
+								msg += '\n고유ID :' + sessionId;
+								msg += '\n실대여 품목 :' + producttitle;
+								msg += '\n결제 금액 : ' + productprice;
 
-				then(function () {
+								alert(msg); 
+						
+								
+		} // success
+		//					}//if
+							/* else {
+								var msg = "결제에 실패하였습니다";
+								msg += '에러내용 :' + rsp.error_msg;
+								alert(msg);
+							}
+	 */
+
+						 //success
+					}); //ajax end
+
+			 		
+			 		
+			 		
 					alert(createOrderNum());
 					alert("대여자 : " + sessionId + "님" + "," + "품목 : " + producttitle + "가격 :" + productprice + "원 결제완료되셨습니다.");
 
-					location.replace("/onProduct");
-				})
-				fail(function () {
-					alert("결제실패")
-					location.replace("/");
-				})
-
-
-				ajax({
-					url: "/payments/complete",
-					type: 'post',
-					datatype: 'json',
-					data: { 'memberid': sessionId, 'productname': producttitle, 'productprice': productprice },
-					success: function (resp) {
-						list = resp;
-						if (resp.result == 1) {
-							var msg = "결제가 완료되었습니다";
-							msg += '\n고유ID :' + resp.sessionId;
-							msg += '\n실대여 품목 :' + resp.producttitle;
-							msg += '\n결제 금액 : ' + resp.productprice;
-
-							alert(msg);
-						}//if
-						else {
-							var msg = "결제에 실패하였습니다";
-							msg += '에러내용 :' + rsp.error_msg;
-							alert(msg);
-						}
-
-
-					}//success
-				}); //ajax end
-
-				ajax({
+				}else{
+					var msg2 = "실패시";
+					alert(msg2);
+				}
+ 
+			//성공했을떄
+			
+ 			
+		/* 		ajax({
 					url: "/order/payment/complete",
 					method: "post",
 					data: { 'memberid': sessionId, 'productname': producttitle, 'productprice': productprice },
@@ -95,11 +103,13 @@
 
 					}
 
-				});
+				}); */
 
-			}); // fun rsp end
-
-		};	  
+			//}); // fun rsp end
+          
+		}
+		);
+		}
 	</script>
 
 	<script>
@@ -123,11 +133,11 @@
 
 	<script>
 
-		let sessionId = '${sessionid}';
+/* 		let sessionId = '${sessionid}';
 		let producttitle = '${producttitle}';
 		let productprice = '${price1}';
 		let list = [];
-		$('#requesttype').on("click", function (res) {
+ */		$('#requesttype').on("click", function (res) {
 			list = res;
 			if (res.result == 1) {
 
@@ -159,7 +169,7 @@
 			<div class=paymentlist>
 
 				<div class="order-form-title">결제하기</div>
-				<form action="http://localhost:8090/orderpaywritingform" method="post">
+				<form action="/orderpaywritingform" method="post">
 					<div class="order-form-content-box">
 						<div class="order-sub-title mt-1">대여자 정보</div><br>
 						<p>대여자 아이디 </p> <input class="user-using" type="text" id="user" name="userid" value="${sessionid }" readonly><br>
