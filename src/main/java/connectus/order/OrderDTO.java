@@ -6,17 +6,18 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository("orderdao")
 public class OrderDTO {
-	private int order_num;
+	private String order_num;
 	private String userid;
 	private String productname;
 	private String paymethod;
 	private String phone;
 	private int totalprice;
 	private int paystatus;
-	public int getOrder_num() {
+	
+	public String getOrder_num() {
 		return order_num;
 	}
-	public void setOrder_num(int order_num) {
+	public void setOrder_num(String order_num) {
 		this.order_num = order_num;
 	}
 	public String getUserid() {
@@ -61,7 +62,7 @@ public class OrderDTO {
 				+ ", paymethod=" + paymethod + ", phone=" + phone + ", totalprice=" + totalprice + ", paystatus="
 				+ paystatus + "]";
 	}
-	public OrderDTO(int order_num, String userid, String productname, String paymethod, String phone, int totalprice,
+	public OrderDTO(String order_num, String userid, String productname, String paymethod, String phone, int totalprice,
 			int paystatus) {
 		super();
 		this.order_num = order_num;

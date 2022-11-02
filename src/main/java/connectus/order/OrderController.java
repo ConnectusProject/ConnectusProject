@@ -58,14 +58,7 @@ public class OrderController {
 	}
 	
 	
-	@RequestMapping(value = "/paymentlist")
-		public String paysuclist(Model model, HttpSession session,  String producttitle, String price1, String productname) {
-			String sessionid = (String)session.getAttribute("sessionid");
-			
-			
-			model.addAttribute("sessionid", sessionid);
-			model.addAttribute("producttitle", producttitle);
-			model.addAttribute("price1", price1);
+	
 			
 //			// 일부조회
 //			List<OrderDTO> list1 = orderdao.halfresult(memberid, productname, productprice);
@@ -84,9 +77,7 @@ public class OrderController {
 //			}
 			
 			
-			return "order/paylist";
-			
-		}
+		
 	
 	
 	
@@ -170,18 +161,18 @@ public class OrderController {
 	// 이니시스 결제 alert AJAX 호출
 	@RequestMapping(value="/payments/complete", method= {RequestMethod.POST})
 	@ResponseBody
-	public Object alertpayment(OrderDTO dto, @RequestParam("memberid")String memberid, @RequestParam("productname")String productname, @RequestParam("productprice")String productprice) {
+	public Object alertpayment(OrderDTO dto) {
 		// 일부조회
-				OrderDTO list1 = orderdao.halfresult(memberid, productname, productprice);
+//				OrderDTO list1 = orderdao.halfresult(memberid, productname, productprice);
 				
-				int ordercheck = 0;
-				if(list1.getOrder_num() != 0) {
-					ordercheck = 1;
-				}
+//				int ordercheck = 0;
+//				if(list1.getOrder_num() != 0) {
+//					ordercheck = 1;
+//				}
 				
-				dto.setUserid(memberid);
-				dto.setProductname(productname);
-				dto.setTotalprice(Integer.parseInt(productprice));
+//				dto.setUserid(memberid);
+//				dto.setProductname(productname);
+//				dto.setTotalprice(Integer.parseInt(productprice));
 				dto.setPaymethod("카드");
 				dto.setPhone("01092920");
 				dto.setPaystatus(1);
@@ -192,8 +183,8 @@ public class OrderController {
 				
 				
 				
-				System.out.println(list1);
-				return ordercheck;
+//				System.out.println(list1);
+				return null;
 	}
 			
 

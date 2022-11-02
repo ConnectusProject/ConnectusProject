@@ -16,6 +16,20 @@
 
 
 	<script>
+	//주문번호 생성
+		function createOrderNum() {
+		const date = new Date();
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, "0");
+		const day = String(date.getDate()).padStart(2, "0");
+
+		let orderNum = year + month + day;
+		for (let i = 0; i < 10; i++) {
+			orderNum += Math.floor(Math.random() * 8);
+
+		}
+		return orderNum;
+	}
 
 		//let sessionId = '${sessionid}';
 		let producttitle = '${producttitle}';
@@ -23,6 +37,7 @@
 		let list = [];
 
 		function requestPay() {
+		let order_num = createOrderNum();
 
 			alert(1);
 
@@ -38,6 +53,7 @@
 				buyer_tel: '010-1234-5678',
 				buyer_addr: '서울특별시 강남구 삼성동',
 				buyer_postcode: '123-456',
+				order_num: order_num
 				/* requestPay.orderNum = createOrderNum();    */
 			}, function (rsp) { // callback
 				if(rsp.success)
@@ -48,11 +64,12 @@
 						url: "/payments/complete",
 						type: 'post',
 						datatype: 'json',
-						data: { 'memberid': sessionId, 'productname': producttitle, 'productprice': productprice },
+						data: { 'userid': sessionId, 'productname': producttitle, 'totalprice': productprice, 'order_num' : order_num },
 						success: function(resp){
 		//					list = resp;
-		alert(resp);
+	
 								var msg = "결제가 완료되었습니다";
+								msg += '\n주문번호 :' + order_num;
 								msg += '\n고유ID :' + sessionId;
 								msg += '\n실대여 품목 :' + producttitle;
 								msg += '\n결제 금액 : ' + productprice;
@@ -75,8 +92,7 @@
 			 		
 			 		
 			 		
-					alert(createOrderNum());
-					alert("대여자 : " + sessionId + "님" + "," + "품목 : " + producttitle + "가격 :" + productprice + "원 결제완료되셨습니다.");
+					
 
 
 				}else{
@@ -114,23 +130,7 @@
 }
 	</script>
 
-	<script>
-		//주문번호 생성
-		function createOrderNum() {
-			const date = new Date();
-			const year = date.getFullYear();
-			const month = String(date.getMonth() + 1).padStart(2, "0");
-			const day = String(date.getDate()).padStart(2, "0");
-
-			let orderNum = year + month + day;
-			for (let i = 0; i < 10; i++) {
-				orderNum += Math.fllor(Math.random() * 8);
-
-			}
-			return orderNum;
-		}
-
-	</script>
+	
 
 
 	<script>
@@ -192,7 +192,6 @@
 					<div  class="order-sub-title mt-1">결제 정보</div><br>
 					<p>결제수단 </p> <input style="width : 5%" type="checkbox" name="paymethod" value="결제수단">카드</br>
 					</div>
-					<input type="submit" value="test">
 					<!-- <button type="button" id="requestprocess">결제하기</button> -->                                                                                                                                                                                                                                                                                
                      
 				</form>
