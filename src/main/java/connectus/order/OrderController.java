@@ -100,7 +100,15 @@ public class OrderController {
 		model.addAttribute("producttitle", producttitle);
 		model.addAttribute("price1", price1);
 		
-//		OrderDTO payment = orderdao.InsertOrder(dto);
+		dto.setUserid(sessionid);
+		dto.setProductname(producttitle);
+		dto.setTotalprice(Integer.parseInt(price1));
+		dto.setPaymethod("카드");
+		dto.setPhone("01092920");
+		dto.setOrder_num(11222223);
+		dto.setPaystatus(1);
+		
+		orderdao.InsertOrder(dto);
 		
 //		Map<String, Integer> map = new HashMap();
 //		map.put("title", producttitle);
@@ -168,12 +176,21 @@ public class OrderController {
 	
 	
 	// 이니시스 결제 alert AJAX 호출
-	@RequestMapping(value="/payment/complete", method= {RequestMethod.POST})
+	@RequestMapping(value="/payments/complete", method= {RequestMethod.POST})
 	@ResponseBody
 	public Object alertpayment(@RequestParam("memberid")String memberid, @RequestParam("productname")String productname, @RequestParam("productprice")String productprice) {
 		// 일부조회
 				List<OrderDTO> list1 = orderdao.halfresult(memberid, productname, productprice);
-				return list1;
+				
+				int ordercheck = 0;
+				if(list1.get(0).getOrder_num() != 0) {
+					ordercheck = 1;
+				}
+				
+				
+				
+				System.out.println(list1);
+				return ordercheck;
 	}
 			
 

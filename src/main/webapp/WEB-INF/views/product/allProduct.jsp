@@ -112,7 +112,7 @@
                         	list = resp; 
                         	
 // javascript each 반복문 돌려서 => forEach문과 같은기능을 하도록 만듬. 
-// list 는 scrollCount 를 이용해서 limit 으로 조회한 20개의 list 
+// list 는 scrollCount 를 이용해서 limit 으로 조회한 12개의 list 
 $.each(list, function(i, product){
 	//렌탈중 표시 	
 	if(product.reservedNow==1){
@@ -134,17 +134,11 @@ $.each(list, function(i, product){
 	let formatPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	
 	// 날짜 몇일전으로 설정 
-	let uploadDateString = product.createdAt;
-	let uploadDate = new Date(uploadDateString);
-	
-	let today = new Date(); 
-	let todayString = today.toISOString();
-	let todayDateString = todayString.substring(0,10);
+	let uploadDate = new Date(product.createdAt);
+	let todayDateString = new Date().toISOString().substring(0,10);
 	let todayDate = new Date(todayDateString);
 	
-	let timeDiff = todayDate.getTime() - uploadDate.getTime();
-	let dateDiff = Math.abs(timeDiff/(1000 * 60 * 60 *24));
-	
+	let dateDiff = Math.abs((todayDate.getTime() - uploadDate.getTime())/(1000 * 60 * 60 *24));
 	let dateDiffShow = dateDiff + '일전';
 	
 	if(dateDiffShow=='0일전'){
@@ -337,13 +331,12 @@ $.each(list, function(i, product){
          <!-- 스마트 검색 -->
                 <form class="smart-search-box mb-4" action="/smartSearch" method="post">
                     <div class="smart-search-title"><span>C</span>onnect <span style="margin-left:5px">S</span>earch</div>
-                    <!-- <div class="smart-search-box-design"></div> -->
                  
-                <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" onchange="printName0()" placeholder="검색">
-                <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin" onchange="printName4()" placeholder="최소가격(₩)" step="500">
-                <input type="number" name="smartPriceMax" id="smartPriceMax" onchange="printName5()" placeholder="최대가격(₩)" step="500">
-                <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" onchange="printName1()" type="date" name="smartStartDate">
-                ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" onchange="printName2()" type="date" name="smartEndDate">
+                <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" placeholder="검색">
+                <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin" placeholder="최소가격(₩)" step="500">
+                <input type="number" name="smartPriceMax" id="smartPriceMax" placeholder="최대가격(₩)" step="500">
+                <input class="smart-search-width"  id="smartStartDate" class="smart-keyword" type="date" name="smartStartDate">
+                ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" type="date" name="smartEndDate">
                 <select id="regionSelect">
                 <option id="allRegion">모든 동네</option>
                 <option id="myRegion">내 동네</option>
@@ -351,7 +344,7 @@ $.each(list, function(i, product){
                 <option id="farRegion">먼 동네</option>
                 <option id="searchRegion">동네 검색</option>
                 </select>
-                <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
+                <span id="zzimList"><input class="smart-keyword" type="hidden" id="smartRegion" name="smartRegion" value="동"></span>
                 <input class="smart-search-button" type="submit" value="검색">
                 </form>
                 
@@ -484,17 +477,6 @@ $.each(list, function(i, product){
 
         </div>
     </div>
-    
-    <script>
-       let arrayButton = $('.product-array-button');
-
-       arrayButton.eq(0).on('click', function(event){
-        arrayButton[0].style.color="red";
-       })
-
- 
-    </script>
-    
     
     <script src="${path}/js/allproduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

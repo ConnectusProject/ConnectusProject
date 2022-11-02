@@ -16,13 +16,8 @@
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
-
-
-
-
-
-    <script>
-
+<script>
+    // 채팅 data submit 
         function chatSubmit(e) {
 			document.getElementById('chatSubmit_form').submit();
         }
@@ -33,7 +28,6 @@
             let productseq = '${oneProduct.id}';
             let userId = '${oneProduct.userId}';
             let reservLength = '${reservLength}';
-            
 
             // 세션과 일치할 시, 수정 삭제 버튼 생성 
             $("#update").append(
@@ -72,7 +66,6 @@
 
             // 찜 기능
             $("#zzimSpan").on("click", function (e) {
-
                 if (sessionId == "") {
                     alert("로그인이 필요합니다.");
                     return false;
@@ -172,12 +165,10 @@
                     }); // ajax 
                 }); // 예약 삭제 onclick
                 
-                
-            	})(i); // for - ajax 용 function
-            } // for 
-            
-        });   // onload
-    </script>
+           	})(i); // for - ajax 용 function
+        } // for 
+   }); // onload
+</script>
 
 
 
@@ -211,15 +202,9 @@ function paymentComplete(data){
 	})
 }
 </script>
-
-
-
 </head>
 
 <body>
-
-	
-
 	<div class="main-container">
         <!-- header-section -->
         <jsp:include page="/WEB-INF/views/header.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
@@ -258,7 +243,7 @@ function paymentComplete(data){
       
             
 
-            <!-- 날짜 몇일전으로 변환 -->
+            <!-- 날짜 변환 -->
             <fmt:parseDate value="${oneProduct.createdAt}" var="uploadDate" pattern="yyyy-MM-dd" />
 
             <c:set var="current" value="<%=new java.util.Date()%>" />
@@ -407,7 +392,6 @@ function paymentComplete(data){
                     <div class="product-detail-content">
                         <!-- <span class="detail-title-num">${oneProduct.id}</span> -->
                         <span class="detail-title"> 
-                        <%-- <div id="reservedNowSpan" class="detail-title-reserved" style="color:red"> ${reservedNowImg}  </div>  --%>
                         <div class="detail-title-title"> 
                         <span id="reservedNowSpan" style="color:red"> ${reservedNowImg}  </span>  ${oneProduct.title}
                         </div>
@@ -477,9 +461,6 @@ function paymentComplete(data){
                          
                         </div>
                     </div>
-
-
-
                 </div>
             </div> 
             <br>
@@ -489,15 +470,11 @@ function paymentComplete(data){
             </div>
             <div class="reserved-connect-container mt-5">
                 <div class="caution-box close">
-                    <jsp:include page="/WEB-INF/views/product/caution.jsp"> <jsp:param value="false" name="mypage"/></jsp:include>
-    
+                    <jsp:include page="/WEB-INF/views/product/caution.jsp"></jsp:include>
                 </div>
             <div class="reserved-connect-container2 ">
-
-                
                 
                 <table class="reserved-connect">
-    
                     <tr class="reserved-table-title">
                         <th>번호</th>
                         <th>예약시작</th>
