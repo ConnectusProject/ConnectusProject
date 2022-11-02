@@ -69,15 +69,7 @@ public class OrderController {
 		model.addAttribute("producttitle", producttitle);
 		model.addAttribute("price1", price1);
 		
-		dto.setUserid(sessionid);
-		dto.setProductname(producttitle);
-		dto.setTotalprice(Integer.parseInt(price1));
-		dto.setPaymethod("카드");
-		dto.setPhone("01092920");
-		dto.setOrder_num(11222223);
-		dto.setPaystatus(1);
 		
-		orderdao.InsertOrder(dto);
 		
 //		Map<String, Integer> map = new HashMap();
 //		map.put("title", producttitle);
@@ -91,7 +83,7 @@ public class OrderController {
 	//결제 성공 후
 	@RequestMapping(value = "/order/payment/complete", method = RequestMethod.POST)
 	@ResponseBody
-	public List<OrderDTO> paymentComplete(@RequestBody OrderDTO dto, Model model,  HttpSession session, String memberid, String productname, String productprice) throws Exception{
+	public OrderDTO paymentComplete(@RequestBody OrderDTO dto, Model model,  HttpSession session, String memberid, String productname, String productprice) throws Exception{
 		
 		String sessionid = (String)session.getAttribute("sessionid");
 		
@@ -99,7 +91,7 @@ public class OrderController {
 		List<OrderDTO> list = orderdao.paymentComplete(dto);
 		
 		// 일부조회
-		List<OrderDTO> list1 = orderdao.halfresult(memberid, productname, productprice);
+		OrderDTO list1 = orderdao.halfresult(memberid, productname, productprice);
 		
 		
 //		List<OrderDTO> paymethod = orderdao.getPaymethod();
@@ -147,14 +139,25 @@ public class OrderController {
 	// 이니시스 결제 alert AJAX 호출
 	@RequestMapping(value="/payments/complete", method= {RequestMethod.POST})
 	@ResponseBody
-	public Object alertpayment(@RequestParam("memberid")String memberid, @RequestParam("productname")String productname, @RequestParam("productprice")String productprice) {
+	public Object alertpayment(OrderDTO dto, @RequestParam("memberid")String memberid, @RequestParam("productname")String productname, @RequestParam("productprice")String productprice) {
 		// 일부조회
-				List<OrderDTO> list1 = orderdao.halfresult(memberid, productname, productprice);
+				OrderDTO list1 = orderdao.halfresult(memberid, productname, productprice);
 				
 				int ordercheck = 0;
-				if(list1.get(0).getOrder_num() != 0) {
+				if(list1.getOrder_num() != 0) {
 					ordercheck = 1;
 				}
+				
+				dto.setUserid(memberid);
+				dto.setProductname(productname);
+				dto.setTotalprice(Integer.parseInt(productprice));
+				dto.setPaymethod("카드");
+				dto.setPhone("01092920");
+				dto.setPaystatus(1);
+				
+				orderdao.InsertOrder(dto);
+				
+				
 				
 				
 				

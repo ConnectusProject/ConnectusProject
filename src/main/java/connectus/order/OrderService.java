@@ -75,8 +75,8 @@ public class OrderService {
 		
 	}
 	
-	public List<OrderDTO> halfresult(String memberid, String productname, String productprice) throws Exception{
-		List<OrderDTO> orderbylist = orderDAO.halfresult(memberid, productname, productprice);
+	public OrderDTO halfresult(String memberid, String productname, String productprice) throws Exception{
+		OrderDTO orderbylist = orderDAO.halfresult(memberid, productname, productprice);
 		return orderbylist;
 	}
 	
