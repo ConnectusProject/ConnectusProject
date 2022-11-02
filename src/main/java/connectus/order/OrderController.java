@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +56,38 @@ public class OrderController {
 			modelAndView.addObject("response", productprice);
 			return modelAndView;
 	}
+	
+	
+	@RequestMapping(value = "/paymentlist")
+		public String paysuclist(Model model, HttpSession session,  String producttitle, String price1, String productname) {
+			String sessionid = (String)session.getAttribute("sessionid");
+			
+			
+			model.addAttribute("sessionid", sessionid);
+			model.addAttribute("producttitle", producttitle);
+			model.addAttribute("price1", price1);
+			
+//			// 일부조회
+//			List<OrderDTO> list1 = orderdao.halfresult(memberid, productname, productprice);
+//			ArrayList<OrderDTO> list = new ArrayList<>();
+//			if(list.contains(sessionId) == 1) {
+//			
+//				OrderDTO dto = new OrderDTO();
+//				dto.getProductname();
+//				
+//				dto.getPaystatus();
+//				list.add(new OrderDTO("response", productname));
+//				list.add(new OrderDTO("response", productprice));
+//				list.add(null);
+//				list.add(null);
+//				list.add(0, null);
+//			}
+			
+			
+			return "order/paylist";
+			
+		}
+	
 	
 	
 	

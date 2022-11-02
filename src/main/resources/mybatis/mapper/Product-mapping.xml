@@ -7,38 +7,38 @@
 
 	<!-- 전체 물품 -->
 	<select id="allProduct" resultType="productdto">
-		select * from PRODUCT order by id desc limit 0, 20
+		select * from PRODUCT order by id desc limit 0, 12
 	</select>
 	
 	<select id="scrollProduct" resultType="productdto">
-		select * from PRODUCT order by id desc limit #{limit}, 20
+		select * from PRODUCT order by id desc limit #{limit}, 12
 	</select>
 	
 	<!-- 전체 낮은가격순 -->
 	<select id="allProductOrderByLowPrice" resultType="productdto">
-		select * from PRODUCT order by price asc limit 0, 20
+		select * from PRODUCT order by price asc limit 0, 12
 	</select>
 	
 	<select id="scrollProductOrderByLowPrice" resultType="productdto">
-		select * from PRODUCT order by price asc limit #{limit}, 20
+		select * from PRODUCT order by price asc limit #{limit}, 12
 	</select>
 	
 	<!-- 전체 높은가격순 -->
 	<select id="allProductOrderByHighPrice" resultType="productdto">
-		select * from PRODUCT order by price desc limit 0, 20
+		select * from PRODUCT order by price desc limit 0, 12
 	</select>
 	
 	<select id="scrollProductOrderByHighPrice" resultType="productdto">
-		select * from PRODUCT order by price desc limit #{limit}, 20
+		select * from PRODUCT order by price desc limit #{limit}, 12
 	</select>
 	
 	<!-- 전체 조회순 -->
 	<select id="allProductOrderByCount" resultType="productdto">
-		select * from PRODUCT order by viewCount desc limit 0, 20
+		select * from PRODUCT order by viewCount desc limit 0, 12
 	</select>
 	
 	<select id="scrollProductOrderByCount" resultType="productdto">
-		select * from PRODUCT order by viewCount desc limit #{limit}, 20
+		select * from PRODUCT order by viewCount desc limit #{limit}, 12
 	</select>
 
 
@@ -80,7 +80,7 @@
 	<!-- 검색 deprecated -->
 	<select id="searchList" resultType="productdto" >
 	 	select * from PRODUCT where ${item} like concat('%', #{search}, '%') 
-	 	order by id desc limit #{limit}, 20
+	 	order by id desc limit #{limit}, 12
 	 </select>
 	 
 	 <!-- Nav 검색 -->
@@ -90,7 +90,7 @@
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
 			or userid like concat('%', #{search}, '%')
-			order by id desc limit #{limit}, 20
+			order by id desc limit #{limit}, 12
 	 </select>
 	 
 	 <select id="navSearchOrderByLowPrice" resultType="productdto">
@@ -99,7 +99,7 @@
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
 			or userid like concat('%', #{search}, '%')
-			order by price asc limit #{limit}, 20
+			order by price asc limit #{limit}, 12
 	 </select>
 	 
 	 <select id="navSearchOrderByHighPrice" resultType="productdto">
@@ -108,7 +108,7 @@
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
 			or userid like concat('%', #{search}, '%')
-			order by price desc limit #{limit}, 20
+			order by price desc limit #{limit}, 12
 	 </select>
 	 
 	 <select id="navSearchOrderByCount" resultType="productdto">
@@ -117,7 +117,7 @@
 			or contents like concat('%', #{search}, '%') 
 			or boardRegion like concat('%', #{search}, '%') 
 			or userid like concat('%', #{search}, '%')
-			order by viewCount desc limit #{limit}, 20
+			order by viewCount desc limit #{limit}, 12
 	 </select>
 	 
 	 
@@ -126,22 +126,22 @@
 	 <!-- 이웃 검색 -->
 	 <select id="neighborList" resultType="productdto">
 	 	select * from PRODUCT where boardRegion = #{boardRegion}
-	 	order by id desc limit #{limit}, 20
+	 	order by id desc limit #{limit}, 12
 	 </select>
 
 	 <select id="neighborListOrderByLowPrice" resultType="productdto">
 	 	select * from PRODUCT where boardRegion = #{boardRegion}
-	 	order by price asc limit #{limit}, 20
+	 	order by price asc limit #{limit}, 12
 	 </select>
 	
 	 <select id="neighborListOrderByHighPrice" resultType="productdto">
 	 	select * from PRODUCT where boardRegion = #{boardRegion}
-	 	order by price desc limit #{limit}, 20
+	 	order by price desc limit #{limit}, 12
 	 </select>
 	 
 	  <select id="neighborListOrderByCount" resultType="productdto">
 	 	select * from PRODUCT where boardRegion = #{boardRegion}
-	 	order by viewCount desc limit #{limit}, 20
+	 	order by viewCount desc limit #{limit}, 12
 	 </select>
 	  
 	  	 
@@ -171,7 +171,7 @@
 	and PRODUCT.price &gt; #{minPrice} -1
 	and PRODUCT.price &lt; #{maxPrice} +1
 	order by id desc  
-	limit #{limit}, 20
+	limit #{limit}, 12
 	</select>
 	
 	<!-- 가까운 동네 검색 -->

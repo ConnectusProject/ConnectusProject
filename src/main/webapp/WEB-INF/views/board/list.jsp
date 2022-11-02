@@ -88,7 +88,7 @@
                         <td style="width : 15%" ></td>
                         <td >제목</td>
                         <td style="width : 10%">작성자</td>
-                        <td style="width : 1%">작성시간</td>
+                        <td style="width : 10%">작성시간</td>
                 
                     </tr>
                     
