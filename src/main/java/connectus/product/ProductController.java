@@ -195,7 +195,7 @@ public class ProductController {
 		@ResponseBody
 		@PostMapping("/allproduct/ajax/{searchType}/{orderType}")
 		public List<ProductDTO> scrollProduct(Model model, HttpSession session, SmartSearchDTO smartSearchDTO, String item, String search, String scrollCount, String distanceKm, @PathVariable("searchType")int searchType, @PathVariable("orderType")int orderType) throws Exception {
-			int limit = Integer.parseInt(scrollCount)*20;
+			int limit = Integer.parseInt(scrollCount)*12;
 			
 			// 지역 set 
 			String sessionid = (String)session.getAttribute("sessionid");

@@ -90,7 +90,7 @@
                 if (scrollHeight == documentHeight) {   // || scrollY > (scrollCount+1) * 2400
                 	// 스크롤 수 => limit 시작 index로 가져옴 
                 	scrollCount++; 
-                	
+
                 	let list = [];
                 	
                     $.ajax({
