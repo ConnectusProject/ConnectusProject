@@ -140,17 +140,11 @@
                                 let formatPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
                                 // 날짜 몇일전으로 설정 
-                                let uploadDateString = product.createdAt;
-                                let uploadDate = new Date(uploadDateString);
-
-                                let today = new Date();
-                                let todayString = today.toISOString();
-                                let todayDateString = todayString.substring(0, 10);
+                                let uploadDate = new Date(product.createdAt);
+                                let todayDateString = new Date().toISOString().substring(0,10);
                                 let todayDate = new Date(todayDateString);
-
-                                let timeDiff = todayDate.getTime() - uploadDate.getTime();
-                                let dateDiff = Math.abs(timeDiff / (1000 * 60 * 60 * 24));
-
+                                
+                                let dateDiff = Math.abs((todayDate.getTime() - uploadDate.getTime())/(1000 * 60 * 60 *24));
                                 let dateDiffShow = dateDiff + '일전';
 
                                 if (dateDiffShow == '0일전') {
@@ -353,15 +347,15 @@
                     </div>
                     <!-- <div class="smart-search-box-design"></div> -->
 
-                    <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" onchange="printName0()"
+                    <input class="smart-keyword" id="smartTitle" type="text" name="smartTitle" 
                         placeholder="검색">
                     <input class="smart-search-width" id="smartPriceMin" type="number" name="smartPriceMin"
-                        onchange="printName4()" placeholder="최소가격(₩)" step="500">
-                    <input type="number" name="smartPriceMax" id="smartPriceMax" onchange="printName5()"
+                        placeholder="최소가격(₩)" step="500">
+                    <input type="number" name="smartPriceMax" id="smartPriceMax" 
                         placeholder="최대가격(₩)" step="500">
-                    <input class="smart-search-width" id="smartStartDate" class="smart-keyword" onchange="printName1()"
+                    <input class="smart-search-width" id="smartStartDate" class="smart-keyword" 
                         type="date" name="smartStartDate">
-                    ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate" onchange="printName2()"
+                    ~<input id="smartEndDate" class="smart-keyword" id="smartEndDate"
                         type="date" name="smartEndDate">
                     <select id="regionSelect">
                         <option id="allRegion">모든 동네</option>
@@ -370,7 +364,7 @@
                         <option id="farRegion">먼 동네</option>
                         <option id="searchRegion">동네 검색</option>
                     </select>
-                    <span id="zzimList"><input class="smart-keyword" onchange="printName3()" type="hidden"
+                    <span id="zzimList"><input class="smart-keyword" type="hidden"
                             id="smartRegion" name="smartRegion" value="동"></span>
                     <input class="smart-search-button" type="submit" value="검색">
                 </form>
