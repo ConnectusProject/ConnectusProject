@@ -174,7 +174,38 @@
 					<a id="logoutchk" href="/logout">로그아웃</a>
 					<% } %>
 		</div>
-	</header>                                                                                                                                                    
+	</header>         
+
+	<!--모바일 헤더-->
+	<div class="mobile-search-input close">
+		<input class="mobile-header-search-input" type="text" id="search" name="search" placeholder="검색">
+
+		<button class="btn btn-outline-secondary header-search-button close" type="submit"
+			id="button-addon2"><img src="${path}/pictures/search.png" alt=""></button>
+	</div>
+	<header class="mobile-header-box">
+
+		<div class="mobile-menu-button">
+			<div><img src="${path}/pictures/menu-icon.png"></div>
+			<div>메뉴</div>
+		</div>
+		<div class="mobile-search-button">
+			<div><img src="${path}/pictures/search.png" alt=""></div>
+			<div>검색</div>
+		</div>
+		<div>
+			<div><img src="${path}/pictures/logo.png" alt=""></div>
+			<div>홈</div>
+		</div>
+		<div>
+			<div><img src="${path}/pictures/mobile-zzim.png" alt=""></div>
+			<div>찜</div>
+		</div>
+		<div>
+			<div><img src="${path}/pictures/on.png" alt=""></div>
+			<div><a class="loginBtn" href="/login">로그인</a></div>
+		</div>
+	</header>                                                                                                                                           
 	<!--Navbar-->
 	<nav class="nav-box">
 		
@@ -182,8 +213,7 @@
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
 		<% if(session.getAttribute("sessionid")==null) { %>
-			<div class="basic-menu-box">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-
+			<div class="basic-menu-box">
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
@@ -332,6 +362,22 @@
 			rankBox2.classList.add('close');
 		})
 
+	let mobileMenu = document.querySelector('.mobile-menu-button');
+	let mobileSearch = document.querySelector('.mobile-search-button');
+	let navBox = document.querySelector('.nav-box');
+	let mobileSearchInput = document.querySelector('.mobile-search-input');
+
+	mobileMenu.addEventListener('click', function(){
+		mobileSearchInput.classList.remove('open');
+		mobileSearchInput.classList.add('close');
+		navBox.classList.toggle('open');
+	})
+
+	mobileSearch.addEventListener('click', function(){
+		navBox.classList.remove('open');
+		navBox.classList.add('close');
+		mobileSearchInput.classList.toggle('close')
+	})
 
 	</script>
 
