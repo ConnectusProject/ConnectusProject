@@ -28,10 +28,9 @@
 		<div class="content-container">
 
 			<div class="mypage-container">
-				
+				<p class="mypage-modify-title">비밀번호 변경</p>
 				<form class="modify-box" name="passwordModifyForm" action="passwordModify" method="post">
-					<p class="mypage-modify-title">비밀번호 변경</p>
-					<table style="margin-top : 3rem">
+					<table>
 						<tr>
 							<td>아이디</td>
 							<td><input type=text name=userid id=userid value="${member.userid }" readonly></td>
@@ -54,10 +53,7 @@
 						</tr>
 					</table>
 					<div>
-						<button id="mypage-modify-pw-button" id=btn name=btn onclick='check()' disabled>비밀번호 변경</button>
-						<!-- <a href="http://localhost:8090/mypage">
-							<button>돌아가기</button>
-						</a> -->
+						<button id="mypage-modify-pw-button" name=btn onclick='check()'>비밀번호 변경</button>
 					</div>
 
 
@@ -131,7 +127,16 @@
 		}
 
 		function check() {
-			alert("비밀번호가 변경되었습니다. 새로운 비밀번호로 로그인 해주세요.")
+			$.ajax({
+				url:"/passwordModify",
+				type:'post',
+				data: {},
+				success:function(data){
+					console.log(data)
+					alert('${msg}');
+				}
+				
+			});			
 		}
 
 

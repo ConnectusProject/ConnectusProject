@@ -1,0 +1,36 @@
+body {
+    width : 100vw;
+    height : 100vh;
+}
+
+.home2 {
+    width : 100vw;
+    height : 100vh;
+    position : relative;
+}
+
+.bg {
+    position : absolute;
+    top : 0;
+    width : 100%;
+    height: 100%;
+}
+
+.bg-enter {
+    position : absolute;
+    top : 35%;
+    right : 9%;
+    width : 13%;
+    height: 22%;
+}
+
+.bg-enter a {
+    width : 100%;
+    height: 100%;
+}
+
+.bg img {
+    width : 100%;
+    height : 100%;
+}
+

@@ -67,16 +67,20 @@
 					<table>
 						<tr class="admin-write-content-title">
 							<th style="width : 10%">번호</th>
-							<th style="width : 75%">제목</th>
+							<th style="width : 70%">제목</th>
 							<th style="width : 15%">작성일</th>
+							<th  style="width : 5%">삭제</th>
 						</tr>
 						<tbody>
 							<c:forEach items="${allmyboard2}" var="board2" varStatus="vs">
 								<fmt:parseDate value="${board2.writingtime}" var="uploadDate" pattern="yyyy-MM-dd" />
 								<tr class="admin-write-content-content">
 									<td id="boardseq${vs.index}">${board2.seq}</td>
-									<td><a href="/board/${board2.seq}">${board2.title}</th>
+									<td><a href="/boarddetail?seq=${board2.seq}">${board2.title}</th>
 									<td>${board2.writingtime}</td>
+									<td>
+										<button id="${board2.seq}" class="delete_btn2" value="${board2.seq}">삭제</button>
+									</td>
 								</tr>
 							</c:forEach>
 
@@ -91,8 +95,9 @@
 					<table>
 						<tr class="admin-write-content-title">
 							<th style="width : 10%">번호</th>
-							<th  style="width : 75%">제목</th>
+							<th  style="width : 70%">댓글</th>
 							<th style="width : 15%">작성일</th>
+							<th  style="width : 5%">삭제</th>
 						</tr>
 						<tbody>
 							<c:forEach items="${allmyboard3}" var="board3" varStatus="vs">
@@ -101,6 +106,9 @@
 									<td id="boardseq${vs.index}">${board3.comment_seq}</td>
 									<td>${board3.contents}</td>
 									<td>${board3.writingtime}</td>
+									<td>
+										<button id="${board3.comment_seq}" class="delete_btn3" value="${board3.comment_seq}">삭제</button>
+									</td>
 								</tr>
 							</c:forEach>
 
@@ -139,6 +147,44 @@
 						type: 'post',
 						url: "deleteProduct",
 						data: { productid: deleteProduct },
+						success: function (data) {
+							console.log(data);
+							location.reload();
+						}
+					});
+		
+				})
+			})
+			
+			$(document).ready(function () {
+				$(".delete_btn2").on('click', function (e) {
+					console.log(e.target.id)
+		
+					let deleteBoard = e.target.id;
+		
+					$.ajax({
+						type: 'post',
+						url: "deleteBoard",
+						data: { boardseq: deleteBoard },
+						success: function (data) {
+							console.log(data);
+							location.reload();
+						}
+					});
+		
+				})
+			})
+			
+			$(document).ready(function () {
+				$(".delete_btn3").on('click', function (e) {
+					console.log(e.target.id)
+		
+					let deleteComment = e.target.id;
+		
+					$.ajax({
+						type: 'post',
+						url: "deleteComment",
+						data: { commentseq: deleteComment },
 						success: function (data) {
 							console.log(data);
 							location.reload();

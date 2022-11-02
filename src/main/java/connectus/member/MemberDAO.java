@@ -19,6 +19,8 @@ public interface MemberDAO {
 	//Join
 	public int insertMember(MemberDTO dto);	
 	
+	public int insertMember_kakao(MemberDTO dto);	
+	
 	boolean idCheck(String userid) throws Exception;
 	
 	boolean phoneCheck(String phone) throws Exception;

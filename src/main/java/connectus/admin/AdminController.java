@@ -96,4 +96,16 @@ public class AdminController {
 		adminserv.deleteProduct(productid);
 	}
 	
+	@ResponseBody
+	@PostMapping("/deleteBoard")
+	public void deleteBoard(int boardseq) {
+		adminserv.deleteBoard(boardseq);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteComment")
+	public void deleteComment(int commentseq ) {
+		adminserv.deleteComment(commentseq);
+	}
+	
 }

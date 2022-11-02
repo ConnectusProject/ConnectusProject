@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="${path}/css/header.css">
         <link rel="stylesheet" href="${path}/css/login.css">
         <script src="${path}/js/jquery-3.6.0.min.js"></script>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script>
             $(document).ready(function () {
     
@@ -48,9 +49,14 @@
                             <button class="find-idpw-button" id="btn" type="button"><a href="findid">아이디 찾기</a></button>
                             <button class="find-idpw-button" id="btn" type="button"><a href="findpw">비밀번호 찾기</a></button>              
                     </div>
+                    
+                    
+                    
                     <div class="login-box-kakao-naver">
                         <div>
+                         <a id="kakao-login-btn" href="javascript:kakaoLogin();" >
                         <img src="${path}/pictures/Kakao_logo.jpg"> 카카오로 접속하기
+                        </a>
                     </div>
                     <div class="mt-2">
                         <img src="${path}/pictures/naver-logo.png"> 네이버로 접속하기
@@ -98,6 +104,33 @@
            
 
         </script>
+        
+ <!-- 카아로 -->
+	<script type="text/javascript">
+	Kakao.init('9eff6670bc1e2053ee1f18cb7a39d00f');
+			
+			
+	function kakaoLogin(){
+		window.Kakao.Auth.login({
+			scope:'account_email',
+			success:function(authObj){
+				window.Kakao.API.request({
+					url:'/v2/user/me',
+					success:res=>{
+						let kakao_account = res.kakao_account;
+						console.log(kakao_account);
+						let jsonData={
+								"userid":kakao_account.email,
+
+						};
+						window.location.href="/login-kakao?userid="+kakao_account.email;
+						return false;
+					}
+				});
+			}
+		})
+	}
+	</script>
 
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

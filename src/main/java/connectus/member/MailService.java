@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service("myserv")
@@ -13,6 +14,9 @@ public class MailService {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private PasswordEncoder encoderPassword;
 	
 	private static final String From_Email = "kywu9232@gmail.com";
 	
@@ -30,8 +34,8 @@ public class MailService {
 		
 		
 	public void updateTempPassword(String str, String userid) throws Exception{
-			String pw = str;		
-			System.out.println(pw +"  :  " + userid);			
+			String pw = encoderPassword.encode(str);		
+			System.out.println(str +"  :  " + userid);			
 			memberdao.updateTempPassword(userid,pw);
 	}
 	

@@ -61,7 +61,12 @@
 													<c:when test="${mem.role=='USER'}">일반회원</c:when>
 												</c:choose>
 											</c:when>
-
+											<c:when test="${mem.userStatus==1}">
+												<c:choose>
+													<c:when test="${mem.role=='ADMIN'}">관리자</c:when>
+													<c:when test="${mem.role=='USER'}">카카오회원</c:when>
+												</c:choose>
+											</c:when>
 											<c:when test="${mem.userStatus==9}">추방회원</c:when>
 										</c:choose>
 									</td>

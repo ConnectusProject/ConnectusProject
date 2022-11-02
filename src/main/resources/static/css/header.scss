@@ -1,5 +1,6 @@
 $color : #6462cb;
 $fontColor :#cddfe0;
+$mobileSize : 600px;
 
 @font-face {
     font-family: 'SpoqaHanSansNeo-Regular';
@@ -20,6 +21,8 @@ $fontColor :#cddfe0;
     font-family:'MalgunGothic'; 
     src: url(../fonts/MalgunGothic.eot);
 }
+
+
 
 div {
     box-sizing: border-box;
@@ -54,6 +57,7 @@ li {
 
 .main-container {
     width : 100vw;
+    height: 100vh;
     position : relative;
 
 }
@@ -355,14 +359,132 @@ li {
     font-weight: 400;
 }
 
-
-.close {
-    display:none;
+.mobile-header-box {
+    position : absolute;
+    width : $mobileSize;
+    height :5rem;
+    bottom : 0;
+    background-color: rgb(255, 255, 255);
+    z-index: 9;
+    justify-content:space-between;
+    align-items: center;
+    box-shadow: 0px -5px 5px rgb(219, 219, 219);
+    position : fixed;
+    display : none;
+    padding-left : 5%;
+    padding-right : 5%;
+    color: $color;
 }
 
+.mobile-search-input {
+    position : absolute;
+    width : $mobileSize;;
+    height : 3rem;
+    bottom : 6rem;
+    @include flexbox(center, center);
+    z-index: 4;
+    background-color: white;
+}
+
+.mobile-search-input input {
+    width : 30%;
+    height : 60%;
+    border : solid 2px $color;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+.mobile-search-input input:focus {
+    width : 60%;
+    border : solid 3px $color;
+    outline-style: none;
+}
+
+.mobile-header-box a{
+    color: $color;
+}
+
+.mobile-header-box >div {
+    width : 20%;
+    height: 100%;
+}
+
+.mobile-header-box >div > div {
+    width : 100%;
+    height: 50%;
+    @include flexbox(center, center);
+}
+
+.mobile-header-box >div > div > img {
+    margin-top : 10%;
+    width : 30%;
+    height: 80%;
+}
 
 @media screen and (max-width : 1300px) {
     .content-container {
         padding-left : 10rem;
     }
 }
+
+.close {
+    display : none;
+}
+
+
+@media screen and (max-width : 630px) {
+    .up {
+        display: none;
+    }
+    .nav-box {
+        padding : 1;
+        background-color: white;
+        position : absolute;
+        bottom :5rem;
+        width : $mobileSize;;
+        height: 200px;
+        display: none;
+    }
+    .basic-menu-box {
+        position: absolute;
+        height: 100%;
+        width : $mobileSize;;
+        padding : 0;
+        @include flexbox(left, none);
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .nav-menu-box {
+        width : 20%;
+        height : 40%;
+        @include flexbox(left, center);
+        flex-direction: column;
+    }
+    .nav-menu-box:hover {
+        cursor: pointer;
+    }
+
+
+    .menu-title {
+        text-align: center;
+        display : block;
+        font-size: 0.8rem;
+    }
+    .header-box {
+        display : none;
+    }
+    .mobile-header-box {
+        display : flex;
+    }
+}
+
+@media screen and (min-width : 630px) {
+    .mobile-search-input {
+        display : none;
+    }
+}
+
+
+.open {
+    display : block;
+}
+

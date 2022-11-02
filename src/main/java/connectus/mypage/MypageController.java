@@ -30,7 +30,10 @@ import connectus.product.ProductService;
 public class MypageController {
 	@Autowired
 	MypageService myserv;	
-		
+	
+	@Autowired
+	MemberService memserv;	
+	
 	@Autowired
 	HttpSession session;
 	
@@ -44,7 +47,7 @@ public class MypageController {
 	
 	//마이페이지
 	@GetMapping("/mypage")
-	public ModelAndView mypage(Model model, String zzimListLink) {
+	public ModelAndView mypage(Model model,  String zzimListLink) {
 		mav = new ModelAndView("mypage/mypage");
 		String userid = (String)session.getAttribute("sessionid");
 		
@@ -54,12 +57,12 @@ public class MypageController {
 		
 		//커뮤티니
 		List<BoardDTO> list2 = myserv.allMyBoard2(userid);		
-		int boardlength2 = list2.size();
+		int boardlength2 = list2.size();      
 		
-		// 검색랭킹 
 		List<String> searchLankingList = productService.searchLanking();
-				
+        
 		model.addAttribute("searchLankingList", searchLankingList);
+		
 		model.addAttribute("boardlength2", boardlength2);
 		model.addAttribute("allmyboard2",list2);
 		//찜목록
@@ -122,11 +125,23 @@ public class MypageController {
 	}
 	//(수정)
 	@PostMapping("/mypageModify")
-	public ModelAndView memberModify(@ModelAttribute MemberDTO memberdto) throws Exception {	
+	public ModelAndView memberModify(@ModelAttribute MemberDTO memberdto,String pw) throws Exception {	
+		
+		List<MemberDTO> list = memserv.onemember(memberdto.getUserid());
+		String dbpassword = list.get(0).getPw();
 		mav = new ModelAndView("mypage/mypage");
-		System.out.println("수정폼 " + memberdto.getName());
-		myserv.memberModify(memberdto);
-		return mav;
+		if(encoderPassword.matches(pw, dbpassword)){						
+			System.out.println("수정폼 " + memberdto.getName());
+			myserv.memberModify(memberdto);
+			return mav;
+			
+		}
+		else {
+			System.out.println("비밀번호 일치하지 않음");		
+			return mav= new ModelAndView("mypage/mypage");
+		}
+		
+		
 	}
 	
 	//비밀번호 수정(가져오기)
@@ -141,12 +156,24 @@ public class MypageController {
 	}
 	
 	@PostMapping("/passwordModify")
-	public ModelAndView passwordModify(@ModelAttribute MemberDTO memberdto, @RequestParam(value="changePw")String pw, HttpServletRequest request) throws Exception {
-		session = request.getSession();
-		session.removeAttribute("sessionid");
-		memberdto.setPw(pw);
-		myserv.passwordModify(memberdto);
-		return mav = new ModelAndView("member/login");		
+	public ModelAndView passwordModify(@ModelAttribute MemberDTO memberdto, String pw,  String changePw,HttpServletRequest request) throws Exception {	
+		List<MemberDTO> list = memserv.onemember(memberdto.getUserid());
+		String dbpassword = list.get(0).getPw();
+		if(encoderPassword.matches(pw,dbpassword )){
+			memberdto.setPw(encoderPassword.encode(changePw));
+			session = request.getSession();
+			session.removeAttribute("sessionid");
+			myserv.passwordModify(memberdto);
+			mav.addObject("msg","비밀번호가 변경되었습니다. 다시 로그인해주세요");
+			return mav = new ModelAndView("member/login");
+		}
+		else {
+			System.out.println("비밀번호 일치하지 않음");
+			mav.addObject("msg", "비밀번호 일치하지 않음");
+			return mav;
+		}
+				
+				
 	}
 	
 	

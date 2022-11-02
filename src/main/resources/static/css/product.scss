@@ -1,6 +1,7 @@
 $box-size : 100%;
 $color : #6462cb;
 $fontColor :#cddfe0;
+$mobileSize : 600px;
 
 @mixin flexbox($justify, $align){
     display : flex;
@@ -39,13 +40,13 @@ $fontColor :#cddfe0;
 #carousel-box3 {
     position : absolute;
     width : 100%;
-    height : 15rem;
+    height : 100%;
 }
 
 #carousel-box4 {
     position : absolute;
     width : 100%;
-    height : 15rem;
+    height : 100%;
 }
 
 
@@ -59,11 +60,13 @@ $fontColor :#cddfe0;
 
 .smart-search-box {
     width : $box-size;
-    height : 4rem;
+    height : 6rem;
     text-align: center;
     position : absolute;
     border-top : solid 2px $color;
+    border-bottom : solid 2px $color;
     padding-top : 2rem;
+    padding-bottom : 2rem;
     @include flexbox(space-around, none );
     left : 0;
 }
@@ -256,7 +259,7 @@ $fontColor :#cddfe0;
 }
 
 .product-register {
-    width : 100%;
+    width : 15%;
     height : 2rem;
     border-radius: 50px;
     border : none;
@@ -868,3 +871,133 @@ $fontColor :#cddfe0;
 .close {
     display:none;
 }
+
+.mobile-allproduct-container {
+    width : $mobileSize;
+    position: absolute;
+    left : 0;
+}
+
+.mobile-allproduct-product-box {
+    width : 100%;
+    @include flexbox(left, center);
+    flex-direction: column;
+}
+
+.mobile-product-box-item {
+    width : 90%;
+    height : 5rem;
+    background-color: rgb(233, 233, 233);
+    position : relative;
+    margin-bottom : 10px;
+    border-radius: 10px;
+}
+
+.mobile-product-item-img {
+    position : absolute;
+    left : 1%;
+    width : 13%;
+    top : 5%;
+    height :90%;
+}
+
+.mobile-product-item-img a {
+    width : 100%;
+    height : 100%;
+}
+
+.mobile-product-item-img img {
+    width : 100%;
+    height : 100%;
+    border-radius: 10px;
+}
+
+.mobile-product-item-title {
+    position : absolute;
+    top : 5%;
+    left : 16%;
+    width : 75%;
+}
+
+.mobile-product-item-date {
+    position : absolute;
+    left : 16%;
+    top : 39%;
+    font-size: 0.8rem;
+    @include flexbox(left, center);
+}
+
+.mobile-product-item-location {
+    position : absolute;
+    left : 25%;
+    top : 39%;
+    font-size: 0.8rem;
+    @include flexbox(left, center);
+}
+.mobile-product-item-location img{
+    width : 20%;
+}
+
+.mobile-product-item-price {
+    position : absolute;
+    left : 16%;
+    bottom : 5%;
+    font-size: 0.9rem;
+}
+
+.mobile-product-item-zzim {
+    position: absolute;
+    right : 2%;
+    bottom : 5%;
+}
+
+.mobile-reserved {
+    position : absolute;
+    top : 5%;
+    right : 2%;
+}
+
+.mobile-allproduct-item-array {
+    margin-top : -3rem;
+    width : 550px;
+    padding-left : 1rem;
+    border-radius: 5px;
+    border:#9897c4 3px solid;
+    position : fixed;
+    z-index: 10;
+    background-color: white;
+}
+
+
+
+
+@media screen and (max-width : 630px) {
+    .background-bg {
+        top : 0;
+        height: 6rem;
+        position: fixed;
+        z-index: 10;
+        width : $mobileSize;
+    }
+
+    .carousel-box2 {
+        border-radius: 0;
+    }
+
+    .allproduct-container {
+        display: none;
+    }
+
+    .content-container {
+        padding : 0;
+        position: relative;
+        width : 700px;
+    }
+}
+
+@media screen and (min-width : 630px) {
+    .mobile-allproduct-container {
+        display : none;
+    }
+}
+
