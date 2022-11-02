@@ -30,6 +30,7 @@ span {
 }
 
 body {
+    background-color: rgb(251, 253, 255);
     margin:1;
     padding: 1;
     font-family: 'SpoqaHanSansNeo-Regular';
@@ -82,7 +83,7 @@ li {
 .header-box {
     position : fixed;
     width : 100%;
-    height :3.5rem;
+    height :4rem;
     background-color: rgb(255, 255, 255);
     z-index: 9;
     display : flex;
@@ -204,13 +205,14 @@ li {
     bottom : 0;
     background-color: white;
     border : solid 1px rgb(226, 226, 226);
-    top : 0;
+    top : 1.5rem;
     width : 20rem;
     z-index: 15;
     height : 20rem;
     padding : 1rem;
     border-radius: 5px;
 }
+
 
 .rank-box a {
     width : 100%;

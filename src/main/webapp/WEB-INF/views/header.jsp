@@ -7,6 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="${path}/pictures/destroy.png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
@@ -173,7 +174,7 @@
 					<a id="logoutchk" href="/logout">로그아웃</a>
 					<% } %>
 		</div>
-	</header>
+	</header>                                                                                                                                                    
 	<!--Navbar-->
 	<nav class="nav-box">
 		
@@ -181,15 +182,15 @@
 			<img src="${path}/pictures/up.png" alt="">
 		</div>
 		<% if(session.getAttribute("sessionid")==null) { %>
-			<div class="basic-menu-box">
+			<div class="basic-menu-box">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
 				<div class="nav-menu-box">
 					<span class="menu-icon"><a href="/allproduct/1/1"><img
 								src="${path}/pictures/home.png" alt=""></a></span>
-					<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div>
-				</div>
+					<div class="menu-title close"><a href="/allproduct/1/1">전체 물품</a></div> 
+				</div> 
 				<div class="nav-menu-box">
-					<span class="menu-icon"><a href="/login"><img
+					<span class="menu-icon"><a href="/login"><img                                                                                                                                                                                                                                                                                                                                                                                             
 								src="${path}/pictures/neighbor.png" alt=""></a></span>
 					<div class="menu-title close"><a href="/login">내 이웃</a></div>
 				</div>
@@ -331,32 +332,6 @@
 			rankBox2.classList.add('close');
 		})
 
-// clearTimeout(timeoutId);
-
-		// let rank = [0, 1.5 , 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
-
-		// for(let i = 1; i < rank.length+1; i ++){
-				
-		// 		setTimeout(function (){
-		// 	rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
-		// },2000*i)
-		// 	setTimeout(function(){
-		// 	rankBox.style.transform = 'translateY(0rem)';
-		// },2000*10)
-		// }
-
-
-		// setInterval(function (){
-		// 	for(let i = 1; i < rank.length+1; i ++){
-				
-		// 			setTimeout(function (){
-		// 		rankBox.style.transform = 'translateY(-'+rank[i]+'rem)';
-		// 	},2000*i)
-		// 		setTimeout(function(){
-		// 		rankBox.style.transform = 'translateY(0rem)';
-		// 	},2000*10)
-		// }
-		// 	}, 2000*11)
 
 	</script>
 
