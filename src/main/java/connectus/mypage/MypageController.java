@@ -47,7 +47,7 @@ public class MypageController {
 	
 	//마이페이지
 	@GetMapping("/mypage")
-	public ModelAndView mypage(Model model) {
+	public ModelAndView mypage(Model model,  String zzimListLink) {
 		mav = new ModelAndView("mypage/mypage");
 		String userid = (String)session.getAttribute("sessionid");
 		
@@ -68,6 +68,7 @@ public class MypageController {
 		//찜목록
 		List<ProductDTO> zzimList = productService.getZzimProducts(userid);
 		int zzimlength = zzimList.size();
+		model.addAttribute("zzimListLink", zzimListLink);
 		model.addAttribute("zzimlength", zzimlength);
 		model.addAttribute("sessionId", userid);
 		model.addAttribute("zzimList", zzimList);
