@@ -512,7 +512,7 @@ function paymentComplete(data){
                             <td>${reserv.buyerId}</td>
                             <c:if test="${sessionid == oneProduct.userId }">
                             <th><span id="reservCheck${vs.index}">${reservation}</span></th>
-                            <th><span id="reservDelete${vs.index}"><button>삭제하기</button></span></th>
+                            <th><span id="reservDelete${vs.index}"><button class="reserved-delete">삭제하기</button></span></th>
                             </c:if>
                             
                         </tr>

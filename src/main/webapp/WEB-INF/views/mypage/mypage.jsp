@@ -36,13 +36,14 @@
             <jsp:param value="false" name="mypage" />
         </jsp:include>
         <!-- content-section -->
-        <div class="background"></div>
+        <div class="background">
+            <p>My page</p> 
+         </div>
         <div class="content-container">
 
             <div class="mypage-container">
                 <div class="mypage-box-title-box">
-                    <div class="mypage-title-title">My page</div>
-                    <div class="mypage-title show">내 정보</div>
+                    <div class="mypage-title show mt-3">내 정보</div>
                     <div class="mypage-title">내 물건</div>
                     <div class="mypage-title">내가 쓴 글</div>
                     <div class="mypage-title">찜리스트</div>
@@ -120,18 +121,22 @@
                     <form class="myproduct-box" name="mywrite" method="get">
                         <table class="myproduct-box-table">
                             <tr class="myproduct-box-table-title">
-                                <th style="width : 10%">번호</th>
-                                <th style="width : 45%">제목</th>
+                                <th style="width : 10%; border-right:2px solid rgb(224, 224, 224)">번호</th>
+                                <th style="width : 45%; border-right:2px solid rgb(224, 224, 224)">제목</th>
                                 <th style="width : 45%">날짜</th>
+                            </tr>
+                            <tr class="myproduct-box-table-title2">
+                                <th colspan="3"></th>
+                            
                             </tr>
                             <tbody>
                                 <c:forEach items="${allmyboard2}" var="board2" varStatus="vs">
                                     <fmt:parseDate value="${board2.writingtime}" var="uploadDate"
                                         pattern="yyyy-MM-dd" />
                                     <tr class="mypage-mywrite">
-                                        <th id="boardid${vs.index}">${board2.seq}</th>
+                                        <th style="font-size : 0.8rem;" id="boardid${vs.index}">${board2.seq}</th>
                                         <th><a href="/boarddetail?seq=${board2.seq}">${board2.title}</a></th>
-                                        <th>${board2.writingtime}</th>
+                                        <th style="font-size : 0.8rem;">${board2.writingtime}</th>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -150,9 +155,13 @@
                     <p class="myproduct-box-title">찜 리스트</p>
                     <table class="myproduct-zzim-box">
                         <tr class="myproduct-box-table-title">
-                            <th style="width : 10%">번호</th>
-                            <th>제목</th>
+                            <th style="width : 10%; border-right:2px solid rgb(224, 224, 224)">번호</th>
+                            <th style="border-right:2px solid rgb(224, 224, 224)">제목</th>
                             <th>날짜</th>
+                        </tr>
+                        <tr class="myproduct-box-table-title2">
+                            <th colspan="3"></th>
+                        
                         </tr>
 
                         <tbody>

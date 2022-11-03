@@ -543,7 +543,7 @@ $mobileSize : 600px;
 
 .reserved-table-title {
     background-color: $color;
-    color : $fontColor;
+    color : white;
     height : 3.5rem;
 }
 
@@ -552,11 +552,18 @@ $mobileSize : 600px;
     height : 3rem;
 }
 
+.reserved-delete {
+    border : none;
+    background-color: $color;
+    color : white;
+    border-radius : 5px;
+}
+
 .update-delete-button {
     margin-right: 1rem;
     border : none;
     background-color: $color;
-    color : $fontColor;
+    color : white;
     border-radius: 5px;
     font-size: 1rem;
 }

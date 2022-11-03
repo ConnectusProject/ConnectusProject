@@ -565,7 +565,7 @@
 
 .reserved-table-title {
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   height: 3.5rem;
 }
 
@@ -574,11 +574,18 @@
   height: 3rem;
 }
 
+.reserved-delete {
+  border: none;
+  background-color: #6462cb;
+  color: white;
+  border-radius: 5px;
+}
+
 .update-delete-button {
   margin-right: 1rem;
   border: none;
   background-color: #6462cb;
-  color: #cddfe0;
+  color: white;
   border-radius: 5px;
   font-size: 1rem;
 }

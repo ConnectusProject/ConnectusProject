@@ -100,6 +100,7 @@
 							);
 							$("#commentNum").html("댓글 " + listNum);
 							$("#contents").val('');
+							setTimeout(()=>{location.reload()}, 5)
 						}
 			})
 		} else {
