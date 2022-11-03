@@ -55,11 +55,8 @@
                     <div class="login-box-kakao-naver">
                         <div>
                          <a id="kakao-login-btn" href="javascript:kakaoLogin();" >
-                        <img src="${path}/pictures/Kakao_logo.jpg"> 카카오로 접속하기
+                        <img src="${path}/pictures/Kakao_logo.jpg"> 카카오 로그인
                         </a>
-                    </div>
-                    <div class="mt-2">
-                        <img src="${path}/pictures/naver-logo.png"> 네이버로 접속하기
                     </div>
                     </div>
                 </div>

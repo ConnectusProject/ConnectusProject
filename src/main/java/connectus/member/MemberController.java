@@ -107,8 +107,13 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
+		System.out.println("logout");
 		session = request.getSession();
 		if(session.getAttribute("sessionid") != null) {
+			String userid = (String)session.getAttribute("sessionid");
+			MemberDTO member = (MemberDTO)memserv.onemember(userid);
+			String status = member.getUserStatus();
+			System.out.println(status);
 			session.removeAttribute("sessionid");
 			System.out.println("로그아웃성공");
 		}

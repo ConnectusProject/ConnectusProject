@@ -43,6 +43,6 @@
 </select>
 
 <select id="allMyBoard3" resultType="commentdto">
-		select * from BOARD where writer=#{userid} order by writingtime desc
+		select * from BOARDCOMMENT where writer=#{userid} order by writingtime desc
 </select>
 </mapper>

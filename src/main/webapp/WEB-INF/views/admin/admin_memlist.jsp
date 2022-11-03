@@ -52,7 +52,7 @@
 									<td id=userid>${mem.userid}</td>
 									<td>${mem.phone}</td>
 									<td>${mem.email}</td>
-									<td><a href="/admin_write/${mem.userid}">작성글 보기</a></td>
+									<td><a href="/admin_write/${mem.userid}"><ins>작성글 보기</ins></a></td>
 									<td>
 										<c:choose>
 											<c:when test="${mem.userStatus==0}">

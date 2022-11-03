@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         	.passwordParameter("pw")
         	.permitAll()
         .and()
-        .logout();
+          	.logout();
 		
 	}
 	

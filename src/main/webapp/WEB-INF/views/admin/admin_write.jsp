@@ -104,7 +104,7 @@
 								<fmt:parseDate value="${board3.writingtime}" var="uploadDate" pattern="yyyy-MM-dd" />
 								<tr class="admin-write-content-content">
 									<td id="boardseq${vs.index}">${board3.comment_seq}</td>
-									<td>${board3.contents}</td>
+									<td><a href="/boarddetail?seq=${board3.seq}">${board3.contents}</td>
 									<td>${board3.writingtime}</td>
 									<td>
 										<button id="${board3.comment_seq}" class="delete_btn3" value="${board3.comment_seq}">삭제</button>

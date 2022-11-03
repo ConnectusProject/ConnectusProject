@@ -259,12 +259,14 @@
 
 		function emailcheck() {
 			var email = $('#email').val();
+			var regEmail= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+			
 			if (email == '') {
 				$('#email_check').text("이메일을 입력하세요");
 				$('#email_check').css("color", "red");
-				phone_check = false;
+				email_check = false;
 				btn.attr('disabled', true);
-			} else {
+			}else {
 				$('#email_check').text("사용가능한 이메일입니다.");
 				$('#email_check').css("color", "green");
 				email_check = true;

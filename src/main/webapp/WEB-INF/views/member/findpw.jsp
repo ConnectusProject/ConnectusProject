@@ -69,7 +69,6 @@
 				$(email).next('label').addClass('warning');
 			}
 			else {
-				alert(111);
 				$.ajax({
 					type: "GET",
 					url: "/check/findPw",
@@ -78,9 +77,7 @@
 						email: $('#email').val()
 					},
 					success: function (res) {
-						alert(112);
 						if (res.check) {
-							alert("1");
 							$.ajax({
 								type: "POST",
 								url: "/check/findPw/sendEmail",
