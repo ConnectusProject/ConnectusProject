@@ -46,7 +46,7 @@
                 $("#smartEndDate").val(smartEndDate);
                 $("#smartPriceMin").val(smartPriceMin);
                 $("#smartPriceMax").val(smartPriceMax);
-
+ 
 
                 if (regionOption == "1") {
                     $("#allRegion").attr("selected", "selected");
