@@ -9,12 +9,29 @@ $fontColor :#cddfe0;
 
 $mypage-box-size : 25rem;
 
+body {
+    background-color: rgb(251, 253, 255);
+    margin:1;
+    padding: 1;
+    font-family: 'SpoqaHanSansNeo-Regular';
+    position : relative;
+    height : 100vh;
+}
+
 .background {
     position : absolute;
     top : 0;
     width : 100%;
-    background-color: #cfcfe4;
-    height : 15rem;
+    border-bottom : 3px solid $color;
+    height : 14rem;
+}
+
+.background p {
+    position: absolute;
+    font-size: 3rem;
+    bottom : 5%;
+    left : 16%;
+    color : $color;
 }
 
 a {
@@ -28,7 +45,7 @@ li {
 
 
 .mypage-container {
-    margin-top : 6rem;
+    margin-top : 5rem;
     width : 1280px;
     position : relative;
     @include flexbox(left, none);
@@ -37,6 +54,7 @@ li {
 .mypage-box-title-box {
     margin-right : 7rem;
     width : 10%;
+    height: 100vh;
 }
 
 .mypage-title-title {
@@ -92,6 +110,7 @@ li {
 }
 
 .mypage-container-inner-box {
+    margin-top : 1rem;
     width : 50%;
 }
 
@@ -104,14 +123,32 @@ li {
 
 .myproduct-box-title {
     width : 100%;
-    height : 4rem;
-    font-size: 2rem;
-    border-bottom : 3px solid $color;
+    height : 3rem;
+    font-size: 1.5rem;
+    border-bottom : 2px solid $color;
 }
 
 .myproduct-box {
+    padding-right : 2%;
     width : 40rem;
+    height : 550px;
+    overflow: auto;
 }
+
+.myproduct-box::-webkit-scrollbar {
+    width : 0.8rem;
+}
+
+.myproduct-box::-webkit-scrollbar-track {
+    background-color:#b0b0c0;
+    border-radius: 10px;
+}
+
+.myproduct-box::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 10px;
+}
+
 
 .myproduct-box-item {
     width : 100%;
@@ -186,10 +223,17 @@ li {
 }
 
 .myproduct-box-table-title {
-    height : 3rem;
-    border-bottom : solid 2px rgb(226, 226, 226);
+    height: 0.5rem;
+    font-size: 0.9rem;
+}
+.myproduct-box-table-title th{
+    height: 0.5rem;
 }
 
+.myproduct-box-table-title2 {
+    border-bottom: solid 2px rgb(233, 233, 233);
+    height: 0.5rem;
+}
 
 .mypage-delete-title {
     width : 100%;
@@ -287,13 +331,15 @@ margin-left : 5px;
 }
 
 .mypage-mywrite {
-    height : 2rem;
+    height : 2.5rem;
     border-bottom : solid 1px rgb(238, 238, 238);
 }
 
 
 .show {
-    font-size: 1.3rem;
+    background-color: #7f7ec7;
+    color : white;
+    border-radius: 5px;
 }
 
 

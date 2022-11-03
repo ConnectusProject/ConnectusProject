@@ -198,7 +198,7 @@
 					<br>
 					<div class="product-insert-insert-file-box">
 					<span >
-					<img src="/pictures/jpgicon.png" height=40 width=40> &nbsp; <label class="insertproduct-label-button" for="imgFile">파일선택</label> (6개까지 등록 가능합니다.)
+					<img src="/pictures/jpgicon.png" height=40 width=40> &nbsp; <label class="insertproduct-label-button" for="imgFile">파일선택    </label> ❗ 사진 최대 6장, 클릭시 삭제됩니다.
 					<input id="imgFile" class="insertproduct-upload-button" type="file" name="imgFile" accept=".jpg, .jpeg, .jfif, .tiff, .gif, .bmp, .png, .heif, .bmp, .exif"><br>
 					<input id="file1" type="text" style="display:none" name="file1">
 					<input id="file2" type="text" style="display:none" name="file2">
@@ -207,7 +207,7 @@
 					<input id="file5" type="text" style="display:none" name="file5">
 					<input id="file6" type="text" style="display:none" name="file6">
 
-					<div id="cancleNoti" style="display:none">(사진 등록을 취소하시려면 해당 사진을 클릭해주세요.)</div>
+					<div id="cancleNoti" style="display:none"></div>
 					<div class="insertproduct-upload-result" id="here"></div>
 					</span>
 					<span>

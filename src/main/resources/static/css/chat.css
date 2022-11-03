@@ -5,10 +5,11 @@
   align-items: none;
   flex-direction: column;
   position: relative;
+  margin-top: -20px;
 }
 
 .chatTitle {
-  width: 100%;
+  width: 50%;
   height: 5rem;
   color: #6462cb;
   font-size: 3rem;
@@ -16,17 +17,32 @@
 
 .chatlist-box {
   width: 50%;
-  margin-right: 2%;
-  display: flex;
-  justify-content: left;
-  align-items: none;
-  flex-direction: column;
+  height: 500px;
+  padding: 1%;
+  padding-right: 2%;
+  overflow: auto;
+  border-radius: 5px;
+}
+
+.chatlist-box::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.chatlist-box::-webkit-scrollbar-track {
+  background-color: #b0b0c0;
+  border-radius: 10px;
+}
+
+.chatlist-box::-webkit-scrollbar-thumb {
+  background-color: #6462cb;
+  border-radius: 10px;
 }
 
 .chat-list-box {
   width: 100%;
-  height: 5rem;
+  height: 80px;
   margin-bottom: 0.5rem;
+  box-shadow: 3px 3px 3px rgb(207, 207, 207);
 }
 
 .chatbox {
@@ -41,7 +57,7 @@
 
 .chatbox-img {
   border: none;
-  border-radius: 30%;
+  border-radius: 10px;
 }
 
 .chat-title {
@@ -121,7 +137,7 @@
   height: 80%;
   padding: 1rem;
   background-color: rgb(235, 235, 235);
-  box-shadow: 0px 3px 5px rgb(209, 209, 209);
+  box-shadow: 0px 3px 3px rgb(209, 209, 209);
 }
 
 .chatroom-title {
@@ -135,7 +151,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   background-color: rgb(187, 211, 228);
-  box-shadow: 0px 3px 5px rgb(187, 211, 228);
+  box-shadow: 0px 3px 3px rgb(187, 211, 228);
 }
 
 .chatroom-content-box {
