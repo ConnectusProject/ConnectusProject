@@ -13,7 +13,7 @@
 
 <script>
 // LocalStorage 사용 맵 약속장소 저장 
-let storageCoords = localStorage.getItem('mapAddress'+ ${sessionCoords} + ${id});
+let storageCoords = localStorage.getItem('mapAddress'+ ${sessionCoords} + ${chatRoomInfo.id});
 let storageLat = "";
 let storageLon = "";
 if(storageCoords != "" && storageCoords != null){
@@ -183,7 +183,7 @@ function KakaoGeocoder() {
 			let meetingcoords = [];
 			meetingcoords.push(meetingLat);
 			meetingcoords.push(meetingLon);
-			localStorage.setItem('mapAddress' + ${sessionCoords} + ${id}, meetingcoords);
+			localStorage.setItem('mapAddress' + ${sessionCoords} + ${chatRoomInfo.id}, meetingcoords);
 			
 			kakaoMap(meetingLat, meetingLon);
 		}

@@ -28,14 +28,11 @@ import connectus.product.ProductDAO;
  
 @Controller
 public class ChatApplicationController {
-    
  
     @Autowired
     private SimpMessagingTemplate simpMessage;
-    
     @Autowired
     private ChatRoomService chatRoomService;
-    
     @Autowired
     private ProductDAO productDAO;
  
@@ -43,64 +40,29 @@ public class ChatApplicationController {
     @RequestMapping(value="/chatMessage", method=RequestMethod.GET)
     public String getWebSocketWithSockJs(ChatRoom chatRoom, Model model, HttpSession session ) throws IOException {
         
-        //이미 chatRoom이 만들어져있는지 확인
+        //chatRoom history 존재 
         if (chatRoomService.countByChatId(chatRoom.getPr_id(), chatRoom.getBuyerId()) > 0) {
-        	System.out.println("채팅방 존재");
             //get ChatRoomInfo
             ChatRoom chatRoomTemp = chatRoomService.findByChatId(chatRoom.getPr_id(), chatRoom.getBuyerId());
             //load existing chat history
             List<ChatRoom> chatHistory = chatRoomService.readChatHistory(chatRoomTemp);
-            //transfer chatHistory Model to View
             model.addAttribute("chatHistory", chatHistory);
-            
+        //신규 chatRoom 생성     
         } else {
-            //chatRoom 생성            
             chatRoomService.addChatRoom(chatRoom);            
             //text file 생성
             chatRoomService.createFile(chatRoom.getPr_id(), chatRoomService.getId(chatRoom.getPr_id(), chatRoom.getBuyerId()));                                
         }
  
-            //채팅방 번호
+            //채팅방 번호 Set
             chatRoom.setId(chatRoomService.getId(chatRoom.getPr_id(), chatRoom.getBuyerId()));
-            
-            System.out.println("모델 : "+chatRoom.toString());
-
-            // 정보보내기 
-            String sessionId = (String)session.getAttribute("sessionid");
-    		
-    		String buyerId = sessionId;
-    		int pr_id = chatRoom.getPr_id();
-    		int id = chatRoomService.getId(pr_id, buyerId);
-    		String pr_title = chatRoom.getPr_title();
-    		String sellerId = chatRoom.getSellerId();
-
-    		String img1 = chatRoom.getImg1();
-    		String img2 = chatRoom.getImg2();
-    		String img3 = chatRoom.getImg3();
-    		String img4 = chatRoom.getImg4();
-    		String img5 = chatRoom.getImg5();
-    		String img6 = chatRoom.getImg6();
-    		// 세션 위치정보 보내기 
-    		String sessionCoords = productDAO.getCoords(sessionId);
-    		
+    		//세션 위치정보 
+    		String sessionCoords = productDAO.getCoords(chatRoom.getBuyerId());
     		// 검색랭킹 
     		List<String> searchLankingList = productDAO.searchLanking();
     		
     		model.addAttribute("searchLankingList", searchLankingList);
     		model.addAttribute("sessionCoords", sessionCoords);
-    		model.addAttribute("img1", img1);
-    		model.addAttribute("img2", img2);
-    		model.addAttribute("img3", img3);
-    		model.addAttribute("img4", img4);
-    		model.addAttribute("img5", img5);
-    		model.addAttribute("img6", img6);
-    		model.addAttribute("id", id);
-    		model.addAttribute("pr_id", pr_id);
-    		model.addAttribute("buyerId", buyerId);
-    		model.addAttribute("sellerId", sellerId);
-    		model.addAttribute("pr_title", pr_title);
-            
-            //chatRoom 객체 Model에 저장해 view로 전달
             model.addAttribute("chatRoomInfo", chatRoom);
         
         return "chat/chatBroadcastChatRoom";
@@ -110,48 +72,23 @@ public class ChatApplicationController {
 
     // 채팅리스트에서 채팅방 입장
     @RequestMapping(value="/chatRoom/{pr_id}/{buyerId}", method=RequestMethod.GET)
-	public String getChatRoom(@PathVariable Map<String, String> requestVar,
-			Model model, HttpSession session) throws IOException {
-    	
+	public String getChatRoom(@PathVariable Map<String, String> requestVar, Model model, HttpSession session) throws IOException {
     	String sessionId = (String)session.getAttribute("sessionid");
-		
 		String buyerId = requestVar.get("buyerId");
 		int pr_id = Integer.parseInt(requestVar.get("pr_id"));
 			
 		//read chatHistory
 		ChatRoom chatRoomRead = chatRoomService.findByChatId(pr_id, buyerId);
 		List<ChatRoom> chatHistory = chatRoomService.readChatHistory(chatRoomRead);
-		model.addAttribute("chatHistory", chatHistory);
-		
-		int id = chatRoomService.getId(pr_id, buyerId);
-		String pr_title = chatRoomRead.getPr_title();
-		String sellerId = chatRoomRead.getSellerId();
-
-		String img1 = chatRoomRead.getImg1();
-		String img2 = chatRoomRead.getImg2();
-		String img3 = chatRoomRead.getImg3();
-		String img4 = chatRoomRead.getImg4();
-		String img5 = chatRoomRead.getImg5();
-		String img6 = chatRoomRead.getImg6();
 		// 세션 위치정보 보내기 
 		String sessionCoords = productDAO.getCoords(sessionId);
-		
 		// 검색랭킹 
 		List<String> searchLankingList = productDAO.searchLanking();
 				
 		model.addAttribute("searchLankingList", searchLankingList);
 		model.addAttribute("sessionCoords", sessionCoords);
-		model.addAttribute("img1", img1);
-		model.addAttribute("img2", img2);
-		model.addAttribute("img3", img3);
-		model.addAttribute("img4", img4);
-		model.addAttribute("img5", img5);
-		model.addAttribute("img6", img6);
-		model.addAttribute("id", id);
-		model.addAttribute("pr_id", pr_id);
-		model.addAttribute("buyerId", buyerId);
-		model.addAttribute("sellerId", sellerId);
-		model.addAttribute("pr_title", pr_title);
+		model.addAttribute("chatHistory", chatHistory);
+		model.addAttribute("chatRoomInfo", chatRoomRead);
 		
 		return "chat/chatBroadcastChatRoomList";
 	}
@@ -193,7 +130,6 @@ public class ChatApplicationController {
    		 JSONObject jsnResult = new JSONObject();
    		 jsnResult.put("chatList", ja);
    		 String result = jsnResult.toString();
-   		 System.out.println("chatResult toString: " + result);
    		
    		 return result;
    	}
@@ -204,7 +140,6 @@ public class ChatApplicationController {
     @MessageMapping("/broadcast")
     public void send(ChatRoom chatRoom) throws IOException {
  
-    	System.out.println("메세지 맵핑 : " + chatRoom.toString()); 
         chatRoom.setSendTime(TimeUtils.getCurrentTimeStamp());
         //append message to txtFile
         chatRoomService.appendMessage(chatRoom);
@@ -232,7 +167,6 @@ public class ChatApplicationController {
 		int id = Integer.parseInt(idStr);
 		String flag = (String) jsn.get("flag");
 		
-		System.out.println(flag);
 		if (flag.equals("sell")) {
 			chatRoomService.updateChatReadSell(id, 1);
 		} else {
@@ -273,11 +207,11 @@ public class ChatApplicationController {
 		JSONObject jsn = new JSONObject(json);
 		//JSON.get([mapped name])으로 value 추출하기
 		String sessionid = (String) jsn.get("sessionid");
-		//email에 해당되는 모든 chatRoom select 받기
+		//session에 해당되는 모든 chatRoom select 받기
 		List<ChatList> chatRoomList = chatRoomService.findByUserId(sessionid);
-		//chatRoom 정보는 JSON Array에 저장됨
+		//chatRoom 정보 JSON Array에 저장
 		JSONArray ja = new JSONArray();
-		//email에 해당되는 읽지 않은 chatRoom select 받기
+		//session에 해당되는 읽지 않은 chatRoom select 받기
 		List<Integer> unreadChatId = chatRoomService.getUnreadChatRoom(sessionid);
 
 		 for (ChatList chatList : chatRoomList) {
@@ -310,12 +244,10 @@ public class ChatApplicationController {
 			}
 		 	ja.put(jo);
 		}
-		 //Javascript에 parsing 할 수 있도록 JSON Object에 Array를 담아줌
 		 JSONObject jsnResult = new JSONObject();
 		 jsnResult.put("chatList", ja);
-		 //String으로 변환해주면 끝, 프런트<->백엔드 전달은 String으로 이루어지며 형식은 JSON을 선택했음 
 		 String result = jsnResult.toString();
-		 //View로 result를 return해줌
+
 		 return result;
 	}
     
