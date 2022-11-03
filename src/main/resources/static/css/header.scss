@@ -38,6 +38,7 @@ body {
     padding: 1;
     font-family: 'SpoqaHanSansNeo-Regular';
     position : relative;
+    height : 100vh;
 }
 
 a {
@@ -91,7 +92,7 @@ li {
     background-color: rgb(255, 255, 255);
     z-index: 9;
     display : flex;
-    justify-content:space-between;
+    justify-content:left;
     align-items: center;
     box-shadow: 0px 5px 5px rgb(219, 219, 219);
 }
@@ -126,14 +127,16 @@ li {
 
 .header-search-box {
     @include flexbox(center, center);
-    width : 60%;
+    width : 50%;
 }
 
 .header-search-input {
-    width : 15vw;
+    width : 17vw;
     border : solid 2px $color;
     border-radius: 5px;
-    transition: all 0.5s;
+    margin-left : 3rem;
+  
+
 }
 
 .header-search-input:focus {
@@ -141,6 +144,7 @@ li {
     outline-color: $color;
     outline-width: 2px;
     width : 20vw;
+    transition: all 0.5s;
 }
 
 .header-search-button {
@@ -155,14 +159,14 @@ li {
 
 .header-search-box-inner {
     width : 100%;
-    @include flexbox(space-between, none);
+    @include flexbox(center, none);
     position : relative;
 }
 
 
 .header-search-box-inner2 {
     width : 100%;
-    @include flexbox(space-between, none);
+    @include flexbox(center, none);
     position : relative;
 }
 
@@ -173,11 +177,11 @@ li {
 
 .search-input {
     width : 60%;
-    @include flexbox(right, center);
+    @include flexbox(center, center);
 }
 
 .rank-container {
-    padding-left : 8%;
+    padding-left : 8rem;
     width : 40%;
     position : absolute;
     top : 10%;
@@ -195,7 +199,7 @@ li {
 
 
 .rank-container2{
-    padding-left : 8%;
+    padding-left : 8rem;
     width : 40%;
     position : absolute;
     top : 10%;

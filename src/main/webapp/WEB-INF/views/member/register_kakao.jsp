@@ -91,7 +91,7 @@
 		</div>
 	</div>
 
-<div id="map" style="width:36%;height:716px;right:-63%;"></div>
+<div class="register-map" id="map" style="width:500px;height:500px;right:-65%; top : -70%;"></div>
 
 	<script>
 		let phone = $('#phone');
