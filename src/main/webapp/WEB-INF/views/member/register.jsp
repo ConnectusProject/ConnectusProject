@@ -58,9 +58,11 @@
 						</div>
 						<div>
 							<input type=text name="name" placeholder="이름을 입력하세요" required oninput="namecheck()">
+							<div id="name_check"></div>
 						</div>
 						<div>
 							<input type=text name="email" placeholder="이메일을 입력하세요" required oninput="emailcheck()">
+							<div id="email_check"></div>
 						</div>
 						<div>
 							<input type=text name="phone" id="phone" placeholder="전화번호를 (-)제외하고 입력하세요" required
@@ -84,7 +86,9 @@
 								<input type="hidden" id="coords" name="coords">
 							</div>
 						</div>
-						<button class="signup-button" type="submit" id="btn" onclick="check()" disabled>회원가입</button>
+						<div>
+							<button type=submit class="signup-button" id="signup_btn" name="signup_btn" onclick="check()" disabled>회원가입</button>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -108,7 +112,7 @@
 		let phone = $('#phone');
 		let email = $('#email');
 		let name = $('#name');
-		let btn = $('#btn');
+		let btn = $('#signup_btn');
 
 
 		let id_check = false;
@@ -128,7 +132,7 @@
 				$('#id_check').text("아이디를 입력해주세요");
 				$('#id_check').css("color", "red");
 				id_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				$.ajax({
 					url: "idCheck",
@@ -139,19 +143,19 @@
 							$('#id_check').text("이미 가입된 아이디입니다");
 							$('#id_check').css("color", "red");
 							id_check = false;
-							$('#btn').attr('disabled', true);
+							btn.attr('disabled', true);
 						} else {
 							if (!regId.test(userid)) {
 								$('#id_check').text("영문과 숫자 6~20자 이내로 입력하세요");
 								$('#id_check').css("color", "red");
 								id_check = false;
-								$('#btn').attr('disabled', true);
+								btn.attr('disabled', true);
 							} else {
 								$('#id_check').text("사용 가능한 아이디입니다");
 								$('#id_check').css("color", "green");
 								id_check = true;
 								if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-									$('#btn').attr('disabled', false);
+									btn.attr('disabled', false);
 								}
 							}
 						}
@@ -167,23 +171,23 @@
 				$('#pw_check').text("패스워드를 입력하세요");
 				$('#pw_check').css("color", "red");
 				pw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (pw.length < 8 || pw.length > 17) {
 				$('#pw_check').text("패스워드 길이는 8자이상 16자이하 입니다");
 				$('#pw_check').css("color", "red");
 				pw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (pw.search(/\s/) != -1) {
 				$('#pw_check').text("패스워드는 공백을 포함할 수 없습니다");
 				$('#pw_check').css("color", "red");
 				pw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				$('#pw_check').text("패스워드 사용가능");
 				$('#pw_check').css("color", "green");
 				pw_check = true;
 				if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			}
 		}
@@ -195,19 +199,19 @@
 				$('#pw2_check').text("패스워드확인을 입력하세요");
 				$('#pw2_check').css("color", "red");
 				pw2_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (pw2 == pw) {
 				$('#pw2_check').text("패스워드가 일치합니다.");
 				$('#pw2_check').css("color", "green");
 				pw2_check = true;
 				if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			} else {
 				$('#pw2_check').text("패스워드를 확인해주세요.");
 				$('#pw2_check').css("color", "red");
 				pw2_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 
 			}
 		}
@@ -220,12 +224,12 @@
 				$('#phone_check').text("전화번호를 입력하세요");
 				$('#phone_check').css("color", "red");
 				phone_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (!regTel.test(phone)) {
 				$('#phone_check').text("올바른 전화번호를 입력하세요. ex)01012345678, 021231234");
 				$('#phone_check').css("color", "red");
 				phone_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				console.log("asd");
 				$.ajax({
@@ -237,13 +241,13 @@
 							$('#phone_check').text("이미 사용중인 번호 입니다");
 							$('#phone_check').css("color", "red");
 							phone_check = false;
-							$('#btn').attr('disabled', true);
+							btn.attr('disabled', true);
 						} else {
 							$('#phone_check').text("사용가능한 번호 입니다");
 							$('#phone_check').css("color", "green");
 							phone_check = true;
 							if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-								$('#btn').attr('disabled', false);
+								btn.attr('disabled', false);
 							}
 						}
 					}
@@ -257,13 +261,13 @@
 				$('#email_check').text("이메일을 입력하세요");
 				$('#email_check').css("color", "red");
 				phone_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				$('#email_check').text("사용가능한 이메일입니다.");
 				$('#email_check').css("color", "green");
 				email_check = true;
 				if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			}
 
@@ -276,11 +280,11 @@
 				$('#name_check').text("이름을 입력하세요");
 				$('#name_check').css("color", "red");
 				name_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				name_check = true;
 				if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			}
 
