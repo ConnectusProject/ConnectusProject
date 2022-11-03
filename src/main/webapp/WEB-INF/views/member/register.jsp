@@ -24,6 +24,8 @@
 		});
 	</script>
 </head>
+<body>
+	
 	<div class="main-container">
 
 		<div class="login-container">
@@ -74,7 +76,7 @@
 								<input type="text" id="sample6_postcode" placeholder="우편번호">
 								<button class="signup-check-button" type="button" onclick="sample6_execDaumPostcode()"
 									value="주소찾기">주소찾기</button>
-								<button class="map-check-button" type="button" onclick="locationarea()" value="내 위치">내 위치</button>
+								<button class="close" class="map-check-button" type="button" onclick="locationarea()" value="내 위치">내 위치</button>
 							</div>
 							<div>
 								<input type="text" id="sample6_address" placeholder="주소">
@@ -103,7 +105,7 @@
 		</div>
 	</div>
 
-<div id="map" style="width:36%;height:716px;right:-63%;"></div>
+<div class="register-map" id="map" style="width:500px;height:500px;right:-65%; top : -70%;"></div>
 
 	<script>
 		let userid = $('#userid');

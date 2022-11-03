@@ -89,13 +89,13 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <script>
 
 var stompClient = null;
-var buyerId = "${buyerId}";
-var sellerId = "${sellerId}";    
-var pr_id = "${pr_id}";
-var id = "${id}";
-var pr_title = "${pr_title}";
+var buyerId = "${chatRoomInfo.buyerId}";
+var sellerId = "${chatRoomInfo.sellerId}";    
+var pr_id = "${chatRoomInfo.pr_id}";
+var id = "${chatRoomInfo.id}";
+var pr_title = "${chatRoomInfo.pr_title}";
 
-var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
+var img = ["${chatRoomInfo.img1}", "${chatRoomInfo.img2}", "${chatRoomInfo.img3}", "${chatRoomInfo.img4}", "${chatRoomInfo.img5}", "${chatRoomInfo.img6}"];
 
 for(var i= 0; i<img.length; i++){
 if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
@@ -197,11 +197,11 @@ $(document).ready(function(){
     	        let chatroomContentMessage = document.querySelector('.chatroom-content-message');
     
         	}else{
-        		  return '<div class="message-id-time-content" style="width : 100%;  text-align : left;"><div class="message-id" style="width :100%; text-align : left;">[' +
-        	       messageObj.senderId  +
-        	        ']</div><div class="message-time close style="text-align : left;">' +
+        		  return '<span class="message-id-time-content" style="width : 20%;  text-align : left;"><span class="message-time style="text-align : left;">' +
         	        messageObj.sendTime +
-        	        '</div></div><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
+        	        '</span><span class="message-id" style="width :20%; text-align : left; margin-left : 20px">[' +
+        	       messageObj.senderId  +
+        	        ']</span></span><div class="message-content mb-3" style="text-align : left; background-color : white; ">' +
         	        messageObj.content+
         	        '</div>';
         	        
@@ -232,7 +232,7 @@ $(document).ready(function(){
     }
     
 
-	<%-- 읽음처리 상세페이지에서 --%>
+    <%-- 읽음처리 상세페이지에서 --%>
 	function ajaxChatRead() {
 		console.log("hi");
 		
@@ -247,7 +247,6 @@ $(document).ready(function(){
 			contentType: 'application/json'
 		});
 	}
-
 
 
 </script>
@@ -280,19 +279,7 @@ $(document).ready(function(){
 
     </script>
 
-    <script>
-        let mapTag = document.querySelector('.map-tag');
-        let map = document.querySelector('.chatroom-map');
-
-        mapTag.addEventListener('click', function(){
-            map.style.opacity = 1;
-        })
-
-
-
-
-    </script>
-
+ 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>

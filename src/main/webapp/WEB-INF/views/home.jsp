@@ -19,16 +19,33 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+
+
+</script>
+
 </head>
 <body>
 
-        <div class="home2">
+    <jsp:include page="/WEB-INF/views/header.jsp">
+ 
+        <jsp:param value="false" name="mypage" />
+
+
+    </jsp:include>
+
+
+        <div class="home3">
             <div class="bg">
             <img src="${path}/pictures/bg.png" alt="">
             </div>
-            <div class="bg-enter">
-            <a href="/allproduct/1/1"><img src="${path}/pictures/bg-enter.png" alt=""></a>
-            </div>
+        </div>
+
+        <div class="button-box">
+            <span><a href="/allproduct/1/1"><img src="${path}/pictures/home.png" alt="">
+            <div>홈</div></a></span>
+            <span class="home-login"><a href="/login"><img src="${path}/pictures/on.png" alt="">
+            <div>로그인</div></a></span>
         </div>
 
 
@@ -60,6 +77,27 @@ $(document).ready(function(){
 <a href="/reportregister">신고하기</a>
 
 <br> -->
+
+<script>
+    let check =[]
+    check.push(sessionId);
+    
+
+    let signBox = document.querySelector('.header-sign-box');
+
+    signBox.classList.add('close');
+
+    let homeLogin = document.querySelector('.home-login');
+
+    console.log(check);
+
+    if(check != ""){
+        homeLogin.classList.add('close');
+    }
+
+
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
