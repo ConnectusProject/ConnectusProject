@@ -39,6 +39,10 @@ public class LoginIdPwValidator implements UserDetailsService {
         if (user == null) {
             return null;
         }
+        
+        if (user.getUserStatus().equals("9")) {
+        	return null;
+        }
 
         String pw = user.getPw();
         String role = user.getRole();

@@ -39,7 +39,7 @@ public class BoardController {
 		int totalboard = boardService.getTotalBoard();
 	
 	
-		List<BoardDTO> boardlst = boardService.paginglist(new int[] {(page-1)*3, 3});
+		List<BoardDTO> boardlst = boardService.paginglist(new int[] {(page-1)*10, 10});
 		// 검색랭킹 
 		List<String> searchLankingList = productService.searchLanking();
 				
@@ -71,8 +71,8 @@ public class BoardController {
 		
 		
 		
-//	String savePath = "/Users/youngban/upload/";
-	String savePath = "c:/upload/";
+	String savePath = "/Users/youngban/upload/";
+//	String savePath = "c:/upload/";
 
 		String newname = null;
 		System.out.println(file1);
@@ -241,8 +241,8 @@ public class BoardController {
 		
 
 
-//		String savePath = "/Users/youngban/upload/";
-		String savePath = "c:/upload/";
+		String savePath = "/Users/youngban/upload/";
+//		String savePath = "c:/upload/";
 
 
 		String newname = null;
