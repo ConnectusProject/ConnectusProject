@@ -1,0 +1,87 @@
+$color : #6462cb;
+
+@mixin flexbox($justify, $align){
+    display : flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+
+body {
+    width : 100vw;
+    height : 100vh;
+    position: relative;
+}
+
+.home3 {
+    width : 100vw;
+    height : 100vh;
+    position : relative;
+}
+
+.bg {
+    position : absolute;
+    top : 0;
+    width : 100%;
+    height: 100%;
+}
+
+.bg img {
+    width : 100%;
+    height : 100%;
+}
+
+.nav-box {
+    display : none;
+}
+
+.header-menu-button {
+    display : none;
+}
+
+.rank-container {
+    display : none;
+}
+.rank-container2 {
+    display : none;
+}
+
+.button-box {
+    position: absolute;
+    z-index: 15;
+    right : 1rem;
+    top : 0;
+    width : 30%;
+    height : 4rem;
+    @include flexbox(right, center);
+}
+
+.button-box span {
+    width : 6%;
+    height: 80%;
+    margin-right : 5%;
+}
+.button-box span a{
+    width : 100%;
+    height: 100%;
+    @include flexbox(center, center);
+    flex-direction: column;
+
+}
+
+.button-box span img {
+    width : 2rem;
+    height: 50%;
+}
+
+.button-box span div {
+    width : 5rem;
+    height: 40%;
+    text-align: center;
+    color: #6462cb;
+}
+
+.close {
+    display : none;
+}
+
