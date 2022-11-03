@@ -125,20 +125,23 @@ public class MypageController {
 	}
 	//(수정)
 	@PostMapping("/mypageModify")
-	public ModelAndView memberModify(@ModelAttribute MemberDTO memberdto,String pw) throws Exception {	
-		
+	public ModelAndView memberModify(@ModelAttribute MemberDTO memberdto,String pw) throws Exception {			
 		List<MemberDTO> list = memserv.onemember(memberdto.getUserid());
 		String dbpassword = list.get(0).getPw();
-		mav = new ModelAndView("mypage/mypage");
 		if(encoderPassword.matches(pw, dbpassword)){						
 			System.out.println("수정폼 " + memberdto.getName());
 			myserv.memberModify(memberdto);
+			mav.addObject("msg","정보가 수정되었습니다.");
+			mav.addObject("url","/mypage");
+			System.out.println(memberdto.getPhone());
 			return mav;
 			
 		}
 		else {
-			System.out.println("비밀번호 일치하지 않음");		
-			return mav= new ModelAndView("mypage/mypage");
+			mav.addObject("msg", "비밀번호 일치하지 않음");
+			mav.addObject("url","/mypageModify");
+			System.out.println("실패");
+			return mav;
 		}
 		
 		
@@ -165,11 +168,13 @@ public class MypageController {
 			session.removeAttribute("sessionid");
 			myserv.passwordModify(memberdto);
 			mav.addObject("msg","비밀번호가 변경되었습니다. 다시 로그인해주세요");
-			return mav = new ModelAndView("member/login");
+			mav.addObject("url","/login");
+			System.out.println(mav);
+			return mav;
 		}
 		else {
-			System.out.println("비밀번호 일치하지 않음");
 			mav.addObject("msg", "비밀번호 일치하지 않음");
+			mav.addObject("url","passwordModify");
 			return mav;
 		}
 				

@@ -24,8 +24,8 @@ public class ChatRoomService {
     @Autowired
     ChatRoomMapper chatRoomMapper;
     
-    String fileUploadPath = "//Users/youngban/upload/";
-//    String fileUploadPath = "c:/upload/";
+//    String fileUploadPath = "//Users/youngban/upload/";
+    String fileUploadPath = "c:/upload/";
  
     public void addChatRoom(ChatRoom chatRoom) throws IOException {
         
@@ -83,7 +83,6 @@ public class ChatRoomService {
     }
     
     public void createFile(int pr_id, int id) throws IOException {
-        System.out.println("상품아이디 : "+pr_id + ", 채팅방아이디 : " + id);
         String fileName = pr_id + "_" + id + ".txt";
         String pathName = fileUploadPath + fileName;
         //File 클래스에 pathName 할당
@@ -122,7 +121,6 @@ public class ChatRoomService {
 		String content = chatRoom.getContent();
 		String senderId = chatRoom.getSenderId();
 		String sendTime = chatRoom.getSendTime();
-		System.out.println("print:" + content);
 		
 		String writeContent = senderId + "\n" + content + "\n" + "[" +  sendTime + "]" + "\n";
 		
@@ -131,9 +129,6 @@ public class ChatRoomService {
 		fos.write(b);
 		fos.close();
 		
-		System.out.println("senderId: "+ senderId);
-		System.out.println("sellerId: "+ chatRoom.getSellerId());
-		System.out.println(senderId.equals(chatRoom.getSellerId()));
 		
 		//알림 
 		if (senderId.equals(chatRoom.getSellerId())) {

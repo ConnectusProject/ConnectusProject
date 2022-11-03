@@ -35,18 +35,18 @@
             let smartPriceMin = '${smartSearchDTO.smartPriceMin}';
             let smartPriceMax = '${smartSearchDTO.smartPriceMax}';
 
-            if (smartPriceMin == 0) { smartPriceMin = ''; }
-            if (smartPriceMax == 100000000) { smartPriceMax = ''; }
 
             if (searchType == '4') {
+                // 스마트 검색 가격 입력 없을 시, 빈값으로 유지
+            if (smartPriceMin == 0) { smartPriceMin = ''; }
+            if (smartPriceMax == 100000000) { smartPriceMax = ''; }
                 // 스마트 검색 입력값 유지해서 표기 
                 $("#smartTitle").val(smartTitle);
                 $("#smartStartDate").val(smartStartDate);
                 $("#smartEndDate").val(smartEndDate);
                 $("#smartPriceMin").val(smartPriceMin);
                 $("#smartPriceMax").val(smartPriceMax);
-                // 스마트 검색 가격 입력 없을 시, 빈값으로 유지( parse 안되는 것 이용 )
-
+ 
 
                 if (regionOption == "1") {
                     $("#allRegion").attr("selected", "selected");
@@ -118,7 +118,7 @@
                             list = resp;
 
                             // javascript each 반복문 돌려서 => forEach문과 같은기능을 하도록 만듬. 
-                            // list 는 scrollCount 를 이용해서 limit 으로 조회한 20개의 list 
+                            // list 는 scrollCount 를 이용해서 limit 으로 조회한 12개의 list 
                             $.each(list, function (i, product) {
                                 //렌탈중 표시 	
                                 if (product.reservedNow == 1) {

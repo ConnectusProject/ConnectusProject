@@ -18,7 +18,7 @@
 
 
 <update id="memberModify" parameterType="memberdto">
-	update MEMBERS set phone=#{phone}, name=#{name},  email=#{email}, address=#{address} where userid=#{userid} and pw=#{pw}
+	update MEMBERS set phone=#{phone}, email=#{email}, address=#{address} where userid=#{userid}
 </update>
 
 <update id="passwordModify" parameterType="memberdto">

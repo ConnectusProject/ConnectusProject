@@ -14,6 +14,10 @@
 	<script src="${path}/js/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			if('${msg}' != ''){
+				alert('${msg}');
+				location.href='${url}';
+			}
 
 		});
 	</script>
@@ -27,9 +31,9 @@
 		<!-- content-section -->
 		<div class="content-container">
 
-			<div class="mypage-container">
-				<p class="mypage-modify-title">비밀번호 변경</p>
-				<form class="modify-box" name="passwordModifyForm" action="passwordModify" method="post">
+			<div class="mypage-container">		
+				<form class="modify-box" name="passwordModifyForm" method="post">
+					<p class="mypage-modify-title">비밀번호 변경</p>
 					<table>
 						<tr>
 							<td>아이디</td>
@@ -53,9 +57,8 @@
 						</tr>
 					</table>
 					<div>
-						<button id="mypage-modify-pw-button" name=btn onclick='check()'>비밀번호 변경</button>
+						<input id="mypage-modify-pw-button"  name="mypage-modify-pw-button"  type="submit" value="비밀번호 변경" disabled>
 					</div>
-
 
 				</form>
 
@@ -68,9 +71,9 @@
 		let pw = $('#pw');
 		let changePw = $('#changePw');
 		let changePw2 = $('#changePw2');
+		let btn = $("#mypage-modify-pw-button");
 
 
-		let pw_check = false;
 		let changePw_check = false;
 		let changePw2_check = false;
 
@@ -81,23 +84,23 @@
 				$('#changePw_check').text("패스워드를 입력하세요");
 				$('#changePw_check').css("color", "red");
 				changePw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (changePw.length < 8 || changePw.length > 17) {
 				$('#changePw_check').text("패스워드 길이는 8자이상 16자이하 입니다");
 				$('#changePw_check').css("color", "red");
 				changePw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (changePw.search(/\s/) != -1) {
 				$('#changePw_check').text("패스워드는 공백을 포함할 수 없습니다");
 				$('#changePw_check').css("color", "red");
 				changePw_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else {
 				$('#changePw_check').text("패스워드 사용가능");
 				$('#changePw_check').css("color", "green");
 				changePw_check = true;
 				if (changePw_check == true && changePw2_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			}
 		}
@@ -109,35 +112,24 @@
 				$('#changePw2_check').text("패스워드확인을 입력하세요");
 				$('#changePw2_check').css("color", "red");
 				changePw2_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 			} else if (changePw2 == changePw) {
 				$('#changePw2_check').text("패스워드가 일치합니다.");
 				$('#changePw2_check').css("color", "green");
 				changePw2_check = true;
 				if (changePw_check == true && changePw2_check == true) {
-					$('#btn').attr('disabled', false);
+					btn.attr('disabled', false);
 				}
 			} else {
 				$('#changePw2_check').text("패스워드를 확인해주세요.");
 				$('#changePw2_check').css("color", "red");
 				changePw2_check = false;
-				$('#btn').attr('disabled', true);
+				btn.attr('disabled', true);
 
 			}
 		}
 
-		function check() {
-			$.ajax({
-				url:"/passwordModify",
-				type:'post',
-				data: {},
-				success:function(data){
-					console.log(data)
-					alert('${msg}');
-				}
-				
-			});			
-		}
+
 
 
 	</script>

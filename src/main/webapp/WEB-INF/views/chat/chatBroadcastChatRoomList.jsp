@@ -89,13 +89,13 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <script>
 
 var stompClient = null;
-var buyerId = "${buyerId}";
-var sellerId = "${sellerId}";    
-var pr_id = "${pr_id}";
-var id = "${id}";
-var pr_title = "${pr_title}";
+var buyerId = "${chatRoomInfo.buyerId}";
+var sellerId = "${chatRoomInfo.sellerId}";    
+var pr_id = "${chatRoomInfo.pr_id}";
+var id = "${chatRoomInfo.id}";
+var pr_title = "${chatRoomInfo.pr_title}";
 
-var img = ["${img1}", "${img2}", "${img3}", "${img4}", "${img5}", "${img6}"];
+var img = ["${chatRoomInfo.img1}", "${chatRoomInfo.img2}", "${chatRoomInfo.img3}", "${chatRoomInfo.img4}", "${chatRoomInfo.img5}", "${chatRoomInfo.img6}"];
 
 for(var i= 0; i<img.length; i++){
 if(img[i] !=""){$("#chatImg").append('<div class="roomPictureS"><img src="/upload/'+ img[i] +'" height=100% width=100%></div>'); }
