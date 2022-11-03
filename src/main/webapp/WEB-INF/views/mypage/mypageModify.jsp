@@ -15,7 +15,10 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function () {
-
+			if('${msg}' != ''){
+				alert('${msg}');
+				location.href='${url}';
+			}
 		});
 	</script>
 </head>
@@ -34,7 +37,7 @@
 				<div class="mypage-container">
 					
 
-					<form class="modify-box" name="modifyForm" action="mypageModify" method="post">
+					<form class="modify-box" name="modifyForm"  action="mypageModify" method="post">
 						<p class="mypage-modify-title">나의 정보 수정</p>
 						<div>
 							<p>아이디</p>
@@ -48,7 +51,7 @@
 
 						<div>
 							<p>이메일</p>
-							<input type=text name=email id=email value="${member.email}" oninput=emailcheck()>
+							<input type=text name=email id=email value="${member.email}" required oninput=emailcheck()>
 						</div>
 						<div id="email_check"></div>
 
@@ -64,18 +67,18 @@
 
 						<div>
 							<p>전화번호</p>
-							<input type=text name=phone id=phone value="${member.phone}" >
+							<input type=text name=phone id=phone value="${member.phone}" oninput=phonecheck() required>
 						</div>
 						<div id="phone_check"></div>
 
 						<p class="mt-3">정보 수정을 위해 비밀번호를 입력해주세요</p>
 						<div>
-							<input type=password name=pw id=pw placeholder="비밀번호를 입력하세요" >
+							<input type=password name="pw" id="pw" placeholder="비밀번호를 입력하세요" required>
 						</div>
 
 
 						<div>
-							<input type=button id="mypage-modify-button" value="수정하기" onclick="check()">
+							<input id="mypage-modify-button" name="mypage-modify-button" type="submit"  value="수정하기" disabled><br>
 						</div>
 					</form>
 
@@ -93,10 +96,13 @@
 		}
 
 		let email = $('#email');
-		let name = $('#name');
-
+		let phone = $('#phone');
+		let btn = $("#mypage-modify-button");
+		
 		let email_check = false;
-		let name_check = false;
+		let phone_check = false;
+
+
 
 
 		function emailcheck() {
@@ -104,14 +110,18 @@
 			if (email == '') {
 				$('#email_check').text("이메일을 입력하세요");
 				$('#email_check').css("color", "red");
-				
+				phone_check = false;
+				btn.attr('disabled', true);
 			} else {
-				$('#phone_check').text("사용가능한 이메일 입니다");
-				$('#phone_check').css("color", "green");
+				$('#email_check').text("사용가능한 이메일입니다.");
+				$('#email_check').css("color", "green");
+				email_check = true;
+				if (phone_check == true && email_check == true) {
+					btn.attr('disabled', false);
+				}
 			}
-		}
 
-		
+		}
 		
 		function phonecheck() {
 			var phone = $('#phone').val();
@@ -120,11 +130,13 @@
 			if (phone == '') {
 				$('#phone_check').text("전화번호를 입력하세요");
 				$('#phone_check').css("color", "red");
-				
+				phone_check = false;
+				btn.attr('disabled', true);
 			} else if (!regTel.test(phone)) {
 				$('#phone_check').text("올바른 전화번호를 입력하세요. ex)01012345678, 021231234");
 				$('#phone_check').css("color", "red");
-
+				phone_check = false;
+				btn.attr('disabled', true);
 			} else {
 				console.log("asd");
 				$.ajax({
@@ -133,17 +145,24 @@
 					data: { phone: phone },
 					success: function (data) {
 						if (data == 'true') {
+							console.log(data);
 							$('#phone_check').text("이미 사용중인 번호 입니다");
 							$('#phone_check').css("color", "red");
-
+							phone_check = false;
+							btn.attr('disabled', true);
 						} else {
 							$('#phone_check').text("사용가능한 번호 입니다");
 							$('#phone_check').css("color", "green");
+							phone_check = true;
+							if (phone_check == true && email_check == true) {
+								btn.attr('disabled', false);
+							}
 						}
-					}					
+					}
 				});
 			}
 		}
+		
 
 		function sample6_execDaumPostcode() {
 			new daum.Postcode({
@@ -200,38 +219,6 @@
 
 
 		}
-
-		function check(){
-			var df = document.modifyForm;
-
-			if(df.email.value == ""){
-				alert("이메일을 입력하세요");
-				df.sample6_postcode.focus();
-				return;
-			}
-			if(df.phone.value == ""){
-				alert("전화번호를 입력하세요 ('-'는 제외)");
-				df.phone.focus();
-				return;
-			}
-			
-			if(df.address.value == ""){
-				alert("주소를 입력하세요");
-				df.sample6_postcode.focus();
-				return;
-			}
-			if(df.pw.value == ""){
-				alert("비밀번호를 입력하세요");				
-				df.pw.focus();
-				return;
-			}
-			
-			else{
-			alert("수정되었습니다.")
-			$("form").submit();
-			}
-		}
-
 	</script>
 
 
