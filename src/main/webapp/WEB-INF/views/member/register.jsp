@@ -84,7 +84,7 @@
 								<input type="hidden" id="coords" name="coords">
 							</div>
 						</div>
-						<button class="signup-button" type="submit" id="btn" onclick="check()">회원가입</button>
+						<button class="signup-button" type="submit" id="btn" onclick="check()" disabled>회원가입</button>
 					</div>
 				</form>
 			</div>
@@ -259,6 +259,8 @@
 				phone_check = false;
 				$('#btn').attr('disabled', true);
 			} else {
+				$('#email_check').text("사용가능한 이메일입니다.");
+				$('#email_check').css("color", "green");
 				email_check = true;
 				if (id_check == true && pw_check == true && pw2_check == true && phone_check == true && email_check == true && name_check == true) {
 					$('#btn').attr('disabled', false);
