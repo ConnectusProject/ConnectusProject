@@ -337,11 +337,13 @@ public class ProductController {
 		String sessionid = (String)session.getAttribute("sessionid");
 		String extraaddr = memberDAO.getRegion(sessionid);
 		String region = "동"; 
-		if(extraaddr.length()>10) {
+		if(extraaddr != null) {
+		if(extraaddr.length()>12) {
 			region = extraaddr;
 		}else {
 			region = extraaddr.substring(2,extraaddr.length()-1);
 		}
+	}
 		
 		if(smartSearchDTO.getSmartRegion()==null) {
 			smartSearchDTO.setSmartRegion("동");
